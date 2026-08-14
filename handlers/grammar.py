@@ -118,10 +118,6 @@ def get_type_keyboard() -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="grammar_back_to_menu")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-def get_level_keyboard(task_type: str) -> InlineKeyboardMarkup:
-    # Эта функция более не используется, но оставлена для совместимости, если где-то вызывается
-    return get_type_keyboard()
-
 def get_progress_keyboard() -> InlineKeyboardMarkup:
     buttons = [
         [InlineKeyboardButton(text="Работа над ошибками", callback_data="grammar_revision")],
@@ -195,7 +191,7 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     await set_random_order(user_id, type_key, indices)
     return indices
 
-# ----- Отправка сообщений (ПЕРЕРАБОТАНА) -----
+# ----- Отправка сообщений (исправлена) -----
 async def send_or_update_progress(
     bot: Bot,
     chat_id: int,
@@ -210,43 +206,54 @@ async def send_or_update_progress(
     """
     Отправляет или редактирует прогресс-сообщение.
     - Если edit=False и msg_id is None -> создаёт новое сообщение (только при старте)
-    - Если edit=True и msg_id is not None -> пытается отредактировать, при ошибке возвращает старый msg_id (не создаёт новое)
-    - Если edit=True и msg_id is None -> НИЧЕГО НЕ ДЕЛАЕТ, возвращает None (запрещено создавать новое)
-    - Если edit=False и msg_id is not None -> ничего не делает, возвращает msg_id (но это не должно происходить)
+    - Если edit=True и msg_id is not None -> пытается отредактировать, при ошибке возвращает старый msg_id
     """
-    # Если edit=True и нет msg_id – возвращаем None (не создаём новое)
     if edit and msg_id is None:
         logger.warning("Попытка отредактировать прогресс-сообщение без msg_id – игнорируем.")
         return None
 
-    # Если edit=False и msg_id is None – создаём новое (только при первом создании)
-    if not edit and msg_id is None:
-        # Собираем текст и отправляем
-        type_key = make_type_key(short_type)
-        correct, wrong = await get_grammar_stats(user_id, type_key, "all")
-        errors = await get_grammar_errors(user_id, type_key, "all")
-        errors_len = len(errors) if errors_count is None else errors_count
+    type_key = make_type_key(short_type)
+    correct, wrong = await get_grammar_stats(user_id, type_key, "all")
+    errors = await get_grammar_errors(user_id, type_key, "all")
+    errors_len = len(errors) if errors_count is None else errors_count
 
-        display_type = f"{TYPE_EMOJIS.get(short_type, '')} {short_type.replace('_', ' ')}"
+    display_type = f"{TYPE_EMOJIS.get(short_type, '')} {short_type.replace('_', ' ')}"
 
-        if is_revision:
-            text = f"<b>Работа над ошибками</b>\n"
-            text += f"Тип: {display_type}\n\n"
-            text += f"Заданий на исправление: {errors_len}\n"
-            keyboard = None
+    if is_revision:
+        text = f"<b>Работа над ошибками</b>\n"
+        text += f"Тип: {display_type}\n\n"
+        text += f"Заданий на исправление: {errors_len}\n"
+        keyboard = None
+    else:
+        # Формируем инструкцию в зависимости от типа
+        if short_type == "раскрытие_скобок":
+            instruction = "Раскройте скобки, впишите ответ (1–2 слова)."
+        elif short_type == "вставка_пропусков":
+            # Добавляем подсказку с правильным ответом
+            correct_answer = task.get("correct")
+            if isinstance(correct_answer, list):
+                hint = "(" + "/".join(correct_answer) + ")"
+            else:
+                hint = f"({correct_answer})"
+            instruction = f"Вставьте необходимое слово {hint}"
+        elif short_type == "отрицание":
+            instruction = "Перепишите предложение в отрицательную форму"
+        elif short_type == "to_be_выбор":
+            instruction = "Вставьте правильную форму глагола to be (am/is/are)"
+        elif short_type == "to_be_скобки":
+            instruction = "Вставьте правильную форму глагола to be (was/were)"
         else:
+            # Для остальных типов берём из файла
             instruction, _ = extract_instruction_and_task(task['question'])
-            if short_type == "раскрытие_скобок" and "впишите ответ" not in instruction:
-                instruction = instruction.replace("Раскройте скобки.", "Раскройте скобки, впишите ответ (1–2 слова).")
-            elif short_type == "отрицание":
-                instruction = "Перепишите предложение в отрицательную форму"
-            text = f"<b>Режим:</b> {display_type}\n\n"
-            text += f"{instruction}\n\n"
-            text += f"<b>Ваш прогресс:</b>\n"
-            text += f"✔️ Правильно: {correct}\n"
-            text += f"✖️ Ошибок: {errors_len}"
-            keyboard = get_progress_keyboard()
 
+        text = f"<b>Режим:</b> {display_type}\n\n"
+        text += f"{instruction}\n\n"
+        text += f"<b>Ваш прогресс:</b>\n"
+        text += f"✔️ Правильно: {correct}\n"
+        text += f"✖️ Ошибок: {errors_len}"
+        keyboard = get_progress_keyboard()
+
+    if not edit and msg_id is None:
         sent = await bot.send_message(
             chat_id=chat_id,
             text=text,
@@ -255,34 +262,7 @@ async def send_or_update_progress(
         )
         return sent.message_id
 
-    # Если edit=True и msg_id есть – пытаемся отредактировать
     if edit and msg_id is not None:
-        # Подготавливаем текст
-        type_key = make_type_key(short_type)
-        correct, wrong = await get_grammar_stats(user_id, type_key, "all")
-        errors = await get_grammar_errors(user_id, type_key, "all")
-        errors_len = len(errors) if errors_count is None else errors_count
-
-        display_type = f"{TYPE_EMOJIS.get(short_type, '')} {short_type.replace('_', ' ')}"
-
-        if is_revision:
-            text = f"<b>Работа над ошибками</b>\n"
-            text += f"Тип: {display_type}\n\n"
-            text += f"Заданий на исправление: {errors_len}\n"
-            keyboard = None
-        else:
-            instruction, _ = extract_instruction_and_task(task['question'])
-            if short_type == "раскрытие_скобок" and "впишите ответ" not in instruction:
-                instruction = instruction.replace("Раскройте скобки.", "Раскройте скобки, впишите ответ (1–2 слова).")
-            elif short_type == "отрицание":
-                instruction = "Перепишите предложение в отрицательную форму"
-            text = f"<b>Режим:</b> {display_type}\n\n"
-            text += f"{instruction}\n\n"
-            text += f"<b>Ваш прогресс:</b>\n"
-            text += f"✔️ Правильно: {correct}\n"
-            text += f"✖️ Ошибок: {errors_len}"
-            keyboard = get_progress_keyboard()
-
         try:
             await bot.edit_message_text(
                 chat_id=chat_id,
@@ -293,16 +273,10 @@ async def send_or_update_progress(
             )
             return msg_id
         except Exception as e:
-            # Редактирование не удалось – возвращаем старый ID, не создавая новое
             logger.error(f"Не удалось отредактировать прогресс-сообщение {msg_id}: {e}")
             return msg_id
 
-    # Если edit=False и msg_id is not None – ничего не делаем, возвращаем msg_id
-    if not edit and msg_id is not None:
-        return msg_id
-
-    # Запасной вариант – ничего не делаем
-    return None
+    return msg_id
 
 async def send_or_update_task(
     bot: Bot,
@@ -315,7 +289,7 @@ async def send_or_update_task(
     is_revision: bool = False,
     msg_id: int = None
 ) -> int:
-    """Отправляет или редактирует задание. Если msg_id передан – редактирует, иначе отправляет новое."""
+    """Отправляет или редактирует задание."""
     tasks = get_tasks(short_type)
     if task_id is not None:
         task = next((t for t in tasks if t.get("id") == task_id), None)
@@ -364,7 +338,6 @@ async def send_or_update_task(
                 await state.set_state(GrammarStates.in_progress)
             return msg_id
         except Exception:
-            # Если редактирование не удалось – удаляем старый msg и отправляем новый
             try:
                 await bot.delete_message(chat_id=chat_id, message_id=msg_id)
             except Exception:
@@ -425,7 +398,6 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(GrammarStates.choosing_type, F.data == "grammar_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
-    # Этот хендлер больше не нужен, но оставляем для совместимости
     await callback.answer()
     await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
@@ -467,7 +439,6 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
     real_index = order[index]
     task = tasks[real_index]
 
-    # Создаём прогресс-сообщение (edit=False, msg_id=None) – только здесь!
     progress_msg_id = await send_or_update_progress(
         bot, chat_id, user_id, short_type, task, msg_id=None, edit=False, is_revision=False
     )
@@ -535,7 +506,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await state.update_data(session_wrong=session_wrong)
             await add_grammar_error(user_id, type_key, level_key, task["id"])
 
-    # Убираем кнопки у текущего задания
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
@@ -1126,7 +1096,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Заданий для этого типа нет.")
         return
 
-    # Убираем кнопки у старого задания
     old_task_msg_id = data.get("task_msg_id")
     if old_task_msg_id:
         try:
@@ -1143,7 +1112,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
     old_progress_id = data.get("progress_msg_id")
     real_index = new_order[0]
     task = tasks[real_index]
-    # Редактируем прогресс-сообщение (если оно существует)
     new_progress_id = await send_or_update_progress(
         callback.bot,
         callback.message.chat.id,
@@ -1235,7 +1203,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         text += f"✔️ Правильно: {session_correct}\n"
         text += f"✖️ Ошибок: {session_wrong}"
 
-    # Убираем кнопки у задания
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
@@ -1243,7 +1210,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
 
-    # Убираем кнопки у прогресс-сообщения (НО НЕ УДАЛЯЕМ)
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
