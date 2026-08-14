@@ -16,7 +16,7 @@ from typing import List, Dict, Any, Callable, Awaitable
 
 router = Router()
 
-# ---------- Middleware для изоляции режимов ----------
+# ---------- Middleware для изоляции режимов и обработки команд ----------
 class ModeIsolationMiddleware(BaseMiddleware):
     async def __call__(
         self,
@@ -24,6 +24,45 @@ class ModeIsolationMiddleware(BaseMiddleware):
         event: TelegramObject,
         data: Dict[str, Any]
     ) -> Any:
+        # Проверяем, есть ли состояние и сообщение
+        state = data.get('state')
+        message = data.get('event_update', {}).get('message')  # или event.message
+        # Лучше получить сообщение напрямую
+        if hasattr(event, 'message') and event.message and event.message.text:
+            text = event.message.text
+            if text.startswith('/'):
+                # Если состояние активное и относится к грамматике
+                if state and await state.get_state() in [
+                    GrammarStates.choosing_type.state,
+                    GrammarStates.choosing_level.state,
+                    GrammarStates.waiting_for_text.state,
+                    GrammarStates.in_progress.state
+                ]:
+                    # Убираем кнопки у задания и прогресса
+                    data_state = await state.get_data()
+                    task_msg_id = data_state.get('task_msg_id')
+                    if task_msg_id:
+                        try:
+                            await event.bot.edit_message_reply_markup(
+                                chat_id=event.message.chat.id,
+                                message_id=task_msg_id,
+                                reply_markup=None
+                            )
+                        except Exception:
+                            pass
+                    progress_msg_id = data_state.get('progress_msg_id')
+                    if progress_msg_id:
+                        try:
+                            await event.bot.edit_message_reply_markup(
+                                chat_id=event.message.chat.id,
+                                message_id=progress_msg_id,
+                                reply_markup=None
+                            )
+                        except Exception:
+                            pass
+                    await event.message.answer("Практика завершена.")
+                    await state.clear()
+                    # После очистки продолжаем обработку команды другими хендлерами
         return await handler(event, data)
 
 router.message.middleware(ModeIsolationMiddleware())
@@ -34,34 +73,6 @@ class GrammarStates(StatesGroup):
     choosing_level = State()
     waiting_for_text = State()
     in_progress = State()
-
-# ---------- Обработчик команд (перехват в активном режиме) ----------
-@router.message(
-    F.text.startswith('/'),
-    or_f(
-        GrammarStates.choosing_type,
-        GrammarStates.choosing_level,
-        GrammarStates.waiting_for_text,
-        GrammarStates.in_progress
-    )
-)
-async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: Bot):
-    # Убираем кнопки у последнего задания и у сообщения с прогрессом
-    data = await state.get_data()
-    task_msg_id = data.get("task_msg_id")
-    if task_msg_id:
-        try:
-            await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=task_msg_id, reply_markup=None)
-        except Exception:
-            pass
-    progress_msg_id = data.get("progress_msg_id")
-    if progress_msg_id:
-        try:
-            await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=progress_msg_id, reply_markup=None)
-        except Exception:
-            pass
-    await message.answer("Практика завершена.")
-    await state.clear()
 
 # ---------- Обработчик для любых не-текстовых сообщений ----------
 @router.message(
@@ -239,6 +250,9 @@ async def send_or_update_progress(
     display_level = f"{LEVEL_EMOJIS.get(short_level, '')} {short_level}"
 
     instruction, _ = extract_instruction_and_task(task['question'])
+    # Для типа "раскрытие_скобок" добавляем уточнение, если его нет
+    if short_type == "раскрытие_скобок" and "впишите ответ" not in instruction:
+        instruction = instruction.replace("Раскройте скобки.", "Раскройте скобки, впишите ответ (1–2 слова).")
 
     text = f"<b>Режим:</b> {display_type}\n"
     text += f"<b>Уровень:</b> {display_level}\n\n"
@@ -363,11 +377,17 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     from handlers.main import show_main_menu
     await show_main_menu(callback.message, edit=True)
 
-# Обработчик "Назад" в выборе уровня
+# Обработчик "Назад" в выборе уровня (исправлен)
 @router.callback_query(GrammarStates.choosing_level, F.data == "grammar_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
+    try:
+        await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
+    except Exception as e:
+        # Если не удалось отредактировать, отправляем новое сообщение
+        await callback.message.answer("🔀 Грамматика\n\nВыберите тип задания:", reply_markup=get_type_keyboard())
+        await callback.message.delete()
+        await state.set_state(GrammarStates.choosing_type)
 
 @router.callback_query(GrammarStates.choosing_type, F.data.startswith("grammar_type_"))
 async def select_type(callback: CallbackQuery, state: FSMContext):
@@ -918,59 +938,64 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.answer()
 
-# ----- Работа над ошибками -----
+# ----- Работа над ошибками (исправлено) -----
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_revision")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_revision")
 async def grammar_revision(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    user_id = callback.from_user.id
-    data = await state.get_data()
-    short_type = data.get("short_type")
-    short_level = data.get("short_level")
-    if not short_type or not short_level:
-        await callback.message.answer("Сначала выберите тип и уровень.")
-        return
+    try:
+        user_id = callback.from_user.id
+        data = await state.get_data()
+        short_type = data.get("short_type")
+        short_level = data.get("short_level")
+        if not short_type or not short_level:
+            await callback.message.answer("Сначала выберите тип и уровень.")
+            return
 
-    type_key = make_type_key(short_type)
-    level_key = short_level
-    errors = await get_grammar_errors(user_id, type_key, level_key)
-    if not errors:
-        await callback.message.answer("🎉 Ошибок нет! Отличная работа.")
-        return
+        type_key = make_type_key(short_type)
+        level_key = short_level
+        errors = await get_grammar_errors(user_id, type_key, level_key)
+        if not errors:
+            await callback.message.answer("🎉 Ошибок нет! Отличная работа.")
+            return
 
-    await state.update_data(is_revision=True)
-    task_id = errors[0]
-    tasks = get_tasks(short_type, short_level)
-    task = next((t for t in tasks if t.get("id") == task_id), None)
-    if not task:
-        await callback.message.answer("Задание с ошибкой не найдено.")
-        return
+        await state.update_data(is_revision=True)
+        task_id = errors[0]
+        tasks = get_tasks(short_type, short_level)
+        task = next((t for t in tasks if t.get("id") == task_id), None)
+        if not task:
+            await callback.message.answer("Задание с ошибкой не найдено.")
+            return
 
-    # Обновляем прогресс (edit=True)
-    progress_msg_id = data.get("progress_msg_id")
-    await send_or_update_progress(
-        callback.bot,
-        callback.message.chat.id,
-        user_id,
-        short_type,
-        short_level,
-        task,
-        msg_id=progress_msg_id,
-        edit=True
-    )
-    # Отправляем новое задание (создаём)
-    new_task_msg_id = await send_or_update_task(
-        callback.bot,
-        callback.message.chat.id,
-        state,
-        user_id,
-        short_type,
-        short_level,
-        task_id=task_id,
-        is_revision=True,
-        edit=False
-    )
-    await state.update_data(task_msg_id=new_task_msg_id)
+        # Обновляем прогресс (edit=True)
+        progress_msg_id = data.get("progress_msg_id")
+        await send_or_update_progress(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            short_type,
+            short_level,
+            task,
+            msg_id=progress_msg_id,
+            edit=True
+        )
+        # Отправляем новое задание (создаём)
+        new_task_msg_id = await send_or_update_task(
+            callback.bot,
+            callback.message.chat.id,
+            state,
+            user_id,
+            short_type,
+            short_level,
+            task_id=task_id,
+            is_revision=True,
+            edit=False
+        )
+        await state.update_data(task_msg_id=new_task_msg_id)
+    except Exception as e:
+        await callback.message.answer("Произошла ошибка при работе над ошибками. Попробуйте ещё раз.")
+        # Логирование ошибки
+        print(f"Ошибка в grammar_revision: {e}")
 
 # ----- Сброс прогресса -----
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_reset")
@@ -1007,8 +1032,20 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Заданий для этого уровня нет.")
         return
 
+    # Убираем кнопки у старого задания (если есть)
+    old_task_msg_id = data.get("task_msg_id")
+    if old_task_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=old_task_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+
     # Редактируем сообщение с подтверждением
-    await callback.message.edit_text("Прогресс успешно сброшен", reply_markup=None)
+    await callback.message.edit_text("Прогресс сброшен. Задания даны с начала", reply_markup=None)
 
     # Обновляем прогресс (edit=True)
     progress_msg_id = data.get("progress_msg_id")
@@ -1049,6 +1086,7 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
             index = 0
         task = tasks[index]
         progress_msg_id = data.get("progress_msg_id")
+        # Восстанавливаем прогресс (редактируем сообщение подтверждения обратно в прогресс)
         await send_or_update_progress(
             callback.bot,
             callback.message.chat.id,
@@ -1073,6 +1111,7 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
             edit=True
         )
         await state.update_data(task_msg_id=new_task_msg_id)
+        # Удаляем сообщение с подтверждением, так как мы восстановили прогресс
         try:
             await callback.message.delete()
         except Exception:
