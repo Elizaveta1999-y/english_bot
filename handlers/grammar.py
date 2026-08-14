@@ -24,7 +24,7 @@ class GrammarStates(StatesGroup):
     waiting_for_text = State()
     in_progress = State()
 
-# ---------- Обработчик команд (перехват в активном режиме) ----------
+# ---------- Обработчик команд ----------
 @router.message(
     F.text.startswith('/'),
     or_f(
@@ -50,7 +50,7 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
     await message.answer("Практика завершена.")
     await state.clear()
 
-# ---------- Обработчик для любых не-текстовых сообщений ----------
+# ---------- Обработчик не-текстовых сообщений ----------
 @router.message(
     or_f(
         GrammarStates.in_progress,
@@ -61,7 +61,7 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
 async def handle_non_text_in_grammar(message: Message, state: FSMContext):
     await message.answer("Введите текстовый ответ")
 
-# Путь к файлу с заданиями
+# ---------- Загрузка заданий ----------
 TASKS_FILE = "data/grammar_tasks.json"
 
 def load_tasks() -> Dict[str, List[Dict]]:
@@ -70,8 +70,6 @@ def load_tasks() -> Dict[str, List[Dict]]:
     return data
 
 RAW_TASKS = load_tasks()
-
-# --- Объединяем все задания каждого типа в один список (без уровней) ---
 TASKS_BY_TYPE = {}
 for task_type, tasks in RAW_TASKS.items():
     TASKS_BY_TYPE[task_type] = tasks
@@ -107,7 +105,7 @@ def make_type_key(task_type: str) -> str:
 def get_tasks(task_type: str) -> List[Dict]:
     return TASKS_BY_TYPE.get(task_type, [])
 
-# ----- Клавиатуры -----
+# ---------- Клавиатуры ----------
 def get_type_keyboard() -> InlineKeyboardMarkup:
     buttons = []
     for t in TASK_TYPES:
@@ -149,7 +147,7 @@ def get_clear_errors_confirmation_keyboard() -> InlineKeyboardMarkup:
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-# ----- Вспомогательные функции -----
+# ---------- Вспомогательные функции ----------
 def extract_instruction_and_task(question: str) -> tuple:
     lines = question.split('\n', 1)
     if len(lines) > 1:
@@ -165,7 +163,7 @@ def extract_instruction_and_task(question: str) -> tuple:
             task_text = question
     return instruction, task_text
 
-# ---------- Функции для работы со случайным порядком ----------
+# ---------- Функции для работы со случайным порядком (исправлены) ----------
 async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
     order = await get_random_order(user_id, type_key)
@@ -175,7 +173,14 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
         random.shuffle(indices)
         await set_random_order(user_id, type_key, indices)
         return indices
-    return order
+    else:
+        # Если по какой-то причине вернулась строка, преобразуем в список
+        if isinstance(order, str):
+            try:
+                order = json.loads(order)
+            except:
+                order = []
+        return order
 
 async def reset_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
@@ -185,7 +190,7 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     await set_random_order(user_id, type_key, indices)
     return indices
 
-# ----- Отправка сообщений -----
+# ----- Отправка сообщений (исправлена) -----
 async def send_or_update_progress(
     bot: Bot,
     chat_id: int,
@@ -199,7 +204,7 @@ async def send_or_update_progress(
 ) -> int:
     """
     Отправляет или редактирует прогресс-сообщение.
-    Если редактирование не удалось – удаляет старое и отправляет новое (чтобы избежать дублей).
+    Если редактирование не удалось – удаляет старое и отправляет новое.
     """
     type_key = make_type_key(short_type)
     correct, wrong = await get_grammar_stats(user_id, type_key, "all")
@@ -215,7 +220,6 @@ async def send_or_update_progress(
         keyboard = None
     else:
         instruction, _ = extract_instruction_and_task(task['question'])
-        # Специальные замены для некоторых типов
         if short_type == "раскрытие_скобок" and "впишите ответ" not in instruction:
             instruction = instruction.replace("Раскройте скобки.", "Раскройте скобки, впишите ответ (1–2 слова).")
         elif short_type == "отрицание":
@@ -270,7 +274,7 @@ async def send_or_update_task(
     is_revision: bool = False,
     msg_id: int = None
 ) -> int:
-    """Отправляет или редактирует задание. Если msg_id передан – редактирует, иначе отправляет новое."""
+    """Отправляет или редактирует задание."""
     tasks = get_tasks(short_type)
     if task_id is not None:
         task = next((t for t in tasks if t.get("id") == task_id), None)
@@ -319,7 +323,6 @@ async def send_or_update_task(
                 await state.set_state(GrammarStates.in_progress)
             return msg_id
         except Exception:
-            # Если редактирование не удалось – удаляем старый msg и отправляем новый
             try:
                 await bot.delete_message(chat_id=chat_id, message_id=msg_id)
             except Exception:
@@ -643,7 +646,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.update_data(session_wrong=session_wrong)
             await add_grammar_error(user_id, type_key, level_key, task["id"])
 
-    # Убираем кнопки у задания
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
@@ -788,7 +790,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     else:
         correct_text = str(correct_answer)
 
-    # Убираем кнопки у задания
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
@@ -1076,7 +1077,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Заданий для этого типа нет.")
         return
 
-    # Убираем кнопки у старого задания
     old_task_msg_id = data.get("task_msg_id")
     if old_task_msg_id:
         try:
@@ -1162,7 +1162,7 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
     else:
         await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
-# ----- Завершение сессии (ИСПРАВЛЕНО) -----
+# ----- Завершение сессии (исправлено) -----
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_finish_session")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_finish_session")
 async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
@@ -1177,17 +1177,14 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
 
-    # Формируем текст ТОЛЬКО с сессионной статистикой
     if session_correct == 0 and session_wrong == 0:
         text = "Сессия завершена! Вы не ответили ни на одно задание. 🙌🏻"
     else:
         text = "Сессия завершена! 🙌🏻\n"
         text += f"✔️ Правильно: {session_correct}\n"
         text += f"✖️ Ошибок: {session_wrong}\n"
-        # Если есть ошибки в БД, не показываем их здесь
-        # можно добавить отдельное сообщение, но по просьбе убрали
+        # Оставшиеся ошибки не показываем
 
-    # Убираем кнопки у задания
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
@@ -1195,7 +1192,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
 
-    # Убираем кнопки у прогресс-сообщения (НО НЕ УДАЛЯЕМ ЕГО)
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -1203,10 +1199,8 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
 
-    # Отправляем сообщение о завершении
     await callback.message.answer(text)
 
-    # ВЫВОДИМ ГЛАВНОЕ МЕНЮ
     from handlers.main import show_main_menu
     await show_main_menu(callback.message, edit=False)
 

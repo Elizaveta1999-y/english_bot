@@ -1,5 +1,5 @@
 import os
-import json  # <-- добавлен импорт
+import json
 import asyncpg
 from typing import Tuple, List, Optional
 from datetime import datetime, timedelta
@@ -111,7 +111,6 @@ async def init_db():
         )
     """)
     # ---- НОВЫЕ ТАБЛИЦЫ И КОЛОНКИ ДЛЯ АДМИНКИ И БОНУСОВ ----
-    # Добавляем колонки для подписки, пробного периода, голоса и бонусов
     await conn.execute("""
         ALTER TABLE users
         ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
@@ -122,19 +121,16 @@ async def init_db():
         ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
         ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT ''
     """)
-    # Таблица настроек бота (для технических работ)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS bot_settings (
             key TEXT PRIMARY KEY,
             value TEXT
         )
     """)
-    # Вставляем начальную настройку активности бота
     await conn.execute("""
         INSERT INTO bot_settings (key, value) VALUES ('is_active', 'true')
         ON CONFLICT (key) DO NOTHING
     """)
-    # Таблица заблокированных пользователей
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS blocked_users (
             user_id BIGINT PRIMARY KEY
@@ -153,7 +149,7 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
     await conn.close()
     return dict(row) if row else None
 
-# ---------- Прогресс (для других режимов) ----------
+# ---------- Прогресс ----------
 async def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -452,7 +448,7 @@ async def set_progress_index(user_id: int, type_key: str, level_key: str, index:
 async def reset_progress_index(user_id: int, type_key: str, level_key: str):
     await set_progress_index(user_id, type_key, level_key, 0)
 
-# ---------- Функции для случайного порядка (ИСПРАВЛЕННАЯ) ----------
+# ---------- Функции для случайного порядка (ИСПРАВЛЕНЫ) ----------
 async def get_random_order(user_id: int, level_key: str) -> list:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -461,12 +457,12 @@ async def get_random_order(user_id: int, level_key: str) -> list:
     )
     await conn.close()
     if row:
-        return row["order_data"]  # возвращает уже распарсенный JSON
+        return row["order_data"]
     return None
 
 async def set_random_order(user_id: int, level_key: str, order: list):
     conn = await get_connection()
-    order_json = json.dumps(order)  # <-- КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ
+    order_json = json.dumps(order)
     await conn.execute("""
         INSERT INTO random_order (user_id, level_key, order_data)
         VALUES ($1, $2, $3::jsonb)
@@ -480,7 +476,6 @@ async def set_random_order(user_id: int, level_key: str, order: list):
 # ==============================================
 
 async def ensure_bonus_columns():
-    """Проверяет наличие колонок для бонусов и добавляет их, если отсутствуют."""
     conn = await get_connection()
     await conn.execute("""
         ALTER TABLE users
@@ -490,7 +485,6 @@ async def ensure_bonus_columns():
     await conn.close()
 
 async def set_bonus_notification(user_id: int, reason: str = ""):
-    """Устанавливает флаг уведомления о бонусе для пользователя."""
     conn = await get_connection()
     await conn.execute("""
         UPDATE users
@@ -500,7 +494,6 @@ async def set_bonus_notification(user_id: int, reason: str = ""):
     await conn.close()
 
 async def clear_bonus_notification(user_id: int):
-    """Сбрасывает флаг уведомления после показа."""
     conn = await get_connection()
     await conn.execute("""
         UPDATE users
@@ -510,7 +503,6 @@ async def clear_bonus_notification(user_id: int):
     await conn.close()
 
 async def get_bonus_notification(user_id: int):
-    """Возвращает (bonus_notification, bonus_reason) для пользователя."""
     conn = await get_connection()
     row = await conn.fetchrow("SELECT bonus_notification, bonus_reason FROM users WHERE user_id = $1", user_id)
     await conn.close()
@@ -518,36 +510,31 @@ async def get_bonus_notification(user_id: int):
         return row["bonus_notification"], row["bonus_reason"] or ""
     return False, ""
 
-# ---------- ФУНКЦИИ ДЛЯ УПРАВЛЕНИЯ БОТОМ (ТЕХНИЧЕСКИЕ РАБОТЫ) ----------
+# ---------- ФУНКЦИИ ДЛЯ УПРАВЛЕНИЯ БОТОМ ----------
 async def get_bot_active() -> bool:
-    """Возвращает статус активности бота (из bot_settings)."""
     conn = await get_connection()
     val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
     await conn.close()
     return val == 'true'
 
 async def set_bot_active(active: bool):
-    """Устанавливает статус активности бота."""
     conn = await get_connection()
     await conn.execute("UPDATE bot_settings SET value = $1 WHERE key = 'is_active'", 'true' if active else 'false')
     await conn.close()
 
 # ---------- ФУНКЦИИ ДЛЯ БЛОКИРОВКИ ПОЛЬЗОВАТЕЛЕЙ ----------
 async def is_user_blocked(user_id: int) -> bool:
-    """Проверяет, заблокирован ли пользователь."""
     conn = await get_connection()
     row = await conn.fetchrow("SELECT 1 FROM blocked_users WHERE user_id = $1", user_id)
     await conn.close()
     return row is not None
 
 async def block_user(user_id: int):
-    """Блокирует пользователя."""
     conn = await get_connection()
     await conn.execute("INSERT INTO blocked_users (user_id) VALUES ($1) ON CONFLICT DO NOTHING", user_id)
     await conn.close()
 
 async def unblock_user(user_id: int):
-    """Разблокирует пользователя."""
     conn = await get_connection()
     await conn.execute("DELETE FROM blocked_users WHERE user_id = $1", user_id)
     await conn.close()
@@ -555,9 +542,7 @@ async def unblock_user(user_id: int):
 # ========== НОВЫЕ ТАБЛИЦЫ ДЛЯ МОНИТОРИНГА И ФИНАНСОВ ==========
 
 async def ensure_monitoring_tables():
-    """Создаёт таблицы для мониторинга балансов и финансов, если их нет."""
     conn = await get_connection()
-    # Таблица для хранения балансов API
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS api_balances (
             service TEXT PRIMARY KEY,
@@ -567,14 +552,12 @@ async def ensure_monitoring_tables():
             link TEXT
         )
     """)
-    # Вставляем начальные записи для DeepSeek и ElevenLabs
     await conn.execute("""
         INSERT INTO api_balances (service, balance, threshold, link)
         VALUES ('deepseek', 'неизвестно', '30', 'https://platform.deepseek.com/api_keys'),
                ('elevenlabs', 'неизвестно', '10000', 'https://elevenlabs.io/app/settings/billing')
         ON CONFLICT (service) DO NOTHING
     """)
-    # Таблица для напоминаний о плате за Render
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS render_payment (
             id INTEGER PRIMARY KEY CHECK (id = 1),
@@ -583,7 +566,6 @@ async def ensure_monitoring_tables():
             notified BOOLEAN DEFAULT FALSE
         )
     """)
-    # Вставляем начальную запись, если её нет
     await conn.execute("""
         INSERT INTO render_payment (id, next_payment_date, amount, notified)
         VALUES (1, 0, '7', FALSE)
@@ -591,7 +573,6 @@ async def ensure_monitoring_tables():
     """)
     await conn.close()
 
-# ---------- Функции для работы с балансами ----------
 async def get_api_balance(service: str) -> dict:
     conn = await get_connection()
     row = await conn.fetchrow("SELECT balance, last_updated, threshold, link FROM api_balances WHERE service = $1", service)
@@ -642,9 +623,7 @@ async def set_render_notified(notified: bool):
 # ========== ФИНАНСЫ ==========
 
 async def ensure_finance_tables():
-    """Создаёт таблицы для финансов, если их нет."""
     conn = await get_connection()
-    # Доходы
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS income (
             id SERIAL PRIMARY KEY,
@@ -656,7 +635,6 @@ async def ensure_finance_tables():
             payment_id TEXT
         )
     """)
-    # Расходы
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS expenses (
             id SERIAL PRIMARY KEY,
@@ -669,7 +647,6 @@ async def ensure_finance_tables():
     await conn.close()
 
 async def add_income(user_id: int, amount: float, description: str = "", payment_system: str = "", payment_id: str = ""):
-    """Добавляет запись о доходе."""
     conn = await get_connection()
     now = int(datetime.now().timestamp())
     await conn.execute("""
@@ -679,7 +656,6 @@ async def add_income(user_id: int, amount: float, description: str = "", payment
     await conn.close()
 
 async def add_expense(amount: float, category: str, description: str = ""):
-    """Добавляет запись о расходе."""
     conn = await get_connection()
     now = int(datetime.now().timestamp())
     await conn.execute("""
@@ -689,7 +665,6 @@ async def add_expense(amount: float, category: str, description: str = ""):
     await conn.close()
 
 async def get_finance_summary(start_ts: int, end_ts: int) -> dict:
-    """Возвращает сумму доходов и расходов за период."""
     conn = await get_connection()
     income = await conn.fetchval("SELECT COALESCE(SUM(amount), 0) FROM income WHERE date >= $1 AND date <= $2", start_ts, end_ts)
     expenses = await conn.fetchval("SELECT COALESCE(SUM(amount), 0) FROM expenses WHERE date >= $1 AND date <= $2", start_ts, end_ts)
