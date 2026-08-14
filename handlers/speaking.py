@@ -42,7 +42,7 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
-# ---------- Middleware ----------
+# ---------- Middleware (ИСПРАВЛЕН) ----------
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -58,6 +58,14 @@ async def close_speaking_on_exit(handler, event, data):
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "speaking_active":
         return await handler(event, data)
+
+    # ДОПОЛНИТЕЛЬНАЯ ПРОВЕРКА: состояние должно быть SpeakingStates.waiting_for_voice
+    state = data.get('state')
+    if state:
+        current_state = await state.get_state()
+        if current_state != SpeakingStates.waiting_for_voice.state:
+            # Если состояние не Speaking, пропускаем (не закрываем)
+            return await handler(event, data)
 
     should_close = False
 
