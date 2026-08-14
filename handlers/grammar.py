@@ -321,19 +321,20 @@ async def send_or_update_task(
     # Получаем текст задания
     _, task_text = extract_instruction_and_task(task['question'])
     
-    # Для to_be_выбор и to_be_скобки добавляем подсказку сверху из options
-    if short_type in ("to_be_выбор", "to_be_скобки"):
-        options = task.get("options", [])
-        if options:
-            hint = "(" + "/".join(options) + ")"
-        else:
-            # Fallback: если options нет, пытаемся взять correct (если это список)
-            correct = task.get("correct")
-            if isinstance(correct, list):
-                hint = "(" + "/".join(correct) + ")"
+    # Для to_be_скобки определяем подсказку по правильному ответу
+    if short_type == "to_be_скобки":
+        correct = task.get("correct")
+        # Если correct – список, берём первый элемент
+        if isinstance(correct, list):
+            correct = correct[0] if correct else ""
+        if correct and isinstance(correct, str):
+            if correct.lower() in ("was", "were"):
+                hint = "(was/were)"
             else:
-                hint = f"({correct})"
-        # Если task_text пустой или слишком короткий, берём весь вопрос
+                hint = "(am/is/are)"
+        else:
+            # fallback
+            hint = "(was/were)"
         if not task_text or len(task_text.split()) <= 2:
             task_text = task.get('question', '')
         task_text = f"{hint}\n{task_text}"
