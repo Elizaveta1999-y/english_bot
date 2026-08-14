@@ -229,13 +229,7 @@ async def send_or_update_progress(
         if short_type == "раскрытие_скобок":
             instruction = "Раскройте скобки, впишите ответ (1–2 слова)."
         elif short_type == "вставка_пропусков":
-            # Добавляем подсказку с правильным ответом
-            correct_answer = task.get("correct")
-            if isinstance(correct_answer, list):
-                hint = "(" + "/".join(correct_answer) + ")"
-            else:
-                hint = f"({correct_answer})"
-            instruction = f"Вставьте необходимое слово {hint}"
+            instruction = "Вставьте необходимое слово (артикль, предлог, союз, глагол и тд.)"
         elif short_type == "отрицание":
             instruction = "Перепишите предложение в отрицательную форму"
         elif short_type == "to_be_выбор":
@@ -384,6 +378,29 @@ async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False,
 @router.callback_query(F.data == "start_grammar")
 async def start_grammar(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
+    # Убираем кнопки у старых сообщений, если они есть
+    data = await state.get_data()
+    task_msg_id = data.get("task_msg_id")
+    if task_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=task_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    # Переходим в меню выбора типа
     await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
 @router.callback_query(F.data == "grammar_back_to_menu")
