@@ -19,7 +19,6 @@ router = Router()
 # ---------- Состояния ----------
 class GrammarStates(StatesGroup):
     choosing_type = State()
-    choosing_level = State()
     waiting_for_text = State()
     in_progress = State()
 
@@ -28,7 +27,6 @@ class GrammarStates(StatesGroup):
     F.text.startswith('/'),
     or_f(
         GrammarStates.choosing_type,
-        GrammarStates.choosing_level,
         GrammarStates.waiting_for_text,
         GrammarStates.in_progress
     )
@@ -71,25 +69,12 @@ def load_tasks() -> Dict[str, List[Dict]]:
 
 RAW_TASKS = load_tasks()
 
-def split_into_levels(task_list: List[Dict]) -> Dict[str, List[Dict]]:
-    total = len(task_list)
-    if total == 0:
-        return {"Новичок": [], "Любитель": [], "Эксперт": []}
-    third = total // 3
-    if third == 0:
-        return {"Новичок": task_list, "Любитель": [], "Эксперт": []}
-    return {
-        "Новичок": task_list[:third],
-        "Любитель": task_list[third:2*third],
-        "Эксперт": task_list[2*third:]
-    }
-
-TASKS_BY_TYPE_LEVEL = {}
+# --- Объединяем все задания каждого типа в один список (без уровней) ---
+TASKS_BY_TYPE = {}
 for task_type, tasks in RAW_TASKS.items():
-    TASKS_BY_TYPE_LEVEL[task_type] = split_into_levels(tasks)
+    TASKS_BY_TYPE[task_type] = tasks  # tasks уже список всех заданий
 
-TASK_TYPES = list(TASKS_BY_TYPE_LEVEL.keys())
-LEVELS = ["Новичок", "Любитель", "Эксперт"]
+TASK_TYPES = list(TASKS_BY_TYPE.keys())
 
 TYPE_EMOJIS = {
     "раскрытие_скобок": "📑",
@@ -102,12 +87,7 @@ TYPE_EMOJIS = {
     "отрицание": "➖"
 }
 
-LEVEL_EMOJIS = {
-    "Новичок": "🌱",
-    "Любитель": "📚",
-    "Эксперт": "🎓"
-}
-
+# ---------- Словари коротких кодов ----------
 SHORT_TYPE = {
     "раскрытие_скобок": "rsk",
     "вставка_пропусков": "vst",
@@ -120,18 +100,11 @@ SHORT_TYPE = {
 }
 LONG_TYPE = {v: k for k, v in SHORT_TYPE.items()}
 
-SHORT_LEVEL = {
-    "Новичок": "nov",
-    "Любитель": "lyb",
-    "Эксперт": "exp"
-}
-LONG_LEVEL = {v: k for k, v in SHORT_LEVEL.items()}
-
 def make_type_key(task_type: str) -> str:
     return f"grammar_{task_type}"
 
-def get_tasks(task_type: str, level: str) -> List[Dict]:
-    return TASKS_BY_TYPE_LEVEL.get(task_type, {}).get(level, [])
+def get_tasks(task_type: str) -> List[Dict]:
+    return TASKS_BY_TYPE.get(task_type, [])
 
 # ----- Клавиатуры -----
 def get_type_keyboard() -> InlineKeyboardMarkup:
@@ -144,16 +117,6 @@ def get_type_keyboard() -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="grammar_back_to_menu")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-def get_level_keyboard(task_type: str) -> InlineKeyboardMarkup:
-    buttons = []
-    short_type = SHORT_TYPE[task_type]
-    for level in LEVELS:
-        emoji = LEVEL_EMOJIS.get(level, "")
-        short_level = SHORT_LEVEL[level]
-        buttons.append([InlineKeyboardButton(text=f"{emoji} {level}", callback_data=f"grammar_level_{short_type}_{short_level}")])
-    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="grammar_back_to_types")])
-    return InlineKeyboardMarkup(inline_keyboard=buttons)
-
 def get_progress_keyboard() -> InlineKeyboardMarkup:
     buttons = [
         [InlineKeyboardButton(text="Работа над ошибками", callback_data="grammar_revision")],
@@ -161,11 +124,11 @@ def get_progress_keyboard() -> InlineKeyboardMarkup:
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-def get_task_keyboard(short_type: str, short_level: str, index: int, is_revision: bool = False) -> InlineKeyboardMarkup:
+def get_task_keyboard(short_type: str, index: int, is_revision: bool = False) -> InlineKeyboardMarkup:
     rev_flag = "rev" if is_revision else "norm"
     buttons = [
         [
-            InlineKeyboardButton(text="Показать ответ", callback_data=f"grammar_show_answer:{short_type}:{short_level}:{index}:{rev_flag}"),
+            InlineKeyboardButton(text="Показать ответ", callback_data=f"grammar_show_answer:{short_type}:{index}:{rev_flag}"),
             InlineKeyboardButton(text="Завершить", callback_data="grammar_finish_session")
         ]
     ]
@@ -207,14 +170,12 @@ async def send_or_update_progress(
     chat_id: int,
     user_id: int,
     short_type: str,
-    short_level: str,
     task: Dict,
     msg_id: int = None,
     is_revision: bool = False,
     errors_count: int = None
 ) -> int:
     """Всегда отправляет новое сообщение с прогрессом, предварительно удаляя старое (если msg_id задан)."""
-    # Удаляем старое сообщение, если оно есть
     if msg_id:
         try:
             await bot.delete_message(chat_id=chat_id, message_id=msg_id)
@@ -222,26 +183,23 @@ async def send_or_update_progress(
             pass
 
     type_key = make_type_key(short_type)
-    level_key = short_level
-    correct, wrong = await get_grammar_stats(user_id, type_key, level_key)
-    errors = await get_grammar_errors(user_id, type_key, level_key)
+    # Уровня нет, используем фиктивный ключ
+    correct, wrong = await get_grammar_stats(user_id, type_key, "all")
+    errors = await get_grammar_errors(user_id, type_key, "all")
     errors_len = len(errors) if errors_count is None else errors_count
 
     display_type = f"{TYPE_EMOJIS.get(short_type, '')} {short_type.replace('_', ' ')}"
-    display_level = f"{LEVEL_EMOJIS.get(short_level, '')} {short_level}"
 
     if is_revision:
         text = f"<b>Работа над ошибками</b>\n"
-        text += f"Тип: {display_type}\n"
-        text += f"Уровень: {display_level}\n\n"
+        text += f"Тип: {display_type}\n\n"
         text += f"Заданий на исправление: {errors_len}\n"
         keyboard = None
     else:
         instruction, _ = extract_instruction_and_task(task['question'])
         if short_type == "раскрытие_скобок" and "впишите ответ" not in instruction:
             instruction = instruction.replace("Раскройте скобки.", "Раскройте скобки, впишите ответ (1–2 слова).")
-        text = f"<b>Режим:</b> {display_type}\n"
-        text += f"<b>Уровень:</b> {display_level}\n\n"
+        text = f"<b>Режим:</b> {display_type}\n\n"
         text += f"{instruction}\n\n"
         text += f"<b>Ваш прогресс:</b>\n"
         text += f"✔️ Правильно: {correct}\n"
@@ -262,33 +220,29 @@ async def send_or_update_task(
     state: FSMContext,
     user_id: int,
     short_type: str,
-    short_level: str,
     index: int = 0,
     task_id: int = None,
     is_revision: bool = False,
     msg_id: int = None
 ) -> int:
-    """Отправляет или обновляет сообщение с заданием.
-       Если msg_id передан, то редактирует его, иначе отправляет новое."""
+    """Отправляет или обновляет сообщение с заданием."""
+    tasks = get_tasks(short_type)
     if task_id is not None:
-        tasks = get_tasks(short_type, short_level)
         task = next((t for t in tasks if t.get("id") == task_id), None)
         if not task:
             await bot.send_message(chat_id, "Задание не найдено.")
             return None
     else:
-        tasks = get_tasks(short_type, short_level)
         if index >= len(tasks):
             index = 0
         task = tasks[index] if tasks else None
 
     if not task:
-        await bot.send_message(chat_id, "Заданий для этого типа и уровня пока нет.")
+        await bot.send_message(chat_id, "Заданий для этого типа пока нет.")
         return None
 
     await state.update_data(
         short_type=short_type,
-        short_level=short_level,
         current_index=index,
         current_task_id=task.get("id"),
         is_revision=is_revision,
@@ -298,8 +252,7 @@ async def send_or_update_task(
     _, task_text = extract_instruction_and_task(task['question'])
 
     short_type_code = SHORT_TYPE[short_type]
-    short_level_code = SHORT_LEVEL[short_level]
-    keyboard = get_task_keyboard(short_type_code, short_level_code, index, is_revision)
+    keyboard = get_task_keyboard(short_type_code, index, is_revision)
 
     if msg_id:
         try:
@@ -316,7 +269,6 @@ async def send_or_update_task(
                 await state.set_state(GrammarStates.in_progress)
             return msg_id
         except Exception:
-            # Если редактирование не удалось, удалим и отправим новое
             try:
                 await bot.delete_message(chat_id=chat_id, message_id=msg_id)
             except Exception:
@@ -375,63 +327,30 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     except Exception:
         await show_main_menu(callback.message, edit=False)
 
-@router.callback_query(GrammarStates.choosing_level, F.data == "grammar_back_to_types")
-async def back_to_types(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    try:
-        await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
-    except Exception:
-        await callback.message.answer("🔀 Грамматика\n\nВыберите тип задания:", reply_markup=get_type_keyboard())
-        await callback.message.delete()
-        await state.set_state(GrammarStates.choosing_type)
-
 @router.callback_query(GrammarStates.choosing_type, F.data.startswith("grammar_type_"))
 async def select_type(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     short_code = callback.data.replace("grammar_type_", "")
-    task_type = LONG_TYPE.get(short_code)
-    if not task_type:
+    short_type = LONG_TYPE.get(short_code)
+    if not short_type:
         await callback.message.answer("Ошибка: неизвестный тип.")
-        return
-    await state.set_state(GrammarStates.choosing_level)
-    text = "Выберите уровень сложности:"
-    keyboard = get_level_keyboard(task_type)
-    await callback.message.edit_text(text, reply_markup=keyboard)
-
-@router.callback_query(GrammarStates.choosing_level, F.data.startswith("grammar_level_"))
-async def choose_level(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    data = callback.data[len("grammar_level_"):]
-    parts = data.split("_")
-    if len(parts) != 2:
-        await callback.message.answer("Ошибка в данных. Попробуйте ещё раз.")
-        return
-    short_type_code, short_level_code = parts[0], parts[1]
-    short_type = LONG_TYPE.get(short_type_code)
-    short_level = LONG_LEVEL.get(short_level_code)
-    if not short_type or not short_level:
-        await callback.message.answer("Ошибка: неизвестный тип или уровень.")
         return
 
     user_id = callback.from_user.id
 
-    tasks = get_tasks(short_type, short_level)
+    tasks = get_tasks(short_type)
     if not tasks:
-        await callback.message.answer(
-            "Заданий для этого типа и уровня пока нет. Выберите другой уровень.",
-            reply_markup=get_level_keyboard(short_type)
-        )
+        await callback.message.answer("Заданий для этого типа пока нет.")
         return
 
     type_key = make_type_key(short_type)
-    index = await get_grammar_index(user_id, type_key, short_level)
+    index = await get_grammar_index(user_id, type_key, "all")
     if index >= len(tasks):
         index = 0
-        await set_grammar_index(user_id, type_key, short_level, index)
+        await set_grammar_index(user_id, type_key, "all", index)
 
     await state.update_data(
         short_type=short_type,
-        short_level=short_level,
         current_index=index,
         is_revision=False,
         session_correct=0,
@@ -446,10 +365,10 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     task = tasks[index]
 
     progress_msg_id = await send_or_update_progress(
-        bot, chat_id, user_id, short_type, short_level, task, msg_id=None, is_revision=False
+        bot, chat_id, user_id, short_type, task, msg_id=None, is_revision=False
     )
     task_msg_id = await send_or_update_task(
-        bot, chat_id, state, user_id, short_type, short_level, index, is_revision=False, msg_id=None
+        bot, chat_id, state, user_id, short_type, index, is_revision=False, msg_id=None
     )
 
     await state.update_data(progress_msg_id=progress_msg_id, task_msg_id=task_msg_id)
@@ -461,21 +380,20 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(GrammarStates.waiting_for_text, F.data.startswith("grammar_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
-    if len(parts) < 6:
+    if len(parts) < 5:
         await callback.answer("Ошибка формата")
         return
-    short_type_code, short_level_code, index_str, chosen_idx_str, mode = parts[1], parts[2], parts[3], parts[4], parts[5]
+    short_type_code, index_str, chosen_idx_str, mode = parts[1], parts[2], parts[3], parts[4]
     short_type = LONG_TYPE.get(short_type_code)
-    short_level = LONG_LEVEL.get(short_level_code)
-    if not short_type or not short_level:
-        await callback.answer("Ошибка: неизвестный тип или уровень.")
+    if not short_type:
+        await callback.answer("Ошибка: неизвестный тип.")
         return
     index = int(index_str)
     chosen_idx = int(chosen_idx_str)
     is_revision = (mode == "rev")
     user_id = callback.from_user.id
 
-    tasks = get_tasks(short_type, short_level)
+    tasks = get_tasks(short_type)
     if index >= len(tasks):
         await callback.answer("Задание не найдено")
         return
@@ -483,7 +401,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     correct = (chosen_idx == task.get("correct", -1))
 
     type_key = make_type_key(short_type)
-    level_key = short_level
+    level_key = "all"
 
     data = await state.get_data()
     session_correct = data.get("session_correct", 0)
@@ -541,26 +459,22 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         await set_grammar_index(user_id, type_key, level_key, next_index)
         await state.update_data(current_index=next_index)
 
-        # Обновляем прогресс (удаляем старое и отправляем новое)
         old_progress_id = data.get("progress_msg_id")
         new_progress_id = await send_or_update_progress(
             callback.bot,
             callback.message.chat.id,
             user_id,
             short_type,
-            short_level,
             tasks[next_index],
             msg_id=old_progress_id,
             is_revision=False
         )
-        # Отправляем новое задание (создаём)
         new_task_msg_id = await send_or_update_task(
             callback.bot,
             callback.message.chat.id,
             state,
             user_id,
             short_type,
-            short_level,
             next_index,
             is_revision=False,
             msg_id=None
@@ -570,20 +484,17 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     else:
         errors = await get_grammar_errors(user_id, type_key, level_key)
         if not errors:
-            # Все ошибки исправлены
             await callback.message.answer("🎉 Вы исправили все ошибки!")
             await state.update_data(is_revision=False)
             current_index = await get_grammar_index(user_id, type_key, level_key)
             if current_index >= len(tasks):
                 current_index = 0
-            # Возвращаемся в учебный режим
             old_progress_id = data.get("progress_msg_id")
             new_progress_id = await send_or_update_progress(
                 callback.bot,
                 callback.message.chat.id,
                 user_id,
                 short_type,
-                short_level,
                 tasks[current_index],
                 msg_id=old_progress_id,
                 is_revision=False
@@ -594,24 +505,18 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 state,
                 user_id,
                 short_type,
-                short_level,
                 current_index,
                 is_revision=False,
                 msg_id=None
             )
             await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
         else:
-            # Есть ещё ошибки
-            # Показываем сообщение с результатом и кнопками
             correction_text = f"Вы исправили: {session_correct}\nОсталось ошибок: {len(errors)}"
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Учебный режим", callback_data="grammar_back_to_learning")],
                 [InlineKeyboardButton(text="Исправить ошибки", callback_data="grammar_revision_continue")]
             ])
             await callback.message.answer(correction_text, reply_markup=keyboard)
-            # Оставляем текущее прогресс-сообщение (оно уже в режиме работы над ошибками) и задание
-            # Но задание уже без кнопок, нужно отправить следующее ошибочное задание
-            # Пока оставим как есть, пользователь нажмёт "Исправить ошибки"
 
     await callback.answer()
 
@@ -620,18 +525,17 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 async def handle_text_answer(message: Message, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
     index = data.get("current_index", 0)
     is_revision = data.get("is_revision", False)
     task = data.get("actual_task")
     if not task:
-        await message.answer("Задание не найдено. Попробуйте выбрать уровень заново.")
+        await message.answer("Задание не найдено. Попробуйте выбрать тип заново.")
         await state.clear()
         return
 
     user_id = message.from_user.id
     type_key = make_type_key(short_type)
-    level_key = short_level
+    level_key = "all"
 
     def normalize(s):
         s = s.strip().lower()
@@ -696,7 +600,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     await message.answer(result_text)
 
-    tasks = get_tasks(short_type, short_level)
+    tasks = get_tasks(short_type)
     if not is_revision:
         next_index = index + 1
         if next_index >= len(tasks):
@@ -710,7 +614,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             message.chat.id,
             user_id,
             short_type,
-            short_level,
             tasks[next_index],
             msg_id=old_progress_id,
             is_revision=False
@@ -721,7 +624,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             state,
             user_id,
             short_type,
-            short_level,
             next_index,
             is_revision=False,
             msg_id=None
@@ -741,7 +643,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
                 message.chat.id,
                 user_id,
                 short_type,
-                short_level,
                 tasks[current_index],
                 msg_id=old_progress_id,
                 is_revision=False
@@ -752,7 +653,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
                 state,
                 user_id,
                 short_type,
-                short_level,
                 current_index,
                 is_revision=False,
                 msg_id=None
@@ -771,20 +671,19 @@ async def handle_text_answer(message: Message, state: FSMContext):
 @router.callback_query(GrammarStates.waiting_for_text, F.data.startswith("grammar_show_answer:"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
-    if len(parts) < 5:
+    if len(parts) < 4:
         await callback.answer("Ошибка формата")
         return
-    short_type_code, short_level_code, index_str, mode = parts[1], parts[2], parts[3], parts[4]
+    short_type_code, index_str, mode = parts[1], parts[2], parts[3]
     short_type = LONG_TYPE.get(short_type_code)
-    short_level = LONG_LEVEL.get(short_level_code)
-    if not short_type or not short_level:
-        await callback.answer("Ошибка: неизвестный тип или уровень.")
+    if not short_type:
+        await callback.answer("Ошибка: неизвестный тип.")
         return
     index = int(index_str)
     is_revision = (mode == "rev")
     user_id = callback.from_user.id
 
-    tasks = get_tasks(short_type, short_level)
+    tasks = get_tasks(short_type)
     if index >= len(tasks):
         await callback.answer("Задание не найдено")
         return
@@ -810,7 +709,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer(f"Правильный ответ: {correct_text}")
 
     type_key = make_type_key(short_type)
-    level_key = short_level
+    level_key = "all"
 
     if is_revision:
         errors = await get_grammar_errors(user_id, type_key, level_key)
@@ -826,7 +725,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 callback.message.chat.id,
                 user_id,
                 short_type,
-                short_level,
                 tasks[current_index],
                 msg_id=old_progress_id,
                 is_revision=False
@@ -837,7 +735,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 state,
                 user_id,
                 short_type,
-                short_level,
                 current_index,
                 is_revision=False,
                 msg_id=None
@@ -845,15 +742,13 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
         else:
             next_error_id = errors[0]
-            # Показываем новое задание на ошибку
             old_progress_id = data.get("progress_msg_id")
             new_progress_id = await send_or_update_progress(
                 callback.bot,
                 callback.message.chat.id,
                 user_id,
                 short_type,
-                short_level,
-                task,  # task не используется, но передаём
+                task,
                 msg_id=old_progress_id,
                 is_revision=True,
                 errors_count=len(errors)
@@ -864,7 +759,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 state,
                 user_id,
                 short_type,
-                short_level,
                 task_id=next_error_id,
                 is_revision=True,
                 msg_id=None
@@ -883,7 +777,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             callback.message.chat.id,
             user_id,
             short_type,
-            short_level,
             tasks[next_index],
             msg_id=old_progress_id,
             is_revision=False
@@ -894,7 +787,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             state,
             user_id,
             short_type,
-            short_level,
             next_index,
             is_revision=False,
             msg_id=None
@@ -903,7 +795,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.answer()
 
-# ----- Работа над ошибками (исправлено) -----
+# ----- Работа над ошибками -----
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_revision")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_revision")
 async def grammar_revision(callback: CallbackQuery, state: FSMContext):
@@ -911,13 +803,12 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
-    if not short_type or not short_level:
-        await callback.message.answer("Сначала выберите тип и уровень.")
+    if not short_type:
+        await callback.message.answer("Сначала выберите тип задания.")
         return
 
     type_key = make_type_key(short_type)
-    level_key = short_level
+    level_key = "all"
     errors = await get_grammar_errors(user_id, type_key, level_key)
     if not errors:
         await callback.message.answer("🎉 Ошибок нет! Отличная работа.")
@@ -925,48 +816,45 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
 
     await state.update_data(is_revision=True, session_correct=0, session_wrong=0)
     task_id = errors[0]
-    tasks = get_tasks(short_type, short_level)
+    tasks = get_tasks(short_type)
     task = next((t for t in tasks if t.get("id") == task_id), None)
     if not task:
         await callback.message.answer("Задание с ошибкой не найдено.")
         return
 
     old_progress_id = data.get("progress_msg_id")
-    # Обновляем прогресс с флагом is_revision=True
     new_progress_id = await send_or_update_progress(
         callback.bot,
         callback.message.chat.id,
         user_id,
         short_type,
-        short_level,
         task,
         msg_id=old_progress_id,
         is_revision=True,
         errors_count=len(errors)
     )
-    # Отправляем новое задание (создаём)
     new_task_msg_id = await send_or_update_task(
         callback.bot,
         callback.message.chat.id,
         state,
         user_id,
         short_type,
-        short_level,
         task_id=task_id,
         is_revision=True,
         msg_id=None
     )
     await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
 
-# ----- Обработчик кнопок "Учебный режим" и "Исправить ошибки" после работы над ошибками -----
+# ----- Обработчик кнопок "Учебный режим" и "Исправить ошибки" -----
 @router.callback_query(F.data == "grammar_back_to_learning")
 async def back_to_learning(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
-    tasks = get_tasks(short_type, short_level)
-    current_index = await get_grammar_index(callback.from_user.id, make_type_key(short_type), short_level)
+    tasks = get_tasks(short_type)
+    type_key = make_type_key(short_type)
+    level_key = "all"
+    current_index = await get_grammar_index(callback.from_user.id, type_key, level_key)
     if current_index >= len(tasks):
         current_index = 0
     await state.update_data(is_revision=False)
@@ -976,7 +864,6 @@ async def back_to_learning(callback: CallbackQuery, state: FSMContext):
         callback.message.chat.id,
         callback.from_user.id,
         short_type,
-        short_level,
         tasks[current_index],
         msg_id=old_progress_id,
         is_revision=False
@@ -987,7 +874,6 @@ async def back_to_learning(callback: CallbackQuery, state: FSMContext):
         state,
         callback.from_user.id,
         short_type,
-        short_level,
         current_index,
         is_revision=False,
         msg_id=None
@@ -1000,16 +886,15 @@ async def revision_continue(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
     type_key = make_type_key(short_type)
-    level_key = short_level
+    level_key = "all"
     errors = await get_grammar_errors(user_id, type_key, level_key)
     if not errors:
         await callback.message.answer("🎉 Ошибок больше нет!")
         return
     await state.update_data(is_revision=True, session_correct=0, session_wrong=0)
     task_id = errors[0]
-    tasks = get_tasks(short_type, short_level)
+    tasks = get_tasks(short_type)
     task = next((t for t in tasks if t.get("id") == task_id), None)
     if not task:
         await callback.message.answer("Задание с ошибкой не найдено.")
@@ -1020,7 +905,6 @@ async def revision_continue(callback: CallbackQuery, state: FSMContext):
         callback.message.chat.id,
         user_id,
         short_type,
-        short_level,
         task,
         msg_id=old_progress_id,
         is_revision=True,
@@ -1032,7 +916,6 @@ async def revision_continue(callback: CallbackQuery, state: FSMContext):
         state,
         user_id,
         short_type,
-        short_level,
         task_id=task_id,
         is_revision=True,
         msg_id=None
@@ -1045,7 +928,7 @@ async def revision_continue(callback: CallbackQuery, state: FSMContext):
 async def grammar_reset_confirm(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     confirm_text = (
-        "Вы уверены, что хотите сбросить весь прогресс для текущего типа и уровня?\n"
+        "Вы уверены, что хотите сбросить весь прогресс для текущего типа?\n"
         "Статистика, ошибки и текущее задание будут обнулены.\n\n"
         "Это действие нельзя отменить."
     )
@@ -1057,24 +940,22 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
-    if not short_type or not short_level:
-        await callback.message.answer("Ошибка: не выбран тип или уровень.")
+    if not short_type:
+        await callback.message.answer("Ошибка: не выбран тип.")
         return
 
     type_key = make_type_key(short_type)
-    level_key = short_level
+    level_key = "all"
     await reset_grammar_progress(user_id, type_key, level_key)
     await set_grammar_index(user_id, type_key, level_key, 0)
 
     await state.update_data(is_revision=False, session_correct=0, session_wrong=0)
 
-    tasks = get_tasks(short_type, short_level)
+    tasks = get_tasks(short_type)
     if not tasks:
-        await callback.message.answer("Заданий для этого уровня нет.")
+        await callback.message.answer("Заданий для этого типа нет.")
         return
 
-    # Убираем кнопки у старого задания
     old_task_msg_id = data.get("task_msg_id")
     if old_task_msg_id:
         try:
@@ -1094,7 +975,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         callback.message.chat.id,
         user_id,
         short_type,
-        short_level,
         tasks[0],
         msg_id=old_progress_id,
         is_revision=False
@@ -1105,7 +985,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         state,
         user_id,
         short_type,
-        short_level,
         0,
         is_revision=False,
         msg_id=None
@@ -1117,9 +996,8 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
-    if short_type and short_level:
-        tasks = get_tasks(short_type, short_level)
+    if short_type:
+        tasks = get_tasks(short_type)
         index = data.get("current_index", 0)
         if index >= len(tasks):
             index = 0
@@ -1130,7 +1008,6 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
             callback.message.chat.id,
             callback.from_user.id,
             short_type,
-            short_level,
             task,
             msg_id=old_progress_id,
             is_revision=data.get("is_revision", False)
@@ -1142,7 +1019,6 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
             state,
             callback.from_user.id,
             short_type,
-            short_level,
             index,
             is_revision=data.get("is_revision", False),
             msg_id=task_msg_id
@@ -1163,16 +1039,15 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
-    if not short_type or not short_level:
-        await callback.message.answer("Ошибка: не выбран тип или уровень.")
+    if not short_type:
+        await callback.message.answer("Ошибка: не выбран тип.")
         return
 
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
 
     type_key = make_type_key(short_type)
-    level_key = short_level
+    level_key = "all"
     errors = await get_grammar_errors(user_id, type_key, level_key)
     remaining_errors = len(errors)
 
@@ -1188,7 +1063,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         else:
             text += "Все ошибки исправлены! 🎉\n"
 
-    # Убираем кнопки у задания и прогресса
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
@@ -1228,18 +1102,17 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
-    if not short_type or not short_level:
-        await callback.message.answer("Ошибка: не выбран тип или уровень.")
+    if not short_type:
+        await callback.message.answer("Ошибка: не выбран тип.")
         return
     type_key = make_type_key(short_type)
-    level_key = short_level
+    level_key = "all"
     await clear_grammar_errors(user_id, type_key, level_key)
 
     await callback.message.edit_text("Список ошибок очищен. Продолжайте тренировку.")
     await state.update_data(is_revision=False)
 
-    tasks = get_tasks(short_type, short_level)
+    tasks = get_tasks(short_type)
     index = await get_grammar_index(user_id, type_key, level_key)
     if index >= len(tasks):
         index = 0
@@ -1250,7 +1123,6 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
         callback.message.chat.id,
         user_id,
         short_type,
-        short_level,
         tasks[index] if tasks else {},
         msg_id=old_progress_id,
         is_revision=False
@@ -1261,7 +1133,6 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
         state,
         user_id,
         short_type,
-        short_level,
         index,
         is_revision=False,
         msg_id=None
@@ -1274,9 +1145,8 @@ async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext
     await callback.answer()
     data = await state.get_data()
     short_type = data.get("short_type")
-    short_level = data.get("short_level")
-    if short_type and short_level:
-        tasks = get_tasks(short_type, short_level)
+    if short_type:
+        tasks = get_tasks(short_type)
         index = data.get("current_index", 0)
         if index >= len(tasks):
             index = 0
@@ -1286,7 +1156,6 @@ async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext
             callback.message.chat.id,
             callback.from_user.id,
             short_type,
-            short_level,
             tasks[index] if tasks else {},
             msg_id=old_progress_id,
             is_revision=data.get("is_revision", False)
@@ -1298,7 +1167,6 @@ async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext
             state,
             callback.from_user.id,
             short_type,
-            short_level,
             index,
             is_revision=data.get("is_revision", False),
             msg_id=task_msg_id
