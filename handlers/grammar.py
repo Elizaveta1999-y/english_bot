@@ -197,7 +197,10 @@ async def send_or_update_progress(
     is_revision: bool = False,
     errors_count: int = None
 ) -> int:
-    """Отправляет или редактирует прогресс-сообщение. Всегда стремится редактировать, если msg_id задан."""
+    """
+    Отправляет или редактирует прогресс-сообщение.
+    НИКОГДА не удаляет сообщение, даже при ошибке редактирования.
+    """
     type_key = make_type_key(short_type)
     correct, wrong = await get_grammar_stats(user_id, type_key, "all")
     errors = await get_grammar_errors(user_id, type_key, "all")
@@ -232,11 +235,7 @@ async def send_or_update_progress(
             )
             return msg_id
         except Exception:
-            # Если редактирование не удалось, удаляем старое (если существует) и отправляем новое
-            try:
-                await bot.delete_message(chat_id=chat_id, message_id=msg_id)
-            except Exception:
-                pass
+            # Если редактирование не удалось – просто отправляем новое, НЕ УДАЛЯЯ СТАРОЕ
             sent = await bot.send_message(
                 chat_id=chat_id,
                 text=text,
@@ -313,6 +312,7 @@ async def send_or_update_task(
                 await state.set_state(GrammarStates.in_progress)
             return msg_id
         except Exception:
+            # Если редактирование не удалось – удаляем старый msg и отправляем новый (это ок, т.к. задание может быть удалено)
             try:
                 await bot.delete_message(chat_id=chat_id, message_id=msg_id)
             except Exception:
@@ -511,7 +511,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         real_next = order[next_index]
         next_task = tasks[real_next]
 
-        # Редактируем прогресс-сообщение (оно должно существовать)
         old_progress_id = data.get("progress_msg_id")
         new_progress_id = await send_or_update_progress(
             callback.bot,
@@ -523,7 +522,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             edit=True,
             is_revision=False
         )
-        # Создаём новое задание
         new_task_msg_id = await send_or_update_task(
             callback.bot,
             callback.message.chat.id,
@@ -1157,7 +1155,7 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
     else:
         await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
-# ----- Завершение сессии -----
+# ----- Завершение сессии (ИСПРАВЛЕНО) -----
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_finish_session")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_finish_session")
 async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
@@ -1177,6 +1175,7 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     errors = await get_grammar_errors(user_id, type_key, level_key)
     remaining_errors = len(errors)
 
+    # Формируем текст
     if session_correct == 0 and session_wrong == 0 and remaining_errors == 0:
         text = "Сессия завершена! Вы не ответили ни на одно задание. 🙌🏻"
     else:
@@ -1189,26 +1188,138 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         else:
             text += "Все ошибки исправлены! 🎉\n"
 
-    # Убираем кнопки у задания, прогресс-сообщение удаляем
+    # Убираем кнопки у задания
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
             await callback.bot.edit_message_reply_markup(chat_id=callback.message.chat.id, message_id=task_msg_id, reply_markup=None)
         except Exception:
             pass
+
+    # Убираем кнопки у прогресс-сообщения (НО НЕ УДАЛЯЕМ ЕГО)
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
-            await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=progress_msg_id)
+            await callback.bot.edit_message_reply_markup(chat_id=callback.message.chat.id, message_id=progress_msg_id, reply_markup=None)
         except Exception:
             pass
 
     # Отправляем сообщение о завершении
     await callback.message.answer(text)
 
-    # Показываем главное меню (отправляем новое сообщение)
+    # ВЫВОДИМ ГЛАВНОЕ МЕНЮ
     from handlers.main import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
     await state.clear()
     await callback.answer()
+
+# ----- Сброс ошибок -----
+@router.callback_query(GrammarStates.in_progress, F.data == "grammar_clear_errors")
+@router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_clear_errors")
+async def grammar_clear_errors_confirm(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    confirm_text = (
+        "Вы уверены, что хотите сбросить все ошибки?\n"
+        "Все задания с ошибками будут удалены. Вы сможете начать их заново.\n\n"
+        "Это действие нельзя отменить."
+    )
+    await callback.message.edit_text(confirm_text, reply_markup=get_clear_errors_confirmation_keyboard(), parse_mode="HTML")
+
+@router.callback_query(F.data == "grammar_confirm_clear_errors")
+async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    data = await state.get_data()
+    short_type = data.get("short_type")
+    if not short_type:
+        await callback.message.answer("Ошибка: не выбран тип.")
+        return
+    type_key = make_type_key(short_type)
+    level_key = "all"
+    await clear_grammar_errors(user_id, type_key, level_key)
+
+    await callback.message.edit_text("Список ошибок очищен. Продолжайте тренировку.")
+    await state.update_data(is_revision=False)
+
+    tasks = get_tasks(short_type)
+    order = data.get("order")
+    if order is None:
+        order = await get_or_create_order(user_id, short_type)
+        await state.update_data(order=order)
+    index = await get_grammar_index(user_id, type_key, level_key)
+    if index >= len(order):
+        index = 0
+
+    real_index = order[index]
+    task = tasks[real_index]
+    old_progress_id = data.get("progress_msg_id")
+    new_progress_id = await send_or_update_progress(
+        callback.bot,
+        callback.message.chat.id,
+        user_id,
+        short_type,
+        task,
+        msg_id=old_progress_id,
+        edit=True,
+        is_revision=False
+    )
+    new_task_msg_id = await send_or_update_task(
+        callback.bot,
+        callback.message.chat.id,
+        state,
+        user_id,
+        short_type,
+        index,
+        is_revision=False,
+        msg_id=None
+    )
+    await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
+    await callback.answer()
+
+@router.callback_query(F.data == "grammar_cancel_clear_errors")
+async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    data = await state.get_data()
+    short_type = data.get("short_type")
+    if short_type:
+        tasks = get_tasks(short_type)
+        order = data.get("order")
+        if order is None:
+            user_id = callback.from_user.id
+            order = await get_or_create_order(user_id, short_type)
+            await state.update_data(order=order)
+        index = data.get("current_index", 0)
+        if index >= len(order):
+            index = 0
+        real_index = order[index]
+        task = tasks[real_index]
+        old_progress_id = data.get("progress_msg_id")
+        new_progress_id = await send_or_update_progress(
+            callback.bot,
+            callback.message.chat.id,
+            callback.from_user.id,
+            short_type,
+            task,
+            msg_id=old_progress_id,
+            edit=True,
+            is_revision=data.get("is_revision", False)
+        )
+        task_msg_id = data.get("task_msg_id")
+        new_task_msg_id = await send_or_update_task(
+            callback.bot,
+            callback.message.chat.id,
+            state,
+            callback.from_user.id,
+            short_type,
+            index,
+            is_revision=data.get("is_revision", False),
+            msg_id=task_msg_id
+        )
+        await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
+        try:
+            await callback.message.delete()
+        except Exception:
+            pass
+    else:
+        await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
