@@ -14,9 +14,11 @@ from utils.db import (
 import json
 import re
 import random
+import logging
 from typing import List, Dict, Any
 
 router = Router()
+logger = logging.getLogger(__name__)
 
 # ---------- Состояния ----------
 class GrammarStates(StatesGroup):
@@ -105,7 +107,7 @@ def make_type_key(task_type: str) -> str:
 def get_tasks(task_type: str) -> List[Dict]:
     return TASKS_BY_TYPE.get(task_type, [])
 
-# ---------- Клавиатуры ----------
+# ----- Клавиатуры -----
 def get_type_keyboard() -> InlineKeyboardMarkup:
     buttons = []
     for t in TASK_TYPES:
@@ -163,7 +165,7 @@ def extract_instruction_and_task(question: str) -> tuple:
             task_text = question
     return instruction, task_text
 
-# ---------- Функции для работы со случайным порядком (исправлены) ----------
+# ---------- Функции для работы со случайным порядком ----------
 async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
     order = await get_random_order(user_id, type_key)
@@ -174,7 +176,6 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
         await set_random_order(user_id, type_key, indices)
         return indices
     else:
-        # Если по какой-то причине вернулась строка, преобразуем в список
         if isinstance(order, str):
             try:
                 order = json.loads(order)
@@ -190,7 +191,7 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     await set_random_order(user_id, type_key, indices)
     return indices
 
-# ----- Отправка сообщений (исправлена) -----
+# ----- Отправка сообщений (ИСПРАВЛЕНА - НИКОГДА НЕ УДАЛЯЕТ) -----
 async def send_or_update_progress(
     bot: Bot,
     chat_id: int,
@@ -204,7 +205,8 @@ async def send_or_update_progress(
 ) -> int:
     """
     Отправляет или редактирует прогресс-сообщение.
-    Если редактирование не удалось – удаляет старое и отправляет новое.
+    НИКОГДА не удаляет сообщение. Если редактирование не удаётся -
+    просто возвращает старый msg_id без отправки нового.
     """
     type_key = make_type_key(short_type)
     correct, wrong = await get_grammar_stats(user_id, type_key, "all")
@@ -231,6 +233,7 @@ async def send_or_update_progress(
         text += f"✖️ Ошибок: {errors_len}"
         keyboard = get_progress_keyboard()
 
+    # Если нужно отредактировать и есть ID – пробуем отредактировать
     if edit and msg_id:
         try:
             await bot.edit_message_text(
@@ -241,20 +244,12 @@ async def send_or_update_progress(
                 parse_mode="HTML"
             )
             return msg_id
-        except Exception:
-            # Если редактирование не удалось – удаляем старое и отправляем новое
-            try:
-                await bot.delete_message(chat_id=chat_id, message_id=msg_id)
-            except Exception:
-                pass
-            sent = await bot.send_message(
-                chat_id=chat_id,
-                text=text,
-                reply_markup=keyboard,
-                parse_mode="HTML"
-            )
-            return sent.message_id
+        except Exception as e:
+            # Редактирование не удалось – НЕ УДАЛЯЕМ, НЕ ОТПРАВЛЯЕМ НОВОЕ
+            logger.error(f"Не удалось отредактировать прогресс-сообщение {msg_id}: {e}")
+            return msg_id  # возвращаем старый ID, не создавая новое сообщение
     else:
+        # Отправляем новое сообщение (только если нет msg_id или edit=False)
         sent = await bot.send_message(
             chat_id=chat_id,
             text=text,
@@ -274,7 +269,7 @@ async def send_or_update_task(
     is_revision: bool = False,
     msg_id: int = None
 ) -> int:
-    """Отправляет или редактирует задание."""
+    """Отправляет или редактирует задание. Если msg_id передан – редактирует, иначе отправляет новое."""
     tasks = get_tasks(short_type)
     if task_id is not None:
         task = next((t for t in tasks if t.get("id") == task_id), None)
@@ -323,6 +318,7 @@ async def send_or_update_task(
                 await state.set_state(GrammarStates.in_progress)
             return msg_id
         except Exception:
+            # Если редактирование не удалось – удаляем старый msg и отправляем новый
             try:
                 await bot.delete_message(chat_id=chat_id, message_id=msg_id)
             except Exception:
@@ -1077,6 +1073,7 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Заданий для этого типа нет.")
         return
 
+    # Убираем кнопки у старого задания
     old_task_msg_id = data.get("task_msg_id")
     if old_task_msg_id:
         try:
@@ -1093,6 +1090,7 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
     old_progress_id = data.get("progress_msg_id")
     real_index = new_order[0]
     task = tasks[real_index]
+    # Редактируем прогресс-сообщение (НЕ УДАЛЯЕМ)
     new_progress_id = await send_or_update_progress(
         callback.bot,
         callback.message.chat.id,
@@ -1162,7 +1160,7 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
     else:
         await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
-# ----- Завершение сессии (исправлено) -----
+# ----- Завершение сессии -----
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_finish_session")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_finish_session")
 async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
@@ -1182,9 +1180,9 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     else:
         text = "Сессия завершена! 🙌🏻\n"
         text += f"✔️ Правильно: {session_correct}\n"
-        text += f"✖️ Ошибок: {session_wrong}\n"
-        # Оставшиеся ошибки не показываем
+        text += f"✖️ Ошибок: {session_wrong}"
 
+    # Убираем кнопки у задания
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
@@ -1192,6 +1190,7 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
 
+    # Убираем кнопки у прогресс-сообщения (НО НЕ УДАЛЯЕМ)
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
