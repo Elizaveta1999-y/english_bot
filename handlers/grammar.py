@@ -199,7 +199,7 @@ async def send_or_update_progress(
 ) -> int:
     """
     Отправляет или редактирует прогресс-сообщение.
-    НИКОГДА не удаляет сообщение, даже при ошибке редактирования.
+    Если редактирование не удалось – удаляет старое и отправляет новое (чтобы избежать дублей).
     """
     type_key = make_type_key(short_type)
     correct, wrong = await get_grammar_stats(user_id, type_key, "all")
@@ -215,8 +215,11 @@ async def send_or_update_progress(
         keyboard = None
     else:
         instruction, _ = extract_instruction_and_task(task['question'])
+        # Специальные замены для некоторых типов
         if short_type == "раскрытие_скобок" and "впишите ответ" not in instruction:
             instruction = instruction.replace("Раскройте скобки.", "Раскройте скобки, впишите ответ (1–2 слова).")
+        elif short_type == "отрицание":
+            instruction = "Перепишите предложение в отрицательную форму"
         text = f"<b>Режим:</b> {display_type}\n\n"
         text += f"{instruction}\n\n"
         text += f"<b>Ваш прогресс:</b>\n"
@@ -235,7 +238,11 @@ async def send_or_update_progress(
             )
             return msg_id
         except Exception:
-            # Если редактирование не удалось – просто отправляем новое, НЕ УДАЛЯЯ СТАРОЕ
+            # Если редактирование не удалось – удаляем старое и отправляем новое
+            try:
+                await bot.delete_message(chat_id=chat_id, message_id=msg_id)
+            except Exception:
+                pass
             sent = await bot.send_message(
                 chat_id=chat_id,
                 text=text,
@@ -312,7 +319,7 @@ async def send_or_update_task(
                 await state.set_state(GrammarStates.in_progress)
             return msg_id
         except Exception:
-            # Если редактирование не удалось – удаляем старый msg и отправляем новый (это ок, т.к. задание может быть удалено)
+            # Если редактирование не удалось – удаляем старый msg и отправляем новый
             try:
                 await bot.delete_message(chat_id=chat_id, message_id=msg_id)
             except Exception:
@@ -1170,23 +1177,15 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
 
-    type_key = make_type_key(short_type)
-    level_key = "all"
-    errors = await get_grammar_errors(user_id, type_key, level_key)
-    remaining_errors = len(errors)
-
-    # Формируем текст
-    if session_correct == 0 and session_wrong == 0 and remaining_errors == 0:
+    # Формируем текст ТОЛЬКО с сессионной статистикой
+    if session_correct == 0 and session_wrong == 0:
         text = "Сессия завершена! Вы не ответили ни на одно задание. 🙌🏻"
     else:
         text = "Сессия завершена! 🙌🏻\n"
-        if session_correct > 0 or session_wrong > 0:
-            text += f"✔️ Правильно: {session_correct}\n"
-            text += f"✖️ Ошибок: {session_wrong}\n"
-        if remaining_errors > 0:
-            text += f"Осталось ошибок: {remaining_errors}\n"
-        else:
-            text += "Все ошибки исправлены! 🎉\n"
+        text += f"✔️ Правильно: {session_correct}\n"
+        text += f"✖️ Ошибок: {session_wrong}\n"
+        # Если есть ошибки в БД, не показываем их здесь
+        # можно добавить отдельное сообщение, но по просьбе убрали
 
     # Убираем кнопки у задания
     task_msg_id = data.get("task_msg_id")
