@@ -323,15 +323,19 @@ async def send_or_update_task(
     
     # Для to_be_выбор и to_be_скобки добавляем подсказку сверху
     if short_type in ("to_be_выбор", "to_be_скобки"):
-        correct_answer = task.get("correct")
-        if isinstance(correct_answer, list):
-            hint = "(" + "/".join(correct_answer) + ")"
+        options = task.get("options", [])
+        if options:
+            hint = "(" + "/".join(options) + ")"
         else:
-            hint = f"({correct_answer})"
-        # Если task_text пустой или состоит только из одного слова, используем весь вопрос (без инструкции)
+            # Если options нет, пытаемся взять из correct (если это список)
+            correct = task.get("correct")
+            if isinstance(correct, list):
+                hint = "(" + "/".join(correct) + ")"
+            else:
+                hint = f"({correct})"
+        # Если task_text пустой или слишком короткий, берём весь вопрос
         if not task_text or len(task_text.split()) <= 2:
-            # Возможно, в вопросе только ответ, тогда подставляем его как есть, но лучше взять вопрос целиком
-            task_text = task['question']  # но там может быть инструкция
+            task_text = task.get('question', '')
         task_text = f"{hint}\n{task_text}"
 
     short_type_code = SHORT_TYPE[short_type]
