@@ -49,8 +49,16 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
             await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=progress_msg_id, reply_markup=None)
         except Exception:
             pass
-    await message.answer("Практика завершена.")
+    # Убираем клавиатуру с сообщения пользователя
+    try:
+        await bot.send_message(chat_id=message.chat.id, text="Практика завершена.", reply_markup=ReplyKeyboardRemove())
+    except Exception:
+        await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
     await state.clear()
+    # Сбрасываем режим в user_state
+    user_state = get_user_state(message.from_user.id)
+    user_state["mode"] = ""
+    set_user_state(message.from_user.id, user_state)
 
 # ---------- Обработчик не-текстовых сообщений ----------
 @router.message(
@@ -191,7 +199,7 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     await set_random_order(user_id, type_key, indices)
     return indices
 
-# ----- Отправка сообщений (исправлена) -----
+# ----- Отправка сообщений -----
 async def send_or_update_progress(
     bot: Bot,
     chat_id: int,
@@ -233,7 +241,7 @@ async def send_or_update_progress(
         elif short_type == "отрицание":
             instruction = "Перепишите предложение в отрицательную форму"
         elif short_type == "to_be_выбор":
-            instruction = "Вставьте правильную форму глагола to be (am/is/are)"
+            instruction = "Вставьте правильную форму глагола to be"
         elif short_type == "to_be_скобки":
             instruction = "Вставьте правильную форму глагола to be (was/were)"
         else:
@@ -312,7 +320,18 @@ async def send_or_update_task(
         actual_task=task
     )
 
+    # Получаем текст задания и подсказку для to_be_выбор
     _, task_text = extract_instruction_and_task(task['question'])
+    
+    # Для to_be_выбор добавляем подсказку сверху в скобках
+    if short_type in ["to_be_выбор", "to_be_скобки"]:
+        correct_answer = task.get("correct")
+        if isinstance(correct_answer, list):
+            hint = "(" + "/".join(correct_answer) + ")"
+        else:
+            hint = f"({correct_answer})"
+        task_text = f"{hint}\n{task_text}"
+
     short_type_code = SHORT_TYPE[short_type]
     callback_index = index if not is_revision else -1
     keyboard = get_task_keyboard(short_type_code, callback_index, is_revision)
@@ -432,6 +451,11 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
     if not tasks:
         await callback.message.answer("Заданий для этого типа пока нет.")
         return
+
+    # Сбрасываем режим из других режимов
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
 
     type_key = make_type_key(short_type)
     order = await get_or_create_order(user_id, short_type)
@@ -1191,10 +1215,8 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
             msg_id=task_msg_id
         )
         await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
-        try:
-            await callback.message.delete()
-        except Exception:
-            pass
+        # НЕ УДАЛЯЕМ сообщение с подтверждением - редактируем его обратно в прогресс
+        # (уже отредактировано выше)
     else:
         await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
@@ -1238,6 +1260,11 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
 
     from handlers.main import show_main_menu
     await show_main_menu(callback.message, edit=False)
+
+    # Сбрасываем режим
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
 
     await state.clear()
     await callback.answer()
