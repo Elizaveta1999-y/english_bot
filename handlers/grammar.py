@@ -321,13 +321,13 @@ async def send_or_update_task(
     # Получаем текст задания
     _, task_text = extract_instruction_and_task(task['question'])
     
-    # Для to_be_выбор и to_be_скобки добавляем подсказку сверху
+    # Для to_be_выбор и to_be_скобки добавляем подсказку сверху из options
     if short_type in ("to_be_выбор", "to_be_скобки"):
         options = task.get("options", [])
         if options:
             hint = "(" + "/".join(options) + ")"
         else:
-            # Если options нет, пытаемся взять из correct (если это список)
+            # Fallback: если options нет, пытаемся взять correct (если это список)
             correct = task.get("correct")
             if isinstance(correct, list):
                 hint = "(" + "/".join(correct) + ")"
