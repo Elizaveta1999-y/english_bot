@@ -199,7 +199,7 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     await set_random_order(user_id, type_key, indices)
     return indices
 
-# ----- Отправка сообщений -----
+# ----- Отправка сообщений (исправлено для единого отображения статистики) -----
 async def send_or_update_progress(
     bot: Bot,
     chat_id: int,
@@ -213,8 +213,8 @@ async def send_or_update_progress(
 ) -> int:
     """
     Отправляет или редактирует прогресс-сообщение.
-    - Если edit=False и msg_id is None -> создаёт новое сообщение (только при старте)
-    - Если edit=True и msg_id is not None -> пытается отредактировать, при ошибке возвращает старый msg_id
+    - Всегда показывает статистику (правильно/ошибок).
+    - В режиме revision добавляет строку об оставшихся ошибках.
     """
     if edit and msg_id is None:
         logger.warning("Попытка отредактировать прогресс-сообщение без msg_id – игнорируем.")
@@ -227,30 +227,29 @@ async def send_or_update_progress(
 
     display_type = f"{TYPE_EMOJIS.get(short_type, '')} {short_type.replace('_', ' ')}"
 
-    if is_revision:
-        text = f"<b>Работа над ошибками</b>\n"
-        text += f"Тип: {display_type}\n\n"
-        text += f"Заданий на исправление: {errors_len}\n"
-        keyboard = None
+    # Формируем инструкцию в зависимости от типа
+    if short_type == "раскрытие_скобок":
+        instruction = "Раскройте скобки, впишите ответ (1–2 слова)."
+    elif short_type == "вставка_пропусков":
+        instruction = "Вставьте необходимое слово (артикль, предлог, союз, глагол и тд.)"
+    elif short_type == "отрицание":
+        instruction = "Перепишите предложение в отрицательную форму"
+    elif short_type in ("to_be_выбор", "to_be_скобки"):
+        instruction = "Вставьте правильную форму глагола to be"
     else:
-        # Формируем инструкцию в зависимости от типа
-        if short_type == "раскрытие_скобок":
-            instruction = "Раскройте скобки, впишите ответ (1–2 слова)."
-        elif short_type == "вставка_пропусков":
-            instruction = "Вставьте необходимое слово (артикль, предлог, союз, глагол и тд.)"
-        elif short_type == "отрицание":
-            instruction = "Перепишите предложение в отрицательную форму"
-        elif short_type in ("to_be_выбор", "to_be_скобки"):
-            instruction = "Вставьте правильную форму глагола to be"
-        else:
-            # Для остальных типов берём из файла
-            instruction, _ = extract_instruction_and_task(task['question'])
+        # Для остальных типов берём из файла
+        instruction, _ = extract_instruction_and_task(task['question'])
 
-        text = f"<b>Режим:</b> {display_type}\n\n"
-        text += f"{instruction}\n\n"
-        text += f"<b>Ваш прогресс:</b>\n"
-        text += f"✔️ Правильно: {correct}\n"
-        text += f"✖️ Ошибок: {errors_len}"
+    text = f"<b>Режим:</b> {display_type}\n\n"
+    text += f"{instruction}\n\n"
+    text += f"<b>Ваш прогресс:</b>\n"
+    text += f"✔️ Правильно: {correct}\n"
+    text += f"✖️ Ошибок: {errors_len}"
+
+    if is_revision:
+        text += f"\n<b>Осталось ошибок для исправления: {errors_len}</b>"
+        keyboard = None  # в режиме revision клавиатура не нужна
+    else:
         keyboard = get_progress_keyboard()
 
     if not edit and msg_id is None:
