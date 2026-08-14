@@ -28,7 +28,7 @@ class GrammarStates(StatesGroup):
     waiting_for_text = State()
     in_progress = State()
 
-# ---------- Глобальный перехват команд (только если грамматика активна) ----------
+# ---------- Глобальный перехват команд ----------
 @router.message(F.text.startswith('/'))
 async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: Bot):
     logger.info(f"[CMD] Получена команда: {message.text} от {message.from_user.id}")
@@ -36,11 +36,12 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
     task_msg_id = data.get("task_msg_id")
     progress_msg_id = data.get("progress_msg_id")
     revision_msg_id = data.get("revision_msg_id")
+    logger.info(f"[CMD] task_msg_id={task_msg_id}, progress_msg_id={progress_msg_id}, revision_msg_id={revision_msg_id}")
 
-    # Если нет ни одного ID – грамматика не активна, пропускаем команду (не блокируем)
+    # Если нет ни одного ID – грамматика не активна, пропускаем
     if not task_msg_id and not progress_msg_id and not revision_msg_id:
         logger.info("[CMD] Грамматика не активна – пропускаем команду")
-        return  # Позволяем другим хендлерам обработать команду
+        return
 
     logger.info("[CMD] Грамматика активна, завершаем практику")
 
@@ -70,12 +71,6 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
     user_state["mode"] = ""
     set_user_state(message.from_user.id, user_state)
     logger.info("[CMD] Состояние и режим сброшены")
-
-    # НЕ возвращаем None, чтобы команда не передавалась дальше (мы её уже обработали)
-    # Можно просто завершить хендлер без return – тогда aiogram продолжит поиск, но другие хендлеры не будут вызваны,
-    # т.к. мы уже ответили. Чтобы точно не вызывать другие, можно вызвать return, но тогда другие хендлеры не получат команду.
-    # Лучше ничего не делать – после нашего хендлера aiogram сам решит, вызывать ли другие (скорее всего, нет, т.к. мы ответили).
-    # Оставляем как есть.
 
 # ---------- Обработчик не-текстовых сообщений ----------
 @router.message(
@@ -231,19 +226,19 @@ async def send_or_update_progress(
     msg_id: int = None,
     edit: bool = False
 ) -> int:
-    logger.info(f"[PROGRESS] Отправка/обновление прогресса для {user_id}, тип {short_type}, edit={edit}, msg_id={msg_id}")
+    logger.info(f"[PROGRESS] user={user_id}, type={short_type}, edit={edit}, msg_id={msg_id}")
     if edit and msg_id is None:
-        logger.warning("[PROGRESS] Попытка редактировать без msg_id – игнорируем")
+        logger.warning("[PROGRESS] edit=True без msg_id – игнорируем")
         return None
 
     type_key = make_type_key(short_type)
     correct, wrong = await get_grammar_stats(user_id, type_key, "all")
     errors = await get_grammar_errors(user_id, type_key, "all")
     errors_len = len(errors)
+    logger.info(f"[PROGRESS] stats: correct={correct}, wrong={wrong}, errors={errors_len}")
 
     display_type = f"{TYPE_EMOJIS.get(short_type, '')} {short_type.replace('_', ' ')}"
 
-    # Инструкция
     if short_type == "раскрытие_скобок":
         instruction = "Раскройте скобки, впишите ответ (1–2 слова)."
     elif short_type == "вставка_пропусков":
@@ -264,20 +259,21 @@ async def send_or_update_progress(
 
     if not edit and msg_id is None:
         sent = await bot.send_message(chat_id, text, reply_markup=keyboard, parse_mode="HTML")
-        logger.info(f"[PROGRESS] Создано новое сообщение прогресса, id={sent.message_id}")
+        logger.info(f"[PROGRESS] Создано новое сообщение, id={sent.message_id}")
         return sent.message_id
 
     if edit and msg_id is not None:
         try:
             await bot.edit_message_text(text, chat_id=chat_id, message_id=msg_id, reply_markup=keyboard, parse_mode="HTML")
-            logger.info(f"[PROGRESS] Прогресс отредактирован, id={msg_id}")
+            logger.info(f"[PROGRESS] Отредактировано сообщение {msg_id}")
             return msg_id
         except Exception as e:
-            logger.error(f"[PROGRESS] Ошибка редактирования прогресса {msg_id}: {e}")
+            logger.error(f"[PROGRESS] Ошибка редактирования {msg_id}: {e}")
             sent = await bot.send_message(chat_id, text, reply_markup=keyboard, parse_mode="HTML")
-            logger.info(f"[PROGRESS] Отправлено новое прогресс-сообщение вместо редактирования, id={sent.message_id}")
+            logger.info(f"[PROGRESS] Отправлено новое вместо редактирования, id={sent.message_id}")
             return sent.message_id
 
+    logger.warning(f"[PROGRESS] Непонятная ситуация, msg_id={msg_id}, edit={edit}")
     return msg_id
 
 # ---------- Отправка задания ----------
@@ -292,7 +288,7 @@ async def send_or_update_task(
     is_revision: bool = False,
     msg_id: int = None
 ) -> int:
-    logger.info(f"[TASK] Отправка/обновление задания для {user_id}, тип {short_type}, revision={is_revision}, msg_id={msg_id}")
+    logger.info(f"[TASK] user={user_id}, type={short_type}, revision={is_revision}, msg_id={msg_id}")
     tasks = get_tasks(short_type)
     if task_id is not None:
         task = next((t for t in tasks if t.get("id") == task_id), None)
@@ -324,15 +320,18 @@ async def send_or_update_task(
     )
 
     _, task_text = extract_instruction_and_task(task['question'])
+    logger.info(f"[TASK] task_text: '{task_text[:50]}...'")
 
     # Для to_be_скобки – всегда (was/were), для to_be_выбор – всегда (am/is/are)
     if short_type == "to_be_скобки":
         hint = "(was/were)"
+        logger.info(f"[TASK] to_be_скобки, добавляем hint: {hint}")
         if not task_text or len(task_text.split()) <= 2:
             task_text = task.get('question', '')
         task_text = f"{hint}\n{task_text}"
     elif short_type == "to_be_выбор":
         hint = "(am/is/are)"
+        logger.info(f"[TASK] to_be_выбор, добавляем hint: {hint}")
         if not task_text or len(task_text.split()) <= 2:
             task_text = task.get('question', '')
         task_text = f"{hint}\n{task_text}"
@@ -344,14 +343,14 @@ async def send_or_update_task(
     if msg_id:
         try:
             await bot.edit_message_text(task_text, chat_id=chat_id, message_id=msg_id, reply_markup=keyboard, parse_mode="HTML")
-            logger.info(f"[TASK] Задание отредактировано, id={msg_id}")
+            logger.info(f"[TASK] Отредактировано задание {msg_id}")
             if task.get("input_type") == "text":
                 await state.set_state(GrammarStates.waiting_for_text)
             else:
                 await state.set_state(GrammarStates.in_progress)
             return msg_id
         except Exception as e:
-            logger.error(f"[TASK] Ошибка редактирования задания {msg_id}: {e}")
+            logger.error(f"[TASK] Ошибка редактирования {msg_id}: {e}")
             try:
                 await bot.delete_message(chat_id, msg_id)
                 logger.info(f"[TASK] Старое задание удалено, id={msg_id}")
@@ -375,7 +374,7 @@ async def send_or_update_task(
 
 # ---------- Вход в режим выбора типа ----------
 async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False, state: FSMContext = None):
-    logger.info(f"[ENTER] Вход в режим выбора типа для {user_id}, edit={edit}")
+    logger.info(f"[ENTER] user={user_id}, edit={edit}")
     if state:
         await state.set_state(GrammarStates.choosing_type)
     text = "🔀 Грамматика\n\nВыберите тип задания:"
@@ -397,7 +396,6 @@ async def start_grammar(callback: CallbackQuery, state: FSMContext):
     logger.info(f"[CALLBACK] start_grammar от {callback.from_user.id}")
     await callback.answer()
     data = await state.get_data()
-    # Убираем кнопки у старых сообщений, если они есть
     for key in ["task_msg_id", "progress_msg_id", "revision_msg_id"]:
         msg_id = data.get(key)
         if msg_id:
@@ -455,7 +453,6 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Заданий для этого типа пока нет.")
         return
 
-    # Сбрасываем режим из других режимов
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
@@ -525,7 +522,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     real_index = order[index]
     tasks = get_tasks(short_type)
     if real_index >= len(tasks):
-        logger.error(f"[handle_button_answer] Индекс {real_index} вне диапазона задач")
+        logger.error(f"[handle_button_answer] Индекс {real_index} вне диапазона")
         await callback.answer("Задание не найдено")
         return
     task = tasks[real_index]
@@ -602,7 +599,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer(result_text)
     logger.info(f"[handle_button_answer] Отправлен результат: {result_text}")
 
-    # ---- Переход к следующему действию ----
     if not is_revision:
         next_index = index + 1
         if next_index >= len(order):
@@ -638,11 +634,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     else:
         errors = await get_grammar_errors(user_id, type_key, level_key)
         if not errors:
-            # Все ошибки исправлены
             await callback.message.answer("🎉 Вы исправили все ошибки!")
             logger.info("[handle_button_answer] Все ошибки исправлены")
             await state.update_data(is_revision=False)
-            # Удаляем revision-сообщение
             rev_msg_id = data.get("revision_msg_id")
             if rev_msg_id:
                 try:
@@ -651,7 +645,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 except Exception as e:
                     logger.error(f"[handle_button_answer] Ошибка удаления revision-сообщения: {e}")
                 await state.update_data(revision_msg_id=None)
-            # Возврат в учебный режим
             order = await get_or_create_order(user_id, short_type)
             await state.update_data(order=order)
             current_index = await get_grammar_index(user_id, type_key, level_key)
@@ -682,7 +675,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
             logger.info("[handle_button_answer] Возврат в учебный режим")
         else:
-            # Остались ошибки – показываем промежуточное сообщение с кнопками
             correction_text = f"Вы исправили: {session_correct}\nОсталось ошибок: {len(errors)}"
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Учебный режим", callback_data="grammar_back_to_learning")],
@@ -1087,13 +1079,11 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Задание с ошибкой не найдено.")
         return
 
-    # Отправляем отдельное сообщение с заголовком "Работа над ошибками"
     emoji = TYPE_EMOJIS.get(short_type, "")
     display_type = f"{emoji} {short_type.replace('_', ' ')}".strip()
     header_text = f"<b>Работа над ошибками</b>\nТип: {display_type}\n\nЗаданий на исправление: {len(errors)}"
     await callback.message.answer(header_text, parse_mode="HTML")
 
-    # Отправляем первое задание
     rev_msg_id = await send_or_update_task(
         callback.bot,
         callback.message.chat.id,
@@ -1147,7 +1137,6 @@ async def back_to_learning(callback: CallbackQuery, state: FSMContext):
         msg_id=None
     )
     await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
-    # Удаляем revision-сообщение, если есть
     rev_msg_id = data.get("revision_msg_id")
     if rev_msg_id:
         try:
@@ -1241,7 +1230,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Заданий для этого типа нет.")
         return
 
-    # Убираем кнопки у старого задания
     old_task_msg_id = data.get("task_msg_id")
     if old_task_msg_id:
         try:
@@ -1254,7 +1242,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         except Exception as e:
             logger.error(f"[grammar_confirm_reset] Ошибка убирания кнопок: {e}")
 
-    # Меняем сообщение подтверждения на "Прогресс сброшен"
     await callback.message.edit_text("Прогресс сброшен. Задания даны с начала.", reply_markup=None)
     logger.info("[grammar_confirm_reset] Сообщение подтверждения изменено на 'Прогресс сброшен'")
 
@@ -1323,7 +1310,7 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
             msg_id=task_msg_id
         )
         await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
-        # НЕ УДАЛЯЕМ сообщение с подтверждением, т.к. мы его отредактировали обратно в прогресс
+        # НЕ УДАЛЯЕМ сообщение с подтверждением
         logger.info("[grammar_cancel_reset] Возврат к прогрессу и заданию (сообщение сохранено)")
     else:
         logger.warning("[grammar_cancel_reset] Тип не выбран, переход в режим выбора типа")
@@ -1353,7 +1340,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         text += f"✔️ Правильно: {session_correct}\n"
         text += f"✖️ Ошибок: {session_wrong}"
 
-    # Убираем кнопки у задания и прогресса, удаляем revision-сообщение
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
         try:
@@ -1386,7 +1372,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"[grammar_finish_session] Ошибка показа главного меню: {e}")
 
-    # Сбрасываем режим
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
