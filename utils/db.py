@@ -1,4 +1,5 @@
 import os
+import json  # <-- добавлен импорт
 import asyncpg
 from typing import Tuple, List, Optional
 from datetime import datetime, timedelta
@@ -451,7 +452,7 @@ async def set_progress_index(user_id: int, type_key: str, level_key: str, index:
 async def reset_progress_index(user_id: int, type_key: str, level_key: str):
     await set_progress_index(user_id, type_key, level_key, 0)
 
-# ---------- Функции для случайного порядка ----------
+# ---------- Функции для случайного порядка (ИСПРАВЛЕННАЯ) ----------
 async def get_random_order(user_id: int, level_key: str) -> list:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -460,17 +461,18 @@ async def get_random_order(user_id: int, level_key: str) -> list:
     )
     await conn.close()
     if row:
-        return row["order_data"]
+        return row["order_data"]  # возвращает уже распарсенный JSON
     return None
 
 async def set_random_order(user_id: int, level_key: str, order: list):
     conn = await get_connection()
+    order_json = json.dumps(order)  # <-- КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ
     await conn.execute("""
         INSERT INTO random_order (user_id, level_key, order_data)
         VALUES ($1, $2, $3::jsonb)
         ON CONFLICT (user_id, level_key)
         DO UPDATE SET order_data = $3::jsonb
-    """, user_id, level_key, order)
+    """, user_id, level_key, order_json)
     await conn.close()
 
 # ==============================================
