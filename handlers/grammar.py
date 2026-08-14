@@ -398,6 +398,7 @@ async def start_grammar(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     data = await state.get_data()
     # Убираем кнопки у старых сообщений, если они есть
+    # ВАЖНО: удаляем кнопки у задания (task_msg_id) И у прогресса (progress_msg_id)
     for key in ["task_msg_id", "progress_msg_id", "revision_msg_id"]:
         msg_id = data.get(key)
         if msg_id:
@@ -1088,7 +1089,9 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
         return
 
     # Отправляем отдельное сообщение с заголовком "Работа над ошибками"
-    header_text = f"<b>Работа над ошибками</b>\nТип: {short_type.replace('_', ' ')}\nЗаданий на исправление: {len(errors)}"
+    emoji = TYPE_EMOJIS.get(short_type, "")
+    display_type = f"{emoji} {short_type.replace('_', ' ')}".strip()
+    header_text = f"<b>Работа над ошибками</b>\nТип: {display_type}\n\nЗаданий на исправление: {len(errors)}"
     await callback.message.answer(header_text, parse_mode="HTML")
 
     # Отправляем первое задание
