@@ -1,5 +1,5 @@
 from aiogram import Router, F, Bot
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.filters import or_f
@@ -26,36 +26,36 @@ class GrammarStates(StatesGroup):
     waiting_for_text = State()
     in_progress = State()
 
-# ---------- Обработчик команд ----------
-@router.message(
-    F.text.startswith('/'),
-    or_f(
-        GrammarStates.choosing_type,
-        GrammarStates.waiting_for_text,
-        GrammarStates.in_progress
-    )
-)
+# ---------- Обработчик команд (перехватывает все /, проверяет активность грамматики) ----------
+@router.message(F.text.startswith('/'))
 async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: Bot):
     data = await state.get_data()
     task_msg_id = data.get("task_msg_id")
+    progress_msg_id = data.get("progress_msg_id")
+    
+    # Если нет ни одного ID – грамматика не активна, пропускаем
+    if not task_msg_id and not progress_msg_id:
+        return
+
+    # Убираем кнопки у задания и прогресса
     if task_msg_id:
         try:
             await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=task_msg_id, reply_markup=None)
         except Exception:
             pass
-    progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
             await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=progress_msg_id, reply_markup=None)
         except Exception:
             pass
-    # Убираем клавиатуру с сообщения пользователя
+
+    # Убираем клавиатуру пользователя
     try:
         await bot.send_message(chat_id=message.chat.id, text="Практика завершена.", reply_markup=ReplyKeyboardRemove())
     except Exception:
         await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+
     await state.clear()
-    # Сбрасываем режим в user_state
     user_state = get_user_state(message.from_user.id)
     user_state["mode"] = ""
     set_user_state(message.from_user.id, user_state)
@@ -240,10 +240,8 @@ async def send_or_update_progress(
             instruction = "Вставьте необходимое слово (артикль, предлог, союз, глагол и тд.)"
         elif short_type == "отрицание":
             instruction = "Перепишите предложение в отрицательную форму"
-        elif short_type == "to_be_выбор":
+        elif short_type in ("to_be_выбор", "to_be_скобки"):
             instruction = "Вставьте правильную форму глагола to be"
-        elif short_type == "to_be_скобки":
-            instruction = "Вставьте правильную форму глагола to be (was/were)"
         else:
             # Для остальных типов берём из файла
             instruction, _ = extract_instruction_and_task(task['question'])
@@ -320,16 +318,20 @@ async def send_or_update_task(
         actual_task=task
     )
 
-    # Получаем текст задания и подсказку для to_be_выбор
+    # Получаем текст задания
     _, task_text = extract_instruction_and_task(task['question'])
     
-    # Для to_be_выбор добавляем подсказку сверху в скобках
-    if short_type in ["to_be_выбор", "to_be_скобки"]:
+    # Для to_be_выбор и to_be_скобки добавляем подсказку сверху
+    if short_type in ("to_be_выбор", "to_be_скобки"):
         correct_answer = task.get("correct")
         if isinstance(correct_answer, list):
             hint = "(" + "/".join(correct_answer) + ")"
         else:
             hint = f"({correct_answer})"
+        # Если task_text пустой или состоит только из одного слова, используем весь вопрос (без инструкции)
+        if not task_text or len(task_text.split()) <= 2:
+            # Возможно, в вопросе только ответ, тогда подставляем его как есть, но лучше взять вопрос целиком
+            task_text = task['question']  # но там может быть инструкция
         task_text = f"{hint}\n{task_text}"
 
     short_type_code = SHORT_TYPE[short_type]
@@ -1215,8 +1217,7 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
             msg_id=task_msg_id
         )
         await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
-        # НЕ УДАЛЯЕМ сообщение с подтверждением - редактируем его обратно в прогресс
-        # (уже отредактировано выше)
+        # НЕ УДАЛЯЕМ сообщение с подтверждением – оно уже отредактировано в прогресс
     else:
         await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
