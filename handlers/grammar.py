@@ -39,10 +39,10 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
         if msg_id:
             try:
                 await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=msg_id, reply_markup=None)
-            except:
+            except Exception:
                 try:
                     await bot.delete_message(chat_id=message.chat.id, message_id=msg_id)
-                except:
+                except Exception:
                     pass
     # Отправляем сообщение о завершении
     await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
@@ -420,37 +420,33 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     logger.info(f"[CALLBACK] back_to_main_menu от {callback.from_user.id}")
     await callback.answer()
 
+    # 1. Убираем кнопки у всех сообщений грамматики (без удаления, чтобы избежать ошибок)
     data = await state.get_data()
-    # Удаляем все сообщения грамматики
     for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
         msg_id = data.get(key)
         if msg_id:
             try:
-                await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=msg_id)
-                logger.info(f"[back_to_main_menu] Удалено {key}: {msg_id}")
+                await callback.bot.edit_message_reply_markup(
+                    chat_id=callback.message.chat.id,
+                    message_id=msg_id,
+                    reply_markup=None
+                )
+                logger.info(f"[back_to_main_menu] Кнопки убраны у {key}: {msg_id}")
             except Exception as e:
-                logger.warning(f"[back_to_main_menu] Не удалось удалить {key}: {e}")
+                logger.warning(f"[back_to_main_menu] Не удалось убрать кнопки у {key}: {e}")
 
-    # Удаляем текущее сообщение (меню)
-    try:
-        await callback.message.delete()
-    except Exception as e:
-        logger.warning(f"[back_to_main_menu] Не удалось удалить меню: {e}")
-
+    # 2. Очищаем состояние
     await state.clear()
 
-    # Показываем главное меню НОВЫМ сообщением через bot.send_message
-    from handlers.main import WELCOME_TEXT, get_main_menu_keyboard
+    # 3. Редактируем текущее сообщение (меню выбора типа) в главное меню
+    from handlers.main import show_main_menu
     try:
-        await callback.bot.send_message(
-            chat_id=callback.message.chat.id,
-            text=WELCOME_TEXT,
-            reply_markup=get_main_menu_keyboard(),
-            parse_mode="HTML"
-        )
-        logger.info("[back_to_main_menu] Главное меню отправлено")
+        await show_main_menu(callback.message, edit=True)
+        logger.info("[back_to_main_menu] Главное меню показано через редактирование")
     except Exception as e:
-        logger.error(f"[back_to_main_menu] Ошибка отправки главного меню: {e}")
+        logger.error(f"[back_to_main_menu] Ошибка редактирования: {e}")
+        # Если редактирование не удалось — отправляем новое сообщение
+        await show_main_menu(callback.message, edit=False)
 
 @router.callback_query(GrammarStates.choosing_type, F.data == "grammar_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
@@ -462,14 +458,9 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"[back_to_types] Не удалось удалить сообщение: {e}")
     await state.clear()
-    from handlers.main import WELCOME_TEXT, get_main_menu_keyboard
+    from handlers.main import show_main_menu
     try:
-        await callback.bot.send_message(
-            chat_id=callback.message.chat.id,
-            text=WELCOME_TEXT,
-            reply_markup=get_main_menu_keyboard(),
-            parse_mode="HTML"
-        )
+        await show_main_menu(callback.message, edit=False)
         logger.info("[back_to_types] Главное меню отправлено")
     except Exception as e:
         logger.error(f"[back_to_types] Ошибка показа главного меню: {e}")
@@ -1481,17 +1472,12 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
 
-    from handlers.main import WELCOME_TEXT, get_main_menu_keyboard
+    from handlers.main import show_main_menu
     try:
-        await callback.bot.send_message(
-            chat_id=callback.message.chat.id,
-            text=WELCOME_TEXT,
-            reply_markup=get_main_menu_keyboard(),
-            parse_mode="HTML"
-        )
-        logger.info("[grammar_finish_session] Главное меню отправлено")
+        await show_main_menu(callback.message, edit=False)
+        logger.info("[grammar_finish_session] Главное меню показано")
     except Exception as e:
-        logger.error(f"[grammar_finish_session] Ошибка отправки главного меню: {e}")
+        logger.error(f"[grammar_finish_session] Ошибка показа главного меню: {e}")
     await callback.answer()
 
 # ---------- Сброс ошибок ----------
