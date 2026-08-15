@@ -28,16 +28,6 @@ class GrammarStates(StatesGroup):
     waiting_for_text = State()
     in_progress = State()
 
-# ---------- Обработчик команд в активной грамматике ----------
-@router.message(F.text.startswith('/'), StateFilter(GrammarStates.choosing_type, GrammarStates.waiting_for_text, GrammarStates.in_progress))
-async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: Bot):
-    logger.info(f"[CMD] Получена команда: {message.text} от {message.from_user.id} в активной грамматике")
-    # Завершаем грамматику (убираем кнопки у всех сообщений, очищаем состояние)
-    await finish_grammar(message, state, bot)
-    # Показываем главное меню
-    from handlers.main import show_main_menu
-    await show_main_menu(message, edit=False)
-
 # ---------- Обработчик не-текстовых сообщений ----------
 @router.message(
     or_f(
@@ -406,31 +396,27 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
     data = await state.get_data()
+    # Удаляем все сообщения грамматики
     for key in ["task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"]:
         msg_id = data.get(key)
         if msg_id:
             try:
-                await callback.bot.edit_message_reply_markup(
-                    chat_id=callback.message.chat.id,
-                    message_id=msg_id,
-                    reply_markup=None
-                )
-                logger.info(f"[back_to_main_menu] Кнопки убраны у {key} {msg_id}")
+                await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=msg_id)
+                logger.info(f"[back_to_main_menu] Удалено {key}: {msg_id}")
             except Exception as e:
-                logger.error(f"[back_to_main_menu] Ошибка убирания кнопок у {key}: {e}")
+                logger.error(f"[back_to_main_menu] Не удалось удалить {key}: {e}")
+
+    # Удаляем текущее сообщение (меню выбора типа)
+    try:
+        await callback.message.delete()
+    except Exception as e:
+        logger.error(f"[back_to_main_menu] Не удалось удалить меню: {e}")
 
     await state.clear()
+
+    # Показываем главное меню новым сообщением
     from handlers.main import show_main_menu
-    try:
-        await show_main_menu(callback.message, edit=True)
-        logger.info("[back_to_main_menu] Главное меню показано через редактирование")
-    except Exception as e:
-        logger.error(f"[back_to_main_menu] Ошибка редактирования: {e}")
-        try:
-            await callback.message.delete()
-        except:
-            pass
-        await show_main_menu(callback.message, edit=False)
+    await show_main_menu(callback.message, edit=False)
 
 @router.callback_query(GrammarStates.choosing_type, F.data == "grammar_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
