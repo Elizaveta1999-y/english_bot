@@ -31,26 +31,35 @@ class GrammarStates(StatesGroup):
 # ---------- ПЕРЕХВАТ КОМАНД В АКТИВНОЙ ГРАММАТИКЕ ----------
 @router.message(F.text.startswith('/'), StateFilter(GrammarStates.choosing_type, GrammarStates.waiting_for_text, GrammarStates.in_progress))
 async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: Bot):
-    logger.info(f"[CMD] Команда {message.text} в активной грамматике")
-    # Убираем кнопки у всех сообщений грамматики
-    data = await state.get_data()
-    for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
-        msg_id = data.get(key)
-        if msg_id:
-            try:
-                await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=msg_id, reply_markup=None)
-            except Exception:
+    logger.info(f"[CMD] Команда {message.text} от {message.from_user.id} в активной грамматике")
+    try:
+        # Убираем кнопки у всех сообщений грамматики
+        data = await state.get_data()
+        for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
+            msg_id = data.get(key)
+            if msg_id:
                 try:
-                    await bot.delete_message(chat_id=message.chat.id, message_id=msg_id)
-                except Exception:
-                    pass
-    # Отправляем сообщение о завершении
-    await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
-    # Очищаем состояние и режим
-    await state.clear()
-    user_state = get_user_state(message.from_user.id)
-    user_state["mode"] = ""
-    set_user_state(message.from_user.id, user_state)
+                    await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=msg_id, reply_markup=None)
+                    logger.info(f"[CMD] Кнопки убраны у {key}: {msg_id}")
+                except Exception as e:
+                    logger.warning(f"[CMD] Не удалось убрать кнопки у {key}: {e}")
+                    try:
+                        await bot.delete_message(chat_id=message.chat.id, message_id=msg_id)
+                        logger.info(f"[CMD] Сообщение {key} удалено")
+                    except Exception as e2:
+                        logger.warning(f"[CMD] Не удалось удалить {key}: {e2}")
+        # Отправляем сообщение о завершении
+        await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+        logger.info("[CMD] Отправлено 'Практика завершена'")
+    except Exception as e:
+        logger.error(f"[CMD] Ошибка в обработчике команд: {e}", exc_info=True)
+    finally:
+        # Очищаем состояние и режим
+        await state.clear()
+        user_state = get_user_state(message.from_user.id)
+        user_state["mode"] = ""
+        set_user_state(message.from_user.id, user_state)
+        logger.info("[CMD] Состояние и режим сброшены")
     # НЕ ПОКАЗЫВАЕМ меню – передаём управление основному хэндлеру команды
 
 # ---------- Обработчик не-текстовых сообщений ----------
@@ -369,20 +378,23 @@ async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False,
 # ---------- Функция завершения грамматики (для вызова из main) ----------
 async def finish_grammar(message: Message, state: FSMContext, bot: Bot):
     """Завершает текущую сессию грамматики: убирает кнопки, сбрасывает состояние."""
-    data = await state.get_data()
-    for msg_id_key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
-        msg_id = data.get(msg_id_key)
-        if msg_id:
-            try:
-                await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=msg_id, reply_markup=None)
-                logger.info(f"[finish_grammar] Кнопки убраны у сообщения {msg_id}")
-            except Exception as e:
-                logger.error(f"[finish_grammar] Не удалось убрать кнопки у {msg_id}: {e}")
+    try:
+        data = await state.get_data()
+        for msg_id_key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
+            msg_id = data.get(msg_id_key)
+            if msg_id:
                 try:
-                    await bot.delete_message(chat_id=message.chat.id, message_id=msg_id)
-                    logger.info(f"[finish_grammar] Сообщение {msg_id} удалено")
-                except Exception as e2:
-                    logger.error(f"[finish_grammar] Не удалось удалить сообщение {msg_id}: {e2}")
+                    await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=msg_id, reply_markup=None)
+                    logger.info(f"[finish_grammar] Кнопки убраны у сообщения {msg_id}")
+                except Exception as e:
+                    logger.error(f"[finish_grammar] Не удалось убрать кнопки у {msg_id}: {e}")
+                    try:
+                        await bot.delete_message(chat_id=message.chat.id, message_id=msg_id)
+                        logger.info(f"[finish_grammar] Сообщение {msg_id} удалено")
+                    except Exception as e2:
+                        logger.error(f"[finish_grammar] Не удалось удалить сообщение {msg_id}: {e2}")
+    except Exception as e:
+        logger.error(f"[finish_grammar] Ошибка: {e}", exc_info=True)
 
     await state.clear()
     user_state = get_user_state(message.from_user.id)
@@ -395,24 +407,28 @@ async def finish_grammar(message: Message, state: FSMContext, bot: Bot):
 async def start_grammar(callback: CallbackQuery, state: FSMContext):
     logger.info(f"[CALLBACK] start_grammar от {callback.from_user.id}")
     await callback.answer()
-    data = await state.get_data()
-    for key in ["task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"]:
-        msg_id = data.get(key)
-        if msg_id:
-            try:
-                await callback.bot.edit_message_reply_markup(
-                    chat_id=callback.message.chat.id,
-                    message_id=msg_id,
-                    reply_markup=None
-                )
-                logger.info(f"[start_grammar] Кнопки убраны у сообщения {msg_id}")
-            except Exception as e:
-                logger.error(f"[start_grammar] Ошибка убирания кнопок у {msg_id}: {e}")
+    try:
+        data = await state.get_data()
+        for key in ["task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"]:
+            msg_id = data.get(key)
+            if msg_id:
                 try:
-                    await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=msg_id)
-                    logger.info(f"[start_grammar] Сообщение {msg_id} удалено")
-                except Exception as e2:
-                    logger.error(f"[start_grammar] Не удалось удалить сообщение {msg_id}: {e2}")
+                    await callback.bot.edit_message_reply_markup(
+                        chat_id=callback.message.chat.id,
+                        message_id=msg_id,
+                        reply_markup=None
+                    )
+                    logger.info(f"[start_grammar] Кнопки убраны у сообщения {msg_id}")
+                except Exception as e:
+                    logger.error(f"[start_grammar] Ошибка убирания кнопок у {msg_id}: {e}")
+                    try:
+                        await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=msg_id)
+                        logger.info(f"[start_grammar] Сообщение {msg_id} удалено")
+                    except Exception as e2:
+                        logger.error(f"[start_grammar] Не удалось удалить сообщение {msg_id}: {e2}")
+    except Exception as e:
+        logger.error(f"[start_grammar] Ошибка: {e}", exc_info=True)
+
     await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
 @router.callback_query(F.data == "grammar_back_to_menu")
@@ -420,33 +436,50 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     logger.info(f"[CALLBACK] back_to_main_menu от {callback.from_user.id}")
     await callback.answer()
 
-    # 1. Убираем кнопки у всех сообщений грамматики (без удаления, чтобы избежать ошибок)
+    chat_id = callback.message.chat.id
     data = await state.get_data()
+    logger.info(f"[back_to_main_menu] data keys: {list(data.keys())}")
+
+    # 1. Убираем кнопки у всех сообщений грамматики
     for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
         msg_id = data.get(key)
         if msg_id:
             try:
-                await callback.bot.edit_message_reply_markup(
-                    chat_id=callback.message.chat.id,
-                    message_id=msg_id,
-                    reply_markup=None
-                )
+                await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=msg_id, reply_markup=None)
                 logger.info(f"[back_to_main_menu] Кнопки убраны у {key}: {msg_id}")
             except Exception as e:
                 logger.warning(f"[back_to_main_menu] Не удалось убрать кнопки у {key}: {e}")
 
-    # 2. Очищаем состояние
-    await state.clear()
-
-    # 3. Редактируем текущее сообщение (меню выбора типа) в главное меню
-    from handlers.main import show_main_menu
+    # 2. Удаляем текущее меню выбора типа
     try:
-        await show_main_menu(callback.message, edit=True)
-        logger.info("[back_to_main_menu] Главное меню показано через редактирование")
+        await callback.message.delete()
+        logger.info("[back_to_main_menu] Текущее меню удалено")
     except Exception as e:
-        logger.error(f"[back_to_main_menu] Ошибка редактирования: {e}")
-        # Если редактирование не удалось — отправляем новое сообщение
-        await show_main_menu(callback.message, edit=False)
+        logger.warning(f"[back_to_main_menu] Не удалось удалить меню: {e}")
+
+    # 3. Очищаем состояние
+    await state.clear()
+    logger.info("[back_to_main_menu] Состояние очищено")
+
+    # 4. Отправляем главное меню НОВЫМ сообщением
+    from handlers.main import WELCOME_TEXT, get_main_menu_keyboard
+    try:
+        await callback.bot.send_message(
+            chat_id=chat_id,
+            text=WELCOME_TEXT,
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode="HTML"
+        )
+        logger.info("[back_to_main_menu] Главное меню отправлено новым сообщением")
+    except Exception as e:
+        logger.error(f"[back_to_main_menu] Ошибка отправки главного меню: {e}", exc_info=True)
+        # Запасной вариант: попробуем через show_main_menu
+        try:
+            from handlers.main import show_main_menu
+            await show_main_menu(callback.message, edit=False)
+            logger.info("[back_to_main_menu] Главное меню отправлено через show_main_menu")
+        except Exception as e2:
+            logger.error(f"[back_to_main_menu] Ошибка в запасном варианте: {e2}", exc_info=True)
 
 @router.callback_query(GrammarStates.choosing_type, F.data == "grammar_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
@@ -463,7 +496,7 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
         await show_main_menu(callback.message, edit=False)
         logger.info("[back_to_types] Главное меню отправлено")
     except Exception as e:
-        logger.error(f"[back_to_types] Ошибка показа главного меню: {e}")
+        logger.error(f"[back_to_types] Ошибка показа главного меню: {e}", exc_info=True)
 
 @router.callback_query(GrammarStates.choosing_type, F.data.startswith("grammar_type_"))
 async def select_type(callback: CallbackQuery, state: FSMContext):
@@ -1477,7 +1510,19 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         await show_main_menu(callback.message, edit=False)
         logger.info("[grammar_finish_session] Главное меню показано")
     except Exception as e:
-        logger.error(f"[grammar_finish_session] Ошибка показа главного меню: {e}")
+        logger.error(f"[grammar_finish_session] Ошибка показа главного меню: {e}", exc_info=True)
+        # Запасной вариант
+        try:
+            await callback.bot.send_message(
+                chat_id=callback.message.chat.id,
+                text="Добро пожаловать в умный тренажер Английского языка! 🇺🇸\n\nПроходи уроки, выполняй задания и общайся голосом со своим персональным AI-тьютором! 🧠\nВыбирай режим и начни совершенствоваться в языке!",
+                reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+                    [InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar")]
+                ]),
+                parse_mode="HTML"
+            )
+        except Exception as e2:
+            logger.error(f"[grammar_finish_session] Запасной вариант тоже провалился: {e2}")
     await callback.answer()
 
 # ---------- Сброс ошибок ----------
