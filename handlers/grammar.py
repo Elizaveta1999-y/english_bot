@@ -372,7 +372,8 @@ async def start_grammar(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     data = await state.get_data()
     logger.info(f"[start_grammar] data: {data}")
-    for key in ["task_msg_id", "progress_msg_id", "revision_msg_id"]:
+    # Добавляем revision_header_msg_id
+    for key in ["task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"]:
         msg_id = data.get(key)
         if msg_id:
             try:
@@ -398,14 +399,20 @@ async def start_grammar(callback: CallbackQuery, state: FSMContext):
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     logger.info(f"[CALLBACK] back_to_main_menu от {callback.from_user.id}")
     await callback.answer()
-    # Убираем кнопки у текущего сообщения (меню выбора типа)
+    # Убираем кнопки у текущего сообщения
     try:
         await callback.message.edit_reply_markup(reply_markup=None)
     except Exception as e:
         logger.error(f"[back_to_main_menu] Не удалось убрать кнопки: {e}")
     await state.clear()
     from handlers.main import show_main_menu
-    await show_main_menu(callback.message, edit=True)  # редактируем текущее сообщение
+    # Удаляем сообщение с выбором типа
+    try:
+        await callback.message.delete()
+    except Exception as e:
+        logger.error(f"[back_to_main_menu] Не удалось удалить сообщение: {e}")
+    # Показываем главное меню новым сообщением
+    await show_main_menu(callback.message, edit=False)
 
 @router.callback_query(GrammarStates.choosing_type, F.data == "grammar_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
@@ -627,7 +634,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 except Exception as e:
                     logger.error(f"[handle_button_answer] Ошибка удаления revision-сообщения: {e}")
                 await state.update_data(revision_msg_id=None)
-            # Удаляем заголовок revision, если есть
             rev_header_id = data.get("revision_header_msg_id")
             if rev_header_id:
                 try:
@@ -636,7 +642,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 except Exception as e:
                     logger.error(f"[handle_button_answer] Ошибка удаления заголовка revision: {e}")
                 await state.update_data(revision_header_msg_id=None)
-            # Возврат в учебный режим
             order = await get_or_create_order(user_id, short_type)
             await state.update_data(order=order)
             current_index = await get_grammar_index(user_id, type_key, level_key)
@@ -697,6 +702,11 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 # ---------- Обработка текстовых ответов ----------
 @router.message(GrammarStates.waiting_for_text, F.text)
 async def handle_text_answer(message: Message, state: FSMContext):
+    # Игнорируем команды (не обрабатываем как ответ)
+    if message.text.startswith('/'):
+        logger.info("[TEXT] Игнорируем команду как текстовый ответ")
+        return
+
     logger.info(f"[TEXT] handle_text_answer от {message.from_user.id}, текст: {message.text[:50]}...")
     data = await state.get_data()
     short_type = data.get("short_type")
