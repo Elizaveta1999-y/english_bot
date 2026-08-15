@@ -33,7 +33,6 @@ class GrammarStates(StatesGroup):
 async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: Bot):
     logger.info(f"[CMD] Команда {message.text} от {message.from_user.id} в активной грамматике")
     try:
-        # Убираем кнопки у всех сообщений грамматики
         data = await state.get_data()
         for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
             msg_id = data.get(key)
@@ -48,19 +47,16 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
                         logger.info(f"[CMD] Сообщение {key} удалено")
                     except Exception as e2:
                         logger.warning(f"[CMD] Не удалось удалить {key}: {e2}")
-        # Отправляем сообщение о завершении
         await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
         logger.info("[CMD] Отправлено 'Практика завершена'")
     except Exception as e:
         logger.error(f"[CMD] Ошибка в обработчике команд: {e}", exc_info=True)
     finally:
-        # Очищаем состояние и режим
         await state.clear()
         user_state = get_user_state(message.from_user.id)
         user_state["mode"] = ""
         set_user_state(message.from_user.id, user_state)
         logger.info("[CMD] Состояние и режим сброшены")
-    # НЕ ПОКАЗЫВАЕМ меню – передаём управление основному хэндлеру команды
 
 # ---------- Обработчик не-текстовых сообщений ----------
 @router.message(
@@ -437,10 +433,11 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
     chat_id = callback.message.chat.id
+    logger.info(f"[back_to_main_menu] chat_id: {chat_id}")
+
+    # 1. Убираем кнопки у старых сообщений (если они есть в состоянии)
     data = await state.get_data()
     logger.info(f"[back_to_main_menu] data keys: {list(data.keys())}")
-
-    # 1. Убираем кнопки у всех сообщений грамматики
     for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
         msg_id = data.get(key)
         if msg_id:
@@ -450,7 +447,7 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
             except Exception as e:
                 logger.warning(f"[back_to_main_menu] Не удалось убрать кнопки у {key}: {e}")
 
-    # 2. Удаляем текущее меню выбора типа
+    # 2. Удаляем текущее меню
     try:
         await callback.message.delete()
         logger.info("[back_to_main_menu] Текущее меню удалено")
@@ -461,7 +458,7 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     logger.info("[back_to_main_menu] Состояние очищено")
 
-    # 4. Отправляем главное меню НОВЫМ сообщением
+    # 4. ОТПРАВЛЯЕМ ГЛАВНОЕ МЕНЮ НОВЫМ СООБЩЕНИЕМ (с явной обработкой ошибок)
     from handlers.main import WELCOME_TEXT, get_main_menu_keyboard
     try:
         await callback.bot.send_message(
@@ -472,14 +469,19 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
         )
         logger.info("[back_to_main_menu] Главное меню отправлено новым сообщением")
     except Exception as e:
-        logger.error(f"[back_to_main_menu] Ошибка отправки главного меню: {e}", exc_info=True)
-        # Запасной вариант: попробуем через show_main_menu
+        logger.error(f"[back_to_main_menu] КРИТИЧЕСКАЯ ОШИБКА при отправке главного меню: {e}", exc_info=True)
+        # Запасной вариант: отправляем простую кнопку
         try:
-            from handlers.main import show_main_menu
-            await show_main_menu(callback.message, edit=False)
-            logger.info("[back_to_main_menu] Главное меню отправлено через show_main_menu")
+            await callback.bot.send_message(
+                chat_id=chat_id,
+                text="Главное меню",
+                reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+                    [InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar")]
+                ])
+            )
+            logger.info("[back_to_main_menu] Запасной вариант отправлен")
         except Exception as e2:
-            logger.error(f"[back_to_main_menu] Ошибка в запасном варианте: {e2}", exc_info=True)
+            logger.error(f"[back_to_main_menu] Даже запасной вариант провалился: {e2}")
 
 @router.callback_query(GrammarStates.choosing_type, F.data == "grammar_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
