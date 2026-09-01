@@ -244,20 +244,23 @@ async def profile_menu(callback: CallbackQuery):
 
     pct = grammar_data["percent"]
     bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-    text += f"🔀 Грамматика {pct}%   {bar}\n"
+    text += f"🔀 Грамматика {pct}%\n"
+    text += f"{bar}\n"
 
     pct = reading_data["percent"]
     bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-    text += f"📖 Чтение {pct}%   {bar}\n"
+    text += f"📖 Чтение {pct}%\n"
+    text += f"{bar}\n"
 
     pct = lexis_data["percent"]
     bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-    text += f"🥇 Лексика {pct}%   {bar}\n"
+    text += f"🥇 Лексика {pct}%\n"
+    text += f"{bar}\n"
 
-    # Аудирование — всегда с баром
     pct = listening_data["percent"]
     bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-    text += f"🔉 Аудирование {pct}%   {bar}\n"
+    text += f"🔉 Аудирование {pct}%\n"
+    text += f"{bar}\n"
 
     # ===== ПРОДУКТИВНЫЕ НАВЫКИ =====
     text += "\n<b>• Продуктивные навыки</b>\n"
