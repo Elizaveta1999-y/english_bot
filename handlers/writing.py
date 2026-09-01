@@ -28,43 +28,34 @@ LEVEL_MAP = {
 def load_tasks():
     with open(TASKS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
-    logger.info("=== WRITING TASKS LOADED ===")
-    logger.info(f"Keys: {list(data.keys())}")
-    for task_type, levels in data.items():
-        logger.info(f"  {task_type}: {list(levels.keys()) if isinstance(levels, dict) else 'list'}")
     return data
 
 ALL_TASKS = load_tasks()
+
+def _flatten_tasks(data):
+    result = []
+    if isinstance(data, list):
+        for item in data:
+            result.extend(_flatten_tasks(item))
+    elif isinstance(data, dict):
+        if "task_text" in data or "id" in data:
+            result.append(data)
+        else:
+            for value in data.values():
+                result.extend(_flatten_tasks(value))
+    return result
 
 def get_tasks_for_type_level(task_type: str, level_key: str):
     type_data = ALL_TASKS.get(task_type)
     if not type_data:
         return []
-
-    tasks = []
     if isinstance(type_data, dict):
         tasks = type_data.get(level_key, [])
-        if not tasks:
-            for key, value in type_data.items():
-                if isinstance(value, list):
-                    tasks = value
-                    break
-    elif isinstance(type_data, list):
-        tasks = type_data
+        return _flatten_tasks(tasks)
+    if isinstance(type_data, list):
+        return _flatten_tasks(type_data)
+    return []
 
-    if tasks and isinstance(tasks[0], list):
-        flat = []
-        for sublist in tasks:
-            if isinstance(sublist, list):
-                flat.extend(sublist)
-            else:
-                flat.append(sublist)
-        tasks = flat
-
-    tasks = [item for item in tasks if isinstance(item, dict)]
-    return tasks
-
-# ---------- Стоп-слова ----------
 FORBIDDEN_WORDS = [
     "насилие", "убить", "смерть", "кровь", "изнасилование",
     "секс", "порно", "эротика", "голый", "обнаженный",
@@ -72,7 +63,10 @@ FORBIDDEN_WORDS = [
     "политика", "путин", "зеленский", "война", "санкции"
 ]
 
-# ---------- States ----------
+# ---------- ЛИМИТЫ ----------
+MAX_WORDS = 500      # максимальное количество слов
+MAX_CHARS = 3000     # максимальное количество символов
+
 class WritingStates(StatesGroup):
     choosing_type = State()
     choosing_level = State()
@@ -95,7 +89,7 @@ def get_levels_keyboard():
         [InlineKeyboardButton(text="🌱 Новичок", callback_data="level_beginner")],
         [InlineKeyboardButton(text="📚 Любитель", callback_data="level_intermediate")],
         [InlineKeyboardButton(text="🎓 Эксперт", callback_data="level_advanced")],
-        [InlineKeyboardButton(text="🔙 Назад к типам", callback_data="back_to_types")]
+        [InlineKeyboardButton(text="Назад", callback_data="writing_back_to_types")]
     ])
 
 def get_action_keyboard():
@@ -117,7 +111,7 @@ def get_reset_confirmation_keyboard():
 
 def get_progress_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔄 Сбросить прогресс", callback_data="reset_progress")]
+        [InlineKeyboardButton(text="Сбросить прогресс", callback_data="reset_progress")]
     ])
 
 # ---------- Проверки ----------
@@ -138,37 +132,96 @@ def contains_forbidden(text: str) -> bool:
             return True
     return False
 
+# ---------- Подсчёт предложений ----------
+def count_sentences(text: str) -> int:
+    text = text.replace('...', '.')
+    parts = re.split(r'[.!?]+', text)
+    sentences = [p.strip() for p in parts if p.strip() and len(p.split()) >= 3]
+    return len(sentences)
+
+SENTENCE_LIMITS = {
+    "essay": {"beginner": 3, "intermediate": 4, "expert": 5},
+    "post":   {"beginner": 3, "intermediate": 4, "expert": 6},
+    "story":  {"beginner": 4, "intermediate": 6, "expert": 6}
+}
+
+# ================== ХЕНДЛЕРЫ КОМАНД / (В ПЕРВУЮ ОЧЕРЕДЬ) ==================
+@router.message(WritingStates.choosing_type, F.text.startswith("/"))
+@router.message(WritingStates.choosing_level, F.text.startswith("/"))
+@router.message(WritingStates.waiting_answer, F.text.startswith("/"))
+@router.message(WritingStates.showing_progress, F.text.startswith("/"))
+@router.message(WritingStates.confirm_reset, F.text.startswith("/"))
+async def handle_command_in_writing(message: Message, state: FSMContext):
+    data = await state.get_data()
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await message.bot.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await message.bot.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    await message.answer("Практика завершена")
+    await state.clear()
+    from handlers.start import show_main_menu
+    await show_main_menu(message, edit=False)
+
 # ---------- Entry ----------
 @router.callback_query(F.data == "start_writing")
 async def start_writing_mode(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     await state.set_state(WritingStates.choosing_type)
-    logger.info(f"✅ start_writing: состояние установлено -> {await state.get_state()}")
     await show_task_types(callback.message, edit=True)
 
 async def show_task_types(message: Message, edit: bool = False):
     text = "✍️ Письмо\n\nВыберите тип задания:"
     keyboard = get_types_keyboard()
     if edit:
-        await message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
+        try:
+            await message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
+        except Exception as e:
+            if "message is not modified" not in str(e):
+                raise
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
 
-# ---------- Выбор типа (БЕЗ проверки состояния) ----------
 @router.callback_query(F.data.startswith("type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ type_chosen вызван, data={callback.data}, состояние: {await state.get_state()}")
+    if await state.get_state() is None:
+        await state.set_state(WritingStates.choosing_type)
     await callback.answer()
     task_type = callback.data.split("_")[1]
     await state.update_data(task_type=task_type)
     await state.set_state(WritingStates.choosing_level)
     text = "Выберите уровень сложности:"
-    await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
+    try:
+        await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
+    except Exception as e:
+        if "message is not modified" not in str(e):
+            raise
 
-# ---------- Выбор уровня (БЕЗ проверки состояния) ----------
 @router.callback_query(F.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ level_chosen вызван, data={callback.data}, состояние: {await state.get_state()}")
+    if await state.get_state() is None:
+        await state.set_state(WritingStates.choosing_type)
+        await callback.message.edit_text(
+            "⚠️ Тип задания не выбран. Пожалуйста, выберите тип заново:",
+            reply_markup=get_types_keyboard(),
+            parse_mode="Markdown"
+        )
+        return
     await callback.answer()
     level = callback.data.split("_")[1]
     user_id = callback.from_user.id
@@ -185,19 +238,21 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         return
 
     level_key = LEVEL_MAP.get(level, level)
-    tasks = get_tasks_for_type_level(task_type, level_key)
+    current_level = data.get("level")
+    if current_level == level_key:
+        await show_task(callback.message, state, edit=False)
+        return
 
+    tasks = get_tasks_for_type_level(task_type, level_key)
     if not tasks:
-        logger.warning(f"Нет заданий для {task_type} уровня {level_key}")
-        available = ', '.join(ALL_TASKS.get(task_type, {}).keys()) if isinstance(ALL_TASKS.get(task_type), dict) else 'список'
         await callback.message.edit_text(
-            f"Заданий для {task_type} уровня {level_key} пока нет.\n"
-            f"Доступные уровни: {available if available else 'нет'}"
+            "Заданий для этого уровня пока нет. Выберите другой уровень:",
+            reply_markup=get_levels_keyboard(),
+            parse_mode="Markdown"
         )
         return
 
     await init_writing_session(user_id, task_type, level_key)
-
     index = await get_writing_index(user_id, task_type, level_key)
     if index >= len(tasks):
         index = 0
@@ -222,14 +277,12 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     data = await state.get_data()
     user_id = data.get("user_id")
     if not user_id:
-        logger.error("user_id not found in state")
         return
 
     task_type = data.get("task_type")
     level = data.get("level")
 
     total_answered, total_score, session_answered, session_score = await get_writing_stats(user_id, task_type, level)
-    logger.info(f"Progress for user {user_id}: total_answered={total_answered}, total_score={total_score}")
 
     type_names = {
         "email": "📧 Email",
@@ -246,10 +299,7 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     mode_text = type_names.get(task_type, task_type)
     level_text = level_names.get(level, level)
 
-    if total_answered > 0:
-        avg_score = round(total_score / total_answered, 1)
-    else:
-        avg_score = 0
+    avg_score = round(total_score / total_answered, 1) if total_answered > 0 else 0
 
     card_text = (
         f"*Режим:* {mode_text}\n"
@@ -259,12 +309,17 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     )
 
     keyboard = get_progress_keyboard()
-    if edit:
-        sent = await message.edit_text(card_text, reply_markup=keyboard, parse_mode="Markdown")
-    else:
-        sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
+    try:
+        if edit:
+            await message.edit_text(card_text, reply_markup=keyboard, parse_mode="Markdown")
+            await state.update_data(progress_msg_id=message.message_id)
+        else:
+            sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
+            await state.update_data(progress_msg_id=sent.message_id)
+    except Exception as e:
+        if "message is not modified" not in str(e):
+            raise
 
-    await state.update_data(progress_msg_id=sent.message_id)
     await state.set_state(WritingStates.showing_progress)
 
 # ---------- Показ задания ----------
@@ -275,13 +330,16 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         await message.answer("Ошибка: задание не найдено.")
         return
 
-    if isinstance(task, list):
-        task = task[0] if task else None
-    if not task:
-        await message.answer("Ошибка: пустой список заданий.")
+    while isinstance(task, list):
+        if not task:
+            await message.answer("Ошибка: пустой список заданий.")
+            return
+        task = task[0]
+
+    if not isinstance(task, dict):
+        await message.answer("Ошибка: неверный формат задания.")
         return
 
-    # Удаляем клавиатуру у предыдущего сообщения с заданием
     last_msg_id = data.get("last_task_msg_id")
     if last_msg_id:
         try:
@@ -301,40 +359,41 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
     text = f"{task_text}\n\n"
     if task_type in ["email", "post"] and expected_length != 'не указан':
         text += f"Объём: {expected_length}\n"
+    # Добавляем предупреждение о лимите
+    text += f"\n_Максимум: {MAX_WORDS} слов (около {MAX_CHARS} символов)._"
 
     keyboard = get_action_keyboard()
-    if edit:
-        await message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
-    else:
-        sent_msg = await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
-        await state.update_data(last_task_msg_id=sent_msg.message_id)
+    try:
+        if edit:
+            await message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
+        else:
+            sent_msg = await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
+            await state.update_data(last_task_msg_id=sent_msg.message_id)
+    except Exception as e:
+        if "message is not modified" not in str(e):
+            raise
 
     await state.set_state(WritingStates.waiting_answer)
 
-# ---------- Сброс прогресса ----------
-@router.callback_query(WritingStates.showing_progress, F.data == "reset_progress")
+# ---------- СБРОС ПРОГРЕССА ----------
+@router.callback_query(F.data == "reset_progress")
 async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     data = await state.get_data()
     task_type = data.get("task_type")
+
     if not task_type:
         await callback.message.answer("Ошибка: тип задания не найден. Начните заново.")
         return
 
-    progress_msg_id = data.get("progress_msg_id")
-    if progress_msg_id:
-        try:
-            await callback.bot.edit_message_reply_markup(
-                chat_id=callback.message.chat.id,
-                message_id=progress_msg_id,
-                reply_markup=None
-            )
-        except Exception:
-            pass
-
-    text = "Вы уверены? Средний балл будет обнулен. Все задания будут даны с самого начала."
+    text = "Вы уверенны? Средний балл обнулится, задания будут даны с самого начала."
     keyboard = get_reset_confirmation_keyboard()
-    await callback.message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
+
+    try:
+        await callback.message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
+    except Exception:
+        await callback.message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
+
     await state.set_state(WritingStates.confirm_reset)
 
 @router.callback_query(WritingStates.confirm_reset, F.data == "confirm_reset_yes")
@@ -351,10 +410,38 @@ async def reset_progress_yes(callback: CallbackQuery, state: FSMContext):
         await state.clear()
         return
 
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+
+    try:
+        await callback.message.edit_reply_markup(reply_markup=None)
+    except Exception:
+        pass
+
     await reset_writing_progress(user_id, task_type, level)
+
     await state.update_data(index=0, current_task=tasks[0], last_task_msg_id=None, progress_msg_id=None)
 
-    await callback.message.edit_text("Прогресс обнулился. Задания даны с начала.", reply_markup=None)
+    await callback.message.answer("Прогресс сброшен. Задания даны с начала.")
 
     await show_progress_card(callback.message, state, edit=False)
     await show_task(callback.message, state, edit=False)
@@ -362,15 +449,15 @@ async def reset_progress_yes(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(WritingStates.confirm_reset, F.data == "confirm_reset_no")
 async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    await callback.message.delete()
-    await show_progress_card(callback.message, state, edit=False)
+    await show_progress_card(callback.message, state, edit=True)
     await show_task(callback.message, state, edit=False)
 
-# ---------- Обработка ответа ----------
+# ---------- ОБРАБОТКА ОТВЕТА (после команд) ----------
 @router.message(WritingStates.waiting_answer, F.text)
 async def handle_user_answer(message: Message, state: FSMContext):
     user_text = message.text
 
+    # 1. Проверка на осмысленность (английский, не слишком коротко)
     if not is_meaningful_english(user_text):
         if re.search(r'[а-яА-Я]', user_text) and not re.search(r'[a-zA-Z]', user_text):
             await message.answer("Ваш ответ должен быть на английском языке. Пожалуйста, перепишите.")
@@ -378,6 +465,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
             await message.answer("Ваш ответ не содержит осмысленного текста.\nПожалуйста, перепишите.")
         return
 
+    # 2. Проверка на запрещённые слова
     if contains_forbidden(user_text):
         await message.answer("Текст содержит неподходящие для изучения темы. Пожалуйста, напишите что-то другое.")
         return
@@ -390,10 +478,18 @@ async def handle_user_answer(message: Message, state: FSMContext):
         return
 
     task = data.get("current_task")
-    if isinstance(task, list):
-        task = task[0] if task else None
+    while isinstance(task, list):
+        if not task:
+            await message.answer("Ошибка: пустой список заданий.")
+            return
+        task = task[0]
     if not task:
         await message.answer("Ошибка: задание не найдено. Начните заново.")
+        await state.clear()
+        return
+
+    if not isinstance(task, dict):
+        await message.answer("Ошибка: неверный формат задания. Перезапустите режим.")
         await state.clear()
         return
 
@@ -402,12 +498,51 @@ async def handle_user_answer(message: Message, state: FSMContext):
     index = data.get("index", 0)
     tasks = data.get("tasks", [])
 
+    # ---------- НОВЫЕ ПРОВЕРКИ НА МАКСИМАЛЬНУЮ ДЛИНУ ----------
     word_count = len(user_text.split())
-    if word_count < 10:
-        await message.answer("Слишком коротко. Напишите не менее 10 слов.")
+    char_count = len(user_text)
+
+    if word_count > MAX_WORDS:
+        await message.answer(
+            f"❌ Ваш ответ слишком длинный.\n"
+            f"Максимальное количество слов: {MAX_WORDS}.\n"
+            f"У вас: {word_count} слов.\n\n"
+            f"Пожалуйста, сократите текст до {MAX_WORDS} слов и отправьте снова."
+        )
         return
-    if word_count > 150:
-        await message.answer("Слишком длинно! Сократите до 150 слов.")
+
+    if char_count > MAX_CHARS:
+        await message.answer(
+            f"❌ Ваш ответ слишком длинный.\n"
+            f"Максимальное количество символов: {MAX_CHARS}.\n"
+            f"У вас: {char_count} символов.\n\n"
+            f"Пожалуйста, сократите текст до {MAX_CHARS} символов и отправьте снова."
+        )
+        return
+
+    # ---- Проверка длины (минимальная и максимальная для конкретного типа) ----
+    if task_type == "email":
+        count = len(user_text.split())
+        if level == "beginner":
+            min_count = 30
+        elif level == "intermediate":
+            min_count = 60
+        else:
+            min_count = 80
+        max_count = 150
+        unit = "слов"
+    else:
+        count = count_sentences(user_text)
+        limits = SENTENCE_LIMITS.get(task_type, {})
+        min_count = limits.get(level, 3)
+        max_count = 10
+        unit = "предложений"
+
+    if count < min_count:
+        await message.answer(f"Слишком коротко. Напишите не менее {min_count} {unit}.")
+        return
+    if count > max_count:
+        await message.answer(f"Слишком длинно! Сократите до {max_count} {unit}.")
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -416,13 +551,14 @@ async def handle_user_answer(message: Message, state: FSMContext):
             task_text=task.get('task_text', ''),
             user_answer=user_text,
             level=level,
-            keywords=task.get('keywords', [])
+            keywords=task.get('keywords', []),
+            task_type=task_type
         )
     except Exception as e:
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    logger.info(f"Updating stats: user={user_id}, type={task_type}, level={level}, score={score}")
+    # --- СОХРАНЯЕМ СТАТИСТИКУ ---
     await update_writing_stats(user_id, task_type, level, score)
 
     last_msg_id = data.get("last_task_msg_id")
@@ -437,14 +573,16 @@ async def handle_user_answer(message: Message, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    await message.answer(f"{feedback}\n\nОценка: {score}/5")
+    # --- ОТПРАВЛЯЕМ ФИДБЕК С ОЦЕНКОЙ ---
+    feedback_with_score = f"*Оценка:* {score}/5\n\n{feedback}"
+    await message.answer(feedback_with_score, parse_mode="Markdown")
 
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
             await show_progress_card(message, state, edit=True)
-        except Exception as e:
-            logger.error(f"Failed to update progress card: {e}")
+        except Exception:
+            pass
 
     await go_to_next_task(message, state, user_id, task_type, level, index, tasks)
 
@@ -491,8 +629,11 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     data = await state.get_data()
     task = data.get("current_task")
-    if isinstance(task, list):
-        task = task[0] if task else None
+    while isinstance(task, list):
+        if not task:
+            await callback.message.answer("Задание не найдено.")
+            return
+        task = task[0]
     if not task:
         await callback.message.answer("Задание не найдено.")
         return
@@ -518,7 +659,7 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     )
     await show_task(callback.message, state, edit=False)
 
-# ---------- Завершение ----------
+# ---------- ЗАВЕРШЕНИЕ СЕССИИ (кнопка "Завершить") ----------
 @router.callback_query(WritingStates.waiting_answer, F.data == "cancel_writing")
 async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -527,19 +668,6 @@ async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     task_type = data.get("task_type")
     level = data.get("level")
 
-    total_answered, total_score, session_answered, session_score = await get_writing_stats(user_id, task_type, level)
-
-    await callback.message.edit_reply_markup(reply_markup=None)
-    last_msg_id = data.get("last_task_msg_id")
-    if last_msg_id:
-        try:
-            await callback.bot.edit_message_reply_markup(
-                chat_id=callback.message.chat.id,
-                message_id=last_msg_id,
-                reply_markup=None
-            )
-        except Exception:
-            pass
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -551,11 +679,30 @@ async def cancel_writing(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
 
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+
+    try:
+        await callback.message.edit_reply_markup(reply_markup=None)
+    except Exception:
+        pass
+
+    total_answered, total_score, session_answered, session_score = await get_writing_stats(user_id, task_type, level)
+
     if session_answered > 0:
         avg_session = round(session_score / session_answered, 1)
         await callback.message.answer(
-            f"Сессия завершена! Вы выполнили {session_answered} заданий. "
-            f"Средний балл за сессию: {avg_session}. Отличная работа! 💪"
+            f"Сессия завершена! 🙌🏻\n"
+            f"Вы выполнили {session_answered} заданий.\n"
+            f"Средний балл за сессию: {avg_session}."
         )
     else:
         await callback.message.answer(
@@ -567,14 +714,19 @@ async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     await show_main_menu(callback.message, edit=False)
 
 # ---------- Навигация ----------
-@router.callback_query(F.data == "back_to_types")
-async def back_to_types(callback: CallbackQuery, state: FSMContext):
+@router.callback_query(F.data == "writing_back_to_types")
+async def writing_back_to_types(callback: CallbackQuery, state: FSMContext):
+    if await state.get_state() is None:
+        await state.set_state(WritingStates.choosing_type)
     await callback.answer()
     await state.set_state(WritingStates.choosing_type)
     await show_task_types(callback.message, edit=True)
 
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
+    if await state.get_state() is None:
+        await callback.answer("Режим не активен.", show_alert=True)
+        return
     await callback.answer()
     await callback.message.edit_reply_markup(reply_markup=None)
     data = await state.get_data()
@@ -601,3 +753,19 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
+
+# ---------- Не текстовые сообщения ----------
+@router.message(WritingStates.waiting_answer, F.content_type.in_({'photo', 'document', 'audio', 'voice', 'video', 'sticker', 'animation', 'video_note', 'contact', 'location'}))
+async def handle_non_text_in_writing(message: Message, state: FSMContext):
+    await message.answer("Введите текстовый ответ.")
+
+# =====================================================================
+# ФУНКЦИЯ ДЛЯ ВЫЗОВА ИЗ START.PY
+# =====================================================================
+async def start_writing(callback: CallbackQuery, state: FSMContext):
+    """
+    Запускает режим Письмо из внешнего вызова (например, из start.py).
+    """
+    await callback.answer()
+    await state.set_state(WritingStates.choosing_type)
+    await show_task_types(callback.message, edit=True)

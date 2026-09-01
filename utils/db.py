@@ -94,23 +94,40 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Новая таблица для случайного порядка
+    # Новая таблица для случайного порядка (с колонкой hash)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS random_order (
             user_id BIGINT NOT NULL,
             level_key TEXT NOT NULL,
             order_data JSONB NOT NULL,
+            hash TEXT DEFAULT '',
             PRIMARY KEY (user_id, level_key)
         )
     """)
-    # Таблица для состояний пользователей (user_states)
+    await conn.execute("ALTER TABLE random_order ADD COLUMN IF NOT EXISTS hash TEXT DEFAULT ''")
+    # Таблица для состояний пользователей
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS user_states (
             user_id BIGINT PRIMARY KEY,
             state JSONB NOT NULL DEFAULT '{}'::jsonb
         )
     """)
-    # ---- НОВЫЕ ТАБЛИЦЫ И КОЛОНКИ ДЛЯ АДМИНКИ И БОНУСОВ ----
+    # ---- НОВЫЕ ТАБЛИЦЫ ДЛЯ AI И РОЛЕВЫХ ИГР ----
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS ai_usage (
+            user_id BIGINT PRIMARY KEY,
+            total_minutes INTEGER DEFAULT 0,
+            updated_at BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
+        )
+    """)
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS roleplay_progress (
+            user_id BIGINT PRIMARY KEY,
+            completed_games INTEGER DEFAULT 0,
+            updated_at BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
+        )
+    """)
+    # ---- ОСТАЛЬНЫЕ ТАБЛИЦЫ ----
     await conn.execute("""
         ALTER TABLE users
         ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
@@ -448,7 +465,7 @@ async def set_progress_index(user_id: int, type_key: str, level_key: str, index:
 async def reset_progress_index(user_id: int, type_key: str, level_key: str):
     await set_progress_index(user_id, type_key, level_key, 0)
 
-# ---------- Функции для случайного порядка (ИСПРАВЛЕНЫ) ----------
+# ---------- Функции для случайного порядка ----------
 async def get_random_order(user_id: int, level_key: str) -> list:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -464,15 +481,61 @@ async def set_random_order(user_id: int, level_key: str, order: list):
     conn = await get_connection()
     order_json = json.dumps(order)
     await conn.execute("""
-        INSERT INTO random_order (user_id, level_key, order_data)
-        VALUES ($1, $2, $3::jsonb)
+        INSERT INTO random_order (user_id, level_key, order_data, hash)
+        VALUES ($1, $2, $3::jsonb, '')
         ON CONFLICT (user_id, level_key)
-        DO UPDATE SET order_data = $3::jsonb
+        DO UPDATE SET order_data = EXCLUDED.order_data
     """, user_id, level_key, order_json)
     await conn.close()
 
+async def get_order_hash(user_id: int, level_key: str) -> str:
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT hash FROM random_order WHERE user_id = $1 AND level_key = $2", user_id, level_key)
+    await conn.close()
+    return row["hash"] if row else None
+
+async def set_order_hash(user_id: int, level_key: str, hash_value: str):
+    conn = await get_connection()
+    await conn.execute("UPDATE random_order SET hash = $1 WHERE user_id = $2 AND level_key = $3", hash_value, user_id, level_key)
+    await conn.close()
+
+# ---------- НОВЫЕ ФУНКЦИИ ДЛЯ AI И РОЛЕВЫХ ИГР ----------
+async def get_ai_minutes(user_id: int) -> int:
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT total_minutes FROM ai_usage WHERE user_id = $1", user_id)
+    await conn.close()
+    return row["total_minutes"] if row else 0
+
+async def update_ai_minutes(user_id: int, minutes: int):
+    conn = await get_connection()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO ai_usage (user_id, total_minutes, updated_at)
+        VALUES ($1, $2, $3)
+        ON CONFLICT (user_id)
+        DO UPDATE SET total_minutes = ai_usage.total_minutes + $2, updated_at = $3
+    """, user_id, minutes, now)
+    await conn.close()
+
+async def get_roleplay_completed(user_id: int) -> int:
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT completed_games FROM roleplay_progress WHERE user_id = $1", user_id)
+    await conn.close()
+    return row["completed_games"] if row else 0
+
+async def increment_roleplay_completed(user_id: int):
+    conn = await get_connection()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO roleplay_progress (user_id, completed_games, updated_at)
+        VALUES ($1, 1, $2)
+        ON CONFLICT (user_id)
+        DO UPDATE SET completed_games = roleplay_progress.completed_games + 1, updated_at = $2
+    """, user_id, now)
+    await conn.close()
+
 # ==============================================
-# ---------- НОВЫЕ ФУНКЦИИ ДЛЯ БОНУСНЫХ УВЕДОМЛЕНИЙ ----------
+# ---------- ОСТАЛЬНЫЕ ФУНКЦИИ (БОНУСЫ, АДМИНКА, ФИНАНСЫ) ----------
 # ==============================================
 
 async def ensure_bonus_columns():
@@ -510,7 +573,6 @@ async def get_bonus_notification(user_id: int):
         return row["bonus_notification"], row["bonus_reason"] or ""
     return False, ""
 
-# ---------- ФУНКЦИИ ДЛЯ УПРАВЛЕНИЯ БОТОМ ----------
 async def get_bot_active() -> bool:
     conn = await get_connection()
     val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
@@ -522,7 +584,6 @@ async def set_bot_active(active: bool):
     await conn.execute("UPDATE bot_settings SET value = $1 WHERE key = 'is_active'", 'true' if active else 'false')
     await conn.close()
 
-# ---------- ФУНКЦИИ ДЛЯ БЛОКИРОВКИ ПОЛЬЗОВАТЕЛЕЙ ----------
 async def is_user_blocked(user_id: int) -> bool:
     conn = await get_connection()
     row = await conn.fetchrow("SELECT 1 FROM blocked_users WHERE user_id = $1", user_id)

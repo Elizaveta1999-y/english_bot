@@ -2,23 +2,17 @@ import os
 import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher
-from aiogram.types import BotCommand, Update
+from aiogram.types import BotCommand
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing, roleplay_voice
 from handlers.subscription import router as subscription_router
-from handlers import listening
 from handlers.reading import router as reading_router
-from middleware.access import AccessMiddleware
 from handlers.grammar import router as grammar_router
-from utils.db import init_db, get_bot_active, is_user_blocked
-from middleware.isolation import ModeIsolationMiddleware
 from handlers.govorenie import router as govorenie_router
-import traceback
+from utils.db import init_db
+from middleware.speaking_override import SpeakingOverrideMiddleware
 
-# Импорт глобального middleware из handlers.speaking
-from handlers.speaking import close_speaking_on_exit
-
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -33,94 +27,30 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# --------------------- Логирование всех обновлений ---------------------
-@dp.update.middleware()
-async def log_update(handler, event, data):
-    logger.info(f"📨 Received update: {event}")
-    return await handler(event, data)
+# ========== ТОЛЬКО НАШ МИДЛВАР ==========
+dp.message.middleware(SpeakingOverrideMiddleware())
+dp.callback_query.middleware(SpeakingOverrideMiddleware())
+logger.info("✅ SpeakingOverrideMiddleware зарегистрирован (единственный)")
 
-# --------------------- Глобальный обработчик ошибок (УНИВЕРСАЛЬНЫЙ) ---------------------
-@dp.errors()
-async def handle_errors(*args, **kwargs):
-    event = None
-    exception = None
-    if args:
-        if len(args) >= 1:
-            event = args[0]
-        if len(args) >= 2:
-            exception = args[1]
-    if 'event' in kwargs:
-        event = kwargs['event']
-    if 'exception' in kwargs:
-        exception = kwargs['exception']
-    
-    if not event and args:
-        event = args[0]
-    if not exception and len(args) > 1:
-        exception = args[1]
-    
-    error_text = ''.join(traceback.format_exception(None, exception, exception.__traceback__)) if exception else "Неизвестная ошибка"
-    user_id = None
-    if event:
-        if hasattr(event, 'message') and event.message:
-            user_id = event.message.from_user.id
-        elif hasattr(event, 'callback_query') and event.callback_query:
-            user_id = event.callback_query.from_user.id
-        elif hasattr(event, 'from_user'):
-            user_id = event.from_user.id
-    logger.error(f"❌ Ошибка у пользователя {user_id}: {error_text}")
-    if ADMIN_ID and exception:
-        try:
-            await bot.send_message(ADMIN_ID, f"⚠️ Ошибка в боте!\nПользователь: {user_id}\n\n{error_text[:500]}")
-        except Exception as e:
-            logger.error(f"Не удалось отправить уведомление админу: {e}")
-
-# --------------------- Подключение роутеров (исправленный порядок) ---------------------
-dp.include_router(start.router)          # 1. start (команды /start)
-dp.include_router(speaking.router)       # 2. speaking
-dp.include_router(roleplay.router)       # 3. roleplay – теперь ДО support и subscription
-dp.include_router(roleplay_voice.router) # 4. голосовые для ролплей
+# ========== ПОДКЛЮЧАЕМ РОУТЕРЫ ==========
+dp.include_router(start.router)
+dp.include_router(speaking.router)
+dp.include_router(roleplay.router)
+dp.include_router(roleplay_voice.router)
 dp.include_router(words.router)
 dp.include_router(govorenie_router)
 dp.include_router(writing.router)
 dp.include_router(reading.router)
 dp.include_router(listening.router)
 dp.include_router(grammar_router)
-dp.include_router(support.router)        # теперь ПОСЛЕ roleplay
-dp.include_router(subscription_router)   # теперь ПОСЛЕ roleplay
+dp.include_router(support.router)
+dp.include_router(subscription_router)
 dp.include_router(voice.router)
 dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(profile.router)
-# --------------------- Глобальный middleware для закрытия Speaking ---------------------
-dp.message.middleware(close_speaking_on_exit)
-dp.callback_query.middleware(close_speaking_on_exit)
 
-# --------------------- Middleware изоляции режимов ---------------------
-dp.message.middleware(ModeIsolationMiddleware())
-
-# --------------------- Middleware для проверки статуса бота и блокировок ---------------------
-@dp.message.middleware()
-@dp.callback_query.middleware()
-async def check_bot_status(handler, event, data):
-    user_id = None
-    if hasattr(event, 'from_user'):
-        user_id = event.from_user.id
-    elif hasattr(event, 'message') and event.message:
-        user_id = event.message.from_user.id
-    elif hasattr(event, 'callback_query') and event.callback_query:
-        user_id = event.callback_query.from_user.id
-    
-    if user_id:
-        if not await get_bot_active():
-            await event.answer("🤖 Друзья! Бот решил немного передохнуть и отправился на техническое обслуживание.\nСкоро все наладим и вернём бота в строй так быстро, как только сможем.\nРекомендуем самостоятельно проверять статус через некоторое время.", show_alert=True if hasattr(event, 'answer') else False)
-            return
-        if await is_user_blocked(user_id):
-            await event.answer("Ваш доступ ограничен.", show_alert=True if hasattr(event, 'answer') else False)
-            return
-    return await handler(event, data)
-
-# --------------------- Команды и запуск ---------------------
+# ========== КОМАНДЫ И ЗАПУСК ==========
 async def set_commands(bot: Bot):
     commands = [
         BotCommand(command="start", description="Главное меню"),

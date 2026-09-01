@@ -20,8 +20,6 @@ from utils.db import (
     get_bonus_notification,
 )
 
-from handlers.start import show_main_menu
-
 logger = logging.getLogger(__name__)
 router = Router()
 
@@ -79,6 +77,19 @@ async def get_lexis_summary(user_id: int) -> dict:
     percent = round((correct / total * 100)) if total else 0
     return {"correct": correct, "wrong": wrong, "total": total, "percent": percent}
 
+async def get_listening_summary(user_id: int) -> dict:
+    conn = await get_connection()
+    row = await conn.fetchrow(
+        "SELECT COALESCE(SUM(correct), 0) as correct, COALESCE(SUM(wrong), 0) as wrong FROM progress WHERE user_id = $1 AND type_key LIKE 'listening_%'",
+        user_id
+    )
+    await conn.close()
+    correct = row["correct"] if row else 0
+    wrong = row["wrong"] if row else 0
+    total = correct + wrong
+    percent = round((correct / total * 100)) if total else 0
+    return {"correct": correct, "wrong": wrong, "total": total, "percent": percent}
+
 async def get_writing_summary(user_id: int) -> dict:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -114,10 +125,16 @@ async def count_user_errors(user_id: int) -> dict:
     by_mode = {}
     for row in rows:
         raw_key = row["type_key"]
-        if '_' in raw_key:
-            mode = raw_key.split('_')[0]
+        if raw_key.startswith("grammar_"):
+            mode = "grammar"
+        elif raw_key.startswith("words_"):
+            mode = "lexis"
+        elif raw_key.startswith("listening_"):
+            mode = "listening"
+        elif raw_key.startswith("reading_"):
+            mode = "reading"
         else:
-            mode = raw_key
+            mode = "other"
         by_mode[mode] = by_mode.get(mode, 0) + row["cnt"]
         total += row["cnt"]
     return {"total": total, "by_mode": by_mode}
@@ -136,23 +153,6 @@ async def update_last_active(user_id: int):
     )
     await conn.close()
 
-async def calculate_streak(user_id: int) -> int:
-    profile = await get_user_profile(user_id)
-    if not profile:
-        return 0
-    last_ts = profile.get("last_active")
-    if not last_ts:
-        return 0
-    last_date = datetime.fromtimestamp(last_ts).date()
-    today = datetime.now().date()
-    delta = (today - last_date).days
-    if delta == 0:
-        return 1
-    elif delta == 1:
-        return 1
-    else:
-        return 0
-
 async def reset_full_progress(user_id: int):
     conn = await get_connection()
     await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
@@ -162,21 +162,8 @@ async def reset_full_progress(user_id: int):
     await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
     await conn.close()
 
-async def _update_stats_after_lesson(user_id: int):
-    pass
-
-async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    pass
-
-def update_stats_after_lesson(user_id: int):
-    asyncio.run(_update_stats_after_lesson(user_id))
-
-def update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    asyncio.run(_update_stats_after_practice(user_id, correct, wrong))
-
 def get_profile_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="⚙️ Настройки", callback_data="profile_settings")],
         [InlineKeyboardButton(text="💳 Подписка", callback_data="profile_subscription")],
         [InlineKeyboardButton(text="🔄 Сбросить прогресс", callback_data="profile_reset_confirm")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
@@ -195,6 +182,15 @@ def get_subscription_keyboard():
         [InlineKeyboardButton(text="🔙 Назад", callback_data="profile_back")]
     ])
 
+async def safe_edit_message(message, text, reply_markup=None, parse_mode="HTML"):
+    try:
+        await message.edit_text(text, reply_markup=reply_markup, parse_mode=parse_mode)
+    except Exception as e:
+        if "message is not modified" in str(e).lower():
+            logger.debug("Сообщение не изменилось, пропускаем редактирование")
+        else:
+            raise
+
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -205,10 +201,11 @@ async def profile_menu(callback: CallbackQuery):
         await get_or_create_user(user_id, callback.from_user.username, callback.from_user.first_name, callback.from_user.last_name)
         profile = await get_user_profile(user_id)
         if not profile:
-            await callback.answer("Ошибка создания профиля", show_alert=True)
+            try:
+                await callback.answer("Ошибка создания профиля", show_alert=True)
+            except Exception:
+                pass
             return
-
-    streak = await calculate_streak(user_id)
 
     show_bonus, bonus_reason = await get_bonus_notification(user_id)
     bonus_message = ""
@@ -228,140 +225,123 @@ async def profile_menu(callback: CallbackQuery):
             )
         await clear_bonus_notification(user_id)
 
-    skills = {}
-    any_data = False
-
     grammar_data = await get_grammar_summary(user_id)
-    if grammar_data["total"] > 0:
-        any_data = True
-        skills["grammar"] = {"percent": grammar_data["percent"], "correct": grammar_data["correct"], "total": grammar_data["total"]}
-
     reading_data = await get_reading_summary(user_id)
-    if reading_data["total"] > 0:
-        any_data = True
-        skills["reading"] = {"percent": reading_data["percent"], "correct": reading_data["correct"], "total": reading_data["total"]}
-
     lexis_data = await get_lexis_summary(user_id)
-    if lexis_data["total"] > 0:
-        any_data = True
-        skills["lexis"] = {"percent": lexis_data["percent"], "correct": lexis_data["correct"], "total": lexis_data["total"]}
-
-    writing = await get_writing_summary(user_id)
-    if writing["answered"] > 0:
-        any_data = True
-        skills["writing"] = {"avg": writing["avg"], "checks": writing["answered"]}
-
-    speaking = await get_speaking_summary(user_id)
-    if speaking["answered"] > 0:
-        any_data = True
-        skills["speaking"] = {"avg": speaking["avg"], "checks": speaking["answered"]}
-
+    listening_data = await get_listening_summary(user_id)
+    writing_data = await get_writing_summary(user_id)
+    speaking_data = await get_speaking_summary(user_id)
     mistakes = await count_user_errors(user_id)
-    total_mistakes = mistakes["total"]
-    by_mode = mistakes["by_mode"]
-
-    weak_skill = None
-    weak_value = 100
-    for mode in ["grammar", "reading", "lexis"]:
-        if mode in skills and skills[mode].get("total", 0) > 0:
-            pct = skills[mode].get("percent", 0)
-            if pct < weak_value:
-                weak_value = pct
-                weak_skill = mode
-    for mode in ["writing", "speaking"]:
-        if mode in skills and skills[mode].get("checks", 0) > 0:
-            avg = skills[mode].get("avg", 5)
-            if avg < 3.5 and avg < weak_value:
-                weak_value = avg
-                weak_skill = mode
 
     text = bonus_message
-    text += f"🔥 Серия: {streak} день" + ("ей" if streak > 1 else "")
-    text += f"\n⏱️ Время занятий: 0 мин\n\n"
 
-    text += "▸ Тренажёры (точность ответов):\n"
-    for mode, label in [("grammar", "Грамматика"), ("reading", "Чтение"), ("lexis", "Лексика")]:
-        data = skills.get(mode, {})
-        percent = data.get("percent", 0)
-        total = data.get("total", 0)
-        if total > 0:
-            bar = "█" * (percent // 10) + "░" * (10 - percent // 10)
-            emoji = " ⚠️" if percent < 50 else ""
-            text += f"  {label}   {bar} {percent}%{emoji}\n"
-        else:
-            text += f"  {label}   нет данных\n"
-    text += "  Аудирование   нет данных\n"
+    # ===== Блок тренажёров =====
+    text += "📊 Тренажёры\n"
+    text += "Точность ответов:\n"
 
-    text += "\n▸ Продуктивные навыки (средний балл):\n"
-    for mode, label in [("writing", "Письмо"), ("speaking", "Говорение")]:
-        if mode in skills and skills[mode].get("checks", 0) > 0:
-            avg = skills[mode]["avg"]
-            checks = skills[mode]["checks"]
-            text += f"  {label}   {avg} / 5.0 ({checks} работ)\n"
-        else:
-            text += f"  {label}   нет данных\n"
+    pct = grammar_data["percent"]
+    bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
+    text += f"📚 Грамматика   {pct}%   {bar}\n"
 
-    text += "\n▸ Активность:\n"
-    text += "  Общение с AI: пока нет данных\n"
-    text += "  Ролевые игры: пока нет данных\n"
+    pct = reading_data["percent"]
+    bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
+    text += f"📖 Чтение       {pct}%   {bar}\n"
 
+    pct = lexis_data["percent"]
+    bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
+    text += f"📝 Лексика      {pct}%   {bar}\n"
+
+    if listening_data["total"] > 0:
+        pct = listening_data["percent"]
+        bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
+        text += f"🎧 Аудирование  {pct}%   {bar}\n"
+    else:
+        text += "🎧 Аудирование  — нет данных\n"
+
+    # ===== Блок продуктивных навыков =====
+    text += "\n✍️ Продуктивные навыки\n"
+    text += "Средний балл:\n"
+
+    if writing_data["answered"] > 0:
+        avg = writing_data["avg"]
+        text += f"Письмо    {avg} / 5.0  ({writing_data['answered']} работ)\n"
+    else:
+        text += "Письмо    — нет данных\n"
+
+    if speaking_data["answered"] > 0:
+        avg = speaking_data["avg"]
+        text += f"Говорение  {avg} / 5.0  ({speaking_data['answered']} работ)\n"
+    else:
+        text += "Говорение  — нет данных\n"
+
+    # ===== Блок ошибок =====
+    text += "\n______________________________\n"
+    total_mistakes = mistakes["total"]
+    by_mode = mistakes["by_mode"]
     if total_mistakes > 0:
-        text += f"\n⚠️ Ошибки: {total_mistakes}"
-        if by_mode:
-            parts = []
-            for mode, cnt in by_mode.items():
-                label = {"grammar": "Грамматика", "reading": "Чтение", "lexis": "Лексика", "writing": "Письмо", "speaking": "Говорение"}.get(mode, mode.capitalize())
-                parts.append(f"{label}:{cnt}")
-            text += " (" + " | ".join(parts) + ")"
-        text += "\n"
-    else:
-        text += "\n✅ Ошибок нет\n"
-
-    if not any_data:
-        advice = "Начните с любого тренажёра."
-    elif weak_skill is None:
-        advice = "Отличный прогресс! Так держать."
-    else:
-        advice_map = {
-            "grammar": "Повторите правила и пройдите тренажёр.",
-            "reading": "Читайте тексты каждый день.",
-            "lexis": "Учите новые слова регулярно.",
-            "writing": "Больше практикуйтесь в письме.",
-            "speaking": "Говорите чаще, не бойтесь ошибок."
+        text += "🗂️ Ошибки\n"
+        text += f"Всего: {total_mistakes}\n"
+        mode_labels = {
+            "grammar": "Грамматика",
+            "lexis": "Лексика",
+            "listening": "Аудирование",
+            "reading": "Чтение",
+            "other": "Другое"
         }
-        advice = advice_map.get(weak_skill, "Продолжайте заниматься.")
-        if weak_skill in ["writing", "speaking"] and weak_value >= 3.5:
-            advice = "Отличный прогресс! Так держать."
+        for mode in ["grammar", "lexis", "listening", "reading", "other"]:
+            if mode in by_mode and by_mode[mode] > 0:
+                text += f"• {mode_labels.get(mode, mode)}: {by_mode[mode]}\n"
+    else:
+        text += "🗂️ Ошибки\n✅ Ошибок нет\n"
 
-    if total_mistakes > 10:
-        advice += " Также у вас много ошибок — повторите задания, в которых ошиблись."
-
-    text += f"\n💡 Совет: {advice}\n"
-
+    # ===== Подписка =====
+    text += "\n______________________________\n"
     sub_end = profile.get("subscription_until", 0)
     if sub_end and sub_end > int(datetime.now().timestamp()):
         expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
-        text += f"\n💳 Подписка: активна до {expires}"
+        text += f"💳 Подписка: активна до {expires}"
     else:
-        text += "\n💳 Подписка: не активна"
+        text += "💳 Подписка: не активна"
 
-    await callback.message.edit_text(text, reply_markup=get_profile_keyboard(), parse_mode="HTML")
-    await callback.answer()
+    await safe_edit_message(
+        callback.message,
+        text,
+        reply_markup=get_profile_keyboard(),
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
 
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
     keyboard = get_settings_keyboard(True, "10:00")
-    await callback.message.edit_text("⚙️ <b>Настройки</b>\n\nУправляйте уведомлениями и временем.", reply_markup=keyboard, parse_mode="HTML")
-    await callback.answer()
+    await safe_edit_message(
+        callback.message,
+        "⚙️ <b>Настройки</b>\n\nУправляйте уведомлениями и временем.",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
 
 @router.callback_query(lambda c: c.data == "profile_notif_toggle")
 async def profile_notif_toggle(callback: CallbackQuery):
-    await callback.answer("Функция уведомлений в разработке.", show_alert=True)
+    try:
+        await callback.answer("Функция уведомлений в разработке.", show_alert=True)
+    except Exception:
+        pass
     await profile_settings(callback)
 
 @router.callback_query(lambda c: c.data == "profile_notif_time")
 async def profile_notif_time(callback: CallbackQuery):
-    await callback.answer("Настройка времени – в разработке.", show_alert=True)
+    try:
+        await callback.answer("Настройка времени – в разработке.", show_alert=True)
+    except Exception:
+        pass
     await profile_settings(callback)
 
 @router.callback_query(lambda c: c.data == "profile_subscription")
@@ -374,13 +354,24 @@ async def profile_subscription(callback: CallbackQuery):
         text = f"💳 <b>Подписка активна</b>\n\nДата окончания: {expires}"
     else:
         text = "💳 <b>Подписка не активна</b>\n\nОформите подписку для полного доступа."
-    await callback.message.edit_text(text, reply_markup=get_subscription_keyboard(), parse_mode="HTML")
-    await callback.answer()
+    await safe_edit_message(
+        callback.message,
+        text,
+        reply_markup=get_subscription_keyboard(),
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
 
 @router.callback_query(lambda c: c.data == "profile_extend")
 async def profile_extend(callback: CallbackQuery):
     await callback.message.answer("💳 Функция продления подписки будет доступна позже.\nСвяжитесь с поддержкой.")
-    await callback.answer()
+    try:
+        await callback.answer()
+    except Exception:
+        pass
 
 @router.callback_query(lambda c: c.data == "profile_reset_confirm")
 async def profile_reset_confirm(callback: CallbackQuery):
@@ -395,19 +386,58 @@ async def profile_reset_confirm(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="❌ Отмена", callback_data="profile_back")]
     ])
-    await callback.message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
-    await callback.answer()
+    await safe_edit_message(
+        callback.message,
+        text,
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
 
-# ========== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК (исключаем кнопки Speaking) ==========
 @router.message(F.text, ~F.text.in_({"📊 Я всё! Фидбек", "🏠 Главное меню"}))
 async def profile_reset_handle(message: Message):
     if message.text.strip().upper() == "СБРОС":
         user_id = message.from_user.id
         await reset_full_progress(user_id)
         await message.answer("✅ Прогресс успешно сброшен.")
+        from handlers.start import show_main_menu
         await show_main_menu(message, edit=False)
 
 @router.callback_query(lambda c: c.data == "profile_back")
 async def profile_back(callback: CallbackQuery):
+    from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
-    await callback.answer()
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+
+async def show_profile(message, user_id: int, edit: bool = False):
+    class FakeCallback:
+        def __init__(self, message, user_id):
+            self.message = message
+            self.from_user = type('obj', (object,), {'id': user_id})()
+        async def answer(self, *args, **kwargs):
+            pass
+
+    fake_callback = FakeCallback(message, user_id)
+    await profile_menu(fake_callback)
+
+# =====================================================================
+# ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СОВМЕСТИМОСТИ С ДРУГИМИ МОДУЛЯМИ
+# =====================================================================
+
+async def _update_stats_after_lesson(user_id: int):
+    pass
+
+async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
+    pass
+
+def update_stats_after_lesson(user_id: int):
+    asyncio.run(_update_stats_after_lesson(user_id))
+
+def update_stats_after_practice(user_id: int, correct: int, wrong: int):
+    asyncio.run(_update_stats_after_practice(user_id, correct, wrong))

@@ -1,12 +1,11 @@
 import asyncio
 import os
+import logging
 from dotenv import load_dotenv
 
 load_dotenv()
 
-from aiogram import Bot, Dispatcher, BaseMiddleware
-from aiogram.types import Message, CallbackQuery
-from aiogram.fsm.context import FSMContext
+from aiogram import Bot, Dispatcher
 from handlers import (
     start, speaking, roleplay, common, voice, lessons, words,
     profile, support, listening, reading, writing
@@ -14,6 +13,13 @@ from handlers import (
 from handlers.grammar import router as grammar_router
 from handlers.govorenie import router as govorenie_router
 from utils.db import init_db
+from middleware.speaking_override import SpeakingOverrideMiddleware
+
+# ========== НАСТРОЙКА ЛОГИРОВАНИЯ ==========
+logging.basicConfig(
+    level=logging.ERROR,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 if not BOT_TOKEN:
@@ -22,27 +28,18 @@ if not BOT_TOKEN:
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# ========== MIDDLEWARE ДЛЯ ОГРАНИЧЕНИЯ ДОСТУПА ==========
-YOUR_USER_ID = 6115540828  # ваш Telegram ID
+# ========== РЕГИСТРАЦИЯ MIDDLEWARE ==========
+# ВСЕ СТАРЫЕ MIDDLEWARE ЗАКОММЕНТИРОВАНЫ – ОСТАВЛЕН ТОЛЬКО НАШ
 
-class AdminOnlyMiddleware(BaseMiddleware):
-    async def __call__(self, handler, event, data):
-        # Проверяем, есть ли у события пользователь
-        user = None
-        if isinstance(event, (Message, CallbackQuery)):
-            user = event.from_user
-        if user and user.id != YOUR_USER_ID:
-            # Если это не вы — отвечаем и прерываем обработку
-            if isinstance(event, Message):
-                await event.answer("🚫 Это тестовый бот, доступ ограничен.")
-            elif isinstance(event, CallbackQuery):
-                await event.answer("🚫 Доступ запрещён.", show_alert=True)
-            return  # не передаём дальше
-        return await handler(event, data)
+# dp.message.middleware(AdminOnlyMiddleware())           # закомментировано
+# dp.callback_query.middleware(AdminOnlyMiddleware())    # закомментировано
+# dp.message.middleware(ModeIsolationMiddleware())       # закомментировано
+# dp.message.middleware(close_speaking_on_exit)          # закомментировано
+# dp.callback_query.middleware(close_speaking_on_exit)   # закомментировано
 
-# Регистрируем middleware для всех типов событий
-dp.message.middleware(AdminOnlyMiddleware())
-dp.callback_query.middleware(AdminOnlyMiddleware())
+# ОСТАВЛЯЕМ ТОЛЬКО НАШ
+dp.message.middleware(SpeakingOverrideMiddleware())
+dp.callback_query.middleware(SpeakingOverrideMiddleware())
 
 # ========== ПОДКЛЮЧАЕМ РОУТЕРЫ ==========
 dp.include_router(start.router)
@@ -62,7 +59,7 @@ dp.include_router(profile.router)
 
 async def main():
     await init_db()
-    print("🚀 Бот запущен локально (тестовый режим, доступ только для вас)")
+    print("🚀 Бот запущен локально (тестовый режим)")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":

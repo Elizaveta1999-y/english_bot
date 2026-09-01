@@ -19,7 +19,7 @@ router = Router()
 WOMAN_VOICE_ID = "uYXf8XasLslADfZ2MB4u"   # новый женский
 MAN_VOICE_ID = "nucVFUFVgPmKHjgXNbJ7"     # новый мужской
 
-# ==================== КАРТА КАТЕГОРИЙ -> ГОЛОС (вразброс) ====================
+# ==================== КАРТА КАТЕГОРИЙ -> ГОЛОС ====================
 CATEGORY_VOICE_MAP = {
     "work": WOMAN_VOICE_ID,
     "travel": MAN_VOICE_ID,
@@ -226,7 +226,7 @@ async def roleplay_voice_show_text(callback: CallbackQuery):
         await callback.answer()
     except Exception as e:
         logger.error(f"Ошибка в roleplay_voice_show_text: {e}", exc_info=True)
-        await callback.answer("Ошибка.", show_alert=True)
+        await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_translate_"))
 async def roleplay_voice_translate(callback: CallbackQuery):
@@ -258,7 +258,7 @@ async def roleplay_voice_translate(callback: CallbackQuery):
         await callback.answer()
     except Exception as e:
         logger.error(f"Ошибка в roleplay_voice_translate: {e}", exc_info=True)
-        await callback.answer("Ошибка.", show_alert=True)
+        await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_original_"))
 async def roleplay_voice_original(callback: CallbackQuery):
@@ -285,7 +285,7 @@ async def roleplay_voice_original(callback: CallbackQuery):
         await callback.answer()
     except Exception as e:
         logger.error(f"Ошибка в roleplay_voice_original: {e}", exc_info=True)
-        await callback.answer("Ошибка.", show_alert=True)
+        await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_hide_"))
 async def roleplay_voice_hide(callback: CallbackQuery):

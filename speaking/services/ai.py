@@ -104,13 +104,11 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     if history is None:
         history = state.get("history", [])
     
+    feedback_id = state.get("feedback_prompt_msg_id")
+    
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-5:]])
-    logger.info(f"🔍 process_voice_message: user_id={user_id}")
-    logger.info(f"🔍 user_text: {user_text}")
-    logger.info(f"🔍 context: {context}")
     
     if not await is_safe_message(user_text):
-        logger.info("⛔ Сообщение небезопасное (по списку слов)")
         return ("Извините, я не могу обсуждать эту тему. Давайте поговорим о чём-то другом.", "", False)
 
     has_cyrillic = bool(re.search(r'[а-яА-Я]', user_text))
@@ -118,54 +116,147 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
 
     russian_requested = any(marker in user_text.lower() for marker in RUSSIAN_REQUEST)
     
+    # Определяем пол тьютора
+    voice = state.get("speaking_voice", "woman")
+    tutor_gender = "женщина" if voice == "woman" else "мужчина"
+    tutor_pronoun = "она" if voice == "woman" else "он"
+    
+    # ----- АНГЛИЙСКИЕ СООБЩЕНИЯ -----
+    if not has_cyrillic and has_latin:
+        # ---- ЖЁСТКАЯ ПРОВЕРКА ГРАММАТИКИ ----
+        check_prompt = (
+            f"The student wrote: {user_text}\n"
+            "Check ONLY for grammar errors: verb forms, tenses, word order, articles, prepositions.\n"
+            "IGNORE punctuation and capitalization completely. They are NOT errors.\n"
+            "If there are NO grammar errors, reply exactly with the word 'NO_ERRORS' and nothing else. Do not add explanations, comments, or suggestions.\n"
+            "If there are errors, provide exactly in this format:\n"
+            "Line 1: corrected version as a single sentence without numbers or bullets\n"
+            "Line 2: <blockquote>explanation in Russian (пояснение на русском языке)</blockquote>\n"
+            "The explanation MUST be in Russian. Do not add any extra words before the <blockquote>."
+        )
+        try:
+            check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=300, temperature=0.2)
+        except Exception as e:
+            logger.error(f"Ошибка при проверке грамматики: {e}")
+            return ("⚠️ Не удалось проверить грамматику. Попробуйте ещё раз.", "", False)
+
+        if not check_result or not check_result.strip():
+            return ("⚠️ Не удалось проверить грамматику. Попробуйте ещё раз.", "", False)
+
+        # ---- НОРМАЛИЗУЕМ ОТВЕТ ----
+        check_result_clean = check_result.strip().upper()
+        if "NO_ERRORS" in check_result_clean:  # если есть NO_ERRORS в любом регистре
+            # Генерируем продолжение диалога
+            word_count = len(user_text.split())
+            max_sentences = "1-3" if word_count <= 30 else "3-4"
+            system_prompt_reply = (
+                f"You are a friendly English tutor. You are a {tutor_gender} (пол: {tutor_gender}). "
+                f"Use feminine/masculine forms accordingly when talking about yourself. "
+                "Always respond in English. "
+                "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
+                "Do not correct mistakes. Just respond like a native speaker and keep the conversation going. "
+                f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
+                "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral without explicitly saying you can't discuss it."
+            )
+            user_prompt_reply = (
+                f"Context:\n{context}\n\n"
+                f"Student: {user_text}\n"
+                f"Your voice reply (natural, short, end with a question):"
+            )
+            reply_text = chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+            reply_text = reply_text.strip()
+            if not reply_text:
+                reply_text = "Sorry, I didn't get that. Could you repeat?"
+            if not reply_text.endswith('?'):
+                reply_text += " What do you think?"
+            return (reply_text, "", True)  # is_perfect=True
+
+        # ---- ЕСТЬ ОШИБКИ ----
+        lines = check_result.strip().split('\n')
+        corrected = ""
+        explanation = ""
+        for line in lines:
+            line = line.strip()
+            if '<blockquote>' in line:
+                explanation = line
+            else:
+                if corrected:
+                    corrected += " " + line
+                else:
+                    corrected = line
+        if not explanation and len(lines) > 1:
+            explanation = f"<blockquote>{lines[1].strip()}</blockquote>"
+        elif not explanation and lines:
+            explanation = f"<blockquote>{lines[0].strip()}</blockquote>"
+        corrected = re.sub(r'^\d+\.?\s*', '', corrected)
+        if explanation:
+            inner = re.sub(r'</?blockquote>', '', explanation)
+            formatted_inner = format_explanation(inner)
+            explanation = f"<blockquote>{formatted_inner}</blockquote>"
+        correction_text = f"✔️ {corrected}\n{explanation}"
+        
+        word_count = len(user_text.split())
+        max_sentences = "1-3" if word_count <= 30 else "3-4"
+        system_prompt_reply = (
+            f"You are a friendly English tutor. You are a {tutor_gender} (пол: {tutor_gender}). "
+            f"Use feminine/masculine forms accordingly when talking about yourself. "
+            "Always respond in English. "
+            "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
+            "Do not correct mistakes. Just respond like a native speaker and keep the conversation going. "
+            f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
+            "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral without explicitly saying you can't discuss it."
+        )
+        user_prompt_reply = (
+            f"Context:\n{context}\n\n"
+            f"Student: {user_text}\n"
+            f"Your voice reply (natural, short, end with a question):"
+        )
+        reply_text = chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+        reply_text = reply_text.strip()
+        if not reply_text:
+            reply_text = "Sorry, I didn't get that. Could you repeat?"
+        if not reply_text.endswith('?'):
+            reply_text += " What do you think?"
+        
+        state["feedback_prompt_msg_id"] = feedback_id
+        set_user_state(user_id, state)
+        return (reply_text, correction_text, False)
+
+    # ----- РУССКИЕ И СМЕШАННЫЕ -----
     word_count = len(user_text.split())
     max_sentences = "1-3" if word_count <= 30 else "3-4"
     
-    # ---- ЕСЛИ ПОЛЬЗОВАТЕЛЬ ПРОСИТ ОТВЕТИТЬ НА РУССКОМ ----
     if russian_requested:
         system_prompt_reply = (
-            "You are a friendly English tutor. Respond in Russian, because the student asked for it. "
+            f"You are a friendly English tutor. You are a {tutor_gender} (пол: {tutor_gender}). "
+            f"Use feminine/masculine forms accordingly when talking about yourself. "
+            "Respond in Russian, because the student asked for it. "
             "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
             "Do not correct mistakes. Just respond like a native speaker and keep the conversation going. "
             f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
-            "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral (like weather, hobbies, daily routine) without explicitly saying you can't discuss it."
+            "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral without explicitly saying you can't discuss it."
         )
-        user_text_for_prompt = user_text  # оставляем как есть
     else:
-        # ---- ОСНОВНОЙ РЕЖИМ: ВСЕГДА ОТВЕЧАЕМ НА АНГЛИЙСКОМ ----
         system_prompt_reply = (
-            "You are a friendly English tutor. Always respond in English. "
+            f"You are a friendly English tutor. You are a {tutor_gender} (пол: {tutor_gender}). "
+            f"Use feminine/masculine forms accordingly when talking about yourself. "
+            "Always respond in English. "
             "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
             "Do not correct mistakes. Just respond like a native speaker and keep the conversation going. "
             f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
-            "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral (like weather, hobbies, daily routine) without explicitly saying you can't discuss it."
+            "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral without explicitly saying you can't discuss it."
         )
-        # Если сообщение на русском, переводим его на английский, чтобы DeepSeek мог ответить
-        if has_cyrillic:
-            logger.info("🔄 Перевод русского текста на английский для запроса")
-            translation_prompt = (
-                f"Translate the following Russian text to English (only the translation, no extra words):\n{user_text}"
-            )
-            user_text_for_prompt = chat(translation_prompt, system_message="You are a translator.", max_tokens=300, temperature=0.3)
-            logger.info(f"🔍 Переведённый текст: {user_text_for_prompt}")
-        else:
-            user_text_for_prompt = user_text
     
     user_prompt_reply = (
         f"Context:\n{context}\n\n"
-        f"Student: {user_text_for_prompt}\n"
+        f"Student: {user_text}\n"
         f"Your voice reply (natural, short, end with a question):"
     )
     
-    logger.info("🔄 Вызов DeepSeek для генерации ответа")
     reply_text = chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
-    logger.info(f"🔍 reply_text (сырой от DeepSeek): '{reply_text}'")
-    
     reply_text = reply_text.strip()
     if not reply_text:
-        logger.warning("⚠️ DeepSeek вернул пустой ответ!")
-        if has_cyrillic and not russian_requested:
-            # fallback на русском, так как пользователь говорил по-русски
+        if has_cyrillic:
             reply_text = "Извините, я не понял ваш вопрос. Повторите, пожалуйста."
         else:
             reply_text = "Sorry, I didn't get that. Could you repeat?"
@@ -177,20 +268,17 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             reply_text += " Что вы думаете?"
         else:
             reply_text += " What do you think?"
-        logger.info(f"🔍 Добавлен вопрос: reply_text стал '{reply_text}'")
     
     correction_text = ""
     is_perfect = False
     
     if has_cyrillic:
-        logger.info("🔄 Сообщение на русском, запрос перевода для коррекции")
         translation_prompt = (
             f"The student said in Russian: {user_text}\n"
             f"Provide only the correct English translation, without any extra words. "
             f"Do not include the original Russian."
         )
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=600, temperature=0.3)
-        logger.info(f"🔍 translation: '{translation}'")
         correction_text = f"✔️ {translation}"
         
         if "russian_translation_count" not in state:
@@ -198,57 +286,10 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         state["russian_translation_count"] += 1
         if state["russian_translation_count"] % 3 == 0:
             correction_text += "\n\n💡 Try to say that in English next time – it's much better for practice!"
+        state["feedback_prompt_msg_id"] = feedback_id
         set_user_state(user_id, state)
-        
-    else:
-        logger.info("🔄 Сообщение на английском, проверка грамматики")
-        check_prompt = (
-            f"The student wrote: {user_text}\n"
-            f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
-            f"IGNORE punctuation and capitalization.\n"
-            f"If there are errors, provide exactly in this format:\n"
-            f"Line 1: corrected version as a single sentence without numbers or bullets\n"
-            f"Line 2: <blockquote>explanation in Russian (пояснение на русском языке)</blockquote>\n"
-            f"The explanation MUST be in Russian, not in English. Do not add any extra words before the <blockquote>.\n"
-            f"If there are NO grammar errors, reply ONLY with the word 'NO_ERRORS' and NOTHING ELSE. Do not add explanations."
-        )
-        check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=300, temperature=0.2)
-        logger.info(f"🔍 check_result: '{check_result}'")
-        
-        if not check_result.strip():
-            correction_text = "⚠️ Не удалось проверить грамматику. Попробуйте ещё раз."
-            is_perfect = False
-        elif check_result.strip() == "NO_ERRORS":
-            is_perfect = True
-            correction_text = ""
-        else:
-            lines = check_result.strip().split('\n')
-            corrected = ""
-            explanation = ""
-            for line in lines:
-                line = line.strip()
-                if '<blockquote>' in line:
-                    explanation = line
-                else:
-                    if corrected:
-                        corrected += " " + line
-                    else:
-                        corrected = line
-            if not explanation and len(lines) > 1:
-                explanation = f"<blockquote>{lines[1].strip()}</blockquote>"
-            elif not explanation and lines:
-                explanation = f"<blockquote>{lines[0].strip()}</blockquote>"
-            corrected = re.sub(r'^\d+\.?\s*', '', corrected)
-            
-            if explanation:
-                inner = re.sub(r'</?blockquote>', '', explanation)
-                formatted_inner = format_explanation(inner)
-                explanation = f"<blockquote>{formatted_inner}</blockquote>"
-            
-            correction_text = f"✔️ {corrected}\n{explanation}"
     
-    logger.info(f"✅ Итоговый reply_text: '{reply_text}'")
-    return reply_text, correction_text, is_perfect
+    return (reply_text, correction_text, is_perfect)
 
 async def process_roleplay_message(user_id: int, user_text: str, history: list = None) -> str:
     state = get_user_state(user_id)
