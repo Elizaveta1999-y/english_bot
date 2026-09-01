@@ -198,7 +198,10 @@ async def profile_menu(callback: CallbackQuery):
 
     profile = await get_user_profile(user_id)
     if not profile:
-        await get_or_create_user(user_id, callback.from_user.username, callback.from_user.first_name, callback.from_user.last_name)
+        username = getattr(callback.from_user, 'username', None)
+        first_name = getattr(callback.from_user, 'first_name', None)
+        last_name = getattr(callback.from_user, 'last_name', None)
+        await get_or_create_user(user_id, username, first_name, last_name)
         profile = await get_user_profile(user_id)
         if not profile:
             try:
@@ -419,7 +422,12 @@ async def show_profile(message, user_id: int, edit: bool = False):
     class FakeCallback:
         def __init__(self, message, user_id):
             self.message = message
-            self.from_user = type('obj', (object,), {'id': user_id})()
+            self.from_user = type('obj', (object,), {
+                'id': user_id,
+                'username': None,
+                'first_name': None,
+                'last_name': None
+            })()
         async def answer(self, *args, **kwargs):
             pass
 
