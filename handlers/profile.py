@@ -18,6 +18,8 @@ from utils.db import (
     get_or_create_user,
     clear_bonus_notification,
     get_bonus_notification,
+    get_user_profile,          # <--- добавлено
+    # update_user_subscription  # пока не нужно, но можно добавить
 )
 
 logger = logging.getLogger(__name__)
@@ -139,11 +141,7 @@ async def count_user_errors(user_id: int) -> dict:
         total += row["cnt"]
     return {"total": total, "by_mode": by_mode}
 
-async def get_user_profile(user_id: int):
-    conn = await get_connection()
-    row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
-    await conn.close()
-    return dict(row) if row else None
+# ========== ФУНКЦИЯ get_user_profile УДАЛЕНА (теперь импортируется из utils.db) ==========
 
 async def update_last_active(user_id: int):
     conn = await get_connection()
@@ -196,7 +194,7 @@ async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
     await update_last_active(user_id)
 
-    profile = await get_user_profile(user_id)
+    profile = await get_user_profile(user_id)  # теперь из db
     if not profile:
         username = getattr(callback.from_user, 'username', None)
         first_name = getattr(callback.from_user, 'first_name', None)
@@ -318,6 +316,7 @@ async def profile_menu(callback: CallbackQuery):
     except Exception:
         pass
 
+# ----- остальные хендлеры без изменений -----
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
     keyboard = get_settings_keyboard(True, "10:00")
@@ -383,7 +382,6 @@ async def profile_reset_confirm(callback: CallbackQuery):
         "⚠️ <b>Внимание!</b>\n\n"
         "Вы действительно хотите сбросить весь прогресс?\n"
         "Будут удалены все данные по тренажёрам и продуктивным навыкам.\n"
-        "Прогресс в общении с AI и ролевых играх не сбрасывается.\n\n"
         "Это действие нельзя отменить.\n\n"
         "Введите слово <b>СБРОС</b> для подтверждения."
     )
@@ -406,7 +404,7 @@ async def profile_reset_handle(message: Message):
     if message.text.strip().upper() == "СБРОС":
         user_id = message.from_user.id
         await reset_full_progress(user_id)
-        await message.answer("✅ Прогресс успешно сброшен.")
+        await message.answer("✔️ Прогресс успешно сброшен.")
         from handlers.start import show_main_menu
         await show_main_menu(message, edit=False)
 

@@ -749,3 +749,19 @@ async def get_expenses_list(start_ts: int, end_ts: int, limit: int = 50):
     )
     await conn.close()
     return [dict(r) for r in rows]
+
+# ========== ПРОФИЛЬ И ПОДПИСКА ==========
+
+async def get_user_profile(user_id: int):
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
+    await conn.close()
+    return dict(row) if row else None
+
+async def update_user_subscription(user_id: int, new_end: int):
+    conn = await get_connection()
+    await conn.execute(
+        "UPDATE users SET subscription_until = $1 WHERE user_id = $2",
+        new_end, user_id
+    )
+    await conn.close()
