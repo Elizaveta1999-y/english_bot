@@ -238,73 +238,71 @@ async def profile_menu(callback: CallbackQuery):
 
     text = bonus_message
 
-    # ===== Блок тренажёров =====
-    text += "📊 Тренажёры\n"
+    # ===== ТРЕНАЖЁРЫ =====
+    text += "<b>• Тренажёры</b>\n"
     text += "Точность ответов:\n"
 
     pct = grammar_data["percent"]
     bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-    text += f"📚 Грамматика   {pct}%   {bar}\n"
+    text += f"🔀 Грамматика {pct}%   {bar}\n"
 
     pct = reading_data["percent"]
     bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-    text += f"📖 Чтение       {pct}%   {bar}\n"
+    text += f"📖 Чтение {pct}%   {bar}\n"
 
     pct = lexis_data["percent"]
     bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-    text += f"📝 Лексика      {pct}%   {bar}\n"
+    text += f"🥇 Лексика {pct}%   {bar}\n"
 
-    if listening_data["total"] > 0:
-        pct = listening_data["percent"]
-        bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-        text += f"🎧 Аудирование  {pct}%   {bar}\n"
-    else:
-        text += "🎧 Аудирование  — нет данных\n"
+    # Аудирование — всегда с баром
+    pct = listening_data["percent"]
+    bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
+    text += f"🔉 Аудирование {pct}%   {bar}\n"
 
-    # ===== Блок продуктивных навыков =====
-    text += "\n✍️ Продуктивные навыки\n"
+    # ===== ПРОДУКТИВНЫЕ НАВЫКИ =====
+    text += "\n<b>• Продуктивные навыки</b>\n"
     text += "Средний балл:\n"
 
     if writing_data["answered"] > 0:
         avg = writing_data["avg"]
-        text += f"Письмо    {avg} / 5.0  ({writing_data['answered']} работ)\n"
+        text += f"📝 Письмо    {avg} / 5.0  ({writing_data['answered']} работ)\n"
     else:
-        text += "Письмо    — нет данных\n"
+        text += "📝 Письмо    — нет данных\n"
 
     if speaking_data["answered"] > 0:
         avg = speaking_data["avg"]
-        text += f"Говорение  {avg} / 5.0  ({speaking_data['answered']} работ)\n"
+        text += f"🗣️ Говорение  {avg} / 5.0  ({speaking_data['answered']} работ)\n"
     else:
-        text += "Говорение  — нет данных\n"
+        text += "🗣️ Говорение  — нет данных\n"
 
-    # ===== Блок ошибок =====
-    text += "\n______________________________\n"
+    # ===== ОШИБКИ =====
     total_mistakes = mistakes["total"]
     by_mode = mistakes["by_mode"]
+
+    text += "\n<b>• Ошибки</b>\n"
     if total_mistakes > 0:
-        text += "🗂️ Ошибки\n"
         text += f"Всего: {total_mistakes}\n"
         mode_labels = {
-            "grammar": "Грамматика",
-            "lexis": "Лексика",
-            "listening": "Аудирование",
-            "reading": "Чтение",
+            "grammar": "🔀 Грамматика",
+            "lexis": "🥇 Лексика",
+            "listening": "🔉 Аудирование",
+            "reading": "📖 Чтение",
             "other": "Другое"
         }
         for mode in ["grammar", "lexis", "listening", "reading", "other"]:
             if mode in by_mode and by_mode[mode] > 0:
                 text += f"• {mode_labels.get(mode, mode)}: {by_mode[mode]}\n"
     else:
-        text += "🗂️ Ошибки\n✅ Ошибок нет\n"
+        text += "Нет данных\n"
 
-    # ===== Подписка =====
-    text += "\n______________________________\n"
+    # ===== ПОДПИСКА =====
+    text += "\n💳 Подписка: "
     sub_end = profile.get("subscription_until", 0)
     if sub_end and sub_end > int(datetime.now().timestamp()):
         expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
-        text += f"💳 Подписка: активна до {expires}"
+        text += f"активна до {expires}"
     else:
-        text += "💳 Подписка: не активна"
+        text += "не активна"
 
     await safe_edit_message(
         callback.message,
