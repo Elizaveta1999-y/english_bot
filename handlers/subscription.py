@@ -36,7 +36,7 @@ PREMIUM_OFFER_TEXT = (
 
 def get_offer_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="💰 Оплатить 999 ₽", callback_data="subscribe_30_days")],
+        [InlineKeyboardButton(text="1 месяц — 999 ₽", callback_data="subscribe_30_days")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
     ])
 
