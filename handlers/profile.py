@@ -18,9 +18,10 @@ from utils.db import (
     get_or_create_user,
     clear_bonus_notification,
     get_bonus_notification,
-    get_user_profile,          # <--- добавлено
-    # update_user_subscription  # пока не нужно, но можно добавить
+    get_user_profile,
 )
+
+from handlers.subscription import show_subscription   # <-- единая функция
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -32,6 +33,7 @@ READING_TYPE_KEYS = [
     "Восстановление_порядка_абзацев"
 ]
 
+# ---- все функции get_*summary и count_user_errors (без изменений) ----
 async def get_progress_summary_for_keys(user_id: int, type_keys: list) -> dict:
     if not type_keys:
         return {"correct": 0, "wrong": 0, "total": 0, "percent": 0}
@@ -141,8 +143,6 @@ async def count_user_errors(user_id: int) -> dict:
         total += row["cnt"]
     return {"total": total, "by_mode": by_mode}
 
-# ========== ФУНКЦИЯ get_user_profile УДАЛЕНА (теперь импортируется из utils.db) ==========
-
 async def update_last_active(user_id: int):
     conn = await get_connection()
     await conn.execute(
@@ -194,7 +194,7 @@ async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
     await update_last_active(user_id)
 
-    profile = await get_user_profile(user_id)  # теперь из db
+    profile = await get_user_profile(user_id)
     if not profile:
         username = getattr(callback.from_user, 'username', None)
         first_name = getattr(callback.from_user, 'first_name', None)
@@ -316,7 +316,8 @@ async def profile_menu(callback: CallbackQuery):
     except Exception:
         pass
 
-# ----- остальные хендлеры без изменений -----
+# ---------- ОСТАЛЬНЫЕ ОБРАБОТЧИКИ ----------
+
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
     keyboard = get_settings_keyboard(True, "10:00")
@@ -347,26 +348,10 @@ async def profile_notif_time(callback: CallbackQuery):
         pass
     await profile_settings(callback)
 
+# ======== ЕДИНЫЙ ОБРАБОТЧИК ПОДПИСКИ (и для кнопки, и для команды) ========
 @router.callback_query(lambda c: c.data == "profile_subscription")
 async def profile_subscription(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    profile = await get_user_profile(user_id)
-    sub_end = profile.get("subscription_until", 0) if profile else 0
-    if sub_end and sub_end > int(datetime.now().timestamp()):
-        expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
-        text = f"💳 <b>Подписка активна</b>\n\nДата окончания: {expires}"
-    else:
-        text = "💳 <b>Подписка не активна</b>\n\nОформите подписку для полного доступа."
-    await safe_edit_message(
-        callback.message,
-        text,
-        reply_markup=get_subscription_keyboard(),
-        parse_mode="HTML"
-    )
-    try:
-        await callback.answer()
-    except Exception:
-        pass
+    await show_subscription(callback.message, callback.from_user.id)
 
 @router.callback_query(lambda c: c.data == "profile_extend")
 async def profile_extend(callback: CallbackQuery):
