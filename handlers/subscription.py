@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 import logging
 
 from utils.db import get_user_profile, update_user_subscription
-from handlers.start import show_main_menu
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -33,9 +32,6 @@ PREMIUM_OFFER_TEXT = (
     "🤍 Никаких скрытых подписок. Вы платите только за тот месяц, который вам нужен."
 )
 
-# ============================================================
-# КЛАВИАТУРЫ
-# ============================================================
 def get_offer_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="💰 Оплатить 999 ₽", callback_data="subscribe_30_days")],
@@ -116,7 +112,7 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
     )
 
 # ============================================================
-# НАЗАД В ГЛАВНОЕ МЕНЮ
+# НАЗАД В ГЛАВНОЕ МЕНЮ (без верхнего импорта start)
 # ============================================================
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_subscription(callback: CallbackQuery):
@@ -124,4 +120,6 @@ async def back_to_main_from_subscription(callback: CallbackQuery):
         await callback.answer()
     except Exception:
         pass
+    # Локальный импорт для разрыва циклической зависимости
+    from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
