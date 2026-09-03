@@ -765,3 +765,18 @@ async def update_user_subscription(user_id: int, new_end: int):
         new_end, user_id
     )
     await conn.close()
+
+# =====================================================================
+# !!! ИСПРАВЛЕННАЯ ФУНКЦИЯ СБРОСА (очищает также random_order и progress_index)
+# =====================================================================
+async def reset_full_progress(user_id: int):
+    conn = await get_connection()
+    await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM grammar_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM writing_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
+    # --- ОЧИЩАЕМ ПОРЯДОК ЗАДАНИЙ, ЧТОБЫ ОНИ ПЕРЕМЕШАЛИСЬ ЗАНОВО ---
+    await conn.execute("DELETE FROM random_order WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM progress_index WHERE user_id = $1", user_id)
+    await conn.close()
