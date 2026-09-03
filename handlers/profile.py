@@ -190,6 +190,16 @@ async def safe_edit_message(message, text, reply_markup=None, parse_mode="HTML")
         else:
             raise
 
+# ========== ОБРАБОТЧИК СБРОСА (РАБОТАЕТ ТОЧНО) ==========
+@router.message(F.text == "СБРОС")
+async def profile_reset_handle(message: Message):
+    user_id = message.from_user.id
+    await reset_full_progress(user_id)
+    await message.answer("✨ Весь прогресс обучения сброшен. Вы можете начать с чистого листа!")
+    from handlers.start import show_main_menu
+    await show_main_menu(message, edit=False)
+
+# ========== ОСТАЛЬНЫЕ ОБРАБОТЧИКИ ==========
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -277,7 +287,7 @@ async def profile_menu(callback: CallbackQuery):
     else:
         text += "🗣️ Говорение  — нет данных\n"
 
-    # ===== ОШИБКИ (всегда 4 режима) =====
+    # ===== ОШИБКИ =====
     total_mistakes = mistakes["total"]
     by_mode = mistakes["by_mode"]
 
@@ -346,7 +356,6 @@ async def profile_notif_time(callback: CallbackQuery):
         pass
     await profile_settings(callback)
 
-# ======== ЕДИНЫЙ ОБРАБОТЧИК ПОДПИСКИ (из профиля) ========
 @router.callback_query(lambda c: c.data == "profile_subscription")
 async def profile_subscription(callback: CallbackQuery):
     await show_subscription(callback.message, callback.from_user.id, from_profile=True)
@@ -369,7 +378,7 @@ async def profile_reset_confirm(callback: CallbackQuery):
         "Введите слово <b>СБРОС</b> для подтверждения."
     )
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Отмена", callback_data="profile_back")]  # без крестика
+        [InlineKeyboardButton(text="Отмена", callback_data="profile_back")]
     ])
     await safe_edit_message(
         callback.message,
@@ -381,15 +390,6 @@ async def profile_reset_confirm(callback: CallbackQuery):
         await callback.answer()
     except Exception:
         pass
-
-@router.message(F.text, ~F.text.in_({"📊 Я всё! Фидбек", "🏠 Главное меню"}))
-async def profile_reset_handle(message: Message):
-    if message.text.strip().upper() == "СБРОС":   # строго заглавные
-        user_id = message.from_user.id
-        await reset_full_progress(user_id)
-        await message.answer("✨ Весь прогресс обучения сброшен. Вы можете начать с чистого листа!")
-        from handlers.start import show_main_menu
-        await show_main_menu(message, edit=False)
 
 @router.callback_query(lambda c: c.data == "profile_back")
 async def profile_back(callback: CallbackQuery):
