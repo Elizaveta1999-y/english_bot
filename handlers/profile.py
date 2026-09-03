@@ -21,7 +21,7 @@ from utils.db import (
     get_user_profile,
 )
 
-from handlers.subscription import show_subscription   # <-- единая функция
+from handlers.subscription import show_subscription
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -33,7 +33,6 @@ READING_TYPE_KEYS = [
     "Восстановление_порядка_абзацев"
 ]
 
-# ---- все функции get_*summary и count_user_errors (без изменений) ----
 async def get_progress_summary_for_keys(user_id: int, type_keys: list) -> dict:
     if not type_keys:
         return {"correct": 0, "wrong": 0, "total": 0, "percent": 0}
@@ -129,7 +128,10 @@ async def count_user_errors(user_id: int) -> dict:
     by_mode = {}
     for row in rows:
         raw_key = row["type_key"]
-        if raw_key.startswith("grammar_"):
+        # Чтение: проверяем по конкретным ключам
+        if raw_key in ("Подбор_заголовка", "True_False_Not_stated", "Вопросы_с_выбором_ответа", "Восстановление_порядка_абзацев"):
+            mode = "reading"
+        elif raw_key.startswith("grammar_"):
             mode = "grammar"
         elif raw_key.startswith("words_"):
             mode = "lexis"
@@ -138,7 +140,7 @@ async def count_user_errors(user_id: int) -> dict:
         elif raw_key.startswith("reading_"):
             mode = "reading"
         else:
-            mode = "other"
+            mode = "reading"  # запасной вариант
         by_mode[mode] = by_mode.get(mode, 0) + row["cnt"]
         total += row["cnt"]
     return {"total": total, "by_mode": by_mode}
@@ -276,7 +278,7 @@ async def profile_menu(callback: CallbackQuery):
     else:
         text += "🗣️ Говорение  — нет данных\n"
 
-    # ===== ОШИБКИ =====
+    # ===== ОШИБКИ (всегда 4 режима) =====
     total_mistakes = mistakes["total"]
     by_mode = mistakes["by_mode"]
 
@@ -287,12 +289,11 @@ async def profile_menu(callback: CallbackQuery):
             "grammar": "🔀 Грамматика",
             "lexis": "🥇 Лексика",
             "listening": "🔉 Аудирование",
-            "reading": "📖 Чтение",
-            "other": "Другое"
+            "reading": "📖 Чтение"
         }
-        for mode in ["grammar", "lexis", "listening", "reading", "other"]:
-            if mode in by_mode and by_mode[mode] > 0:
-                text += f"• {mode_labels.get(mode, mode)}: {by_mode[mode]}\n"
+        for mode in ["grammar", "lexis", "listening", "reading"]:
+            count = by_mode.get(mode, 0)
+            text += f"• {mode_labels[mode]}: {count}\n"
     else:
         text += "Нет данных\n"
 
@@ -315,8 +316,6 @@ async def profile_menu(callback: CallbackQuery):
         await callback.answer()
     except Exception:
         pass
-
-# ---------- ОСТАЛЬНЫЕ ОБРАБОТЧИКИ ----------
 
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
@@ -348,7 +347,6 @@ async def profile_notif_time(callback: CallbackQuery):
         pass
     await profile_settings(callback)
 
-# ======== ЕДИНЫЙ ОБРАБОТЧИК ПОДПИСКИ (и для кнопки, и для команды) ========
 @router.callback_query(lambda c: c.data == "profile_subscription")
 async def profile_subscription(callback: CallbackQuery):
     await show_subscription(callback.message, callback.from_user.id)
