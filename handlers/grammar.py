@@ -2,6 +2,7 @@ import logging
 import json
 import re
 import random
+import hashlib  # <-- добавлено
 from typing import List, Dict, Any
 
 from aiogram import Router, F, Bot
@@ -16,7 +17,8 @@ from utils.db import (
     get_grammar_stats, update_grammar_stats, reset_grammar_stats,
     add_grammar_error, remove_grammar_error, get_grammar_errors, clear_grammar_errors,
     reset_grammar_progress,
-    get_random_order, set_random_order
+    get_random_order, set_random_order,
+    get_order_hash, set_order_hash,  # <-- добавлено
 )
 
 logger = logging.getLogger(__name__)
@@ -213,25 +215,66 @@ def extract_instruction_and_task(question: str) -> tuple:
         task_text = question
     return instruction, task_text
 
-# ---------- Функции для работы со случайным порядком ----------
+# ---------- Функции для работы со случайным порядком (с хешем) ----------
 async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
     logger.info(f"[ORDER] Получение порядка для {user_id}, тип {short_type}")
+
+    tasks = get_tasks(short_type)
+    if not tasks:
+        return []
+
+    # Вычисляем хеш содержимого заданий
+    content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
+    current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
+
+    # Получаем сохранённый хеш и порядок
+    saved_hash = await get_order_hash(user_id, type_key)
     order = await get_random_order(user_id, type_key)
-    if order is None:
-        tasks = get_tasks(short_type)
+
+    # Проверяем, нужно ли пересоздать порядок
+    need_recreate = False
+    reasons = []
+
+    if saved_hash is None:
+        reasons.append("Хеш отсутствует")
+        need_recreate = True
+    elif saved_hash != current_hash:
+        reasons.append("Хеш изменился")
+        need_recreate = True
+    elif order is None:
+        reasons.append("Порядок отсутствует")
+        need_recreate = True
+    elif len(order) != len(tasks):
+        reasons.append(f"Длина не совпадает (БД={len(order)}, файл={len(tasks)})")
+        need_recreate = True
+    elif any(idx >= len(tasks) for idx in order):
+        reasons.append("Есть невалидные индексы")
+        need_recreate = True
+    elif order == list(range(len(tasks))):
+        reasons.append("Порядок не перемешан")
+        need_recreate = True
+
+    if need_recreate:
+        logger.info(f"Причины пересоздания для {short_type}: {', '.join(reasons)}")
+        logger.info(f"Пересоздаём порядок для {user_id}, тип {short_type}")
+        # Создаём новый порядок
         indices = list(range(len(tasks)))
         random.shuffle(indices)
         await set_random_order(user_id, type_key, indices)
-        logger.info(f"[ORDER] Создан новый порядок для {user_id}, тип {short_type}")
+        await set_order_hash(user_id, type_key, current_hash)
+        # Сбрасываем индекс прогресса
+        await reset_grammar_index(user_id, type_key, "all")
+        logger.info(f"Новый порядок сохранён, хеш обновлён")
         return indices
     else:
+        # Порядок валидный, возвращаем его
         if isinstance(order, str):
             try:
                 order = json.loads(order)
             except:
                 order = []
-        logger.info(f"[ORDER] Порядок получен из БД, длина {len(order)}")
+        logger.info(f"Порядок получен из БД, длина {len(order)}")
         return order
 
 async def reset_order(user_id: int, short_type: str) -> List[int]:
@@ -240,6 +283,10 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     indices = list(range(len(tasks)))
     random.shuffle(indices)
     await set_random_order(user_id, type_key, indices)
+    # Обновляем хеш при сбросе
+    content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
+    current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
+    await set_order_hash(user_id, type_key, current_hash)
     logger.info(f"[ORDER] Порядок сброшен для {user_id}, тип {short_type}")
     return indices
 
@@ -326,9 +373,9 @@ async def send_or_update_task(
             await bot.send_message(chat_id, "Задание не найдено.")
             return None
     else:
-        # ======== ИСПРАВЛЕНИЕ: всегда получаем порядок из БД ========
+        # ======== ВСЕГДА ПОЛУЧАЕМ ПОРЯДОК ИЗ БД (с проверкой хеша) ========
         order = await get_or_create_order(user_id, short_type)
-        # ============================================================
+        # ====================================================================
         if index >= len(order):
             index = 0
         real_index = order[index]
@@ -501,10 +548,13 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
 
     type_key = make_type_key(short_type)
-    # ======== УБИРАЕМ СОХРАНЕНИЕ ORDER В STATE ========
-    # порядок будем брать прямо перед отправкой задания
+    # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД (с проверкой хеша) ========
+    order = await get_or_create_order(user_id, short_type)
+    # =============================================================
     index = await get_grammar_index(user_id, type_key, "all")
-    # ====================================================
+    if index >= len(order):
+        index = 0
+        await set_grammar_index(user_id, type_key, "all", index)
 
     await state.update_data(
         short_type=short_type,
@@ -520,15 +570,8 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
 
     bot = callback.bot
     chat_id = callback.message.chat.id
-    # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
-    order = await get_or_create_order(user_id, short_type)
-    if index >= len(order):
-        index = 0
-        await set_grammar_index(user_id, type_key, "all", index)
-        await state.update_data(current_index=index)
     real_index = order[index]
     task = tasks[real_index]
-    # =========================================
 
     progress_msg_id = await send_or_update_progress(
         bot, chat_id, user_id, short_type, task, msg_id=None, edit=False
