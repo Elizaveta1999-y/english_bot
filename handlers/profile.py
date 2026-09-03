@@ -33,6 +33,7 @@ READING_TYPE_KEYS = [
     "Восстановление_порядка_абзацев"
 ]
 
+# ---------- ВСЕ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ (БЕЗ ИЗМЕНЕНИЙ) ----------
 async def get_progress_summary_for_keys(user_id: int, type_keys: list) -> dict:
     if not type_keys:
         return {"correct": 0, "wrong": 0, "total": 0, "percent": 0}
@@ -161,6 +162,7 @@ async def reset_full_progress(user_id: int):
     await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
     await conn.close()
 
+# ---------- КЛАВИАТУРЫ ----------
 def get_profile_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="💳 Подписка", callback_data="profile_subscription")],
@@ -190,16 +192,9 @@ async def safe_edit_message(message, text, reply_markup=None, parse_mode="HTML")
         else:
             raise
 
-# ========== ОБРАБОТЧИК СБРОСА (РАБОТАЕТ ТОЧНО) ==========
-@router.message(F.text == "СБРОС")
-async def profile_reset_handle(message: Message):
-    user_id = message.from_user.id
-    await reset_full_progress(user_id)
-    await message.answer("✨ Весь прогресс обучения сброшен. Вы можете начать с чистого листа!")
-    from handlers.start import show_main_menu
-    await show_main_menu(message, edit=False)
-
-# ========== ОСТАЛЬНЫЕ ОБРАБОТЧИКИ ==========
+# ============================================================
+# ГЛАВНОЕ МЕНЮ СТАТИСТИКИ
+# ============================================================
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -326,6 +321,82 @@ async def profile_menu(callback: CallbackQuery):
     except Exception:
         pass
 
+# ============================================================
+# ОБРАБОТЧИК ПОДПИСКИ (редактирование)
+# ============================================================
+@router.callback_query(lambda c: c.data == "profile_subscription")
+async def profile_subscription(callback: CallbackQuery):
+    await show_subscription(callback, callback.from_user.id, from_profile=True, edit=True)
+
+# ============================================================
+# ОБРАБОТЧИКИ СБРОСА ПРОГРЕССА (по кнопкам)
+# ============================================================
+@router.callback_query(lambda c: c.data == "profile_reset_confirm")
+async def profile_reset_confirm(callback: CallbackQuery):
+    """Первый шаг: показать две кнопки — Сброс и Назад."""
+    text = (
+        "⚠️ <b>Внимание!</b>\n\n"
+        "Вы действительно хотите сбросить весь прогресс?\n"
+        "Будут удалены все данные по тренажёрам и продуктивным навыкам.\n"
+        "Это действие нельзя отменить."
+    )
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Сброс", callback_data="profile_reset_step2")],
+        [InlineKeyboardButton(text="Назад", callback_data="profile_back")]
+    ])
+    await safe_edit_message(
+        callback.message,
+        text,
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+
+@router.callback_query(lambda c: c.data == "profile_reset_step2")
+async def profile_reset_step2(callback: CallbackQuery):
+    """Второй шаг: подтверждение."""
+    text = "Вы 100% уверенны в своих действиях?"
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Да, я уверен(а)", callback_data="profile_reset_do")],
+        [InlineKeyboardButton(text="Нет, назад", callback_data="profile_back")]
+    ])
+    await safe_edit_message(
+        callback.message,
+        text,
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+
+@router.callback_query(lambda c: c.data == "profile_reset_do")
+async def profile_reset_do(callback: CallbackQuery):
+    """Финальный сброс."""
+    user_id = callback.from_user.id
+    await reset_full_progress(user_id)
+    # Убираем клавиатуру
+    await safe_edit_message(
+        callback.message,
+        "✨ Весь прогресс обучения сброшен. Вы можете начать с чистого листа!",
+        reply_markup=None,
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+    # Показываем главное меню
+    from handlers.start import show_main_menu
+    await show_main_menu(callback.message, edit=False)
+
+# ============================================================
+# ОСТАЛЬНЫЕ ОБРАБОТЧИКИ
+# ============================================================
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
     keyboard = get_settings_keyboard(True, "10:00")
@@ -356,36 +427,9 @@ async def profile_notif_time(callback: CallbackQuery):
         pass
     await profile_settings(callback)
 
-@router.callback_query(lambda c: c.data == "profile_subscription")
-async def profile_subscription(callback: CallbackQuery):
-    await show_subscription(callback.message, callback.from_user.id, from_profile=True)
-
 @router.callback_query(lambda c: c.data == "profile_extend")
 async def profile_extend(callback: CallbackQuery):
     await callback.message.answer("💳 Функция продления подписки будет доступна позже.\nСвяжитесь с поддержкой.")
-    try:
-        await callback.answer()
-    except Exception:
-        pass
-
-@router.callback_query(lambda c: c.data == "profile_reset_confirm")
-async def profile_reset_confirm(callback: CallbackQuery):
-    text = (
-        "⚠️ <b>Внимание!</b>\n\n"
-        "Вы действительно хотите сбросить весь прогресс?\n"
-        "Будут удалены все данные по тренажёрам и продуктивным навыкам.\n"
-        "Это действие нельзя отменить.\n\n"
-        "Введите слово <b>СБРОС</b> для подтверждения."
-    )
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Отмена", callback_data="profile_back")]
-    ])
-    await safe_edit_message(
-        callback.message,
-        text,
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
     try:
         await callback.answer()
     except Exception:
@@ -400,6 +444,9 @@ async def profile_back(callback: CallbackQuery):
     except Exception:
         pass
 
+# ============================================================
+# ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ПОКАЗА ПРОФИЛЯ ИЗ ДРУГИХ МЕСТ
+# ============================================================
 async def show_profile(message, user_id: int, edit: bool = False):
     class FakeCallback:
         def __init__(self, message, user_id):
@@ -417,9 +464,8 @@ async def show_profile(message, user_id: int, edit: bool = False):
     await profile_menu(fake_callback)
 
 # =====================================================================
-# ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СОВМЕСТИМОСТИ С ДРУГИМИ МОДУЛЯМИ
+# ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СОВМЕСТИМОСТИ
 # =====================================================================
-
 async def _update_stats_after_lesson(user_id: int):
     pass
 

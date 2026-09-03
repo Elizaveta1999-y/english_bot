@@ -30,37 +30,39 @@ PREMIUM_OFFER_TEXT = (
     "• Вы занимаетесь в любое время без записи и привязки к расписанию.\n"
     "• ИИ-тьютор всегда на связи — отвечает мгновенно и объясняет ошибки.\n"
     "• За месяц вы получаете десятки часов практики по цене одного занятия с репетитором.\n"
-    "</blockquote>"
-    "🤍 Никаких скрытых подписок. Вы платите только за тот месяц, который вам нужен."
+    "</blockquote>\n"
+    "<b>🤍 Никаких скрытых подписок. Вы платите только за тот месяц, который вам нужен.</b>"
 )
 
 def get_offer_keyboard(from_profile: bool = False):
-    """Клавиатура для неактивной подписки."""
     buttons = [
         [InlineKeyboardButton(text="1 месяц — 999 ₽", callback_data="subscribe_30_days")]
     ]
     if from_profile:
         buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")])
-    # Если from_profile=False — кнопки "Назад" нет вообще
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_active_keyboard(from_profile: bool = False):
-    """Клавиатура для активной подписки."""
     if from_profile:
         return InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")]
         ])
-    else:
-        # Если из меню — кнопки "Назад" нет вообще
-        return None
+    return None
 
 # ============================================================
 # УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ПОКАЗА СТАТУСА ПОДПИСКИ
 # ============================================================
-async def show_subscription(message: Message, user_id: int, from_profile: bool = False):
+async def show_subscription(target, user_id: int, from_profile: bool = False, edit: bool = False):
+    """
+    target — либо Message, либо CallbackQuery.
+    Если from_profile=True и edit=True — редактируем сообщение.
+    """
     profile = await get_user_profile(user_id)
     if not profile:
-        await message.answer("Профиль не найден. Напишите /start для регистрации.")
+        if isinstance(target, CallbackQuery):
+            await target.message.edit_text("Профиль не найден. Напишите /start для регистрации.")
+        else:
+            await target.answer("Профиль не найден. Напишите /start для регистрации.")
         return
 
     sub_end = profile.get("subscription_until", 0)
@@ -76,17 +78,24 @@ async def show_subscription(message: Message, user_id: int, from_profile: bool =
             f"Продление не требуется — по окончании срока вы сможете оформить подписку снова, если захотите."
         )
         keyboard = get_active_keyboard(from_profile)
-        await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     else:
+        text = PREMIUM_OFFER_TEXT
         keyboard = get_offer_keyboard(from_profile)
-        await message.answer(PREMIUM_OFFER_TEXT, reply_markup=keyboard, parse_mode="HTML")
+
+    if from_profile and edit and isinstance(target, CallbackQuery):
+        await target.message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
+    else:
+        if isinstance(target, CallbackQuery):
+            await target.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        else:
+            await target.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
 # ============================================================
 # ОБРАБОТЧИК КОМАНДЫ /subscription (без кнопки "Назад")
 # ============================================================
 @router.message(F.text == "/subscription")
 async def subscription_command(message: Message):
-    await show_subscription(message, message.from_user.id, from_profile=False)
+    await show_subscription(message, message.from_user.id, from_profile=False, edit=False)
 
 # ============================================================
 # ОБРАБОТЧИК КНОПКИ ОПЛАТЫ
@@ -108,7 +117,7 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
     now = int(datetime.now().timestamp())
 
     if sub_end and sub_end > now:
-        await show_subscription(callback.message, user_id, from_profile=True)
+        await show_subscription(callback, user_id, from_profile=True, edit=True)
         return
 
     new_sub_end = int((datetime.now() + timedelta(days=30)).timestamp())
