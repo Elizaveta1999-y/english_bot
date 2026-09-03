@@ -9,9 +9,9 @@ from handlers.subscription import router as subscription_router
 from handlers.reading import router as reading_router
 from handlers.grammar import router as grammar_router
 from handlers.govorenie import router as govorenie_router
+from handlers.agreement import router as agreement_router   # <-- НОВЫЙ ИМПОРТ
 from utils.db import init_db
 from middleware.speaking_override import SpeakingOverrideMiddleware
-from handlers.agreement import router as agreement_router
 
 logging.basicConfig(
     level=logging.ERROR,
@@ -53,7 +53,7 @@ dp.include_router(voice.router)
 dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(profile.router)
-dp.include_router(agreement_router)
+dp.include_router(agreement_router)          # <-- НОВАЯ СТРОКА
 
 # ========== КОМАНДЫ И ЗАПУСК ==========
 async def set_commands(bot: Bot):
@@ -61,7 +61,7 @@ async def set_commands(bot: Bot):
         BotCommand(command="start", description="Главное меню"),
         BotCommand(command="support", description="Обратная связь"),
         BotCommand(command="subscription", description="Моя подписка"),
-        BotCommand(command="agreement", description="Пользовательское соглашение"),   # ← это новая строка
+        BotCommand(command="agreement", description="Пользовательское соглашение"),   # <-- НОВАЯ СТРОКА
     ]
     await bot.set_my_commands(commands)
     logger.info("Commands set")
