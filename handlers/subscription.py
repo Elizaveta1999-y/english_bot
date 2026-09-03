@@ -35,24 +35,24 @@ PREMIUM_OFFER_TEXT = (
 )
 
 def get_offer_keyboard(from_profile: bool = False):
+    """Клавиатура для неактивной подписки."""
     buttons = [
         [InlineKeyboardButton(text="1 месяц — 999 ₽", callback_data="subscribe_30_days")]
     ]
     if from_profile:
         buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")])
-    else:
-        buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")])
+    # Если from_profile=False — кнопки "Назад" нет вообще
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_active_keyboard(from_profile: bool = False):
+    """Клавиатура для активной подписки."""
     if from_profile:
         return InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")]
         ])
     else:
-        return InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
-        ])
+        # Если из меню — кнопки "Назад" нет вообще
+        return None
 
 # ============================================================
 # УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ПОКАЗА СТАТУСА ПОДПИСКИ
@@ -75,16 +75,17 @@ async def show_subscription(message: Message, user_id: int, from_profile: bool =
             f"У вас есть доступ ко всем функциям Premium до указанной даты.\n"
             f"Продление не требуется — по окончании срока вы сможете оформить подписку снова, если захотите."
         )
-        await message.answer(text, reply_markup=get_active_keyboard(from_profile), parse_mode="HTML")
+        keyboard = get_active_keyboard(from_profile)
+        await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     else:
-        await message.answer(PREMIUM_OFFER_TEXT, reply_markup=get_offer_keyboard(from_profile), parse_mode="HTML")
+        keyboard = get_offer_keyboard(from_profile)
+        await message.answer(PREMIUM_OFFER_TEXT, reply_markup=keyboard, parse_mode="HTML")
 
 # ============================================================
-# ОБРАБОТЧИК КОМАНДЫ /subscription
+# ОБРАБОТЧИК КОМАНДЫ /subscription (без кнопки "Назад")
 # ============================================================
 @router.message(F.text == "/subscription")
 async def subscription_command(message: Message):
-    # из команды – без возврата в профиль
     await show_subscription(message, message.from_user.id, from_profile=False)
 
 # ============================================================
@@ -119,21 +120,9 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
         "💳 Оплата временно недоступна.\n\n"
         "Функция оплаты в разработке. Подписка будет активирована после завершения оплаты.\n"
         "Скоро мы добавим возможность оплаты через карту.",
-        reply_markup=get_active_keyboard(from_profile=True),
+        reply_markup=None,  # без кнопок
         parse_mode="HTML"
     )
-
-# ============================================================
-# НАЗАД В ГЛАВНОЕ МЕНЮ (из команды)
-# ============================================================
-@router.callback_query(F.data == "back_to_main")
-async def back_to_main_from_subscription(callback: CallbackQuery):
-    try:
-        await callback.answer()
-    except Exception:
-        pass
-    from handlers.start import show_main_menu
-    await show_main_menu(callback.message, edit=True)
 
 # ============================================================
 # НАЗАД В ПРОФИЛЬ / СТАТИСТИКУ (из подписки, вызванной из профиля)
