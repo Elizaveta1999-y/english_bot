@@ -34,21 +34,30 @@ PREMIUM_OFFER_TEXT = (
     "🤍 Никаких скрытых подписок. Вы платите только за тот месяц, который вам нужен."
 )
 
-def get_offer_keyboard():
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="1 месяц — 999 ₽", callback_data="subscribe_30_days")],
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
-    ])
+def get_offer_keyboard(from_profile: bool = False):
+    buttons = [
+        [InlineKeyboardButton(text="1 месяц — 999 ₽", callback_data="subscribe_30_days")]
+    ]
+    if from_profile:
+        buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")])
+    else:
+        buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")])
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-def get_active_keyboard():
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
-    ])
+def get_active_keyboard(from_profile: bool = False):
+    if from_profile:
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")]
+        ])
+    else:
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
+        ])
 
 # ============================================================
 # УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ПОКАЗА СТАТУСА ПОДПИСКИ
 # ============================================================
-async def show_subscription(message: Message, user_id: int):
+async def show_subscription(message: Message, user_id: int, from_profile: bool = False):
     profile = await get_user_profile(user_id)
     if not profile:
         await message.answer("Профиль не найден. Напишите /start для регистрации.")
@@ -66,16 +75,17 @@ async def show_subscription(message: Message, user_id: int):
             f"У вас есть доступ ко всем функциям Premium до указанной даты.\n"
             f"Продление не требуется — по окончании срока вы сможете оформить подписку снова, если захотите."
         )
-        await message.answer(text, reply_markup=get_active_keyboard(), parse_mode="HTML")
+        await message.answer(text, reply_markup=get_active_keyboard(from_profile), parse_mode="HTML")
     else:
-        await message.answer(PREMIUM_OFFER_TEXT, reply_markup=get_offer_keyboard(), parse_mode="HTML")
+        await message.answer(PREMIUM_OFFER_TEXT, reply_markup=get_offer_keyboard(from_profile), parse_mode="HTML")
 
 # ============================================================
 # ОБРАБОТЧИК КОМАНДЫ /subscription
 # ============================================================
 @router.message(F.text == "/subscription")
 async def subscription_command(message: Message):
-    await show_subscription(message, message.from_user.id)
+    # из команды – без возврата в профиль
+    await show_subscription(message, message.from_user.id, from_profile=False)
 
 # ============================================================
 # ОБРАБОТЧИК КНОПКИ ОПЛАТЫ
@@ -97,7 +107,7 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
     now = int(datetime.now().timestamp())
 
     if sub_end and sub_end > now:
-        await show_subscription(callback.message, user_id)
+        await show_subscription(callback.message, user_id, from_profile=True)
         return
 
     new_sub_end = int((datetime.now() + timedelta(days=30)).timestamp())
@@ -109,12 +119,12 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
         "💳 Оплата временно недоступна.\n\n"
         "Функция оплаты в разработке. Подписка будет активирована после завершения оплаты.\n"
         "Скоро мы добавим возможность оплаты через карту.",
-        reply_markup=get_active_keyboard(),
+        reply_markup=get_active_keyboard(from_profile=True),
         parse_mode="HTML"
     )
 
 # ============================================================
-# НАЗАД В ГЛАВНОЕ МЕНЮ
+# НАЗАД В ГЛАВНОЕ МЕНЮ (из команды)
 # ============================================================
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_subscription(callback: CallbackQuery):
@@ -124,3 +134,15 @@ async def back_to_main_from_subscription(callback: CallbackQuery):
         pass
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
+
+# ============================================================
+# НАЗАД В ПРОФИЛЬ / СТАТИСТИКУ (из подписки, вызванной из профиля)
+# ============================================================
+@router.callback_query(F.data == "back_to_profile")
+async def back_to_profile_from_subscription(callback: CallbackQuery):
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+    from handlers.profile import profile_menu
+    await profile_menu(callback)

@@ -128,7 +128,6 @@ async def count_user_errors(user_id: int) -> dict:
     by_mode = {}
     for row in rows:
         raw_key = row["type_key"]
-        # Чтение: проверяем по конкретным ключам
         if raw_key in ("Подбор_заголовка", "True_False_Not_stated", "Вопросы_с_выбором_ответа", "Восстановление_порядка_абзацев"):
             mode = "reading"
         elif raw_key.startswith("grammar_"):
@@ -140,7 +139,7 @@ async def count_user_errors(user_id: int) -> dict:
         elif raw_key.startswith("reading_"):
             mode = "reading"
         else:
-            mode = "reading"  # запасной вариант
+            mode = "reading"
         by_mode[mode] = by_mode.get(mode, 0) + row["cnt"]
         total += row["cnt"]
     return {"total": total, "by_mode": by_mode}
@@ -347,9 +346,10 @@ async def profile_notif_time(callback: CallbackQuery):
         pass
     await profile_settings(callback)
 
+# ======== ЕДИНЫЙ ОБРАБОТЧИК ПОДПИСКИ (из профиля) ========
 @router.callback_query(lambda c: c.data == "profile_subscription")
 async def profile_subscription(callback: CallbackQuery):
-    await show_subscription(callback.message, callback.from_user.id)
+    await show_subscription(callback.message, callback.from_user.id, from_profile=True)
 
 @router.callback_query(lambda c: c.data == "profile_extend")
 async def profile_extend(callback: CallbackQuery):
@@ -369,7 +369,7 @@ async def profile_reset_confirm(callback: CallbackQuery):
         "Введите слово <b>СБРОС</b> для подтверждения."
     )
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="❌ Отмена", callback_data="profile_back")]
+        [InlineKeyboardButton(text="Отмена", callback_data="profile_back")]  # без крестика
     ])
     await safe_edit_message(
         callback.message,
@@ -384,10 +384,10 @@ async def profile_reset_confirm(callback: CallbackQuery):
 
 @router.message(F.text, ~F.text.in_({"📊 Я всё! Фидбек", "🏠 Главное меню"}))
 async def profile_reset_handle(message: Message):
-    if message.text.strip().upper() == "СБРОС":
+    if message.text.strip().upper() == "СБРОС":   # строго заглавные
         user_id = message.from_user.id
         await reset_full_progress(user_id)
-        await message.answer("✔️ Прогресс успешно сброшен.")
+        await message.answer("✨ Весь прогресс обучения сброшен. Вы можете начать с чистого листа!")
         from handlers.start import show_main_menu
         await show_main_menu(message, edit=False)
 
