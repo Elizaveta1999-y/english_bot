@@ -2,7 +2,7 @@ import logging
 import json
 import re
 import random
-import hashlib  # <-- добавлено
+import hashlib
 from typing import List, Dict, Any
 
 from aiogram import Router, F, Bot
@@ -18,7 +18,7 @@ from utils.db import (
     add_grammar_error, remove_grammar_error, get_grammar_errors, clear_grammar_errors,
     reset_grammar_progress,
     get_random_order, set_random_order,
-    get_order_hash, set_order_hash,  # <-- добавлено
+    get_order_hash, set_order_hash,
 )
 
 logger = logging.getLogger(__name__)
@@ -215,7 +215,7 @@ def extract_instruction_and_task(question: str) -> tuple:
         task_text = question
     return instruction, task_text
 
-# ---------- Функции для работы со случайным порядком (с хешем) ----------
+# ---------- Функции для работы со случайным порядком (С ХЕШЕМ) ----------
 async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
     logger.info(f"[ORDER] Получение порядка для {user_id}, тип {short_type}")
@@ -227,10 +227,14 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     # Вычисляем хеш содержимого заданий
     content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
     current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
+    logger.info(f"[ORDER] Текущий хеш: {current_hash[:16]}...")
 
     # Получаем сохранённый хеш и порядок
     saved_hash = await get_order_hash(user_id, type_key)
     order = await get_random_order(user_id, type_key)
+
+    logger.info(f"[ORDER] Сохранённый хеш: {saved_hash[:16] if saved_hash else 'None'}...")
+    logger.info(f"[ORDER] Порядок: {order[:20] if order else 'None'}...")
 
     # Проверяем, нужно ли пересоздать порядок
     need_recreate = False
@@ -257,7 +261,6 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
 
     if need_recreate:
         logger.info(f"Причины пересоздания для {short_type}: {', '.join(reasons)}")
-        logger.info(f"Пересоздаём порядок для {user_id}, тип {short_type}")
         # Создаём новый порядок
         indices = list(range(len(tasks)))
         random.shuffle(indices)
@@ -265,7 +268,7 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
         await set_order_hash(user_id, type_key, current_hash)
         # Сбрасываем индекс прогресса
         await reset_grammar_index(user_id, type_key, "all")
-        logger.info(f"Новый порядок сохранён, хеш обновлён")
+        logger.info(f"[ORDER] Новый порядок сохранён, хеш обновлён")
         return indices
     else:
         # Порядок валидный, возвращаем его
@@ -274,7 +277,7 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
                 order = json.loads(order)
             except:
                 order = []
-        logger.info(f"Порядок получен из БД, длина {len(order)}")
+        logger.info(f"[ORDER] Порядок получен из БД, длина {len(order)}")
         return order
 
 async def reset_order(user_id: int, short_type: str) -> List[int]:
@@ -343,7 +346,6 @@ async def send_or_update_progress(
             return msg_id
         except Exception as e:
             logger.error(f"[PROGRESS] Ошибка редактирования {msg_id}: {e}")
-            # Не удаляем сообщение и не создаём новое – просто логируем
             return msg_id
 
     logger.warning(f"[PROGRESS] Непонятная ситуация, msg_id={msg_id}, edit={edit}")
