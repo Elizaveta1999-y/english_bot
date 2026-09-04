@@ -19,7 +19,6 @@ from utils.db import (
     reset_grammar_progress,
     get_random_order, set_random_order,
     get_order_hash, set_order_hash,
-    get_connection,
 )
 
 logger = logging.getLogger(__name__)
@@ -216,7 +215,7 @@ def extract_instruction_and_task(question: str) -> tuple:
         task_text = question
     return instruction, task_text
 
-# ---------- Функции для работы со случайным порядком (С ХЕШЕМ И УДАЛЕНИЕМ) ----------
+# ---------- Функции для работы со случайным порядком (С ХЕШЕМ, ПЕРЕЗАПИСЬ) ----------
 async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
     logger.info(f"[ORDER] Получение порядка для {user_id}, тип {short_type}")
@@ -225,19 +224,16 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     if not tasks:
         return []
 
-    # Вычисляем хеш содержимого заданий
     content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
     current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
     logger.info(f"[ORDER] Текущий хеш: {current_hash[:16]}...")
 
-    # Получаем сохранённый хеш и порядок
     saved_hash = await get_order_hash(user_id, type_key)
     order = await get_random_order(user_id, type_key)
 
     logger.info(f"[ORDER] Сохранённый хеш: {saved_hash[:16] if saved_hash else 'None'}...")
     logger.info(f"[ORDER] Порядок: {order[:20] if order else 'None'}...")
 
-    # Проверяем, нужно ли пересоздать порядок
     need_recreate = False
     reasons = []
 
@@ -262,23 +258,15 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
 
     if need_recreate:
         logger.info(f"Причины пересоздания для {short_type}: {', '.join(reasons)}")
-        # Удаляем старую запись, чтобы гарантировать обновление
-        conn = await get_connection()
-        await conn.execute("DELETE FROM random_order WHERE user_id = $1 AND level_key = $2", user_id, type_key)
-        await conn.close()
-        logger.info(f"[ORDER] Старая запись удалена для {user_id}, тип {short_type}")
-
-        # Создаём новый порядок
+        # Прямая перезапись (без DELETE) – set_random_order и set_order_hash используют UPSERT
         indices = list(range(len(tasks)))
         random.shuffle(indices)
         await set_random_order(user_id, type_key, indices)
         await set_order_hash(user_id, type_key, current_hash)
-        # Сбрасываем индекс прогресса
         await reset_grammar_index(user_id, type_key, "all")
-        logger.info(f"[ORDER] Новый порядок сохранён, хеш обновлён")
+        logger.info(f"[ORDER] Новый порядок сохранён (перезаписан), хеш обновлён, индекс сброшен")
         return indices
     else:
-        # Порядок валидный, возвращаем его
         if isinstance(order, str):
             try:
                 order = json.loads(order)
@@ -292,10 +280,6 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     tasks = get_tasks(short_type)
     indices = list(range(len(tasks)))
     random.shuffle(indices)
-    # Удаляем старую запись и вставляем новую
-    conn = await get_connection()
-    await conn.execute("DELETE FROM random_order WHERE user_id = $1 AND level_key = $2", user_id, type_key)
-    await conn.close()
     await set_random_order(user_id, type_key, indices)
     content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
     current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
@@ -373,9 +357,6 @@ async def send_or_update_task(
     is_revision: bool = False,
     msg_id: int = None
 ) -> int:
-    """
-    Отправляет задание. Для to_be_выбор и всех остальных – парсится вторая строка.
-    """
     logger.info(f"[TASK] user={user_id}, type={short_type}, revision={is_revision}, msg_id={msg_id}")
     tasks = get_tasks(short_type)
     if task_id is not None:
@@ -385,9 +366,7 @@ async def send_or_update_task(
             await bot.send_message(chat_id, "Задание не найдено.")
             return None
     else:
-        # ======== ВСЕГДА ПОЛУЧАЕМ ПОРЯДОК ИЗ БД (с проверкой хеша) ========
         order = await get_or_create_order(user_id, short_type)
-        # ====================================================================
         if index >= len(order):
             index = 0
         real_index = order[index]
@@ -449,7 +428,6 @@ async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False,
 
 # ---------- Функция завершения грамматики ----------
 async def finish_grammar(message: Message, state: FSMContext, bot: Bot):
-    """Завершает текущую сессию грамматики: убирает кнопки, сбрасывает состояние."""
     try:
         data = await state.get_data()
         for msg_id_key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
@@ -560,9 +538,7 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
 
     type_key = make_type_key(short_type)
-    # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД (с проверкой хеша) ========
     order = await get_or_create_order(user_id, short_type)
-    # =============================================================
     index = await get_grammar_index(user_id, type_key, "all")
     if index >= len(order):
         index = 0
@@ -622,9 +598,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
 
     data = await state.get_data()
-    # ======== ВСЕГДА ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
     order = await get_or_create_order(user_id, short_type)
-    # ==============================================
     if index >= len(order):
         logger.error(f"[handle_button_answer] Ошибка порядка, order={order}, index={index}")
         await callback.answer("Ошибка порядка заданий")
@@ -806,9 +780,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 except Exception as e:
                     logger.error(f"[handle_button_answer] Ошибка убирания кнопок у заголовка revision: {e}")
                 await state.update_data(revision_header_msg_id=None)
-            # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
             order = await get_or_create_order(user_id, short_type)
-            # ========================================
             current_index = await get_grammar_index(user_id, type_key, level_key)
             if current_index >= len(order):
                 current_index = 0
@@ -1003,9 +975,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
     logger.info(f"[TEXT] Отправлен результат: {result_text}")
 
     tasks = get_tasks(short_type)
-    # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
     order = await get_or_create_order(user_id, short_type)
-    # ========================================
 
     if not is_revision:
         next_index = index + 1
@@ -1072,9 +1042,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
                 except Exception as e:
                     logger.error(f"[TEXT] Ошибка убирания кнопок у заголовка revision: {e}")
                 await state.update_data(revision_header_msg_id=None)
-            # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
             order = await get_or_create_order(user_id, short_type)
-            # ========================================
             current_index = await get_grammar_index(user_id, type_key, level_key)
             if current_index >= len(order):
                 current_index = 0
@@ -1158,9 +1126,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer("Задание не найдено")
             return
     else:
-        # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
         order = await get_or_create_order(user_id, short_type)
-        # ========================================
         if index >= len(order):
             logger.error(f"[show_answer] Ошибка порядка, order={order}, index={index}")
             await callback.answer("Ошибка порядка")
@@ -1240,9 +1206,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await state.update_data(revision_msg_id=new_rev_msg_id)
             logger.info(f"[show_answer] Показ следующего ошибочного задания, id={next_error_id}")
     else:
-        # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
         order = await get_or_create_order(user_id, short_type)
-        # ========================================
         next_index = index + 1
         if next_index >= len(order):
             next_index = 0
@@ -1371,9 +1335,7 @@ async def back_to_learning(callback: CallbackQuery, state: FSMContext):
     tasks = get_tasks(short_type)
     type_key = make_type_key(short_type)
     level_key = "all"
-    # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
     order = await get_or_create_order(user_id, short_type)
-    # ========================================
     current_index = await get_grammar_index(user_id, type_key, level_key)
     if current_index >= len(order):
         current_index = 0
@@ -1466,14 +1428,12 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
     new_order = await reset_order(user_id, short_type)
     await set_grammar_index(user_id, type_key, level_key, 0)
 
-    # ======== НЕ СОХРАНЯЕМ ORDER В STATE ========
     await state.update_data(
         is_revision=False,
         session_correct=0,
         session_wrong=0,
         current_index=0
     )
-    # ===========================================
 
     tasks = get_tasks(short_type)
     if not tasks:
@@ -1589,9 +1549,7 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
 
         await state.update_data(is_revision=False)
         tasks = get_tasks(short_type)
-        # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
         order = await get_or_create_order(user_id, short_type)
-        # ========================================
         current_index = await get_grammar_index(user_id, make_type_key(short_type), "all")
         if current_index >= len(order):
             current_index = 0
@@ -1737,9 +1695,7 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
     await state.update_data(is_revision=False)
 
     tasks = get_tasks(short_type)
-    # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
     order = await get_or_create_order(user_id, short_type)
-    # ========================================
     index = await get_grammar_index(user_id, type_key, level_key)
     if index >= len(order):
         index = 0
@@ -1778,9 +1734,7 @@ async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext
     short_type = data.get("short_type")
     if short_type:
         tasks = get_tasks(short_type)
-        # ======== ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
         order = await get_or_create_order(callback.from_user.id, short_type)
-        # ========================================
         index = data.get("current_index", 0)
         if index >= len(order):
             index = 0
