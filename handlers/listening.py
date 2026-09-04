@@ -320,7 +320,6 @@ async def show_question(message, state, is_revision=False, user_id=None):
         await state.update_data({"revision_card_msg_id": msg.message_id})
     await state.set_state(ListeningState.answering_task if not is_revision else ListeningState.revision_mode)
 
-# ========== ИСПРАВЛЕННАЯ ФУНКЦИЯ update_progress_message ==========
 async def update_progress_message(message, state, reset=False, user_id=None):
     data = await state.get_data()
     task_type = data.get("task_type")
@@ -345,39 +344,22 @@ async def update_progress_message(message, state, reset=False, user_id=None):
         f"✖️ Ошибок: {errors_count}"
     )
 
-    keyboard = get_progress_keyboard()
-    sent_msg_id = None
-
     if progress_msg_id and not reset:
         try:
             await message.bot.edit_message_text(
                 chat_id=chat_id,
                 message_id=progress_msg_id,
                 text=text,
-                reply_markup=keyboard,
-                parse_mode="HTML"
+                reply_markup=get_progress_keyboard()
             )
-            logger.debug(f"Прогресс обновлён (редактирование) msg_id={progress_msg_id}")
-            return progress_msg_id
+            return
         except Exception as e:
-            error_text = str(e).lower()
-            if "message is not modified" in error_text:
-                logger.debug(f"Сообщение прогресса не изменилось, пропускаем {progress_msg_id}")
-                return progress_msg_id
-            else:
-                logger.warning(f"Не удалось отредактировать прогресс {progress_msg_id}: {e}. Отправляем новое.")
-                # Попытаемся удалить старое, чтобы не было дублей
-                try:
-                    await message.bot.delete_message(chat_id=chat_id, message_id=progress_msg_id)
-                except:
-                    pass
+            if "message is not modified" not in str(e):
+                logger.warning(f"Ошибка обновления прогресса: {e}")
 
-    # Если не удалось отредактировать или reset=True – отправляем новое
-    sent = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-    await state.update_data({"progress_message_id": sent.message_id})
-    add_user_message(user_id, sent.message_id)
-    logger.debug(f"Отправлено новое сообщение прогресса msg_id={sent.message_id}")
-    return sent.message_id
+    msg = await message.answer(text, reply_markup=get_progress_keyboard())
+    add_user_message(user_id, msg.message_id)
+    await state.update_data({"progress_message_id": msg.message_id})
 
 async def exit_revision(message, state, show_progress=True, user_id=None):
     data = await state.get_data()
@@ -671,17 +653,14 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
 
     error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
 
-    # ЕСЛИ ОШИБОК НЕТ – ПРОСТО ОТВЕЧАЕМ, НЕ ТРОГАЯ КАРТОЧКУ ПРОГРЕССА
+    # ЕСЛИ ОШИБОК НЕТ – ПРОСТО ОТВЕЧАЕМ
     if not error_ids:
         await callback.message.answer("🎉 Ошибок нет. Отличная работа!")
         await callback.answer()
         return
 
-    # ЕСЛИ ОШИБКИ ЕСТЬ – НАЧИНАЕМ РАБОТУ НАД ОШИБКАМИ
-    progress_msg_id = data.get("progress_message_id")
+    # ===== ЕСЛИ ОШИБКИ ЕСТЬ – НОВОЕ СООБЩЕНИЕ =====
     question_msg_id = data.get("question_message_id")
-
-    # Убираем кнопки у текущего задания
     if question_msg_id:
         try:
             await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=question_msg_id, reply_markup=None)
@@ -689,33 +668,16 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
             pass
         await state.update_data({"question_message_id": None})
 
-    # Редактируем существующее сообщение прогресса в режим работы над ошибками
+    # Отправляем НОВОЕ сообщение с информацией о работе над ошибками
+    level_label = LEVELS.get(level, level)
     info_text = (
         f"Работа над ошибками\n"
         f"Тип: {TASK_TYPES[task_type]}\n"
-        f"Уровень: {LEVELS.get(level, level)}\n\n"
+        f"Уровень: {level_label}\n\n"
         f"Заданий на исправление: {len(error_ids)}"
     )
-    if progress_msg_id:
-        try:
-            await callback.bot.edit_message_text(
-                chat_id=chat_id,
-                message_id=progress_msg_id,
-                text=info_text,
-                reply_markup=get_revision_info_keyboard(),
-                parse_mode="HTML"
-            )
-            await state.update_data({"progress_message_id": progress_msg_id})
-        except Exception as e:
-            logger.error(f"Ошибка редактирования прогресса при ревизии: {e}")
-            # Если редактирование не удалось, отправляем новое
-            info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
-            add_user_message(user_id, info_msg.message_id)
-            await state.update_data({"progress_message_id": info_msg.message_id})
-    else:
-        info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
-        add_user_message(user_id, info_msg.message_id)
-        await state.update_data({"progress_message_id": info_msg.message_id})
+    info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
+    add_user_message(user_id, info_msg.message_id)
 
     await state.set_state(ListeningState.revision_mode)
     await state.update_data({
@@ -723,7 +685,8 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
         "revision_index": 0,
         "revision_fixed": 0,
         "revision_total": len(error_ids),
-        "revision_info_msg_id": progress_msg_id
+        "revision_info_msg_id": info_msg.message_id,   # <-- новое сообщение, не прогресс
+        "progress_message_id": data.get("progress_message_id")  # прогресс остаётся
     })
 
     await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids, user_id=user_id)
@@ -821,7 +784,6 @@ async def handle_answer(callback: CallbackQuery, state: FSMContext):
         if "message is not modified" not in str(e).lower():
             logger.warning(f"Ошибка при убирании кнопок: {e}")
 
-    # Обновляем прогресс (редактируем существующее сообщение)
     await update_progress_message(callback.message, state, user_id=user_id)
 
     msg = await callback.message.answer(result_text)
