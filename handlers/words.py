@@ -253,7 +253,6 @@ async def send_or_update_progress(
         user_message_ids[user_id]["progress"] = sent.message_id
         return sent.message_id
 
-# ========== ИСПРАВЛЕННАЯ ФУНКЦИЯ ОТПРАВКИ КАРТОЧКИ ==========
 async def send_new_word_card(
     bot: Bot,
     chat_id: int,
@@ -644,33 +643,26 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
 
     session["revision_index"] = idx + 1
     if session["revision_index"] < len(error_words):
+        # Убираем кнопки у предыдущей карточки (если есть)
+        old_card_id = session.get("revision_card_msg_id")
+        if old_card_id:
+            try:
+                await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=old_card_id, reply_markup=None)
+            except Exception as e:
+                logger.warning(f"Не удалось убрать кнопки у старой карточки ревизии: {e}")
+
+        # Отправляем новое сообщение со следующим словом
         next_word = error_words[session["revision_index"]]
         text = f"{next_word['word']}: _____"
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Показать ответ", callback_data="word_revision_show_answer"),
              InlineKeyboardButton(text="Завершить", callback_data="word_revision_finish")]
         ])
-        if session.get("revision_card_msg_id"):
-            try:
-                await message.bot.edit_message_text(
-                    chat_id=message.chat.id,
-                    message_id=session["revision_card_msg_id"],
-                    text=text,
-                    reply_markup=keyboard,
-                    parse_mode="HTML"
-                )
-            except Exception:
-                sent = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-                session["revision_card_msg_id"] = sent.message_id
-                if user_id not in user_message_ids:
-                    user_message_ids[user_id] = {}
-                user_message_ids[user_id]["revision_card"] = sent.message_id
-        else:
-            sent = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-            session["revision_card_msg_id"] = sent.message_id
-            if user_id not in user_message_ids:
-                user_message_ids[user_id] = {}
-            user_message_ids[user_id]["revision_card"] = sent.message_id
+        sent = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        session["revision_card_msg_id"] = sent.message_id
+        if user_id not in user_message_ids:
+            user_message_ids[user_id] = {}
+        user_message_ids[user_id]["revision_card"] = sent.message_id
     else:
         await finish_revision(message, session)
 
@@ -692,13 +684,18 @@ async def finish_revision(message: Message, session: dict):
 
 async def exit_revision(message: Message, session: dict):
     session["revision_mode"] = False
-    msg_ids = []
-    if session.get("revision_info_msg_id"):
-        msg_ids.append(session["revision_info_msg_id"])
+    # Убираем кнопки у последней карточки ревизии, если она есть
     if session.get("revision_card_msg_id"):
-        msg_ids.append(session["revision_card_msg_id"])
-    if msg_ids:
-        await remove_buttons_from_messages(message.bot, message.chat.id, msg_ids)
+        try:
+            await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=session["revision_card_msg_id"], reply_markup=None)
+        except Exception:
+            pass
+    # Убираем кнопки у информационного сообщения
+    if session.get("revision_info_msg_id"):
+        try:
+            await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=session["revision_info_msg_id"], reply_markup=None)
+        except Exception:
+            pass
     
     session.pop("revision_info_msg_id", None)
     session.pop("revision_card_msg_id", None)
@@ -811,27 +808,27 @@ async def revision_show_answer(callback: CallbackQuery, session: dict):
 
     session["revision_index"] = idx + 1
     if session["revision_index"] < len(error_words):
+        # Убираем кнопки у предыдущей карточки
+        old_card_id = session.get("revision_card_msg_id")
+        if old_card_id:
+            try:
+                await callback.bot.edit_message_reply_markup(chat_id=callback.message.chat.id, message_id=old_card_id, reply_markup=None)
+            except Exception:
+                pass
+
+        # Отправляем новое сообщение со следующим словом
         next_word = error_words[session["revision_index"]]
         text = f"{next_word['word']}: _____"
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Показать ответ", callback_data="word_revision_show_answer"),
              InlineKeyboardButton(text="Завершить", callback_data="word_revision_finish")]
         ])
-        try:
-            await callback.bot.edit_message_text(
-                chat_id=callback.message.chat.id,
-                message_id=session["revision_card_msg_id"],
-                text=text,
-                reply_markup=keyboard,
-                parse_mode="HTML"
-            )
-        except Exception:
-            sent = await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-            session["revision_card_msg_id"] = sent.message_id
-            user_id = callback.from_user.id
-            if user_id not in user_message_ids:
-                user_message_ids[user_id] = {}
-            user_message_ids[user_id]["revision_card"] = sent.message_id
+        sent = await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        session["revision_card_msg_id"] = sent.message_id
+        user_id = callback.from_user.id
+        if user_id not in user_message_ids:
+            user_message_ids[user_id] = {}
+        user_message_ids[user_id]["revision_card"] = sent.message_id
     else:
         await finish_revision(callback.message, session)
 
@@ -977,7 +974,7 @@ async def revision_back_to_study(callback: CallbackQuery, state: FSMContext):
     await exit_revision(callback.message, session)
     await callback.answer()
 
-# ---------- Сбросить ошибки (ИСПРАВЛЕННЫЙ ТЕКСТ) ----------
+# ---------- Сбросить ошибки ----------
 @router.callback_query(WordsState.category_chosen, F.data == "word_reset_errors")
 async def reset_errors(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
