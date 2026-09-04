@@ -654,7 +654,13 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
     error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
 
     if not error_ids:
-        await update_progress_message(callback.message, state, user_id=user_id)
+        # Убираем кнопки у сообщения прогресса, если оно есть
+        progress_msg_id = data.get("progress_message_id")
+        if progress_msg_id:
+            try:
+                await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=progress_msg_id, reply_markup=None)
+            except:
+                pass
         await callback.message.answer("🎉 Ошибок нет. Отличная работа!")
         await callback.answer()
         return
@@ -686,16 +692,13 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
                 reply_markup=get_revision_info_keyboard(),
                 parse_mode="HTML"
             )
-            # Обновляем состояние: сохраняем тот же id для прогресса
             await state.update_data({"progress_message_id": progress_msg_id})
         except Exception as e:
             logger.error(f"Ошибка редактирования прогресса при ревизии: {e}")
-            # Если редактирование не удалось, создаём новое (запасной вариант)
             info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
             add_user_message(user_id, info_msg.message_id)
             await state.update_data({"progress_message_id": info_msg.message_id})
     else:
-        # Если нет сообщения прогресса (маловероятно), создаём новое
         info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
         add_user_message(user_id, info_msg.message_id)
         await state.update_data({"progress_message_id": info_msg.message_id})
@@ -706,7 +709,7 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
         "revision_index": 0,
         "revision_fixed": 0,
         "revision_total": len(error_ids),
-        "revision_info_msg_id": progress_msg_id  # теперь это id сообщения прогресса
+        "revision_info_msg_id": progress_msg_id
     })
 
     await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids, user_id=user_id)
