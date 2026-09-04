@@ -41,7 +41,6 @@ logger.info("✅ SpeakingOverrideMiddleware зарегистрирован (ед
 dp.include_router(agreement_router)
 logger.info("✅ agreement_router подключён первым")
 
-dp.include_router(agreement_router)      # остаётся первым
 dp.include_router(support.router)        # ← перенесли СЮДА (до start)
 dp.include_router(subscription_router)   # ← перенесли СЮДА (до start)
 dp.include_router(start.router)
