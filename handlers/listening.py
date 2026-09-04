@@ -653,20 +653,17 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
 
     error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
 
+    # ЕСЛИ ОШИБОК НЕТ – ПРОСТО ОТВЕЧАЕМ, НЕ ТРОГАЯ КАРТОЧКУ ПРОГРЕССА
     if not error_ids:
-        # Убираем кнопки у сообщения прогресса, если оно есть
-        progress_msg_id = data.get("progress_message_id")
-        if progress_msg_id:
-            try:
-                await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=progress_msg_id, reply_markup=None)
-            except:
-                pass
         await callback.message.answer("🎉 Ошибок нет. Отличная работа!")
         await callback.answer()
         return
 
+    # ЕСЛИ ОШИБКИ ЕСТЬ – НАЧИНАЕМ РАБОТУ НАД ОШИБКАМИ
     progress_msg_id = data.get("progress_message_id")
     question_msg_id = data.get("question_message_id")
+
+    # Убираем кнопки у текущего задания
     if question_msg_id:
         try:
             await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=question_msg_id, reply_markup=None)
@@ -674,32 +671,41 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
             pass
         await state.update_data({"question_message_id": None})
 
-    level_label = LEVELS.get(level, level)
-    info_text = (
-        f"Работа над ошибками\n"
-        f"Тип: {TASK_TYPES[task_type]}\n"
-        f"Уровень: {level_label}\n\n"
-        f"Заданий на исправление: {len(error_ids)}"
-    )
-
-    # Редактируем существующее сообщение прогресса
+    # Убираем кнопки у прогресса и редактируем его в режим работы над ошибками
     if progress_msg_id:
         try:
             await callback.bot.edit_message_text(
                 chat_id=chat_id,
                 message_id=progress_msg_id,
-                text=info_text,
+                text=(
+                    f"Работа над ошибками\n"
+                    f"Тип: {TASK_TYPES[task_type]}\n"
+                    f"Уровень: {LEVELS.get(level, level)}\n\n"
+                    f"Заданий на исправление: {len(error_ids)}"
+                ),
                 reply_markup=get_revision_info_keyboard(),
                 parse_mode="HTML"
             )
             await state.update_data({"progress_message_id": progress_msg_id})
         except Exception as e:
             logger.error(f"Ошибка редактирования прогресса при ревизии: {e}")
-            info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
+            info_msg = await callback.message.answer(
+                f"Работа над ошибками\n"
+                f"Тип: {TASK_TYPES[task_type]}\n"
+                f"Уровень: {LEVELS.get(level, level)}\n\n"
+                f"Заданий на исправление: {len(error_ids)}",
+                reply_markup=get_revision_info_keyboard()
+            )
             add_user_message(user_id, info_msg.message_id)
             await state.update_data({"progress_message_id": info_msg.message_id})
     else:
-        info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
+        info_msg = await callback.message.answer(
+            f"Работа над ошибками\n"
+            f"Тип: {TASK_TYPES[task_type]}\n"
+            f"Уровень: {LEVELS.get(level, level)}\n\n"
+            f"Заданий на исправление: {len(error_ids)}",
+            reply_markup=get_revision_info_keyboard()
+        )
         add_user_message(user_id, info_msg.message_id)
         await state.update_data({"progress_message_id": info_msg.message_id})
 
