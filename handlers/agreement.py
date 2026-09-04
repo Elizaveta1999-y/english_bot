@@ -7,10 +7,9 @@ router = Router()
 @router.message(Command("agreement"))
 async def agreement_command(message: Message):
     text = (
-        "<b>Пользовательское соглашение</b>\n\n"
-        "Ознакомьтесь с условиями использования бота.\n"
-        "Полный текст доступен по ссылке:\n"
-        "🔗 <a href='https://disk.yandex.ru/edit/d/4NDocdmWhHkDNQ_MTl78rCPegnqahzm72s0qoIz-cKg6Yl9hVHk5NWhGUQ?source=docs'>Открыть соглашение</a>\n\n"
-        "Используя бота, вы автоматически принимаете данные условия."
+        "<b>Пользовательское соглашение и другие документы</b>\n\n"
+        "Все официальные документы доступны в одной папке:\n"
+        "🔗 <a href='https://disk.yandex.ru/d/b0CooYtb5OxXgQ'>Открыть папку с документами</a>\n\n"
+        "Ознакомьтесь с условиями использования, политикой конфиденциальности и тарифами."
     )
     await message.answer(text, parse_mode="HTML")

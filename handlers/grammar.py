@@ -19,6 +19,7 @@ from utils.db import (
     reset_grammar_progress,
     get_random_order, set_random_order,
     get_order_hash, set_order_hash,
+    get_connection,
 )
 
 logger = logging.getLogger(__name__)
@@ -215,7 +216,7 @@ def extract_instruction_and_task(question: str) -> tuple:
         task_text = question
     return instruction, task_text
 
-# ---------- Функции для работы со случайным порядком (С ХЕШЕМ) ----------
+# ---------- Функции для работы со случайным порядком (С ХЕШЕМ И УДАЛЕНИЕМ) ----------
 async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
     logger.info(f"[ORDER] Получение порядка для {user_id}, тип {short_type}")
@@ -261,6 +262,12 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
 
     if need_recreate:
         logger.info(f"Причины пересоздания для {short_type}: {', '.join(reasons)}")
+        # Удаляем старую запись, чтобы гарантировать обновление
+        conn = await get_connection()
+        await conn.execute("DELETE FROM random_order WHERE user_id = $1 AND level_key = $2", user_id, type_key)
+        await conn.close()
+        logger.info(f"[ORDER] Старая запись удалена для {user_id}, тип {short_type}")
+
         # Создаём новый порядок
         indices = list(range(len(tasks)))
         random.shuffle(indices)
@@ -285,8 +292,11 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     tasks = get_tasks(short_type)
     indices = list(range(len(tasks)))
     random.shuffle(indices)
+    # Удаляем старую запись и вставляем новую
+    conn = await get_connection()
+    await conn.execute("DELETE FROM random_order WHERE user_id = $1 AND level_key = $2", user_id, type_key)
+    await conn.close()
     await set_random_order(user_id, type_key, indices)
-    # Обновляем хеш при сбросе
     content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
     current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
     await set_order_hash(user_id, type_key, current_hash)
