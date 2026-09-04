@@ -25,7 +25,7 @@ router = Router()
 
 WELCOME_TEXT = (
     "<b>Добро пожаловать в умный тренажер Английского языка! 🇺🇸</b>\n\n"
-    "Общайся голосом со своим персональным AI-тьютором, практикуй реальные ситуации и оттачивай шесть главных навыков языка в любое время! 🧠\n"
+    "Общайся голосом со своим персональным AI-тьютором, практикуй реальные ситуации и оттачивай главные навыки языка! 🧠\n"
     "Выбирай режим и начинай совершенствоваться в языке!\n\n"
 )
 
@@ -88,9 +88,7 @@ async def start_handler(message: Message, state: FSMContext):
             set_user_state(user_id, user_state)
             await state.clear()
 
-    # Удаляем клавиатуры (speaking и roleplay)
     if user_state:
-        # Speaking клавиатура
         speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
         if speaking_kb_id:
             try:
@@ -98,7 +96,6 @@ async def start_handler(message: Message, state: FSMContext):
             except Exception:
                 pass
             user_state.pop("speaking_keyboard_msg_id", None)
-        # Roleplay клавиатура
         keyboard_msg_id = user_state.get("reply_keyboard_msg_id")
         if keyboard_msg_id:
             try:
@@ -106,7 +103,6 @@ async def start_handler(message: Message, state: FSMContext):
             except Exception:
                 pass
             user_state.pop("reply_keyboard_msg_id", None)
-        # Очищаем все ключи ролевой игры
         keys_to_remove = [k for k in list(user_state.keys()) if k.startswith("roleplay") or k in ("mode", "russian_counter", "voice_id")]
         for k in keys_to_remove:
             user_state.pop(k, None)
@@ -137,15 +133,12 @@ async def under_construction(callback: CallbackQuery):
 
 
 async def remove_all_reply_keyboards(callback: CallbackQuery):
-    """Удаляет клавиатуры ролевой игры и speaking, если они есть. Очищает состояние."""
-    logger.info(f"🔹 remove_all_reply_keyboards вызвана для user {callback.from_user.id}")
     user_id = callback.from_user.id
     chat_id = callback.message.chat.id
     bot = callback.bot
     
     user_state = get_user_state(user_id)
     if not user_state:
-        logger.info("🔹 user_state пуст, выход")
         return
     
     is_active = (
@@ -155,65 +148,51 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
     )
     
     if not is_active:
-        logger.info("🔹 Активных режимов с Reply-клавиатурой нет, выход")
         return
     
-    logger.info(f"🔹 Активный режим: {user_state.get('mode')}, удаляю клавиатуры")
-    
-    # Отправляем "Переход..." с удалением клавиатуры
     try:
         temp_msg = await bot.send_message(chat_id, "Переход...", reply_markup=ReplyKeyboardRemove())
         await asyncio.sleep(0.1)
         await bot.delete_message(chat_id, temp_msg.message_id)
-        logger.info("🔹 Сообщение 'Переход...' отправлено и удалено")
-    except Exception as e:
-        logger.error(f"🔹 Ошибка при отправке/удалении 'Переход...': {e}")
+    except Exception:
+        pass
     
-    # Удаляем сообщение с клавиатурой speaking
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
             await bot.delete_message(chat_id, speaking_kb_id)
-            logger.info(f"🔹 Удалено сообщение speaking с клавиатурой (ID {speaking_kb_id})")
-        except Exception as e:
-            logger.error(f"🔹 Не удалось удалить speaking клавиатуру: {e}")
+        except Exception:
+            pass
         user_state.pop("speaking_keyboard_msg_id", None)
     
-    # Удаляем сообщение с клавиатурой roleplay
     roleplay_kb_id = user_state.get("reply_keyboard_msg_id")
     if roleplay_kb_id:
         try:
             await bot.delete_message(chat_id, roleplay_kb_id)
-            logger.info(f"🔹 Удалено сообщение roleplay с клавиатурой (ID {roleplay_kb_id})")
-        except Exception as e:
-            logger.error(f"🔹 Не удалось удалить roleplay клавиатуру: {e}")
+        except Exception:
+            pass
         user_state.pop("reply_keyboard_msg_id", None)
     
-    # Очищаем все ключи обоих режимов
     keys_to_remove = [k for k in list(user_state.keys()) if k.startswith("roleplay") or k.startswith("speaking") or k in ("mode", "russian_counter", "voice_id")]
     for k in keys_to_remove:
         user_state.pop(k, None)
     set_user_state(user_id, user_state)
-    logger.info("🔹 Ключи режимов очищены")
 
 
-# ---------- ОБРАБОТЧИКИ ВСЕХ РЕЖИМОВ (с удалением клавиатур и сбросом FSM) ----------
+# ---------- ОБРАБОТЧИКИ ВСЕХ РЕЖИМОВ ----------
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_speaking_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
         pass
     await remove_all_reply_keyboards(callback)
     await state.clear()
-    logger.info("🔹 FSM сброшен, вызываю start_speaking")
     await start_speaking(callback, state)
 
 
 @router.callback_query(F.data == "start_reading")
 async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_reading_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
@@ -225,7 +204,6 @@ async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "start_writing")
 async def start_writing_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_writing_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
@@ -237,7 +215,6 @@ async def start_writing_mode(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_govorenie_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
@@ -249,7 +226,6 @@ async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "start_grammar")
 async def start_grammar_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_grammar_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
@@ -261,7 +237,6 @@ async def start_grammar_mode(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "start_words")
 async def start_words_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_words_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
@@ -273,7 +248,6 @@ async def start_words_mode(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "start_listening")
 async def start_listening_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_listening_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
@@ -285,7 +259,6 @@ async def start_listening_mode(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "profile_menu")
 async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_profile_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
@@ -297,12 +270,10 @@ async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_roleplay_mode вызван для user {callback.from_user.id}")
     try:
         await callback.answer()
     except Exception:
         pass
-    # Очищаем состояние ролевой игры (и speaking), если есть
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state:

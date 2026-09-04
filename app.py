@@ -41,6 +41,9 @@ logger.info("✅ SpeakingOverrideMiddleware зарегистрирован (ед
 dp.include_router(agreement_router)
 logger.info("✅ agreement_router подключён первым")
 
+dp.include_router(agreement_router)      # остаётся первым
+dp.include_router(support.router)        # ← перенесли СЮДА (до start)
+dp.include_router(subscription_router)   # ← перенесли СЮДА (до start)
 dp.include_router(start.router)
 dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
@@ -51,8 +54,6 @@ dp.include_router(writing.router)
 dp.include_router(reading.router)
 dp.include_router(listening.router)
 dp.include_router(grammar_router)
-dp.include_router(support.router)
-dp.include_router(subscription_router)
 dp.include_router(voice.router)
 dp.include_router(common.router)
 dp.include_router(lessons.router)
