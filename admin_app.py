@@ -547,7 +547,7 @@ async def index(request: Request):
         "warnings": warnings
     })
 
-# ---- ПОЛЬЗОВАТЕЛИ (с пагинацией) ----
+# ---- ПОЛЬЗОВАТЕЛИ (с пагинацией, фикс отображения имени) ----
 @app.get("/users", response_class=HTMLResponse)
 async def users_list(request: Request, search: str = "", page: int = 1, limit: int = 20):
     conn = await get_db()
@@ -572,11 +572,13 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
 
     users = []
     for row in rows:
+        # Логируем для отладки
+        logger.info(f"User {row['user_id']}: first_name={row['first_name']}, username={row['username']}")
         users.append({
             "user_id": row["user_id"],
-            "username": row["username"],
-            "first_name": row["first_name"],
-            "last_name": row["last_name"],
+            "username": row["username"] or "—",
+            "first_name": row["first_name"] or "",
+            "last_name": row["last_name"] or "",
             "registered_at": datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
             "last_active": datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M") if row["last_active"] else "—",
             "subscription_until": datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "—",
@@ -594,161 +596,172 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
         "total_count": total_count
     })
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (с обработкой ошибок) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
-    conn = await get_db()
-    user_row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
-    if not user_row:
-        raise HTTPException(404, "Пользователь не найден")
+    try:
+        conn = await get_db()
+        user_row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
+        if not user_row:
+            raise HTTPException(404, "Пользователь не найден")
 
-    progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
-    writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
-    govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
-    await conn.close()
+        progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
+        writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
+        govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
+        await conn.close()
 
-    user = dict(user_row)
-    for field in ["registered_at", "last_active", "subscription_until", "subscription_started", "trial_until", "trial_started"]:
-        if user.get(field):
-            user[field] = datetime.fromtimestamp(user[field]).strftime("%Y-%m-%d %H:%M") if user[field] else "—"
-        else:
-            user[field] = "—"
+        user = dict(user_row)
+        for field in ["registered_at", "last_active", "subscription_until", "subscription_started", "trial_until", "trial_started"]:
+            if user.get(field):
+                user[field] = datetime.fromtimestamp(user[field]).strftime("%Y-%m-%d %H:%M") if user[field] else "—"
+            else:
+                user[field] = "—"
 
-    progress_data = {}
-    for r in progress_rows:
-        key = r["type_key"]
-        level = r["level_key"]
-        display_level = LEVEL_DISPLAY.get(level, level)
-        correct = r["correct"]
-        wrong = r["wrong"]
-        if key not in progress_data:
-            progress_data[key] = {}
-        if display_level not in progress_data[key]:
-            progress_data[key][display_level] = {"correct": 0, "wrong": 0}
-        progress_data[key][display_level]["correct"] += correct
-        progress_data[key][display_level]["wrong"] += wrong
+        # Обработка прогресса
+        progress_data = {}
+        for r in progress_rows:
+            key = r["type_key"]
+            level = r["level_key"]
+            display_level = LEVEL_DISPLAY.get(level, level)
+            correct = r["correct"]
+            wrong = r["wrong"]
+            if key not in progress_data:
+                progress_data[key] = {}
+            if display_level not in progress_data[key]:
+                progress_data[key][display_level] = {"correct": 0, "wrong": 0}
+            progress_data[key][display_level]["correct"] += correct
+            progress_data[key][display_level]["wrong"] += wrong
 
-    grammar_items = []
-    for raw_key, display_name in GRAMMAR_TYPES.items():
-        db_key = f"grammar_{raw_key}"
-        levels_data = progress_data.get(db_key, {})
-        for level in ["Новичок", "Любитель", "Эксперт"]:
-            data = levels_data.get(level, {"correct": 0, "wrong": 0})
-            correct = data["correct"]
-            wrong = data["wrong"]
-            total = correct + wrong
-            percent = round((correct / total * 100), 1) if total else 0
-            grammar_items.append({
+        # Грамматика
+        grammar_items = []
+        for raw_key, display_name in GRAMMAR_TYPES.items():
+            db_key = f"grammar_{raw_key}"
+            levels_data = progress_data.get(db_key, {})
+            for level in ["Новичок", "Любитель", "Эксперт"]:
+                data = levels_data.get(level, {"correct": 0, "wrong": 0})
+                correct = data["correct"]
+                wrong = data["wrong"]
+                total = correct + wrong
+                percent = round((correct / total * 100), 1) if total else 0
+                grammar_items.append({
+                    "subtype": display_name,
+                    "level": level,
+                    "correct": correct,
+                    "wrong": wrong,
+                    "total": total,
+                    "percent": percent
+                })
+
+        # Лексика
+        lexis_items = []
+        for raw_key, display_name in LEXIS_TYPES.items():
+            db_key = f"words_{raw_key}"
+            levels_data = progress_data.get(db_key, {})
+            total_correct = 0
+            total_wrong = 0
+            for level_data in levels_data.values():
+                total_correct += level_data["correct"]
+                total_wrong += level_data["wrong"]
+            total = total_correct + total_wrong
+            percent = round((total_correct / total * 100), 1) if total else 0
+            lexis_items.append({
                 "subtype": display_name,
-                "level": level,
-                "correct": correct,
-                "wrong": wrong,
+                "correct": total_correct,
+                "wrong": total_wrong,
                 "total": total,
                 "percent": percent
             })
 
-    lexis_items = []
-    for raw_key, display_name in LEXIS_TYPES.items():
-        db_key = f"words_{raw_key}"
-        levels_data = progress_data.get(db_key, {})
-        total_correct = 0
-        total_wrong = 0
-        for level_data in levels_data.values():
-            total_correct += level_data["correct"]
-            total_wrong += level_data["wrong"]
-        total = total_correct + total_wrong
-        percent = round((total_correct / total * 100), 1) if total else 0
-        lexis_items.append({
-            "subtype": display_name,
-            "correct": total_correct,
-            "wrong": total_wrong,
-            "total": total,
-            "percent": percent
-        })
+        # Чтение
+        reading_items = []
+        for raw_key, display_name in READING_TYPES.items():
+            db_key = raw_key
+            levels_data = progress_data.get(db_key, {})
+            for level in ["Новичок", "Любитель", "Эксперт"]:
+                data = levels_data.get(level, {"correct": 0, "wrong": 0})
+                correct = data["correct"]
+                wrong = data["wrong"]
+                total = correct + wrong
+                percent = round((correct / total * 100), 1) if total else 0
+                reading_items.append({
+                    "subtype": display_name,
+                    "level": level,
+                    "correct": correct,
+                    "wrong": wrong,
+                    "total": total,
+                    "percent": percent
+                })
 
-    reading_items = []
-    for raw_key, display_name in READING_TYPES.items():
-        db_key = raw_key
-        levels_data = progress_data.get(db_key, {})
-        for level in ["Новичок", "Любитель", "Эксперт"]:
-            data = levels_data.get(level, {"correct": 0, "wrong": 0})
-            correct = data["correct"]
-            wrong = data["wrong"]
-            total = correct + wrong
-            percent = round((correct / total * 100), 1) if total else 0
-            reading_items.append({
-                "subtype": display_name,
-                "level": level,
-                "correct": correct,
-                "wrong": wrong,
-                "total": total,
-                "percent": percent
+        # Аудирование
+        listening_items = []
+        for raw_key, display_name in LISTENING_TYPES.items():
+            db_key = f"listening_{raw_key}"
+            levels_data = progress_data.get(db_key, {})
+            for level in ["Новичок", "Любитель", "Эксперт"]:
+                data = levels_data.get(level, {"correct": 0, "wrong": 0})
+                correct = data["correct"]
+                wrong = data["wrong"]
+                total = correct + wrong
+                percent = round((correct / total * 100), 1) if total else 0
+                listening_items.append({
+                    "subtype": display_name,
+                    "level": level,
+                    "correct": correct,
+                    "wrong": wrong,
+                    "total": total,
+                    "percent": percent
+                })
+
+        # Письмо
+        writing_items = []
+        for r in writing_rows:
+            level_display = LEVEL_DISPLAY.get(r["level_key"], r["level_key"])
+            answered = r["total_answered"]
+            score = r["total_score"]
+            avg = round(score / answered, 1) if answered else 0
+            writing_items.append({
+                "subtype": r["type_key"],
+                "level": level_display,
+                "answered": answered,
+                "score": score,
+                "avg": avg
             })
+        writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-    listening_items = []
-    for raw_key, display_name in LISTENING_TYPES.items():
-        db_key = f"listening_{raw_key}"
-        levels_data = progress_data.get(db_key, {})
-        for level in ["Новичок", "Любитель", "Эксперт"]:
-            data = levels_data.get(level, {"correct": 0, "wrong": 0})
-            correct = data["correct"]
-            wrong = data["wrong"]
-            total = correct + wrong
-            percent = round((correct / total * 100), 1) if total else 0
-            listening_items.append({
-                "subtype": display_name,
-                "level": level,
-                "correct": correct,
-                "wrong": wrong,
-                "total": total,
-                "percent": percent
+        # Говорение
+        govorenie_items = []
+        for r in govorenie_rows:
+            level_display = LEVEL_DISPLAY.get(r["level"], r["level"])
+            answered = r["total_answered"]
+            score = r["total_score"]
+            avg = round(score / answered, 1) if answered else 0
+            govorenie_items.append({
+                "subtype": r["task_type"],
+                "level": level_display,
+                "answered": answered,
+                "score": score,
+                "avg": avg
             })
+        govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-    writing_items = []
-    for r in writing_rows:
-        level_display = LEVEL_DISPLAY.get(r["level_key"], r["level_key"])
-        answered = r["total_answered"]
-        score = r["total_score"]
-        avg = round(score / answered, 1) if answered else 0
-        writing_items.append({
-            "subtype": r["type_key"],
-            "level": level_display,
-            "answered": answered,
-            "score": score,
-            "avg": avg
+        speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
+        roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
+
+        return templates.TemplateResponse("user_detail.html", {
+            "request": request,
+            "user": user,
+            "grammar_items": grammar_items,
+            "lexis_items": lexis_items,
+            "reading_items": reading_items,
+            "listening_items": listening_items,
+            "writing_items": writing_items,
+            "govorenie_items": govorenie_items,
+            "speaking_minutes": speaking_minutes,
+            "roleplay_minutes": roleplay_minutes
         })
-    writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
-
-    govorenie_items = []
-    for r in govorenie_rows:
-        level_display = LEVEL_DISPLAY.get(r["level"], r["level"])
-        answered = r["total_answered"]
-        score = r["total_score"]
-        avg = round(score / answered, 1) if answered else 0
-        govorenie_items.append({
-            "subtype": r["task_type"],
-            "level": level_display,
-            "answered": answered,
-            "score": score,
-            "avg": avg
-        })
-    govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
-
-    speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
-    roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
-
-    return templates.TemplateResponse("user_detail.html", {
-        "request": request,
-        "user": user,
-        "grammar_items": grammar_items,
-        "lexis_items": lexis_items,
-        "reading_items": reading_items,
-        "listening_items": listening_items,
-        "writing_items": writing_items,
-        "govorenie_items": govorenie_items,
-        "speaking_minutes": speaking_minutes,
-        "roleplay_minutes": roleplay_minutes
-    })
+    except Exception as e:
+        logger.error(f"Ошибка в user_detail для {user_id}: {e}", exc_info=True)
+        return HTMLResponse(f"<h1>Ошибка</h1><pre>{e}</pre>", status_code=500)
 
 # ---- ОТЛАДОЧНЫЙ ЭНДПОИНТ ----
 @app.get("/debug-progress/{user_id}")
