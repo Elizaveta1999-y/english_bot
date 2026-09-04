@@ -29,37 +29,70 @@
 
 <!-- Прогресс по тренажёрам -->
 <h4 class="section-title">📈 Прогресс по тренажёрам</h4>
-{% for mode, items in progress_by_mode.items() %}
-    <h5>{{ mode }}</h5>
-    <div class="table-responsive">
-        <table class="table table-sm table-striped">
-            <thead>
-                <tr>
-                    <th>Подтип</th>
-                    <th>Уровень</th>
-                    <th>Правильно</th>
-                    <th>Неправильно</th>
-                    <th>Точность, %</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for item in items %}
-                <tr>
-                    <td>{{ item.subtype }}</td>
-                    <td>{{ item.level }}</td>
-                    <td>{{ item.correct }}</td>
-                    <td>{{ item.wrong }}</td>
-                    <td>{{ item.percent }}</td>
-                </tr>
-            {% else %}
-                <tr><td colspan="5">Нет данных</td></tr>
-            {% endfor %}
-            </tbody>
-        </table>
+<div class="row">
+    <div class="col-md-6">
+        <h5>Грамматика</h5>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped">
+                <thead><tr><th>Тип</th><th>Уровень</th><th>Правильно</th><th>Неправильно</th><th>Точность %</th></tr></thead>
+                <tbody>
+                {% for item in grammar_items %}
+                    <tr><td>{{ item.subtype }}</td><td>{{ item.level }}</td><td>{{ item.correct }}</td><td>{{ item.wrong }}</td><td>{{ item.percent }}</td></tr>
+                {% else %}
+                    <tr><td colspan="5">Нет данных</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-{% else %}
-    <p>Нет данных по тренажёрам</p>
-{% endfor %}
+    <div class="col-md-6">
+        <h5>Лексика</h5>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped">
+                <thead><tr><th>Тип</th><th>Правильно</th><th>Неправильно</th><th>Точность %</th></tr></thead>
+                <tbody>
+                {% for item in lexis_items %}
+                    <tr><td>{{ item.subtype }}</td><td>{{ item.correct }}</td><td>{{ item.wrong }}</td><td>{{ item.percent }}</td></tr>
+                {% else %}
+                    <tr><td colspan="4">Нет данных</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h5>Чтение</h5>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped">
+                <thead><tr><th>Тип</th><th>Уровень</th><th>Правильно</th><th>Неправильно</th><th>Точность %</th></tr></thead>
+                <tbody>
+                {% for item in reading_items %}
+                    <tr><td>{{ item.subtype }}</td><td>{{ item.level }}</td><td>{{ item.correct }}</td><td>{{ item.wrong }}</td><td>{{ item.percent }}</td></tr>
+                {% else %}
+                    <tr><td colspan="5">Нет данных</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h5>Аудирование</h5>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped">
+                <thead><tr><th>Тип</th><th>Уровень</th><th>Правильно</th><th>Неправильно</th><th>Точность %</th></tr></thead>
+                <tbody>
+                {% for item in listening_items %}
+                    <tr><td>{{ item.subtype }}</td><td>{{ item.level }}</td><td>{{ item.correct }}</td><td>{{ item.wrong }}</td><td>{{ item.percent }}</td></tr>
+                {% else %}
+                    <tr><td colspan="5">Нет данных</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <!-- Письмо -->
 <h4 class="section-title">✍️ Письмо</h4>
@@ -68,13 +101,7 @@
         <thead><tr><th>Тип</th><th>Уровень</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
         <tbody>
         {% for item in writing_items %}
-            <tr>
-                <td>{{ item.subtype }}</td>
-                <td>{{ item.level }}</td>
-                <td>{{ item.answered }}</td>
-                <td>{{ item.score }}</td>
-                <td>{{ item.avg }}</td>
-            </tr>
+            <tr><td>{{ item.subtype }}</td><td>{{ item.level }}</td><td>{{ item.answered }}</td><td>{{ item.score }}</td><td>{{ item.avg }}</td></tr>
         {% else %}
             <tr><td colspan="5">Нет данных</td></tr>
         {% endfor %}
@@ -89,13 +116,7 @@
         <thead><tr><th>Тип</th><th>Уровень</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
         <tbody>
         {% for item in govorenie_items %}
-            <tr>
-                <td>{{ item.subtype }}</td>
-                <td>{{ item.level }}</td>
-                <td>{{ item.answered }}</td>
-                <td>{{ item.score }}</td>
-                <td>{{ item.avg }}</td>
-            </tr>
+            <tr><td>{{ item.subtype }}</td><td>{{ item.level }}</td><td>{{ item.answered }}</td><td>{{ item.score }}</td><td>{{ item.avg }}</td></tr>
         {% else %}
             <tr><td colspan="5">Нет данных</td></tr>
         {% endfor %}
