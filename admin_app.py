@@ -572,8 +572,6 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
 
     users = []
     for row in rows:
-        # Логируем для отладки
-        logger.info(f"User {row['user_id']}: first_name={row['first_name']}, username={row['username']}")
         users.append({
             "user_id": row["user_id"],
             "username": row["username"] or "—",
@@ -596,7 +594,7 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
         "total_count": total_count
     })
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (с обработкой ошибок) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (исправлено) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     try:
@@ -608,6 +606,11 @@ async def user_detail(request: Request, user_id: int):
         progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
         writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
         govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
+        
+        # ===== ПОЛУЧАЕМ РЕАЛЬНЫЕ ОШИБКИ =====
+        error_rows = await conn.fetch("SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key", user_id)
+        error_counts = {row["type_key"]: row["cnt"] for row in error_rows}
+        
         await conn.close()
 
         user = dict(user_row)
@@ -632,27 +635,29 @@ async def user_detail(request: Request, user_id: int):
             progress_data[key][display_level]["correct"] += correct
             progress_data[key][display_level]["wrong"] += wrong
 
-        # Грамматика
+        # ===== ГРАММАТИКА (без уровней, всё в кучу) =====
         grammar_items = []
         for raw_key, display_name in GRAMMAR_TYPES.items():
             db_key = f"grammar_{raw_key}"
             levels_data = progress_data.get(db_key, {})
-            for level in ["Новичок", "Любитель", "Эксперт"]:
-                data = levels_data.get(level, {"correct": 0, "wrong": 0})
-                correct = data["correct"]
-                wrong = data["wrong"]
-                total = correct + wrong
-                percent = round((correct / total * 100), 1) if total else 0
-                grammar_items.append({
-                    "subtype": display_name,
-                    "level": level,
-                    "correct": correct,
-                    "wrong": wrong,
-                    "total": total,
-                    "percent": percent
-                })
+            total_correct = 0
+            total_wrong = 0
+            for level_data in levels_data.values():
+                total_correct += level_data["correct"]
+                total_wrong += level_data["wrong"]
+            total = total_correct + total_wrong
+            percent = round((total_correct / total * 100), 1) if total else 0
+            errors = error_counts.get(db_key, 0)
+            grammar_items.append({
+                "subtype": display_name,
+                "correct": total_correct,
+                "wrong": total_wrong,
+                "total": total,
+                "percent": percent,
+                "errors": errors
+            })
 
-        # Лексика
+        # ===== ЛЕКСИКА (с ошибками) =====
         lexis_items = []
         for raw_key, display_name in LEXIS_TYPES.items():
             db_key = f"words_{raw_key}"
@@ -664,15 +669,17 @@ async def user_detail(request: Request, user_id: int):
                 total_wrong += level_data["wrong"]
             total = total_correct + total_wrong
             percent = round((total_correct / total * 100), 1) if total else 0
+            errors = error_counts.get(db_key, 0)
             lexis_items.append({
                 "subtype": display_name,
                 "correct": total_correct,
                 "wrong": total_wrong,
                 "total": total,
-                "percent": percent
+                "percent": percent,
+                "errors": errors
             })
 
-        # Чтение
+        # ===== ЧТЕНИЕ (с уровнями и цветами) =====
         reading_items = []
         for raw_key, display_name in READING_TYPES.items():
             db_key = raw_key
@@ -692,7 +699,7 @@ async def user_detail(request: Request, user_id: int):
                     "percent": percent
                 })
 
-        # Аудирование
+        # ===== АУДИРОВАНИЕ (с уровнями и цветами) =====
         listening_items = []
         for raw_key, display_name in LISTENING_TYPES.items():
             db_key = f"listening_{raw_key}"
@@ -712,7 +719,7 @@ async def user_detail(request: Request, user_id: int):
                     "percent": percent
                 })
 
-        # Письмо
+        # ===== ПИСЬМО =====
         writing_items = []
         for r in writing_rows:
             level_display = LEVEL_DISPLAY.get(r["level_key"], r["level_key"])
@@ -728,7 +735,7 @@ async def user_detail(request: Request, user_id: int):
             })
         writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-        # Говорение
+        # ===== ГОВОРЕНИЕ =====
         govorenie_items = []
         for r in govorenie_rows:
             level_display = LEVEL_DISPLAY.get(r["level"], r["level"])
