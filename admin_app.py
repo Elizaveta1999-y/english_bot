@@ -1,9 +1,11 @@
 import os
 import asyncio
 import logging
+import csv
+import io
 from datetime import datetime, timedelta
 from fastapi import FastAPI, Request, Form, HTTPException, Response
-from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse, StreamingResponse
 from fastapi.templating import Jinja2Templates
 import asyncpg
 import httpx
@@ -119,7 +121,7 @@ async def ensure_db_structure():
             CREATE TABLE IF NOT EXISTS blocked_users (
                 user_id BIGINT PRIMARY KEY
             )
-        """)  # оставляем, но не используем
+        """)
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS api_balances (
                 service TEXT PRIMARY KEY,
@@ -281,36 +283,131 @@ async def get_activity_data(days: int = 30):
         current += timedelta(days=1)
     return result
 
-# ---------- WEBHOOK ----------
-class PaymentWebhook(BaseModel):
-    user_id: int
-    amount: float
-    description: str = ""
-    payment_system: str = ""
-    payment_id: str = ""
+async def get_finance_chart_data(days: int = 30):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
+    income_rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COALESCE(SUM(amount), 0) as total FROM income WHERE date >= $1 GROUP BY day ORDER BY day",
+        start_ts
+    )
+    expense_rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COALESCE(SUM(amount), 0) as total FROM expenses WHERE date >= $1 GROUP BY day ORDER BY day",
+        start_ts
+    )
+    await conn.close()
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(now)
+    income_map = {row["day"].date(): row["total"] for row in income_rows}
+    expense_map = {row["day"].date(): row["total"] for row in expense_rows}
+    while current <= end:
+        day_date = current.date()
+        inc = float(income_map.get(day_date, 0))
+        exp = float(expense_map.get(day_date, 0))
+        result.append({
+            "date": day_date.isoformat(),
+            "income": inc,
+            "expenses": exp,
+            "profit": inc - exp
+        })
+        current += timedelta(days=1)
+    return result
 
-@app.post("/webhook/payment")
-async def payment_webhook(data: PaymentWebhook):
-    try:
-        await add_income(
-            user_id=data.user_id,
-            amount=data.amount,
-            description=data.description,
-            payment_system=data.payment_system,
-            payment_id=data.payment_id
-        )
-        logger.info(f"✅ Доход записан: {data.amount} от пользователя {data.user_id}")
-        return {"status": "ok", "message": "Income recorded"}
-    except Exception as e:
-        logger.error(f"Ошибка записи дохода: {e}")
-        return {"status": "error", "message": str(e)}, 500
+async def get_subscriptions_chart_data(days: int = 30):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
+    users = await conn.fetch("SELECT user_id, subscription_until FROM users WHERE subscription_until > 0")
+    await conn.close()
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(now)
+    while current <= end:
+        day_ts = int(current.timestamp())
+        active = sum(1 for u in users if u["subscription_until"] > day_ts)
+        result.append({
+            "date": current.date().isoformat(),
+            "active_subscriptions": active
+        })
+        current += timedelta(days=1)
+    return result
+
+async def get_voice_chart_data(days: int = 30):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
+    rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count FROM activity_log WHERE date >= $1 GROUP BY day ORDER BY day",
+        start_ts
+    )
+    await conn.close()
+    total_seconds = await conn.fetchval("SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users")
+    if rows and total_seconds > 0:
+        total_activity = sum(r["count"] for r in rows)
+        result = []
+        current = datetime.fromtimestamp(start_ts)
+        end = datetime.fromtimestamp(now)
+        data_map = {row["day"].date(): row["count"] for row in rows}
+        while current <= end:
+            day_date = current.date()
+            activity = data_map.get(day_date, 0)
+            seconds = int(total_seconds * activity / total_activity) if total_activity else 0
+            result.append({
+                "date": day_date.isoformat(),
+                "voice_minutes": round(seconds / 60, 1)
+            })
+            current += timedelta(days=1)
+        return result
+    else:
+        result = []
+        current = datetime.fromtimestamp(start_ts)
+        end = datetime.fromtimestamp(now)
+        while current <= end:
+            result.append({
+                "date": current.date().isoformat(),
+                "voice_minutes": 0
+            })
+            current += timedelta(days=1)
+        return result
+
+# ---------- ЭКСПОРТ ----------
+async def export_users_csv():
+    conn = await get_db()
+    rows = await conn.fetch("SELECT user_id, username, first_name, last_name, registered_at, last_active, subscription_until, total_voice_seconds_month FROM users")
+    await conn.close()
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["user_id", "username", "first_name", "last_name", "registered_at", "last_active", "subscription_until", "voice_minutes"])
+    for row in rows:
+        writer.writerow([
+            row["user_id"],
+            row["username"] or "",
+            row["first_name"] or "",
+            row["last_name"] or "",
+            datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
+            datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M"),
+            datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "",
+            round(row["total_voice_seconds_month"] / 60, 1) if row["total_voice_seconds_month"] else 0
+        ])
+    return output.getvalue()
 
 # ---------- API ДЛЯ ГРАФИКОВ ----------
 @app.get("/api/charts-data")
-async def charts_data(days: int = 30):
-    new_users = await get_new_users_data(days)
-    activity = await get_activity_data(days)
-    return JSONResponse({"new_users": new_users, "activity": activity})
+async def charts_data(days: int = 30, type: str = "all"):
+    if type == "finance":
+        data = await get_finance_chart_data(days)
+        return JSONResponse(data)
+    elif type == "subscriptions":
+        data = await get_subscriptions_chart_data(days)
+        return JSONResponse(data)
+    elif type == "voice":
+        data = await get_voice_chart_data(days)
+        return JSONResponse(data)
+    else:
+        new_users = await get_new_users_data(days)
+        activity = await get_activity_data(days)
+        return JSONResponse({"new_users": new_users, "activity": activity})
 
 # ---------- СТРАНИЦЫ ----------
 @app.get("/charts", response_class=HTMLResponse)
@@ -403,7 +500,7 @@ async def logout():
     response.delete_cookie("admin_auth")
     return response
 
-# ---- ГЛАВНАЯ ----
+# ---- ГЛАВНАЯ (с предупреждениями) ----
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     conn = await get_db()
@@ -423,43 +520,81 @@ async def index(request: Request):
         "voice_week": voice_week,
         "voice_month": voice_month,
     }
-    return templates.TemplateResponse("index.html", {"request": request, "stats": stats})
 
-# ---- ПОЛЬЗОВАТЕЛИ ----
+    deepseek = await get_api_balance("deepseek")
+    elevenlabs = await get_api_balance("elevenlabs")
+    warnings = []
+    try:
+        deep_val = float(deepseek.get("balance", 0)) if deepseek.get("balance") and deepseek.get("balance").replace('.','').isdigit() else float('inf')
+        if deep_val < float(deepseek.get("threshold", 30)):
+            warnings.append(f"⚠️ Баланс DeepSeek: {deepseek.get('balance')} CNY (порог {deepseek.get('threshold')})")
+    except: pass
+    try:
+        elev_val = int(elevenlabs.get("balance", 0)) if elevenlabs.get("balance") and elevenlabs.get("balance").isdigit() else float('inf')
+        if elev_val < int(elevenlabs.get("threshold", 10000)):
+            warnings.append(f"⚠️ Баланс ElevenLabs: {elevenlabs.get('balance')} символов (порог {elevenlabs.get('threshold')})")
+    except: pass
+
+    render = await get_render_payment()
+    if render and render.get("next_payment_date"):
+        days_left = (render["next_payment_date"] - now) // 86400
+        if days_left <= 3 and days_left >= 0:
+            warnings.append(f"⏰ Через {days_left} дней списание ${render.get('amount', '7')} за Render")
+
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "stats": stats,
+        "warnings": warnings
+    })
+
+# ---- ПОЛЬЗОВАТЕЛИ (с пагинацией) ----
 @app.get("/users", response_class=HTMLResponse)
-async def users_list(request: Request, search: str = ""):
+async def users_list(request: Request, search: str = "", page: int = 1, limit: int = 20):
     conn = await get_db()
+    offset = (page - 1) * limit
+    search_pattern = f"%{search}%" if search else "%%"
+    total_count = await conn.fetchval(
+        "SELECT COUNT(*) FROM users WHERE (user_id::text ILIKE $1 OR username ILIKE $1 OR first_name ILIKE $1 OR last_name ILIKE $1)",
+        search_pattern
+    )
     query = """
         SELECT user_id, username, first_name, last_name,
-               registered_at, last_active, subscription_until, trial_until,
-               total_voice_seconds_month
+               registered_at, last_active, subscription_until,
+               total_voice_seconds_month,
+               COALESCE(speaking_seconds_month, 0) + COALESCE(roleplay_seconds_month, 0) as voice_minutes
         FROM users
         WHERE (user_id::text ILIKE $1 OR username ILIKE $1 OR first_name ILIKE $1 OR last_name ILIKE $1)
         ORDER BY user_id DESC
-        LIMIT 100
+        LIMIT $2 OFFSET $3
     """
-    search_pattern = f"%{search}%" if search else "%%"
-    rows = await conn.fetch(query, search_pattern)
+    rows = await conn.fetch(query, search_pattern, limit, offset)
     await conn.close()
+
     users = []
     for row in rows:
-        last_active_str = datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M") if row["last_active"] else "—"
         users.append({
             "user_id": row["user_id"],
             "username": row["username"],
             "first_name": row["first_name"],
             "last_name": row["last_name"],
             "registered_at": datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
-            "last_active": last_active_str,
+            "last_active": datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M") if row["last_active"] else "—",
             "subscription_until": datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "—",
-            "trial_until": datetime.fromtimestamp(row["trial_until"]).strftime("%Y-%m-%d") if row["trial_until"] else "—",
-            "voice_minutes": round(row["total_voice_seconds_month"] / 60, 1) if row["total_voice_seconds_month"] else 0,
+            "voice_minutes": round(row["voice_minutes"] / 60, 1) if row["voice_minutes"] else 0,
             "is_subscribed": row["subscription_until"] > int(datetime.now().timestamp()) if row["subscription_until"] else False,
-            "is_trial": row["trial_until"] > int(datetime.now().timestamp()) if row["trial_until"] else False,
         })
-    return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
+    total_pages = (total_count + limit - 1) // limit if total_count else 1
+    return templates.TemplateResponse("users.html", {
+        "request": request,
+        "users": users,
+        "search": search,
+        "page": page,
+        "limit": limit,
+        "total_pages": total_pages,
+        "total_count": total_count
+    })
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (БЕЗ БЛОКИРОВКИ) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -479,7 +614,6 @@ async def user_detail(request: Request, user_id: int):
         else:
             user[field] = "—"
 
-    # Подготавливаем данные прогресса, преобразуя уровни через LEVEL_DISPLAY
     progress_data = {}
     for r in progress_rows:
         key = r["type_key"]
@@ -494,7 +628,6 @@ async def user_detail(request: Request, user_id: int):
         progress_data[key][display_level]["correct"] += correct
         progress_data[key][display_level]["wrong"] += wrong
 
-    # ---- ГРАММАТИКА (8 подтипов × 3 уровня) ----
     grammar_items = []
     for raw_key, display_name in GRAMMAR_TYPES.items():
         db_key = f"grammar_{raw_key}"
@@ -514,7 +647,6 @@ async def user_detail(request: Request, user_id: int):
                 "percent": percent
             })
 
-    # ---- ЛЕКСИКА (без уровней) ----
     lexis_items = []
     for raw_key, display_name in LEXIS_TYPES.items():
         db_key = f"words_{raw_key}"
@@ -534,7 +666,6 @@ async def user_detail(request: Request, user_id: int):
             "percent": percent
         })
 
-    # ---- ЧТЕНИЕ (4 подтипа × 3 уровня) ----
     reading_items = []
     for raw_key, display_name in READING_TYPES.items():
         db_key = raw_key
@@ -554,7 +685,6 @@ async def user_detail(request: Request, user_id: int):
                 "percent": percent
             })
 
-    # ---- АУДИРОВАНИЕ (6 подтипов × 3 уровня) ----
     listening_items = []
     for raw_key, display_name in LISTENING_TYPES.items():
         db_key = f"listening_{raw_key}"
@@ -574,7 +704,6 @@ async def user_detail(request: Request, user_id: int):
                 "percent": percent
             })
 
-    # ---- ПИСЬМО ----
     writing_items = []
     for r in writing_rows:
         level_display = LEVEL_DISPLAY.get(r["level_key"], r["level_key"])
@@ -590,7 +719,6 @@ async def user_detail(request: Request, user_id: int):
         })
     writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-    # ---- ГОВОРЕНИЕ ----
     govorenie_items = []
     for r in govorenie_rows:
         level_display = LEVEL_DISPLAY.get(r["level"], r["level"])
@@ -682,8 +810,6 @@ async def clear_all_user_data(user_id: int):
     await conn.execute("DELETE FROM income WHERE user_id = $1", user_id)
     await conn.close()
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
-
-# ---- КНОПКИ БЛОКИРОВКИ УДАЛЕНЫ ----
 
 @app.post("/extend_all")
 async def extend_all_subscriptions(days: int = Form(...)):
@@ -1022,6 +1148,16 @@ async def set_render_date(request: Request, date: str = Form(...), amount: str =
         ts = 0
     await set_render_payment(ts, amount)
     return RedirectResponse(url="/monitoring", status_code=303)
+
+# ---------- ЭКСПОРТ ----------
+@app.get("/export/users")
+async def export_users():
+    csv_data = await export_users_csv()
+    return StreamingResponse(
+        iter([csv_data]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=users.csv"}
+    )
 
 # ---------- ЗАПУСК ----------
 @app.on_event("startup")

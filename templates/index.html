@@ -2,6 +2,19 @@
 
 {% block content %}
 <h2>Общая статистика</h2>
+
+<!-- Предупреждения -->
+{% if warnings %}
+    <div class="warning-banner">
+        <strong>⚠️ Внимание:</strong>
+        <ul class="mb-0">
+        {% for warn in warnings %}
+            <li>{{ warn }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
 <div class="row mt-4">
     <div class="col-md-4 mb-3">
         <div class="card">

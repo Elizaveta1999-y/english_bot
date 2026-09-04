@@ -2,17 +2,24 @@
 
 {% block content %}
 <h2>Пользователи</h2>
-<form method="get" class="row g-3 mb-3">
-    <div class="col-auto">
-        <input type="text" name="search" class="form-control" placeholder="Поиск по ID, имени, username" value="{{ search }}">
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <form method="get" class="row g-3">
+        <div class="col-auto">
+            <input type="text" name="search" class="form-control" placeholder="Поиск по ID, имени, username" value="{{ search }}">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" type="submit">Найти</button>
+        </div>
+        <div class="col-auto">
+            <a href="/users" class="btn btn-secondary">Сбросить</a>
+        </div>
+    </form>
+    <div>
+        <a href="/export/users" class="btn btn-success">📥 Экспорт CSV</a>
     </div>
-    <div class="col-auto">
-        <button class="btn btn-primary" type="submit">Найти</button>
-    </div>
-    <div class="col-auto">
-        <a href="/users" class="btn btn-secondary">Сбросить</a>
-    </div>
-</form>
+</div>
+
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead>
@@ -31,7 +38,7 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.user_id }}</td>
-                <td>{{ user.first_name }} {{ user.last_name or '' }}</td>
+                <td>{{ user.first_name or '' }} {{ user.last_name or '' }}</td>
                 <td>{{ user.username or '—' }}</td>
                 <td>{{ user.registered_at }}</td>
                 <td>{{ user.last_active }}</td>
@@ -45,4 +52,25 @@
         </tbody>
     </table>
 </div>
+
+<!-- Пагинация -->
+{% if total_pages > 1 %}
+<nav>
+    <ul class="pagination">
+        <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+            <a class="page-link" href="?page={{ page-1 }}&search={{ search }}&limit={{ limit }}">Назад</a>
+        </li>
+        {% for p in range(1, total_pages+1) %}
+            <li class="page-item {% if p == page %}active{% endif %}">
+                <a class="page-link" href="?page={{ p }}&search={{ search }}&limit={{ limit }}">{{ p }}</a>
+            </li>
+        {% endfor %}
+        <li class="page-item {% if page >= total_pages %}disabled{% endif %}">
+            <a class="page-link" href="?page={{ page+1 }}&search={{ search }}&limit={{ limit }}">Вперёд</a>
+        </li>
+    </ul>
+</nav>
+{% endif %}
+
+<p class="text-muted">Всего: {{ total_count }} пользователей, показано {{ users|length }}</p>
 {% endblock %}
