@@ -1,10 +1,14 @@
-from aiogram import Router, F
+import logging
+from aiogram import Router
+from aiogram.filters import Command
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
+logger = logging.getLogger(__name__)
 router = Router()
 
-@router.message(F.text == "/support")
+@router.message(Command("support"))
 async def support_start(message: Message):
+    logger.info(f"✅ support_start вызван для {message.from_user.id}")
     user_id = message.from_user.id
     text = (
         "Вам нужна помощь или имеются вопросы?\n"

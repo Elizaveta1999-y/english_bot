@@ -1,16 +1,14 @@
+import logging
 from aiogram import Router, F
+from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import datetime, timedelta
-import logging
 
 from utils.db import get_user_profile, update_user_subscription
 
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ============================================================
-# ТЕКСТ ДЛЯ НЕАКТИВНОЙ ПОДПИСКИ (ПРЕДЛОЖЕНИЕ)
-# ============================================================
 PREMIUM_OFFER_TEXT = (
     "💎 <b>Premium подписка</b>\n\n"
     "Откройте все возможности AI English US для изучения английского.\n\n"
@@ -49,9 +47,6 @@ def get_active_keyboard(from_profile: bool = False):
         ])
     return None
 
-# ============================================================
-# УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ПОКАЗА СТАТУСА ПОДПИСКИ
-# ============================================================
 async def show_subscription(target, user_id: int, from_profile: bool = False, edit: bool = False):
     profile = await get_user_profile(user_id)
     if not profile:
@@ -86,16 +81,11 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
         else:
             await target.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-# ============================================================
-# ОБРАБОТЧИК КОМАНДЫ /subscription (без кнопки "Назад")
-# ============================================================
-@router.message(F.text == "/subscription")
+@router.message(Command("subscription"))
 async def subscription_command(message: Message):
+    logger.info(f"✅ subscription_command вызван для {message.from_user.id}")
     await show_subscription(message, message.from_user.id, from_profile=False, edit=False)
 
-# ============================================================
-# ОБРАБОТЧИК КНОПКИ ОПЛАТЫ
-# ============================================================
 @router.callback_query(F.data == "subscribe_30_days")
 async def handle_subscribe_30_days(callback: CallbackQuery):
     try:
@@ -116,9 +106,7 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
         await show_subscription(callback, user_id, from_profile=True, edit=True)
         return
 
-    new_sub_end = int((datetime.now() + timedelta(days=30)).timestamp())
-    # await update_user_subscription(user_id, new_sub_end)
-
+    # Здесь будет настоящая оплата
     logger.info(f"Пользователь {user_id} оформил подписку на 30 дней (тестовый режим)")
 
     await callback.message.edit_text(
@@ -129,9 +117,6 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
         parse_mode="HTML"
     )
 
-# ============================================================
-# НАЗАД В ПРОФИЛЬ / СТАТИСТИКУ
-# ============================================================
 @router.callback_query(F.data == "back_to_profile")
 async def back_to_profile_from_subscription(callback: CallbackQuery):
     try:
