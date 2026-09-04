@@ -9,12 +9,12 @@ from handlers.subscription import router as subscription_router
 from handlers.reading import router as reading_router
 from handlers.grammar import router as grammar_router
 from handlers.govorenie import router as govorenie_router
-from handlers.agreement import router as agreement_router   # <-- НОВЫЙ ИМПОРТ
+from handlers.agreement import router as agreement_router   # импорт
 from utils.db import init_db
 from middleware.speaking_override import SpeakingOverrideMiddleware
 
 logging.basicConfig(
-    level=logging.ERROR,
+    level=logging.INFO,   # Временно повысим до INFO, чтобы видеть все логи
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
@@ -37,6 +37,10 @@ dp.callback_query.middleware(SpeakingOverrideMiddleware())
 logger.info("✅ SpeakingOverrideMiddleware зарегистрирован (единственный)")
 
 # ========== ПОДКЛЮЧАЕМ РОУТЕРЫ ==========
+# ПЕРВЫМ СТАВИМ agreement, чтобы он перехватывал команду до всех остальных
+dp.include_router(agreement_router)
+logger.info("✅ agreement_router подключён первым")
+
 dp.include_router(start.router)
 dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
@@ -53,34 +57,39 @@ dp.include_router(voice.router)
 dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(profile.router)
-dp.include_router(agreement_router)          # <-- НОВАЯ СТРОКА
 
 # ========== КОМАНДЫ И ЗАПУСК ==========
 async def set_commands(bot: Bot):
+    # Удаляем старые команды, чтобы точно обновить
+    await bot.delete_my_commands()
+    logger.info("Старые команды удалены")
+    
     commands = [
         BotCommand(command="start", description="Главное меню"),
         BotCommand(command="support", description="Обратная связь"),
         BotCommand(command="subscription", description="Моя подписка"),
-        BotCommand(command="agreement", description="Пользовательское соглашение"),   # <-- НОВАЯ СТРОКА
+        BotCommand(command="agreement", description="Пользовательское соглашение"),
     ]
     await bot.set_my_commands(commands)
-    logger.info("Commands set")
+    logger.info("✅ Команды установлены")
 
 async def on_startup():
+    logger.info("🚀 Запуск on_startup")
     await init_db()
-    logger.info("Database initialized")
+    logger.info("База данных инициализирована")
     
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
     if not external_url:
         external_url = "https://english-bot-of29.onrender.com"
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
-    logger.info(f"Webhook set to {webhook_url}")
+    logger.info(f"Вебхук установлен на {webhook_url}")
     
     webhook_info = await bot.get_webhook_info()
-    logger.info(f"Webhook info: {webhook_info}")
+    logger.info(f"Инфо о вебхуке: {webhook_info}")
     
     await set_commands(bot)
+    logger.info("✅ on_startup завершён")
 
 dp.startup.register(on_startup)
 
@@ -97,5 +106,5 @@ setup_application(app, dp, bot=bot)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 10000))
-    logger.info(f"Starting server on port {port}")
+    logger.info(f"Запуск сервера на порту {port}")
     web.run_app(app, host='0.0.0.0', port=port)
