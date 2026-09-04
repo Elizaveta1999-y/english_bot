@@ -215,7 +215,7 @@ def extract_instruction_and_task(question: str) -> tuple:
         task_text = question
     return instruction, task_text
 
-# ---------- Функции для работы со случайным порядком (С ХЕШЕМ, ПЕРЕЗАПИСЬ) ----------
+# ---------- Функции для работы со случайным порядком (С ХЕШЕМ) ----------
 async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
     logger.info(f"[ORDER] Получение порядка для {user_id}, тип {short_type}")
@@ -258,13 +258,12 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
 
     if need_recreate:
         logger.info(f"Причины пересоздания для {short_type}: {', '.join(reasons)}")
-        # Прямая перезапись (без DELETE) – set_random_order и set_order_hash используют UPSERT
         indices = list(range(len(tasks)))
         random.shuffle(indices)
         await set_random_order(user_id, type_key, indices)
         await set_order_hash(user_id, type_key, current_hash)
         await reset_grammar_index(user_id, type_key, "all")
-        logger.info(f"[ORDER] Новый порядок сохранён (перезаписан), хеш обновлён, индекс сброшен")
+        logger.info(f"[ORDER] Новый порядок сохранён, хеш обновлён, индекс сброшен")
         return indices
     else:
         if isinstance(order, str):
@@ -357,6 +356,9 @@ async def send_or_update_task(
     is_revision: bool = False,
     msg_id: int = None
 ) -> int:
+    """
+    Отправляет задание. Для to_be_выбор и всех остальных – парсится вторая строка.
+    """
     logger.info(f"[TASK] user={user_id}, type={short_type}, revision={is_revision}, msg_id={msg_id}")
     tasks = get_tasks(short_type)
     if task_id is not None:
@@ -428,6 +430,7 @@ async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False,
 
 # ---------- Функция завершения грамматики ----------
 async def finish_grammar(message: Message, state: FSMContext, bot: Bot):
+    """Завершает текущую сессию грамматики: убирает кнопки, сбрасывает состояние."""
     try:
         data = await state.get_data()
         for msg_id_key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
@@ -1096,7 +1099,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.update_data(revision_msg_id=new_rev_msg_id)
             logger.info(f"[TEXT] Показ следующего ошибочного задания, id={next_error_id}")
 
-# ---------- Показать ответ ----------
+# ---------- Показать ответ (ИСПРАВЛЕННЫЙ) ----------
 @router.callback_query(GrammarStates.in_progress, F.data.startswith("grammar_show_answer:"))
 @router.callback_query(GrammarStates.waiting_for_text, F.data.startswith("grammar_show_answer:"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
@@ -1118,14 +1121,18 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     data = await state.get_data()
     tasks = get_tasks(short_type)
-    if is_revision:
-        task_id = data.get("current_task_id")
+    
+    # ===== ИСПРАВЛЕНИЕ: ВСЕГДА ИСПОЛЬЗУЕМ current_task_id ИЗ СОСТОЯНИЯ =====
+    task_id = data.get("current_task_id")
+    if task_id is not None:
         task = next((t for t in tasks if t.get("id") == task_id), None)
         if not task:
             logger.error(f"[show_answer] Задание с id {task_id} не найдено")
             await callback.answer("Задание не найдено")
             return
     else:
+        # fallback: если нет current_task_id (маловероятно), вычисляем по индексу
+        logger.warning(f"[show_answer] current_task_id отсутствует, использую индекс {index}")
         order = await get_or_create_order(user_id, short_type)
         if index >= len(order):
             logger.error(f"[show_answer] Ошибка порядка, order={order}, index={index}")
@@ -1138,11 +1145,33 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer("Задание не найдено")
             return
 
+    # ===== ЛОГИРУЕМ, ЧТО ПОКАЗЫВАЕМ =====
+    logger.info(f"[show_answer] Показываем ответ для задания id={task.get('id')}, тип {short_type}, revision={is_revision}")
+
     correct_answer = task.get("correct")
-    if isinstance(correct_answer, list):
-        correct_text = " или ".join(correct_answer)
+    # Для текстовых заданий выводим как есть
+    if task.get("input_type") == "text":
+        if isinstance(correct_answer, list):
+            correct_text = " или ".join(correct_answer)
+        else:
+            correct_text = str(correct_answer)
     else:
-        correct_text = str(correct_answer)
+        # Для кнопочных заданий correct – это индекс
+        if isinstance(correct_answer, int):
+            options = task.get("options", [])
+            if 0 <= correct_answer < len(options):
+                correct_text = options[correct_answer]
+            else:
+                correct_text = str(correct_answer)
+        elif isinstance(correct_answer, list):
+            # Если correct – список индексов (например, для order)
+            options = task.get("options", [])
+            try:
+                correct_text = " -> ".join(str(options[i]) if i < len(options) else str(i) for i in correct_answer)
+            except:
+                correct_text = " -> ".join(str(i) for i in correct_answer)
+        else:
+            correct_text = str(correct_answer)
 
     msg_text = f"Правильный ответ: {correct_text}"
     explanation = task.get("explanation")
@@ -1206,6 +1235,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await state.update_data(revision_msg_id=new_rev_msg_id)
             logger.info(f"[show_answer] Показ следующего ошибочного задания, id={next_error_id}")
     else:
+        # Обычный режим: переходим к следующему заданию
         order = await get_or_create_order(user_id, short_type)
         next_index = index + 1
         if next_index >= len(order):
