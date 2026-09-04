@@ -232,9 +232,7 @@ async def send_task(message, state, is_revision=False, task_type=None, level=Non
             return
 
         order_key = get_order_key(task_type, level)
-        # ======== ВСЕГДА ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
         shuffled_order = await get_random_order(user_id, order_key)
-        # ================================================
         
         if shuffled_order is None:
             content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
@@ -259,8 +257,6 @@ async def send_task(message, state, is_revision=False, task_type=None, level=Non
                     await set_order_hash(user_id, order_key, current_hash)
             
             shuffled_order = ensure_list_of_ints(shuffled_order)
-            # ======== НЕ СОХРАНЯЕМ В STATE ========
-            # ========================================
 
         if not isinstance(shuffled_order, list) or not shuffled_order:
             logger.warning(f"Некорректный shuffled_order для {order_key}: {shuffled_order}, пересоздаём")
@@ -440,9 +436,7 @@ async def go_to_next_task(message, state, user_id=None):
     task_type = data["task_type"]
     level = data["level"]
     order_key = get_order_key(task_type, level)
-    # ======== ВСЕГДА ПОЛУЧАЕМ ПОРЯДОК ИЗ БД ========
     shuffled_order = await get_random_order(user_id, order_key)
-    # ================================================
     if shuffled_order is None:
         tasks = get_tasks_by_type_and_level(task_type, level)
         order = list(range(len(tasks)))
@@ -625,7 +619,6 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         shuffled_order = order
         await set_random_order(user_id, order_key, shuffled_order)
 
-    # ======== НЕ СОХРАНЯЕМ shuffled_order В STATE ========
     await state.update_data({
         "task_type": task_type,
         "level": level,
@@ -639,13 +632,13 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         "progress_message_id": None,
         "is_revision": False,
         "user_id": user_id,
-        # "shuffled_order": shuffled_order  -- УБРАНО
     })
 
     await update_progress_message(callback.message, state, user_id=user_id)
     await send_task(callback.message, state, user_id=user_id)
     await callback.answer()
 
+# ========== ИСПРАВЛЕННАЯ ФУНКЦИЯ start_revision ==========
 @router.callback_query(ListeningState.answering_task, F.data == "listening_revision")
 async def start_revision(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -667,17 +660,13 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
         return
 
     progress_msg_id = data.get("progress_message_id")
-    if progress_msg_id:
-        try:
-            await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=progress_msg_id, reply_markup=None)
-        except:
-            pass
     question_msg_id = data.get("question_message_id")
     if question_msg_id:
         try:
             await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=question_msg_id, reply_markup=None)
         except:
             pass
+        await state.update_data({"question_message_id": None})
 
     level_label = LEVELS.get(level, level)
     info_text = (
@@ -686,16 +675,38 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
         f"Уровень: {level_label}\n\n"
         f"Заданий на исправление: {len(error_ids)}"
     )
-    info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
-    add_user_message(user_id, info_msg.message_id)
-    await state.update_data({"revision_info_msg_id": info_msg.message_id})
+
+    # Редактируем существующее сообщение прогресса
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_text(
+                chat_id=chat_id,
+                message_id=progress_msg_id,
+                text=info_text,
+                reply_markup=get_revision_info_keyboard(),
+                parse_mode="HTML"
+            )
+            # Обновляем состояние: сохраняем тот же id для прогресса
+            await state.update_data({"progress_message_id": progress_msg_id})
+        except Exception as e:
+            logger.error(f"Ошибка редактирования прогресса при ревизии: {e}")
+            # Если редактирование не удалось, создаём новое (запасной вариант)
+            info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
+            add_user_message(user_id, info_msg.message_id)
+            await state.update_data({"progress_message_id": info_msg.message_id})
+    else:
+        # Если нет сообщения прогресса (маловероятно), создаём новое
+        info_msg = await callback.message.answer(info_text, reply_markup=get_revision_info_keyboard())
+        add_user_message(user_id, info_msg.message_id)
+        await state.update_data({"progress_message_id": info_msg.message_id})
 
     await state.set_state(ListeningState.revision_mode)
     await state.update_data({
         "revision_error_ids": error_ids,
         "revision_index": 0,
         "revision_fixed": 0,
-        "revision_total": len(error_ids)
+        "revision_total": len(error_ids),
+        "revision_info_msg_id": progress_msg_id  # теперь это id сообщения прогресса
     })
 
     await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids, user_id=user_id)
@@ -1157,8 +1168,6 @@ async def confirm_reset_progress(callback: CallbackQuery, state: FSMContext):
     content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
     new_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
     await set_order_hash(user_id, order_key, new_hash)
-    # ======== НЕ СОХРАНЯЕМ В STATE ========
-    # ========================================
 
     if progress_msg_id:
         try:
