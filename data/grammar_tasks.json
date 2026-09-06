@@ -5296,13 +5296,13 @@
       "explanation": "Future Simple Passive → will be processed.",
       "input_type": "text"
     },
-    {
-      "id": 756,
-      "question": "Вставьте правильную форму глагола to be (am/is/are).\nThe headquarters of the company ___ located in New York.",
-      "correct": "are",
-      "explanation": "Headquarters — множественное? В английском может быть единственным, но часто используется как множественное. Я выберу are, хотя допустимо is. В некоторых источниках — множественное.",
-      "input_type": "text"
-    },
+{
+  "id": 756,
+  "question": "Вставьте правильную форму глагола to be (am/is/are).\nThe headquarters of the company ___ located in New York.",
+  "correct": "are",
+  "explanation": "Headquarters в современном английском обычно используется с глаголом во множественном числе, поэтому правильный ответ — are.",
+  "input_type": "text"
+},
     {
       "id": 757,
       "question": "Вставьте правильную форму глагола to be (was/were).\nThe guests ___ all wearing formal clothes at the wedding.",
@@ -5734,7 +5734,7 @@
       "id": 818,
       "question": "Вставьте правильную форму глагола to be (am/is/are).\nThe audience ___ applauding enthusiastically after the performance.",
       "correct": "is",
-      "explanation": "Audience как единое целое → is (можно are, но я выбираю is).",
+      "explanation": "Audience как единое целое → is.",
       "input_type": "text"
     },
     {
@@ -6028,7 +6028,7 @@
       "id": 860,
       "question": "Вставьте правильную форму глагола to be (am/is/are).\nThe audience ___ all listening attentively.",
       "correct": "is",
-      "explanation": "Audience как единое целое → is (можно are, но я выбираю is).",
+      "explanation": "Audience как единое целое → is.",
       "input_type": "text"
     },
     {
@@ -6175,7 +6175,7 @@
       "id": 881,
       "question": "Вставьте правильную форму глагола to be (am/is/are).\nThe committee ___ divided on the issue of funding.",
       "correct": "is",
-      "explanation": "Committee как единое целое → is (можно are, но я выбираю is).",
+      "explanation": "Committee как единое целое → is.",
       "input_type": "text"
     },
     {
@@ -6238,7 +6238,7 @@
       "id": 890,
       "question": "Вставьте правильную форму глагола to be (am/is/are).\nThe audience ___ seated in the theatre now.",
       "correct": "is",
-      "explanation": "Audience как единое целое → is (можно are, но я выбираю is).",
+      "explanation": "Audience как единое целое → is.",
       "input_type": "text"
     },
     {
@@ -7334,26 +7334,13 @@
       "explanation": "Past Simple, 1-е лицо ед.ч. → только was (when you called).",
       "input_type": "text"
     },
-    {
-      "id": 1002,
-      "question": "They ______ already left by the time we arrived.",
-      "correct": [
-        "had"
-      ],
-      "explanation": "Past Perfect (had been? но здесь нужно было вставить 'had'? В этом задании нужно вставить форму to be, а не had. Ошибка. Я переделаю.",
-      "input_type": "text"
-    },
-    {
-      "id": 1002,
-      "question": "The report ______ finished by the end of the day.",
-      "correct": [
-        "will be",
-        "is",
-        "was"
-      ],
-      "explanation": "Возможны Future (will be), Present (is) или Past (was) в пассиве.",
-      "input_type": "text"
-    },
+{
+  "id": 1002,
+  "question": "The children ______ playing in the garden when it started to rain.",
+  "correct": ["were"],
+  "explanation": "Past Continuous, множественное число (children) → were.",
+  "input_type": "text"
+},
     {
       "id": 1003,
       "question": "______ you at the party last night?",
@@ -7830,15 +7817,6 @@
         "was"
       ],
       "explanation": "Past Simple, 3-е лицо ед.ч. → only was (everyone enjoyed).",
-      "input_type": "text"
-    },
-    {
-      "id": 1052,
-      "question": "They ______ already gone when I arrived.",
-      "correct": [
-        "had"
-      ],
-      "explanation": "Здесь нужно 'had been'? Но это не форма to be, а had. Ошибка. Переделаю.",
       "input_type": "text"
     },
     {

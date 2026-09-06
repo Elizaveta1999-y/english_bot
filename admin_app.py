@@ -81,6 +81,7 @@ LEVEL_DISPLAY = {
     "beginner": "Новичок",
     "intermediate": "Любитель",
     "expert": "Эксперт",
+    "advanced": "Эксперт",  # для говорения
     "Новичок": "Новичок",
     "Любитель": "Любитель",
     "Эксперт": "Эксперт"
@@ -635,7 +636,7 @@ async def user_detail(request: Request, user_id: int):
             progress_data[key][display_level]["correct"] += correct
             progress_data[key][display_level]["wrong"] += wrong
 
-        # ===== ГРАММАТИКА (без уровней, всё в кучу) =====
+        # ===== ГРАММАТИКА (без уровней) =====
         grammar_items = []
         for raw_key, display_name in GRAMMAR_TYPES.items():
             db_key = f"grammar_{raw_key}"
@@ -679,7 +680,7 @@ async def user_detail(request: Request, user_id: int):
                 "errors": errors
             })
 
-        # ===== ЧТЕНИЕ (с уровнями и цветами) =====
+        # ===== ЧТЕНИЕ (с уровнями) =====
         reading_items = []
         for raw_key, display_name in READING_TYPES.items():
             db_key = raw_key
@@ -699,7 +700,7 @@ async def user_detail(request: Request, user_id: int):
                     "percent": percent
                 })
 
-        # ===== АУДИРОВАНИЕ (с уровнями и цветами) =====
+        # ===== АУДИРОВАНИЕ (с уровнями) =====
         listening_items = []
         for raw_key, display_name in LISTENING_TYPES.items():
             db_key = f"listening_{raw_key}"
@@ -719,36 +720,73 @@ async def user_detail(request: Request, user_id: int):
                     "percent": percent
                 })
 
-        # ===== ПИСЬМО =====
+        # ===== ПИСЬМО (все типы всегда) =====
         writing_items = []
+        writing_type_names = {
+            "email": "📧 Email",
+            "essay": "📝 Эссе",
+            "post": "📱 Пост",
+            "story": "📖 История"
+        }
+        writing_data = {}
         for r in writing_rows:
-            level_display = LEVEL_DISPLAY.get(r["level_key"], r["level_key"])
-            answered = r["total_answered"]
-            score = r["total_score"]
-            avg = round(score / answered, 1) if answered else 0
-            writing_items.append({
-                "subtype": r["type_key"],
-                "level": level_display,
-                "answered": answered,
-                "score": score,
-                "avg": avg
-            })
+            key = r["type_key"]
+            level = r["level_key"]
+            if key not in writing_data:
+                writing_data[key] = {}
+            writing_data[key][level] = {
+                "answered": r["total_answered"],
+                "score": r["total_score"]
+            }
+        for type_key, display_name in writing_type_names.items():
+            levels = writing_data.get(type_key, {})
+            for level in ["beginner", "intermediate", "expert"]:
+                level_display = LEVEL_DISPLAY.get(level, level)
+                data = levels.get(level, {"answered": 0, "score": 0})
+                answered = data["answered"]
+                score = data["score"]
+                avg = round(score / answered, 1) if answered else 0
+                writing_items.append({
+                    "subtype": display_name,
+                    "level": level_display,
+                    "answered": answered,
+                    "score": score,
+                    "avg": avg
+                })
         writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-        # ===== ГОВОРЕНИЕ =====
+        # ===== ГОВОРЕНИЕ (все типы всегда) =====
         govorenie_items = []
+        govorenie_type_names = {
+            "reading": "📖 Чтение вслух",
+            "fluency": "⏱ Беглость",
+            "interview": "🎤 Интервью"
+        }
+        govorenie_data = {}
         for r in govorenie_rows:
-            level_display = LEVEL_DISPLAY.get(r["level"], r["level"])
-            answered = r["total_answered"]
-            score = r["total_score"]
-            avg = round(score / answered, 1) if answered else 0
-            govorenie_items.append({
-                "subtype": r["task_type"],
-                "level": level_display,
-                "answered": answered,
-                "score": score,
-                "avg": avg
-            })
+            key = r["task_type"]
+            level = r["level"]
+            if key not in govorenie_data:
+                govorenie_data[key] = {}
+            govorenie_data[key][level] = {
+                "answered": r["total_answered"],
+                "score": r["total_score"]
+            }
+        for type_key, display_name in govorenie_type_names.items():
+            levels = govorenie_data.get(type_key, {})
+            for level in ["beginner", "intermediate", "advanced"]:
+                level_display = LEVEL_DISPLAY.get(level, level)
+                data = levels.get(level, {"answered": 0, "score": 0})
+                answered = data["answered"]
+                score = data["score"]
+                avg = round(score / answered, 1) if answered else 0
+                govorenie_items.append({
+                    "subtype": display_name,
+                    "level": level_display,
+                    "answered": answered,
+                    "score": score,
+                    "avg": avg
+                })
         govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
         speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
@@ -770,7 +808,7 @@ async def user_detail(request: Request, user_id: int):
         logger.error(f"Ошибка в user_detail для {user_id}: {e}", exc_info=True)
         return HTMLResponse(f"<h1>Ошибка</h1><pre>{e}</pre>", status_code=500)
 
-# ---- ОТЛАДОЧНЫЙ ЭНДПОИНТ ----
+# ---- ОСТАЛЬНЫЕ ЭНДПОИНТЫ (без изменений) ----
 @app.get("/debug-progress/{user_id}")
 async def debug_progress(user_id: int):
     conn = await get_db()
@@ -778,7 +816,6 @@ async def debug_progress(user_id: int):
     await conn.close()
     return {"user_id": user_id, "progress": [dict(r) for r in rows]}
 
-# ---- УПРАВЛЕНИЕ ПОДПИСКАМИ ----
 @app.post("/user/{user_id}/extend")
 async def extend_subscription(user_id: int, days: int = Form(...), reason: str = Form("")):
     conn = await get_db()
@@ -851,7 +888,6 @@ async def extend_all_subscriptions(days: int = Form(...)):
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
-# ---- УПРАВЛЕНИЕ БОТОМ ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)
