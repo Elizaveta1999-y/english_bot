@@ -65,13 +65,14 @@ CATEGORY_VOICE_MAP = {
     "realestate": WOMAN_VOICE_ID,
     "entertainment": MAN_VOICE_ID,
     "nature": WOMAN_VOICE_ID,
-    "psychology": MAN_VOICE_ID,
+    "psychology": WOMAN_VOICE_ID,
     "emergency": WOMAN_VOICE_ID,
     "cooking": MAN_VOICE_ID,
     "fashion": WOMAN_VOICE_ID,
     "news": MAN_VOICE_ID
 }
 
+# ========== УДАЛЕН ОГРОМНЫЙ СЛОВАРЬ TOPICS ==========
 TOPICS = {
     "work": [
         {
@@ -1469,6 +1470,7 @@ TOPICS = {
         }
     ]
 }
+# ---------- Клавиатуры ----------
 def get_categories_keyboard():
     buttons = []
     for i in range(0, len(CATEGORIES), 2):
@@ -1541,7 +1543,6 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list,
         prompt += f"{m['role']}: {m['content']}\n"
     try:
         response = chat(prompt, max_tokens=max_tokens, temperature=0.7)
-        # Убираем ведущее двоеточие, если оно есть
         if response.startswith(':'):
             response = response[1:].strip()
         return response
@@ -1579,6 +1580,7 @@ async def remove_roleplay_keyboard(user_id: int, bot):
         return True
     return False
 
+# ---------- Обработчики ----------
 @router.callback_query(F.data == "roleplay_goal_finish")
 async def goal_finish(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -1866,7 +1868,6 @@ async def finish_roleplay(message: Message, state: FSMContext):
             goals_achieved = False
 
         if not goals_achieved:
-            # ===== ИСПРАВЛЕННОЕ СООБЩЕНИЕ И КНОПКИ =====
             await remove_roleplay_keyboard(user_id, message.bot)
             await message.answer(
                 "Вы ещё не достигли всех целей в этой ситуации.",
@@ -1890,7 +1891,6 @@ async def continue_dialogue(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     await state.set_state(RoleplayStates.active)
     await callback.message.delete()
-    # Возвращаем Reply-клавиатуру
     reply_keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],

@@ -1,10 +1,11 @@
 import logging
 from aiogram import Router, F
 from aiogram.filters import Command
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardRemove
+from aiogram.fsm.context import FSMContext
 from datetime import datetime, timedelta
-
 from utils.db import get_user_profile, update_user_subscription
+from data.users import get_user_state, set_user_state
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -82,8 +83,19 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
             await target.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
 @router.message(Command("subscription"))
-async def subscription_command(message: Message):
+async def subscription_command(message: Message, state: FSMContext):
     logger.info(f"✅ subscription_command вызван для {message.from_user.id}")
+
+    # --- ОЧИСТКА АКТИВНОГО РЕЖИМА ---
+    current_state = await state.get_state()
+    if current_state:
+        await state.clear()
+        user_state = get_user_state(message.from_user.id)
+        user_state["mode"] = ""
+        set_user_state(message.from_user.id, user_state)
+        await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+
+    # --- ОСНОВНАЯ ЛОГИКА ---
     await show_subscription(message, message.from_user.id, from_profile=False, edit=False)
 
 @router.callback_query(F.data == "subscribe_30_days")
@@ -106,7 +118,6 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
         await show_subscription(callback, user_id, from_profile=True, edit=True)
         return
 
-    # Здесь будет настоящая оплата
     logger.info(f"Пользователь {user_id} оформил подписку на 30 дней (тестовый режим)")
 
     await callback.message.edit_text(
