@@ -10,6 +10,9 @@ from handlers.words import cleanup_practice
 from handlers.listening import clear_user_buttons
 import asyncio
 
+# Импортируем состояния ролевой игры для проверки
+from handlers.roleplay import RoleplayStates
+
 from handlers.speaking import start_speaking
 from handlers.reading import start_reading
 from handlers.words import start_words
@@ -297,3 +300,18 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
         set_user_state(user_id, user_state)
     await state.clear()
     await start_roleplay(callback)
+
+
+# ====================== КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ ======================
+# Обработчик для текста "🏠 Главное меню" – не даёт перехватывать сообщение,
+# если активна ролевая игра (чтобы roleplay.py мог корректно завершить диалог)
+@router.message(F.text == "🏠 Главное меню")
+async def main_menu_text_handler(message: Message, state: FSMContext):
+    current_state = await state.get_state()
+    # Если активна ролевая игра – ничего не делаем, пропускаем в roleplay
+    if current_state in (RoleplayStates.active.state, RoleplayStates.confirming_finish.state):
+        return
+    # Иначе показываем главное меню (здесь можно вызвать show_main_menu, но обычно это делает другой обработчик)
+    # Чтобы не дублировать, можно просто вернуть управление, и другой обработчик (в common.py) покажет меню.
+    # Однако для надёжности покажем меню здесь, если другого обработчика нет.
+    await show_main_menu(message, edit=False)
