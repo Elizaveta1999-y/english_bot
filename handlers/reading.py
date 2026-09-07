@@ -6,6 +6,7 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
+from aiogram.exceptions import TelegramBadRequest
 from data.reading_loader import get_task, TASKS
 from utils.db import (
     get_user_stats_db as get_user_stats,
@@ -373,7 +374,19 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
     
     # ===== ДАЛЬШЕ СТАНДАРТНАЯ ЛОГИКА ЧТЕНИЯ =====
     await clear_all_keyboards(callback.message, state)
-    await callback.message.edit_text("📖 Чтение\n\nВыберите режим:", reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
+    
+    # ===== ИСПРАВЛЕНИЕ: обрабатываем "message is not modified" =====
+    try:
+        await callback.message.edit_text(
+            "📖 Чтение\n\nВыберите режим:",
+            reply_markup=get_type_choice_keyboard(),
+            parse_mode="HTML"
+        )
+    except TelegramBadRequest as e:
+        if "message is not modified" in str(e):
+            pass  # игнорируем
+        else:
+            raise
     await callback.answer()
 
 @router.callback_query(F.data == "reading_back_to_main")
