@@ -72,7 +72,7 @@ CATEGORY_VOICE_MAP = {
     "news": MAN_VOICE_ID
 }
 
-# ========== УДАЛЕН ОГРОМНЫЙ СЛОВАРЬ TOPICS ==========
+# ========== БЕЗ СИТУАЦИЙ ==========
 TOPICS = {
     "work": [
         {
@@ -2036,11 +2036,6 @@ async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ========== ОБРАБОТЧИК ДЛЯ "ГЛАВНОЕ МЕНЮ" В СОСТОЯНИИ confirming_finish ==========
-@router.message(RoleplayStates.confirming_finish, F.text == "🏠 Главное меню")
-async def back_to_main_menu_from_confirmation(message: Message, state: FSMContext):
-    await back_to_main_menu_from_roleplay(message, state)
-
 # ========== ОБРАБОТЧИК ЛЮБЫХ КОМАНД В РЕЖИМЕ ==========
 @router.message(RoleplayStates.active, F.text.startswith('/'))
 @router.message(RoleplayStates.confirming_finish, F.text.startswith('/'))
@@ -2351,7 +2346,7 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
 # ================================================================
-# БЛОКИРОВКА СООБЩЕНИЙ В СОСТОЯНИИ confirming_finish (кроме "Главное меню" и команд)
+# БЛОКИРОВКА СООБЩЕНИЙ В СОСТОЯНИИ confirming_finish
 # ================================================================
 @router.message(RoleplayStates.confirming_finish, F.text)
 async def block_messages_during_confirmation(message: Message, state: FSMContext):
