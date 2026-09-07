@@ -2009,6 +2009,7 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
         logger.error(f"Ошибка show_main_menu: {e}")
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
+# ====================== ГЛАВНЫЙ ОБРАБОТЧИК ДЛЯ "ГЛАВНОЕ МЕНЮ" ======================
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
     logger.info("=== back_to_main_menu_from_roleplay ===")
@@ -2035,7 +2036,14 @@ async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
+# ========== ОБРАБОТЧИК ДЛЯ "ГЛАВНОЕ МЕНЮ" В СОСТОЯНИИ confirming_finish ==========
+@router.message(RoleplayStates.confirming_finish, F.text == "🏠 Главное меню")
+async def back_to_main_menu_from_confirmation(message: Message, state: FSMContext):
+    await back_to_main_menu_from_roleplay(message, state)
+
+# ========== ОБРАБОТЧИК ЛЮБЫХ КОМАНД В РЕЖИМЕ ==========
 @router.message(RoleplayStates.active, F.text.startswith('/'))
+@router.message(RoleplayStates.confirming_finish, F.text.startswith('/'))
 async def handle_commands_in_roleplay(message: Message, state: FSMContext):
     logger.info(f"=== handle_commands_in_roleplay: {message.text} ===")
     user_id = message.from_user.id
@@ -2064,6 +2072,7 @@ async def handle_commands_in_roleplay(message: Message, state: FSMContext):
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
+# ---------- Остальные обработчики ----------
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -2342,12 +2351,15 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
 # ================================================================
-# БЛОКИРОВКА СООБЩЕНИЙ В СОСТОЯНИИ confirming_finish
+# БЛОКИРОВКА СООБЩЕНИЙ В СОСТОЯНИИ confirming_finish (кроме "Главное меню" и команд)
 # ================================================================
 @router.message(RoleplayStates.confirming_finish, F.text)
 async def block_messages_during_confirmation(message: Message, state: FSMContext):
     if message.text.startswith('/'):
         await handle_commands_in_roleplay(message, state)
+        return
+    if message.text == "🏠 Главное меню":
+        await back_to_main_menu_from_roleplay(message, state)
         return
     await message.answer("Пожалуйста, выберите действие с помощью кнопок ниже.")
 
