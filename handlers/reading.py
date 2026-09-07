@@ -345,9 +345,33 @@ async def update_progress_message(message: Message, user_id: int, short_type: st
     await state.update_data(progress_msg_id=sent_msg.message_id)
     logger.debug(f"Отправлено новое сообщение прогресса msg_id={sent_msg.message_id}")
 
-# -------------------- Обработчики --------------------
+# -------------------- ОБРАБОТЧИКИ --------------------
+# ========== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК start_reading ==========
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery, state: FSMContext):
+    # ===== УДАЛЯЕМ КЛАВИАТУРУ РОЛЕВОЙ ИГРЫ (если активна) =====
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    
+    # Удаляем сообщение с Reply-клавиатурой ролевой игры
+    reply_kb_id = user_state.get("reply_keyboard_msg_id")
+    if reply_kb_id:
+        try:
+            await callback.bot.delete_message(callback.message.chat.id, reply_kb_id)
+        except Exception:
+            pass
+        user_state.pop("reply_keyboard_msg_id", None)
+    
+    # Сбрасываем режим ролевой игры
+    if user_state.get("mode") == "roleplay_active":
+        user_state["mode"] = ""
+        user_state["roleplay_history"] = []
+        user_state["russian_counter"] = 0
+        user_state.pop("roleplay_goal_notified", None)
+        user_state.pop("roleplay_goal_ignored", None)
+        set_user_state(user_id, user_state)
+    
+    # ===== ДАЛЬШЕ СТАНДАРТНАЯ ЛОГИКА ЧТЕНИЯ =====
     await clear_all_keyboards(callback.message, state)
     await callback.message.edit_text("📖 Чтение\n\nВыберите режим:", reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
     await callback.answer()
