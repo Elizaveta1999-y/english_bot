@@ -81,7 +81,7 @@ LEVEL_DISPLAY = {
     "beginner": "Новичок",
     "intermediate": "Любитель",
     "expert": "Эксперт",
-    "advanced": "Эксперт",  # для говорения
+    "advanced": "Эксперт",
     "Новичок": "Новичок",
     "Любитель": "Любитель",
     "Эксперт": "Эксперт"
@@ -548,7 +548,7 @@ async def index(request: Request):
         "warnings": warnings
     })
 
-# ---- ПОЛЬЗОВАТЕЛИ (с пагинацией, фикс отображения имени) ----
+# ---- ПОЛЬЗОВАТЕЛИ (с пагинацией) ----
 @app.get("/users", response_class=HTMLResponse)
 async def users_list(request: Request, search: str = "", page: int = 1, limit: int = 20):
     conn = await get_db()
@@ -595,7 +595,7 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
         "total_count": total_count
     })
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (исправлено) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (С ЦВЕТАМИ НА БЭКЕНДЕ) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     try:
@@ -636,7 +636,7 @@ async def user_detail(request: Request, user_id: int):
             progress_data[key][display_level]["correct"] += correct
             progress_data[key][display_level]["wrong"] += wrong
 
-        # ===== ГРАММАТИКА (без уровней) =====
+        # ===== ГРАММАТИКА =====
         grammar_items = []
         for raw_key, display_name in GRAMMAR_TYPES.items():
             db_key = f"grammar_{raw_key}"
@@ -658,7 +658,7 @@ async def user_detail(request: Request, user_id: int):
                 "errors": errors
             })
 
-        # ===== ЛЕКСИКА (с ошибками) =====
+        # ===== ЛЕКСИКА =====
         lexis_items = []
         for raw_key, display_name in LEXIS_TYPES.items():
             db_key = f"words_{raw_key}"
@@ -680,8 +680,13 @@ async def user_detail(request: Request, user_id: int):
                 "errors": errors
             })
 
-        # ===== ЧТЕНИЕ (с уровнями) =====
+        # ===== ЧТЕНИЕ (с цветами) =====
         reading_items = []
+        color_map = {
+            "Новичок": "#e6f0fa",
+            "Любитель": "#fce4ec",
+            "Эксперт": "#fff9c4"
+        }
         for raw_key, display_name in READING_TYPES.items():
             db_key = raw_key
             levels_data = progress_data.get(db_key, {})
@@ -691,16 +696,18 @@ async def user_detail(request: Request, user_id: int):
                 wrong = data["wrong"]
                 total = correct + wrong
                 percent = round((correct / total * 100), 1) if total else 0
+                style = f"background-color: {color_map.get(level, 'transparent')};"
                 reading_items.append({
                     "subtype": display_name,
                     "level": level,
                     "correct": correct,
                     "wrong": wrong,
                     "total": total,
-                    "percent": percent
+                    "percent": percent,
+                    "style": style  # <-- цвет уже здесь
                 })
 
-        # ===== АУДИРОВАНИЕ (с уровнями) =====
+        # ===== АУДИРОВАНИЕ (с цветами) =====
         listening_items = []
         for raw_key, display_name in LISTENING_TYPES.items():
             db_key = f"listening_{raw_key}"
@@ -711,16 +718,18 @@ async def user_detail(request: Request, user_id: int):
                 wrong = data["wrong"]
                 total = correct + wrong
                 percent = round((correct / total * 100), 1) if total else 0
+                style = f"background-color: {color_map.get(level, 'transparent')};"
                 listening_items.append({
                     "subtype": display_name,
                     "level": level,
                     "correct": correct,
                     "wrong": wrong,
                     "total": total,
-                    "percent": percent
+                    "percent": percent,
+                    "style": style  # <-- цвет уже здесь
                 })
 
-        # ===== ПИСЬМО (все типы всегда) =====
+        # ===== ПИСЬМО =====
         writing_items = []
         writing_type_names = {
             "email": "📧 Email",
@@ -755,7 +764,7 @@ async def user_detail(request: Request, user_id: int):
                 })
         writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-        # ===== ГОВОРЕНИЕ (все типы всегда) =====
+        # ===== ГОВОРЕНИЕ =====
         govorenie_items = []
         govorenie_type_names = {
             "reading": "📖 Чтение вслух",
