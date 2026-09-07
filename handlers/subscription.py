@@ -86,7 +86,7 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
 async def subscription_command(message: Message, state: FSMContext):
     logger.info(f"✅ subscription_command вызван для {message.from_user.id}")
 
-    # --- ОЧИСТКА АКТИВНОГО РЕЖИМА ---
+    # --- ОЧИСТКА ЛЮБОГО АКТИВНОГО РЕЖИМА ---
     current_state = await state.get_state()
     if current_state:
         await state.clear()

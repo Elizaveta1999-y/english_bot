@@ -8,7 +8,7 @@ router = Router()
 
 @router.message(Command("agreement"))
 async def agreement_command(message: Message, state: FSMContext):
-    # --- ОЧИСТКА АКТИВНОГО РЕЖИМА ---
+    # --- ОЧИСТКА ЛЮБОГО АКТИВНОГО РЕЖИМА ---
     current_state = await state.get_state()
     if current_state:
         await state.clear()

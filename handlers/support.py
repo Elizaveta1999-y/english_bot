@@ -12,7 +12,7 @@ router = Router()
 async def support_start(message: Message, state: FSMContext):
     logger.info(f"✅ support_start вызван для {message.from_user.id}")
 
-    # --- ОЧИСТКА АКТИВНОГО РЕЖИМА ---
+    # --- ОЧИСТКА ЛЮБОГО АКТИВНОГО РЕЖИМА ---
     current_state = await state.get_state()
     if current_state:
         await state.clear()
