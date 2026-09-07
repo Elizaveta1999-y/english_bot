@@ -359,7 +359,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
     text = f"{task_text}\n\n"
     if task_type in ["email", "post"] and expected_length != 'не указан':
         text += f"Объём: {expected_length}\n"
-    # Добавляем предупреждение о лимите
     text += f"\n_Максимум: {MAX_WORDS} слов (около {MAX_CHARS} символов)._"
 
     keyboard = get_action_keyboard()
@@ -573,9 +572,9 @@ async def handle_user_answer(message: Message, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    # --- ОТПРАВЛЯЕМ ФИДБЕК С ОЦЕНКОЙ ---
-    feedback_with_score = f"*Оценка:* {score}/5\n\n{feedback}"
-    await message.answer(feedback_with_score, parse_mode="Markdown")
+    # --- ОТПРАВЛЯЕМ ФИДБЕК С ОЦЕНКОЙ (HTML) ---
+    feedback_with_score = f"<b>Оценка:</b> {score}/5\n\n{feedback}"
+    await message.answer(feedback_with_score, parse_mode="HTML")
 
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:

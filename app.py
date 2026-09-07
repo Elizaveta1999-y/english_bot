@@ -37,20 +37,18 @@ dp.callback_query.middleware(SpeakingOverrideMiddleware())
 logger.info("✅ SpeakingOverrideMiddleware зарегистрирован")
 
 # ========== ПОДКЛЮЧАЕМ РОУТЕРЫ (ВАЖНЫЙ ПОРЯДОК!) ==========
-# Сначала идут команды, которые НЕ должны перехватываться start-ом
-dp.include_router(agreement_router)      # /agreement
-dp.include_router(support.router)        # /support   ← перенесены выше start
+# Сначала идут те, кто должен перехватывать ВСЕ команды в своих режимах
+dp.include_router(agreement_router)      # /agreement (можно оставить первым)
+dp.include_router(reading.router)        # ← ПЕРЕНЕСЁН СЮДА (выше всех!)
+dp.include_router(support.router)        # /support
 dp.include_router(subscription_router)   # /subscription
-# Теперь start, который может иметь общий обработчик, но он не перехватит support/subscription
 dp.include_router(start.router)
-# Остальные роутеры
 dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
 dp.include_router(roleplay_voice.router)
 dp.include_router(words.router)
 dp.include_router(govorenie_router)
 dp.include_router(writing.router)
-dp.include_router(reading.router)
 dp.include_router(listening.router)
 dp.include_router(grammar_router)
 dp.include_router(voice.router)
