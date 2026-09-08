@@ -176,12 +176,6 @@ def get_settings_keyboard(notif_on: bool, time_str: str):
         [InlineKeyboardButton(text="🔙 Назад", callback_data="profile_back")]
     ])
 
-def get_subscription_keyboard():
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="💳 Продлить подписку", callback_data="profile_extend")],
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="profile_back")]
-    ])
-
 async def safe_edit_message(message, text, reply_markup=None, parse_mode="HTML"):
     try:
         await message.edit_text(text, reply_markup=reply_markup, parse_mode=parse_mode)
@@ -191,11 +185,9 @@ async def safe_edit_message(message, text, reply_markup=None, parse_mode="HTML")
         else:
             raise
 
-# ============================================================
-# ГЛАВНОЕ МЕНЮ СТАТИСТИКИ
-# ============================================================
+# ---------- ГЛАВНАЯ ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ТЕКСТА И КНОПОК ----------
 async def get_profile_text_and_keyboard(user_id: int) -> tuple:
-    """Возвращает текст и клавиатуру для профиля."""
+    """Возвращает (текст, клавиатура) для профиля."""
     await update_last_active(user_id)
 
     try:
@@ -205,18 +197,25 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
         return "Произошла ошибка при загрузке профиля. Попробуйте позже.", None
 
     if not profile:
+        # Попробуем создать профиль
         username = None
         first_name = None
         last_name = None
-        # здесь надо как-то получить, но мы не можем из этой функции
-        # вызовем создание профиля отдельно, но для простоты вернём сообщение
-        return "Профиль не найден.", None
+        # В этой функции мы не знаем имя пользователя – создадим с пустыми данными
+        # Вызовем get_or_create_user (это асинхронно)
+        try:
+            profile = await get_or_create_user(user_id, username, first_name, last_name)
+            if not profile:
+                return "Профиль не найден. Напишите /start для регистрации.", None
+        except Exception as e:
+            logger.error(f"Ошибка создания профиля: {e}")
+            return "Ошибка создания профиля. Попробуйте позже.", None
 
     show_bonus, bonus_reason = await get_bonus_notification(user_id)
     bonus_message = ""
     if show_bonus:
         sub_end = profile.get("subscription_until", 0)
-        if sub_end:
+        if sub_end and sub_end > int(datetime.now().timestamp()):
             expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
             bonus_message = (
                 f"🎉 Тебе начислены бонусные дни!\n"
@@ -310,40 +309,39 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
 
     return text, get_profile_keyboard()
 
+# ---------- ОБРАБОТЧИКИ ----------
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
-    # Если вызывается через callback, пробуем отредактировать существующее сообщение
     text, keyboard = await get_profile_text_and_keyboard(callback.from_user.id)
-    await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
+    if keyboard is None:
+        # Если ошибка – просто отправим текст
+        await callback.message.answer(text)
+    else:
+        await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
     try:
         await callback.answer()
     except Exception:
         pass
 
-# ============================================================
-# ФУНКЦИЯ ДЛЯ ВНЕШНЕГО ВЫЗОВА (из start.py с edit=False)
-# ============================================================
+# ---------- ФУНКЦИЯ ДЛЯ ВНЕШНЕГО ВЫЗОВА (из start.py) ----------
 async def show_profile(message: Message, user_id: int, edit: bool = False):
     """Показывает профиль. Если edit=False – отправляет новым сообщением."""
     text, keyboard = await get_profile_text_and_keyboard(user_id)
+    if keyboard is None:
+        await message.answer(text)
+        return
     if edit:
         await safe_edit_message(message, text, reply_markup=keyboard, parse_mode="HTML")
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-# ============================================================
-# ОБРАБОТЧИК ПОДПИСКИ (редактирование)
-# ============================================================
+# ---------- ОСТАЛЬНЫЕ ОБРАБОТЧИКИ (подписка, сброс, назад) ----------
 @router.callback_query(lambda c: c.data == "profile_subscription")
 async def profile_subscription(callback: CallbackQuery):
     await show_subscription(callback, callback.from_user.id, from_profile=True, edit=True)
 
-# ============================================================
-# ОБРАБОТЧИКИ СБРОСА ПРОГРЕССА (по кнопкам)
-# ============================================================
 @router.callback_query(lambda c: c.data == "profile_reset_confirm")
 async def profile_reset_confirm(callback: CallbackQuery):
-    """Первый шаг: показать две кнопки — Сброс и Назад."""
     text = (
         "⚠️ <b>Внимание!</b>\n\n"
         "Вы действительно хотите сбросить весь прогресс?\n"
@@ -354,12 +352,7 @@ async def profile_reset_confirm(callback: CallbackQuery):
         [InlineKeyboardButton(text="Сброс", callback_data="profile_reset_step2")],
         [InlineKeyboardButton(text="Назад", callback_data="profile_back")]
     ])
-    await safe_edit_message(
-        callback.message,
-        text,
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
+    await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
     try:
         await callback.answer()
     except Exception:
@@ -367,18 +360,12 @@ async def profile_reset_confirm(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data == "profile_reset_step2")
 async def profile_reset_step2(callback: CallbackQuery):
-    """Второй шаг: подтверждение."""
     text = "Вы 100% уверенны в своих действиях?"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Да, я уверен(а)", callback_data="profile_reset_do")],
         [InlineKeyboardButton(text="Нет, назад", callback_data="profile_back")]
     ])
-    await safe_edit_message(
-        callback.message,
-        text,
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
+    await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
     try:
         await callback.answer()
     except Exception:
@@ -386,10 +373,8 @@ async def profile_reset_step2(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data == "profile_reset_do")
 async def profile_reset_do(callback: CallbackQuery):
-    """Финальный сброс."""
     user_id = callback.from_user.id
     await reset_full_progress(user_id)
-    # Убираем клавиатуру
     await safe_edit_message(
         callback.message,
         "✨ Весь прогресс обучения сброшен. Вы можете начать с чистого листа!",
@@ -400,13 +385,9 @@ async def profile_reset_do(callback: CallbackQuery):
         await callback.answer()
     except Exception:
         pass
-    # Показываем главное меню
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ============================================================
-# ОСТАЛЬНЫЕ ОБРАБОТЧИКИ
-# ============================================================
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
     keyboard = get_settings_keyboard(True, "10:00")
@@ -454,13 +435,9 @@ async def profile_back(callback: CallbackQuery):
     except Exception:
         pass
 
-# Синхронные обёртки (для обратной совместимости с импортами)
+# Синхронные обёртки для совместимости
 def update_stats_after_lesson(user_id: int):
-    import logging
-    logging.warning(f"update_stats_after_lesson вызвана для {user_id}, но не реализована")
     return None
 
 def update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    import logging
-    logging.warning(f"update_stats_after_practice вызвана для {user_id}, но не реализована")
     return None

@@ -88,7 +88,6 @@ async def start_handler(message: Message, state: FSMContext):
             set_user_state(user_id, user_state)
             await state.clear()
             
-            # Отправляем и удаляем "Переход..."
             msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
             await asyncio.sleep(0.5)
             await msg.delete()
@@ -136,7 +135,6 @@ async def under_construction(callback: CallbackQuery):
         pass
 
 async def remove_all_reply_keyboards(callback: CallbackQuery):
-    """Удаляет все reply-клавиатуры, отправляет и удаляет 'Переход...'."""
     user_id = callback.from_user.id
     chat_id = callback.message.chat.id
     bot = callback.bot
@@ -154,7 +152,6 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
     if not is_active:
         return
     
-    # Отправляем "Переход..." и удаляем через 0.5 сек
     try:
         msg = await bot.send_message(chat_id, "Переход...", reply_markup=ReplyKeyboardRemove())
         await asyncio.sleep(0.5)
@@ -162,7 +159,6 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
     except Exception:
         pass
     
-    # Удаляем сохранённые ID клавиатур
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
@@ -179,13 +175,10 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
             pass
         user_state.pop("reply_keyboard_msg_id", None)
     
-    # Сбрасываем все флаги режимов
     keys_to_remove = [k for k in list(user_state.keys()) if k.startswith("roleplay") or k.startswith("speaking") or k in ("mode", "russian_counter", "voice_id")]
     for k in keys_to_remove:
         user_state.pop(k, None)
     set_user_state(user_id, user_state)
-
-# ====================== ВСЕ РЕЖИМЫ С ВЫЗОВОМ remove_all_reply_keyboards ======================
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
@@ -274,15 +267,10 @@ async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
     except Exception:
         pass
     
-    # Удаляем все клавиатуры и отправляем "Переход..." с удалением
     await remove_all_reply_keyboards(callback)
     await state.clear()
-    
-    # Отправляем статистику НОВЫМ сообщением (edit=False)
-    from handlers.profile import show_profile
     await show_profile(callback.message, user_id=callback.from_user.id, edit=False)
 
-# ====================== ГЛАВНОЕ МЕНЮ ПО ТЕКСТУ ======================
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_text_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -292,7 +280,6 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
     if current_state in (RoleplayStates.active.state, RoleplayStates.confirming_finish.state):
         return
     
-    # Очистка speaking
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
@@ -311,7 +298,6 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         set_user_state(user_id, user_state)
         await state.clear()
         
-        # Отправляем и удаляем "Переход..."
         msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
         await asyncio.sleep(0.5)
         await msg.delete()
