@@ -36,15 +36,14 @@ dp.message.middleware(SpeakingOverrideMiddleware())
 dp.callback_query.middleware(SpeakingOverrideMiddleware())
 logger.info("✅ SpeakingOverrideMiddleware зарегистрирован")
 
-# ========== ПОДКЛЮЧАЕМ РОУТЕРЫ (ВАЖНЫЙ ПОРЯДОК!) ==========
-# Сначала идут те, кто должен перехватывать ВСЕ команды в своих режимах
+# ========== ПОДКЛЮЧАЕМ РОУТЕРЫ ==========
 dp.include_router(agreement_router)      # /agreement
 dp.include_router(reading.router)        # перехват команд в чтении
-dp.include_router(speaking.router)       # <-- ПЕРЕХВАТ КОМАНД В SPEAKING (ПЕРВЫЙ!)
 dp.include_router(support.router)        # /support
 dp.include_router(subscription_router)   # /subscription
 dp.include_router(roleplay.router)       # ролевые игры
 dp.include_router(roleplay_voice.router) # ролевые игры голосом
+dp.include_router(speaking.router)       # <-- speaking ПОСЛЕ support/subscription
 dp.include_router(start.router)          # start
 dp.include_router(words.router)
 dp.include_router(govorenie_router)
