@@ -176,7 +176,6 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
             pass
         user_state.pop("reply_keyboard_msg_id", None)
     
-    # Сбрасываем ВСЕ режимы
     keys_to_remove = [k for k in list(user_state.keys()) if k.startswith("roleplay") or k.startswith("speaking") or k in ("mode", "russian_counter", "voice_id")]
     for k in keys_to_remove:
         user_state.pop(k, None)
@@ -206,15 +205,15 @@ async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     
-    # Если speaking активен – удаляем клавиатуру и сбрасываем
+    speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
+    if speaking_kb_id:
+        try:
+            await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
+        except Exception:
+            pass
+        user_state.pop("speaking_keyboard_msg_id", None)
+    
     if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
         user_state["mode"] = ""
         user_state["keyboard_hidden"] = True
         user_state["speaking_history"] = []
@@ -225,7 +224,6 @@ async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
         await state.clear()
         await callback.message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
     
-    # Дальше запускаем чтение
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_reading(callback, state)
@@ -308,14 +306,15 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     
+    speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
+    if speaking_kb_id:
+        try:
+            await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
+        except Exception:
+            pass
+        user_state.pop("speaking_keyboard_msg_id", None)
+    
     if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
         user_state["mode"] = ""
         user_state["keyboard_hidden"] = True
         user_state["speaking_history"] = []
@@ -326,7 +325,7 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
         await state.clear()
         await callback.message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
     
-    # Дальше запускаем ролевую игру
+    # Дальше стандартная очистка и запуск ролевой игры
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state:
@@ -352,14 +351,10 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
     await start_roleplay(callback)
 
 
-# ====================== КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ ======================
-# Обработчик для текста "🏠 Главное меню" – не даёт перехватывать сообщение,
-# если активна ролевая игра (чтобы roleplay.py мог корректно завершить диалог)
+# ====================== ОБРАБОТЧИК ТЕКСТА "Главное меню" ======================
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_text_handler(message: Message, state: FSMContext):
     current_state = await state.get_state()
-    # Если активна ролевая игра – ничего не делаем, пропускаем в roleplay
     if current_state in (RoleplayStates.active.state, RoleplayStates.confirming_finish.state):
         return
-    # Иначе показываем главное меню
     await show_main_menu(message, edit=False)

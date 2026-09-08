@@ -8,7 +8,7 @@ router = Router()
 
 @router.message(Command("agreement"))
 async def agreement_command(message: Message, state: FSMContext):
-    # ===== ПОЛНАЯ ОЧИСТКА SPEAKING (КАК В РОЛЕВОЙ ИГРЕ) =====
+    # ===== ОЧИСТКА SPEAKING =====
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
@@ -31,7 +31,7 @@ async def agreement_command(message: Message, state: FSMContext):
         await state.clear()
         await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
 
-    # ===== ОСНОВНАЯ ЛОГИКА СОГЛАШЕНИЯ =====
+    # ===== ОСНОВНАЯ ЛОГИКА =====
     text = (
         "<b>Пользовательское соглашение и другие документы</b>\n\n"
         "Все официальные документы доступны в одной папке:\n"
