@@ -72,7 +72,7 @@ CATEGORY_VOICE_MAP = {
     "news": MAN_VOICE_ID
 }
 
-# ========== БЕЗ СИТУАЦИЙ ==========
+# ========== СИТУАЦИИ (ЗАМЕНИТЕ ЭТОТ СЛОВАРЬ НА ВАШИ ДАННЫЕ) ==========
 TOPICS = {
     "work": [
         {
@@ -1470,6 +1470,8 @@ TOPICS = {
         }
     ]
 }
+# ===================================================================
+
 # ---------- Клавиатуры ----------
 def get_categories_keyboard():
     buttons = []
@@ -1601,8 +1603,33 @@ async def goal_continue(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_reply_markup(reply_markup=None)
     await callback.message.answer("Продолжаем общение!")
 
+# ====================== ИСПРАВЛЕНИЕ: ОЧИСТКА SPEAKING ПРИ ВХОДЕ В РОЛЕВУЮ ИГРУ ======================
 @router.callback_query(F.data == "start_roleplay")
-async def start_roleplay(callback: CallbackQuery):
+async def start_roleplay(callback: CallbackQuery, state: FSMContext):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+
+    # ---- ОЧИСТКА SPEAKING (как в clear_speaking) ----
+    keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
+    if keyboard_msg_id:
+        try:
+            await callback.bot.delete_message(callback.message.chat.id, keyboard_msg_id)
+        except Exception:
+            pass
+        user_state.pop("speaking_keyboard_msg_id", None)
+
+    if user_state.get("mode") == "speaking_active":
+        user_state["mode"] = ""
+        user_state["keyboard_hidden"] = True
+        user_state["speaking_history"] = []
+        user_state["russian_streak"] = 0
+        user_state["pending_feedback"] = None
+        user_state["feedback_prompt_msg_id"] = None
+        set_user_state(user_id, user_state)
+        await state.clear()
+        await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
+    # ------------------------------------------------
+
     await callback.message.delete()
     await callback.message.answer(
         "🎭 Выберите категорию для ролевой игры:",
@@ -1692,7 +1719,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
 
     topics_keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
     cat_display = next((c[0] for c in CATEGORIES if c[1] == cat_id), cat_id)
-    
+
     try:
         await callback.message.edit_text(
             f"<b>{cat_display}</b>",
@@ -2036,9 +2063,9 @@ async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ========== ОБРАБОТЧИК ЛЮБЫХ КОМАНД В РЕЖИМЕ ==========
-@router.message(RoleplayStates.active, F.text.startswith('/'))
-@router.message(RoleplayStates.confirming_finish, F.text.startswith('/'))
+# ========== ОБРАБОТЧИК ЛЮБЫХ КОМАНД В РЕЖИМЕ (ИСПРАВЛЕН: добавлено исключение для трёх команд) ==========
+@router.message(RoleplayStates.active, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
+@router.message(RoleplayStates.confirming_finish, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
 async def handle_commands_in_roleplay(message: Message, state: FSMContext):
     logger.info(f"=== handle_commands_in_roleplay: {message.text} ===")
     user_id = message.from_user.id
@@ -2046,7 +2073,7 @@ async def handle_commands_in_roleplay(message: Message, state: FSMContext):
     if user_state.get("mode") != "roleplay_active":
         logger.info("handle_commands_in_roleplay: режим не активен, пропускаем")
         return
-    
+
     await remove_roleplay_keyboard(user_id, message.bot)
 
     user_state["mode"] = ""
@@ -2248,7 +2275,7 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     logger.info("=== handle_roleplay_voice ВЫЗВАН ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    
+
     if user_state.get("mode") != "roleplay_active":
         logger.info("mode != roleplay_active, пропускаем")
         return

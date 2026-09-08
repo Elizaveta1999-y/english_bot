@@ -1190,8 +1190,9 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ====================== ПЕРЕХВАТ КОМАНД В ЧТЕНИИ (С ПРОВЕРКОЙ НА SPEAKING) ======================
-@router.message(F.text.startswith('/'), ReadingStates.in_progress)
-@router.message(F.text.startswith('/'), ReadingStates.waiting_for_text)
+# ИСПРАВЛЕНИЕ: добавляем исключение для трёх команд, которые должны обрабатываться своими роутерами
+@router.message(F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]), ReadingStates.in_progress)
+@router.message(F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]), ReadingStates.waiting_for_text)
 async def handle_any_command_in_reading(message: Message, state: FSMContext):
     # Проверяем, не в speaking ли пользователь
     user_state = get_user_state(message.from_user.id)
