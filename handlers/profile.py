@@ -187,7 +187,6 @@ async def safe_edit_message(message, text, reply_markup=None, parse_mode="HTML")
 
 # ---------- ГЛАВНАЯ ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ТЕКСТА И КНОПОК ----------
 async def get_profile_text_and_keyboard(user_id: int) -> tuple:
-    """Возвращает (текст, клавиатура) для профиля."""
     await update_last_active(user_id)
 
     try:
@@ -197,14 +196,8 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
         return "Произошла ошибка при загрузке профиля. Попробуйте позже.", None
 
     if not profile:
-        # Попробуем создать профиль
-        username = None
-        first_name = None
-        last_name = None
-        # В этой функции мы не знаем имя пользователя – создадим с пустыми данными
-        # Вызовем get_or_create_user (это асинхронно)
         try:
-            profile = await get_or_create_user(user_id, username, first_name, last_name)
+            profile = await get_or_create_user(user_id, None, None, None)
             if not profile:
                 return "Профиль не найден. Напишите /start для регистрации.", None
         except Exception as e:
@@ -239,7 +232,6 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
 
     text = bonus_message
 
-    # ===== ТРЕНАЖЁРЫ =====
     text += "<b>• Тренажёры</b>\n"
     text += "Точность ответов:\n"
 
@@ -263,7 +255,6 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
     text += f"🔉 Аудирование {pct}%\n"
     text += f"{bar}\n"
 
-    # ===== ПРОДУКТИВНЫЕ НАВЫКИ =====
     text += "\n<b>• Продуктивные навыки</b>\n"
     text += "Средний балл:\n"
 
@@ -279,7 +270,6 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
     else:
         text += "🗣️ Говорение  — нет данных\n"
 
-    # ===== ОШИБКИ =====
     total_mistakes = mistakes["total"]
     by_mode = mistakes["by_mode"]
 
@@ -298,7 +288,6 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
     else:
         text += "Нет данных\n"
 
-    # ===== ПОДПИСКА =====
     text += "\n💳 Подписка: "
     sub_end = profile.get("subscription_until", 0)
     if sub_end and sub_end > int(datetime.now().timestamp()):
@@ -309,12 +298,11 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
 
     return text, get_profile_keyboard()
 
-# ---------- ОБРАБОТЧИКИ ----------
+# ---------- ОБРАБОТЧИК КНОПКИ СТАТИСТИКИ (РЕДАКТИРУЕТ) ----------
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
     text, keyboard = await get_profile_text_and_keyboard(callback.from_user.id)
     if keyboard is None:
-        # Если ошибка – просто отправим текст
         await callback.message.answer(text)
     else:
         await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
@@ -323,7 +311,7 @@ async def profile_menu(callback: CallbackQuery):
     except Exception:
         pass
 
-# ---------- ФУНКЦИЯ ДЛЯ ВНЕШНЕГО ВЫЗОВА (из start.py) ----------
+# ---------- ФУНКЦИЯ ДЛЯ ВНЕШНЕГО ВЫЗОВА (ИЗ START.PY) ----------
 async def show_profile(message: Message, user_id: int, edit: bool = False):
     """Показывает профиль. Если edit=False – отправляет новым сообщением."""
     text, keyboard = await get_profile_text_and_keyboard(user_id)
@@ -335,11 +323,12 @@ async def show_profile(message: Message, user_id: int, edit: bool = False):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-# ---------- ОСТАЛЬНЫЕ ОБРАБОТЧИКИ (подписка, сброс, назад) ----------
+# ---------- ОБРАБОТЧИК ПОДПИСКИ ----------
 @router.callback_query(lambda c: c.data == "profile_subscription")
 async def profile_subscription(callback: CallbackQuery):
     await show_subscription(callback, callback.from_user.id, from_profile=True, edit=True)
 
+# ---------- СБРОС ПРОГРЕССА ----------
 @router.callback_query(lambda c: c.data == "profile_reset_confirm")
 async def profile_reset_confirm(callback: CallbackQuery):
     text = (
@@ -388,6 +377,7 @@ async def profile_reset_do(callback: CallbackQuery):
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
+# ---------- ОСТАЛЬНЫЕ ОБРАБОТЧИКИ ----------
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
     keyboard = get_settings_keyboard(True, "10:00")

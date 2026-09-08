@@ -269,6 +269,9 @@ async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
     
     await remove_all_reply_keyboards(callback)
     await state.clear()
+    
+    # ПОКАЗЫВАЕМ СТАТИСТИКУ НОВЫМ СООБЩЕНИЕМ
+    from handlers.profile import show_profile
     await show_profile(callback.message, user_id=callback.from_user.id, edit=False)
 
 @router.message(F.text == "🏠 Главное меню")
