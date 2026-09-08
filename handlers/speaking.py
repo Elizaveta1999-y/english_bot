@@ -449,3 +449,38 @@ async def hide_text(callback: CallbackQuery):
         logger.error(f"Ошибка в hide_text: {e}")
         await callback.message.delete()
         await callback.answer("Скрыто.")
+
+# ====================== НОВЫЙ ОБРАБОТЧИК КОМАНД (как в roleplay) ======================
+@router.message(SpeakingStates.waiting_for_voice, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
+async def handle_commands_in_speaking(message: Message, state: FSMContext):
+    """Любая команда, кроме /support, /subscription, /agreement, завершает speaking и показывает главное меню."""
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    
+    # Проверяем, активен ли режим speaking
+    if user_state.get("mode") != "speaking_active":
+        return
+    
+    # Удаляем клавиатуру speaking
+    keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
+    if keyboard_msg_id:
+        try:
+            await message.bot.delete_message(message.chat.id, keyboard_msg_id)
+        except Exception:
+            pass
+        user_state.pop("speaking_keyboard_msg_id", None)
+    
+    # Сбрасываем состояние speaking
+    user_state["mode"] = ""
+    user_state["keyboard_hidden"] = True
+    user_state["speaking_history"] = []
+    user_state["russian_streak"] = 0
+    user_state["pending_feedback"] = None
+    user_state["feedback_prompt_msg_id"] = None
+    set_user_state(user_id, user_state)
+    await state.clear()
+    
+    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    
+    from handlers.start import show_main_menu
+    await show_main_menu(message, edit=False)
