@@ -12,17 +12,32 @@ router = Router()
 async def support_start(message: Message, state: FSMContext):
     logger.info(f"✅ support_start вызван для {message.from_user.id}")
 
-    # --- ОЧИСТКА ЛЮБОГО АКТИВНОГО РЕЖИМА ---
-    current_state = await state.get_state()
-    if current_state:
-        await state.clear()
-        user_state = get_user_state(message.from_user.id)
+    # ===== ПОЛНАЯ ОЧИСТКА SPEAKING (КАК В РОЛЕВОЙ ИГРЕ) =====
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    
+    # Удаляем сообщение с клавиатурой speaking
+    keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
+    if keyboard_msg_id:
+        try:
+            await message.bot.delete_message(message.chat.id, keyboard_msg_id)
+        except Exception:
+            pass
+        user_state.pop("speaking_keyboard_msg_id", None)
+    
+    # Сбрасываем режим speaking
+    if user_state.get("mode") == "speaking_active":
         user_state["mode"] = ""
-        set_user_state(message.from_user.id, user_state)
+        user_state["keyboard_hidden"] = True
+        user_state["speaking_history"] = []
+        user_state["russian_streak"] = 0
+        user_state["pending_feedback"] = None
+        user_state["feedback_prompt_msg_id"] = None
+        set_user_state(user_id, user_state)
+        await state.clear()
         await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
 
-    # --- ОСНОВНАЯ ЛОГИКА ---
-    user_id = message.from_user.id
+    # ===== ОСНОВНАЯ ЛОГИКА ПОДДЕРЖКИ =====
     text = (
         "Вам нужна помощь или имеются вопросы?\n"
         "Поддержка бота - support.english.bot@gmail.com\n\n"
