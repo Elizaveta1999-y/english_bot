@@ -87,6 +87,11 @@ async def start_handler(message: Message, state: FSMContext):
             user_state["feedback_prompt_msg_id"] = None
             set_user_state(user_id, user_state)
             await state.clear()
+            
+            # Отправляем и удаляем "Переход..."
+            msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
+            await asyncio.sleep(0.5)
+            await msg.delete()
 
     if user_state:
         speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
@@ -131,6 +136,7 @@ async def under_construction(callback: CallbackQuery):
         pass
 
 async def remove_all_reply_keyboards(callback: CallbackQuery):
+    """Удаляет все reply-клавиатуры, отправляет и удаляет 'Переход...'."""
     user_id = callback.from_user.id
     chat_id = callback.message.chat.id
     bot = callback.bot
@@ -148,13 +154,15 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
     if not is_active:
         return
     
+    # Отправляем "Переход..." и удаляем через 0.5 сек
     try:
-        temp_msg = await bot.send_message(chat_id, "Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.1)
-        await bot.delete_message(chat_id, temp_msg.message_id)
+        msg = await bot.send_message(chat_id, "Переход...", reply_markup=ReplyKeyboardRemove())
+        await asyncio.sleep(0.5)
+        await msg.delete()
     except Exception:
         pass
     
+    # Удаляем сохранённые ID клавиатур
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
@@ -171,10 +179,13 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
             pass
         user_state.pop("reply_keyboard_msg_id", None)
     
+    # Сбрасываем все флаги режимов
     keys_to_remove = [k for k in list(user_state.keys()) if k.startswith("roleplay") or k.startswith("speaking") or k in ("mode", "russian_counter", "voice_id")]
     for k in keys_to_remove:
         user_state.pop(k, None)
     set_user_state(user_id, user_state)
+
+# ====================== ВСЕ РЕЖИМЫ С ВЫЗОВОМ remove_all_reply_keyboards ======================
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
@@ -186,44 +197,12 @@ async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await start_speaking(callback, state)
 
-# ====================== ИСПРАВЛЕННЫЕ ФУНКЦИИ С УДАЛЕНИЕМ "ПЕРЕХОД..." ======================
-
 @router.callback_query(F.data == "start_reading")
 async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
     try:
         await callback.answer()
     except Exception:
         pass
-    
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    
-    # Проверяем, активен ли speaking
-    if user_state.get("mode") == "speaking_active":
-        # Удаляем клавиатуру
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        
-        # Сбрасываем состояние
-        user_state["mode"] = ""
-        user_state["keyboard_hidden"] = True
-        user_state["speaking_history"] = []
-        user_state["russian_streak"] = 0
-        user_state["pending_feedback"] = None
-        user_state["feedback_prompt_msg_id"] = None
-        set_user_state(user_id, user_state)
-        await state.clear()
-        
-        # Отправляем и удаляем "Переход..."
-        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_reading(callback, state)
@@ -234,32 +213,6 @@ async def start_writing_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    
-    if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        
-        user_state["mode"] = ""
-        user_state["keyboard_hidden"] = True
-        user_state["speaking_history"] = []
-        user_state["russian_streak"] = 0
-        user_state["pending_feedback"] = None
-        user_state["feedback_prompt_msg_id"] = None
-        set_user_state(user_id, user_state)
-        await state.clear()
-        
-        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_writing(callback, state)
@@ -270,32 +223,6 @@ async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    
-    if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        
-        user_state["mode"] = ""
-        user_state["keyboard_hidden"] = True
-        user_state["speaking_history"] = []
-        user_state["russian_streak"] = 0
-        user_state["pending_feedback"] = None
-        user_state["feedback_prompt_msg_id"] = None
-        set_user_state(user_id, user_state)
-        await state.clear()
-        
-        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_govorenie(callback, state)
@@ -306,32 +233,6 @@ async def start_grammar_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    
-    if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        
-        user_state["mode"] = ""
-        user_state["keyboard_hidden"] = True
-        user_state["speaking_history"] = []
-        user_state["russian_streak"] = 0
-        user_state["pending_feedback"] = None
-        user_state["feedback_prompt_msg_id"] = None
-        set_user_state(user_id, user_state)
-        await state.clear()
-        
-        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_grammar(callback, state)
@@ -342,32 +243,6 @@ async def start_words_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    
-    if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        
-        user_state["mode"] = ""
-        user_state["keyboard_hidden"] = True
-        user_state["speaking_history"] = []
-        user_state["russian_streak"] = 0
-        user_state["pending_feedback"] = None
-        user_state["feedback_prompt_msg_id"] = None
-        set_user_state(user_id, user_state)
-        await state.clear()
-        
-        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_words(callback, state)
@@ -378,32 +253,6 @@ async def start_listening_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    
-    if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        
-        user_state["mode"] = ""
-        user_state["keyboard_hidden"] = True
-        user_state["speaking_history"] = []
-        user_state["russian_streak"] = 0
-        user_state["pending_feedback"] = None
-        user_state["feedback_prompt_msg_id"] = None
-        set_user_state(user_id, user_state)
-        await state.clear()
-        
-        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_listening(callback, state)
@@ -414,52 +263,7 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    
-    if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        
-        user_state["mode"] = ""
-        user_state["keyboard_hidden"] = True
-        user_state["speaking_history"] = []
-        user_state["russian_streak"] = 0
-        user_state["pending_feedback"] = None
-        user_state["feedback_prompt_msg_id"] = None
-        set_user_state(user_id, user_state)
-        await state.clear()
-        
-        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
-    if user_state:
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        keyboard_msg_id = user_state.get("reply_keyboard_msg_id")
-        if keyboard_msg_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, keyboard_msg_id)
-            except Exception:
-                pass
-            user_state.pop("reply_keyboard_msg_id", None)
-        keys_to_remove = [k for k in list(user_state.keys()) if k.startswith("roleplay") or k.startswith("speaking") or k in ("mode", "russian_counter", "voice_id")]
-        for k in keys_to_remove:
-            user_state.pop(k, None)
-        set_user_state(user_id, user_state)
-    
+    await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_roleplay(callback)
 
@@ -469,37 +273,11 @@ async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    
-    if user_state.get("mode") == "speaking_active":
-        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
-        if speaking_kb_id:
-            try:
-                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
-            except Exception:
-                pass
-            user_state.pop("speaking_keyboard_msg_id", None)
-        
-        user_state["mode"] = ""
-        user_state["keyboard_hidden"] = True
-        user_state["speaking_history"] = []
-        user_state["russian_streak"] = 0
-        user_state["pending_feedback"] = None
-        user_state["feedback_prompt_msg_id"] = None
-        set_user_state(user_id, user_state)
-        await state.clear()
-        
-        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await show_profile(callback.message, user_id=callback.from_user.id, edit=True)
 
-# ====================== ГЛАВНОЕ ИСПРАВЛЕНИЕ ======================
+# ====================== ГЛАВНОЕ МЕНЮ ПО ТЕКСТУ ======================
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_text_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -509,7 +287,7 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
     if current_state in (RoleplayStates.active.state, RoleplayStates.confirming_finish.state):
         return
     
-    # ===== ОЧИСТКА SPEAKING =====
+    # Очистка speaking
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
@@ -528,6 +306,7 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         set_user_state(user_id, user_state)
         await state.clear()
         
+        # Отправляем и удаляем "Переход..."
         msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
         await asyncio.sleep(0.5)
         await msg.delete()
