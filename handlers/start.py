@@ -273,9 +273,14 @@ async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    
+    # Удаляем все клавиатуры и отправляем "Переход..." с удалением
     await remove_all_reply_keyboards(callback)
     await state.clear()
-    await show_profile(callback.message, user_id=callback.from_user.id, edit=True)
+    
+    # Отправляем статистику НОВЫМ сообщением (edit=False)
+    from handlers.profile import show_profile
+    await show_profile(callback.message, user_id=callback.from_user.id, edit=False)
 
 # ====================== ГЛАВНОЕ МЕНЮ ПО ТЕКСТУ ======================
 @router.message(F.text == "🏠 Главное меню")

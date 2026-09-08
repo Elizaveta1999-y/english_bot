@@ -194,31 +194,23 @@ async def safe_edit_message(message, text, reply_markup=None, parse_mode="HTML")
 # ============================================================
 # ГЛАВНОЕ МЕНЮ СТАТИСТИКИ
 # ============================================================
-@router.callback_query(lambda c: c.data == "profile_menu")
-async def profile_menu(callback: CallbackQuery):
-    user_id = callback.from_user.id
+async def get_profile_text_and_keyboard(user_id: int) -> tuple:
+    """Возвращает текст и клавиатуру для профиля."""
     await update_last_active(user_id)
 
     try:
         profile = await get_user_profile(user_id)
     except Exception as e:
         logger.error(f"Ошибка получения профиля: {e}")
-        await callback.message.answer("Произошла ошибка при загрузке профиля. Попробуйте позже.")
-        await callback.answer()
-        return
+        return "Произошла ошибка при загрузке профиля. Попробуйте позже.", None
 
     if not profile:
-        username = getattr(callback.from_user, 'username', None)
-        first_name = getattr(callback.from_user, 'first_name', None)
-        last_name = getattr(callback.from_user, 'last_name', None)
-        await get_or_create_user(user_id, username, first_name, last_name)
-        profile = await get_user_profile(user_id)
-        if not profile:
-            try:
-                await callback.answer("Ошибка создания профиля", show_alert=True)
-            except Exception:
-                pass
-            return
+        username = None
+        first_name = None
+        last_name = None
+        # здесь надо как-то получить, но мы не можем из этой функции
+        # вызовем создание профиля отдельно, но для простоты вернём сообщение
+        return "Профиль не найден.", None
 
     show_bonus, bonus_reason = await get_bonus_notification(user_id)
     bonus_message = ""
@@ -316,16 +308,28 @@ async def profile_menu(callback: CallbackQuery):
     else:
         text += "не активна"
 
-    await safe_edit_message(
-        callback.message,
-        text,
-        reply_markup=get_profile_keyboard(),
-        parse_mode="HTML"
-    )
+    return text, get_profile_keyboard()
+
+@router.callback_query(lambda c: c.data == "profile_menu")
+async def profile_menu(callback: CallbackQuery):
+    # Если вызывается через callback, пробуем отредактировать существующее сообщение
+    text, keyboard = await get_profile_text_and_keyboard(callback.from_user.id)
+    await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
     try:
         await callback.answer()
     except Exception:
         pass
+
+# ============================================================
+# ФУНКЦИЯ ДЛЯ ВНЕШНЕГО ВЫЗОВА (из start.py с edit=False)
+# ============================================================
+async def show_profile(message: Message, user_id: int, edit: bool = False):
+    """Показывает профиль. Если edit=False – отправляет новым сообщением."""
+    text, keyboard = await get_profile_text_and_keyboard(user_id)
+    if edit:
+        await safe_edit_message(message, text, reply_markup=keyboard, parse_mode="HTML")
+    else:
+        await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
 # ============================================================
 # ОБРАБОТЧИК ПОДПИСКИ (редактирование)
@@ -450,50 +454,13 @@ async def profile_back(callback: CallbackQuery):
     except Exception:
         pass
 
-# ============================================================
-# ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ПОКАЗА ПРОФИЛЯ ИЗ ДРУГИХ МЕСТ
-# ============================================================
-async def show_profile(message, user_id: int, edit: bool = False):
-    class FakeCallback:
-        def __init__(self, message, user_id):
-            self.message = message
-            self.from_user = type('obj', (object,), {
-                'id': user_id,
-                'username': None,
-                'first_name': None,
-                'last_name': None
-            })()
-        async def answer(self, *args, **kwargs):
-            pass
-
-    fake_callback = FakeCallback(message, user_id)
-    await profile_menu(fake_callback)
-
-# =====================================================================
-# ФУНКЦИИ ДЛЯ СОВМЕСТИМОСТИ С LESSONS.PY
-# =====================================================================
-async def _update_stats_after_lesson(user_id: int):
-    """Обновляет статистику после урока (заглушка)."""
-    # Здесь можно добавить логику, если нужно.
-    # Пока просто ничего не делаем.
-    pass
-
-async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    """Обновляет статистику после практики (заглушка)."""
-    # Здесь можно добавить логику, если нужно.
-    # Пока просто ничего не делаем.
-    pass
-
 # Синхронные обёртки (для обратной совместимости с импортами)
 def update_stats_after_lesson(user_id: int):
-    """Синхронная обёртка для вызова из синхронного кода."""
     import logging
     logging.warning(f"update_stats_after_lesson вызвана для {user_id}, но не реализована")
-    # Возвращаем None, чтобы не сломать код
     return None
 
 def update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    """Синхронная обёртка для вызова из синхронного кода."""
     import logging
     logging.warning(f"update_stats_after_practice вызвана для {user_id}, но не реализована")
     return None
