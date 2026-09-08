@@ -468,14 +468,15 @@ async def hide_text(callback: CallbackQuery):
         await callback.answer("Скрыто.")
 
 
-# ====================== ПЕРЕХВАТ КОМАНД В SPEAKING ======================
+# ====================== ПЕРЕХВАТ ВСЕХ КОМАНД В SPEAKING (КАК В РОЛЕВОЙ ИГРЕ) ======================
 @router.message(SpeakingStates.waiting_for_voice, F.text.startswith('/'))
 async def handle_commands_in_speaking(message: Message, state: FSMContext):
     """Перехватывает любые команды /... в режиме speaking и завершает режим."""
+    logger.info(f"=== handle_commands_in_speaking: {message.text} ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
-    # Удаляем клавиатуру
+    # Удаляем клавиатуру speaking
     keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
     if keyboard_msg_id:
         try:
@@ -484,7 +485,7 @@ async def handle_commands_in_speaking(message: Message, state: FSMContext):
             pass
         user_state.pop("speaking_keyboard_msg_id", None)
     
-    # Сбрасываем режим
+    # Сбрасываем режим speaking
     user_state["mode"] = ""
     user_state["keyboard_hidden"] = True
     user_state["speaking_history"] = []
@@ -497,5 +498,6 @@ async def handle_commands_in_speaking(message: Message, state: FSMContext):
     # Показываем сообщение о завершении
     await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
     
-    # Дальше команда пойдёт в свой обработчик (support, subscription, agreement и т.д.)
-    # Ничего не возвращаем – команда продолжит обработку
+    # Показываем главное меню (как в ролевой игре)
+    from handlers.start import show_main_menu
+    await show_main_menu(message, edit=False)

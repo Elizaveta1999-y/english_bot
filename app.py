@@ -40,19 +40,19 @@ logger.info("✅ SpeakingOverrideMiddleware зарегистрирован")
 # Сначала идут те, кто должен перехватывать ВСЕ команды в своих режимах
 dp.include_router(agreement_router)      # /agreement
 dp.include_router(reading.router)        # перехват команд в чтении
+dp.include_router(speaking.router)       # <-- ПЕРЕХВАТ КОМАНД В SPEAKING (ПЕРВЫЙ!)
 dp.include_router(support.router)        # /support
 dp.include_router(subscription_router)   # /subscription
-dp.include_router(roleplay.router)       # <-- ПЕРЕНЕСЁН СЮДА (ДО start!)
+dp.include_router(roleplay.router)       # ролевые игры
 dp.include_router(roleplay_voice.router) # ролевые игры голосом
-dp.include_router(start.router)          # теперь start идёт ПОСЛЕ roleplay
-dp.include_router(speaking.router)
+dp.include_router(start.router)          # start
 dp.include_router(words.router)
 dp.include_router(govorenie_router)
 dp.include_router(writing.router)
 dp.include_router(listening.router)
 dp.include_router(grammar_router)
 dp.include_router(voice.router)
-dp.include_router(common.router)         # common тоже после roleplay
+dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(profile.router)
 
