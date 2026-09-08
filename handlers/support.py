@@ -8,11 +8,7 @@ from data.users import get_user_state, set_user_state
 logger = logging.getLogger(__name__)
 router = Router()
 
-@router.message(Command("support"))
-async def support_start(message: Message, state: FSMContext):
-    logger.info(f"✅ support_start вызван для {message.from_user.id}")
-
-    # ===== ОЧИСТКА SPEAKING =====
+async def clear_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
@@ -33,9 +29,15 @@ async def support_start(message: Message, state: FSMContext):
         user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-        await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
 
-    # ===== ОСНОВНАЯ ЛОГИКА =====
+@router.message(Command("support"))
+async def support_start(message: Message, state: FSMContext):
+    logger.info(f"✅ support_start вызван для {message.from_user.id}")
+
+    await clear_speaking(message, state)
+
+    user_id = message.from_user.id
     text = (
         "Вам нужна помощь или имеются вопросы?\n"
         "Поддержка бота - support.english.bot@gmail.com\n\n"

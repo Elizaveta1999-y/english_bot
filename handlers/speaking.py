@@ -42,7 +42,6 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
-
 # ========== ТОЧКА ВХОДА ==========
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     logger.info(f"🔹 start_speaking вызвана для user {callback.from_user.id}")
@@ -52,7 +51,6 @@ async def start_speaking(callback: CallbackQuery, state: FSMContext):
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
     ])
     await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
-
 
 @router.callback_query(F.data.startswith("speaking_voice_"))
 async def select_voice(callback: CallbackQuery, state: FSMContext):
@@ -118,7 +116,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-
 
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
@@ -213,7 +210,6 @@ async def show_feedback(message: Message, state: FSMContext):
         logger.error(f"Ошибка в show_feedback: {e}", exc_info=True)
         await message.answer("Произошла ошибка при получении фидбека. Попробуйте позже.")
 
-
 @router.callback_query(F.data == "show_feedback_confirm")
 async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -247,7 +243,6 @@ async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-
 @router.callback_query(F.data == "continue_speaking")
 async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -277,7 +272,6 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
 
-
 @router.message(F.text == "🏠 Главное меню")
 async def exit_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -300,7 +294,6 @@ async def exit_speaking(message: Message, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
-
 @router.message(SpeakingStates.waiting_for_voice, F.text, ~F.text.startswith('/'))
 async def handle_text_in_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -311,7 +304,6 @@ async def handle_text_in_speaking(message: Message, state: FSMContext):
     await message.bot.send_chat_action(chat_id=message.chat.id, action='typing')
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
-
 @router.message(SpeakingStates.waiting_for_voice, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
 async def handle_media_in_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -321,7 +313,6 @@ async def handle_media_in_speaking(message: Message, state: FSMContext):
         return
     await message.bot.send_chat_action(chat_id=message.chat.id, action='typing')
     await message.answer("Запишите и отправьте голосовое сообщение.")
-
 
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main(callback: CallbackQuery, state: FSMContext):
@@ -346,10 +337,7 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-
-# ================================================================
-# КНОПКИ ТЕКСТА
-# ================================================================
+# ---------- КНОПКИ ТЕКСТА ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     try:
@@ -375,7 +363,6 @@ async def show_text(callback: CallbackQuery):
     except Exception as e:
         logger.error(f"Ошибка в show_text: {e}")
         await callback.answer("Ошибка.", show_alert=True)
-
 
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text(callback: CallbackQuery):
@@ -416,7 +403,6 @@ async def translate_text(callback: CallbackQuery):
         logger.error(f"Ошибка в translate_text: {e}", exc_info=True)
         await callback.answer("Ошибка.", show_alert=True)
 
-
 @router.callback_query(lambda c: c.data.startswith("show_original_"))
 async def show_original(callback: CallbackQuery):
     try:
@@ -442,7 +428,6 @@ async def show_original(callback: CallbackQuery):
     except Exception as e:
         logger.error(f"Ошибка в show_original: {e}")
         await callback.answer("Ошибка.", show_alert=True)
-
 
 @router.callback_query(lambda c: c.data.startswith("hide_text_"))
 async def hide_text(callback: CallbackQuery):

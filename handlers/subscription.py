@@ -82,11 +82,7 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
         else:
             await target.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-@router.message(Command("subscription"))
-async def subscription_command(message: Message, state: FSMContext):
-    logger.info(f"✅ subscription_command вызван для {message.from_user.id}")
-
-    # ===== ОЧИСТКА SPEAKING =====
+async def clear_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
@@ -107,9 +103,14 @@ async def subscription_command(message: Message, state: FSMContext):
         user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-        await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
 
-    # ===== ОСНОВНАЯ ЛОГИКА =====
+@router.message(Command("subscription"))
+async def subscription_command(message: Message, state: FSMContext):
+    logger.info(f"✅ subscription_command вызван для {message.from_user.id}")
+
+    await clear_speaking(message, state)
+
     await show_subscription(message, message.from_user.id, from_profile=False, edit=False)
 
 @router.callback_query(F.data == "subscribe_30_days")

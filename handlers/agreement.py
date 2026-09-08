@@ -6,9 +6,7 @@ from data.users import get_user_state, set_user_state
 
 router = Router()
 
-@router.message(Command("agreement"))
-async def agreement_command(message: Message, state: FSMContext):
-    # ===== ОЧИСТКА SPEAKING =====
+async def clear_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
@@ -29,9 +27,12 @@ async def agreement_command(message: Message, state: FSMContext):
         user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-        await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
 
-    # ===== ОСНОВНАЯ ЛОГИКА =====
+@router.message(Command("agreement"))
+async def agreement_command(message: Message, state: FSMContext):
+    await clear_speaking(message, state)
+
     text = (
         "<b>Пользовательское соглашение и другие документы</b>\n\n"
         "Все официальные документы доступны в одной папке:\n"

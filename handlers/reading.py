@@ -67,7 +67,7 @@ TYPE_DESCRIPTION = {
     "order": "восстановите порядок абзацев",
 }
 
-# ---------- Вспомогательная функция для приведения порядка ----------
+# ---------- Вспомогательные функции ----------
 def ensure_list_of_ints(data):
     if isinstance(data, list):
         if all(isinstance(i, int) for i in data):
@@ -301,7 +301,7 @@ async def get_total_stats(user_id: int, short_level: str):
         total_wrong += wrong
     return total_correct, total_wrong
 
-# ---------- ИСПРАВЛЕННАЯ ФУНКЦИЯ ОБНОВЛЕНИЯ ПРОГРЕССА (с логированием) ----------
+# ---------- Обновление прогресса ----------
 async def update_progress_message(message: Message, user_id: int, short_type: str, short_level: str, state: FSMContext):
     data = await state.get_data()
     progress_msg_id = data.get("progress_msg_id")
@@ -335,26 +335,22 @@ async def update_progress_message(message: Message, user_id: int, short_type: st
             return
         except Exception as e:
             logger.warning(f"Не удалось отредактировать прогресс msg_id={progress_msg_id}: {e}")
-            # Если редактирование не удалось – отправляем новое
             sent_msg = await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
             await state.update_data(progress_msg_id=sent_msg.message_id)
             logger.debug(f"Отправлено новое сообщение прогресса msg_id={sent_msg.message_id}")
             return
 
-    # Если progress_msg_id отсутствует – отправляем новое
     sent_msg = await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
     await state.update_data(progress_msg_id=sent_msg.message_id)
     logger.debug(f"Отправлено новое сообщение прогресса msg_id={sent_msg.message_id}")
 
 # -------------------- ОБРАБОТЧИКИ --------------------
-# ========== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК start_reading ==========
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery, state: FSMContext):
-    # ===== УДАЛЯЕМ КЛАВИАТУРУ РОЛЕВОЙ ИГРЫ (если активна) =====
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     
-    # Удаляем сообщение с Reply-клавиатурой ролевой игры
+    # Удаляем сообщение с Reply-клавиатурой ролевой игры (если есть)
     reply_kb_id = user_state.get("reply_keyboard_msg_id")
     if reply_kb_id:
         try:
@@ -363,7 +359,7 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
             pass
         user_state.pop("reply_keyboard_msg_id", None)
     
-    # Сбрасываем режим ролевой игры
+    # Сбрасываем режим ролевой игры, если активен
     if user_state.get("mode") == "roleplay_active":
         user_state["mode"] = ""
         user_state["roleplay_history"] = []
@@ -372,19 +368,32 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
         user_state.pop("roleplay_goal_ignored", None)
         set_user_state(user_id, user_state)
     
-    # ===== ДАЛЬШЕ СТАНДАРТНАЯ ЛОГИКА ЧТЕНИЯ =====
-    await clear_all_keyboards(callback.message, state)
+    # Также очищаем speaking (если вдруг активен)
+    speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
+    if speaking_kb_id:
+        try:
+            await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
+        except Exception:
+            pass
+        user_state.pop("speaking_keyboard_msg_id", None)
     
-    # ===== ИСПРАВЛЕНИЕ: обрабатываем "message is not modified" =====
+    if user_state.get("mode") == "speaking_active":
+        user_state["mode"] = ""
+        user_state["keyboard_hidden"] = True
+        user_state["speaking_history"] = []
+        user_state["russian_streak"] = 0
+        user_state["pending_feedback"] = None
+        user_state["feedback_prompt_msg_id"] = None
+        set_user_state(user_id, user_state)
+        await state.clear()
+        await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
+    
+    await clear_all_keyboards(callback.message, state)
     try:
-        await callback.message.edit_text(
-            "📖 Чтение\n\nВыберите режим:",
-            reply_markup=get_type_choice_keyboard(),
-            parse_mode="HTML"
-        )
+        await callback.message.edit_text("📖 Чтение\n\nВыберите режим:", reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
     except TelegramBadRequest as e:
         if "message is not modified" in str(e):
-            pass  # игнорируем
+            pass
         else:
             raise
     await callback.answer()
@@ -604,7 +613,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             result_text = f"Неправильно. Правильный ответ: {correct_text}"
     await callback.message.answer(result_text)
 
-    # Обновляем прогресс – теперь это будет редактировать существующее сообщение
     await update_progress_message(callback.message, user_id, short_type, short_level, state)
 
     if not is_revision:
@@ -1181,10 +1189,16 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await callback.answer()
 
-# ---------- Перехват любых команд ----------
+# ====================== ПЕРЕХВАТ КОМАНД В ЧТЕНИИ (С ПРОВЕРКОЙ НА SPEAKING) ======================
 @router.message(F.text.startswith('/'), ReadingStates.in_progress)
 @router.message(F.text.startswith('/'), ReadingStates.waiting_for_text)
 async def handle_any_command_in_reading(message: Message, state: FSMContext):
+    # Проверяем, не в speaking ли пользователь
+    user_state = get_user_state(message.from_user.id)
+    if user_state.get("mode") == "speaking_active":
+        return  # Пропускаем команду – она пойдёт в support/subscription/agreement
+
+    # Если не в speaking – делаем как раньше
     await clear_all_keyboards(message, state)
     await message.answer("Практика завершена.")
     await state.clear()
