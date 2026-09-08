@@ -6,6 +6,7 @@ from aiogram.fsm.context import FSMContext
 from datetime import datetime, timedelta
 from utils.db import get_user_profile, update_user_subscription
 from data.users import get_user_state, set_user_state
+import asyncio
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -103,7 +104,11 @@ async def clear_speaking(message: Message, state: FSMContext):
         user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-        await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
+        
+        # Отправляем и удаляем "Переход..."
+        msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
+        await asyncio.sleep(0.5)
+        await msg.delete()
 
 @router.message(Command("subscription"))
 async def subscription_command(message: Message, state: FSMContext):
