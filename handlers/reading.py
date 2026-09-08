@@ -2,8 +2,9 @@ import logging
 import random
 import json
 import hashlib
+import asyncio
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from aiogram.exceptions import TelegramBadRequest
@@ -349,7 +350,7 @@ async def update_progress_message(message: Message, user_id: int, short_type: st
 async def start_reading(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    
+
     # Удаляем сообщение с Reply-клавиатурой ролевой игры (если есть)
     reply_kb_id = user_state.get("reply_keyboard_msg_id")
     if reply_kb_id:
@@ -358,7 +359,7 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
         user_state.pop("reply_keyboard_msg_id", None)
-    
+
     # Сбрасываем режим ролевой игры, если активен
     if user_state.get("mode") == "roleplay_active":
         user_state["mode"] = ""
@@ -367,7 +368,7 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
         user_state.pop("roleplay_goal_notified", None)
         user_state.pop("roleplay_goal_ignored", None)
         set_user_state(user_id, user_state)
-    
+
     # Также очищаем speaking (если вдруг активен)
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
@@ -376,7 +377,7 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
         user_state.pop("speaking_keyboard_msg_id", None)
-    
+
     if user_state.get("mode") == "speaking_active":
         user_state["mode"] = ""
         user_state["keyboard_hidden"] = True
@@ -386,8 +387,12 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
         user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-        await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-    
+
+        # Отправляем и удаляем "Переход..."
+        msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
+        await asyncio.sleep(0.5)
+        await msg.delete()
+
     await clear_all_keyboards(callback.message, state)
     try:
         await callback.message.edit_text("📖 Чтение\n\nВыберите режим:", reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
