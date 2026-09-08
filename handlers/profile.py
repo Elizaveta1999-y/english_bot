@@ -1,7 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, Message, InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import datetime
-import asyncio
 import logging
 
 from utils.db import (
@@ -33,7 +32,7 @@ READING_TYPE_KEYS = [
     "Восстановление_порядка_абзацев"
 ]
 
-# ---------- ВСЕ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ (БЕЗ ИЗМЕНЕНИЙ) ----------
+# ---------- ВСЕ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
 async def get_progress_summary_for_keys(user_id: int, type_keys: list) -> dict:
     if not type_keys:
         return {"correct": 0, "wrong": 0, "total": 0, "percent": 0}
@@ -200,7 +199,14 @@ async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
     await update_last_active(user_id)
 
-    profile = await get_user_profile(user_id)
+    try:
+        profile = await get_user_profile(user_id)
+    except Exception as e:
+        logger.error(f"Ошибка получения профиля: {e}")
+        await callback.message.answer("Произошла ошибка при загрузке профиля. Попробуйте позже.")
+        await callback.answer()
+        return
+
     if not profile:
         username = getattr(callback.from_user, 'username', None)
         first_name = getattr(callback.from_user, 'first_name', None)
@@ -464,16 +470,5 @@ async def show_profile(message, user_id: int, edit: bool = False):
     await profile_menu(fake_callback)
 
 # =====================================================================
-# ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СОВМЕСТИМОСТИ
+# УДАЛЕНЫ НЕИСПОЛЬЗУЕМЫЕ И ОПАСНЫЕ ФУНКЦИИ С asyncio.run
 # =====================================================================
-async def _update_stats_after_lesson(user_id: int):
-    pass
-
-async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    pass
-
-def update_stats_after_lesson(user_id: int):
-    asyncio.run(_update_stats_after_lesson(user_id))
-
-def update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    asyncio.run(_update_stats_after_practice(user_id, correct, wrong))

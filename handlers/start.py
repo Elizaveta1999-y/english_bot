@@ -28,7 +28,7 @@ router = Router()
 
 WELCOME_TEXT = (
     "<b>Добро пожаловать в умный тренажер Английского языка! 🇺🇸</b>\n\n"
-    "Общайся голосом со своим персональным AI-тьютором, практикуй реальные ситуации и оттачивай главные навыки языка! 🧠\n"
+    "Общайся голосом со своим AI-тьютором, практикуй реальные ситуации и оттачивай главные навыки языка! 🧠\n"
     "Выбирай режим и начинай совершенствоваться в языке!\n\n"
 )
 
@@ -176,6 +176,7 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
             pass
         user_state.pop("reply_keyboard_msg_id", None)
     
+    # Сбрасываем ВСЕ режимы
     keys_to_remove = [k for k in list(user_state.keys()) if k.startswith("roleplay") or k.startswith("speaking") or k in ("mode", "russian_counter", "voice_id")]
     for k in keys_to_remove:
         user_state.pop(k, None)
@@ -200,6 +201,22 @@ async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    # ===== ЯВНАЯ ОЧИСТКА SPEAKING =====
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") == "speaking_active":
+        user_state["mode"] = ""
+        # Удаляем сообщение с клавиатурой speaking
+        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
+        if speaking_kb_id:
+            try:
+                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
+            except Exception:
+                pass
+            user_state.pop("speaking_keyboard_msg_id", None)
+        set_user_state(user_id, user_state)
+        await state.clear()
+    # ===== ДАЛЬШЕ =====
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_reading(callback, state)
@@ -277,6 +294,21 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    # ===== ЯВНАЯ ОЧИСТКА SPEAKING =====
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") == "speaking_active":
+        user_state["mode"] = ""
+        speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
+        if speaking_kb_id:
+            try:
+                await callback.bot.delete_message(callback.message.chat.id, speaking_kb_id)
+            except Exception:
+                pass
+            user_state.pop("speaking_keyboard_msg_id", None)
+        set_user_state(user_id, user_state)
+        await state.clear()
+    # ===== ДАЛЬШЕ =====
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state:
@@ -311,7 +343,5 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
     # Если активна ролевая игра – ничего не делаем, пропускаем в roleplay
     if current_state in (RoleplayStates.active.state, RoleplayStates.confirming_finish.state):
         return
-    # Иначе показываем главное меню (здесь можно вызвать show_main_menu, но обычно это делает другой обработчик)
-    # Чтобы не дублировать, можно просто вернуть управление, и другой обработчик (в common.py) покажет меню.
-    # Однако для надёжности покажем меню здесь, если другого обработчика нет.
+    # Иначе показываем главное меню
     await show_main_menu(message, edit=False)
