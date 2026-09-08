@@ -260,19 +260,25 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await start_roleplay(callback)
 
+# =============== СТАТИСТИКА С ЛОГАМИ ===============
 @router.callback_query(F.data == "profile_menu")
 async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"🔹 start_profile_mode ВЫЗВАНА для user {callback.from_user.id}")
     try:
         await callback.answer()
-    except Exception:
-        pass
+    except Exception as e:
+        logger.error(f"Ошибка callback.answer: {e}")
     
     await remove_all_reply_keyboards(callback)
     await state.clear()
     
-    # ПОКАЗЫВАЕМ СТАТИСТИКУ НОВЫМ СООБЩЕНИЕМ
+    logger.info(f"🔹 Вызываем show_profile для user {callback.from_user.id}")
     from handlers.profile import show_profile
-    await show_profile(callback.message, user_id=callback.from_user.id, edit=False)
+    try:
+        await show_profile(callback.message, user_id=callback.from_user.id, edit=False)
+        logger.info(f"✅ show_profile выполнена успешно")
+    except Exception as e:
+        logger.error(f"❌ Ошибка в show_profile: {e}", exc_info=True)
 
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_text_handler(message: Message, state: FSMContext):

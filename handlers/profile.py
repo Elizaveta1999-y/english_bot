@@ -187,21 +187,24 @@ async def safe_edit_message(message, text, reply_markup=None, parse_mode="HTML")
 
 # ---------- ГЛАВНАЯ ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ТЕКСТА И КНОПОК ----------
 async def get_profile_text_and_keyboard(user_id: int) -> tuple:
+    logger.info(f"🔹 get_profile_text_and_keyboard для user {user_id}")
     await update_last_active(user_id)
 
     try:
         profile = await get_user_profile(user_id)
+        logger.info(f"profile получен: {profile is not None}")
     except Exception as e:
-        logger.error(f"Ошибка получения профиля: {e}")
+        logger.error(f"Ошибка получения профиля: {e}", exc_info=True)
         return "Произошла ошибка при загрузке профиля. Попробуйте позже.", None
 
     if not profile:
         try:
+            logger.info(f"Создаём профиль для user {user_id}")
             profile = await get_or_create_user(user_id, None, None, None)
             if not profile:
                 return "Профиль не найден. Напишите /start для регистрации.", None
         except Exception as e:
-            logger.error(f"Ошибка создания профиля: {e}")
+            logger.error(f"Ошибка создания профиля: {e}", exc_info=True)
             return "Ошибка создания профиля. Попробуйте позже.", None
 
     show_bonus, bonus_reason = await get_bonus_notification(user_id)
@@ -296,32 +299,50 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
     else:
         text += "не активна"
 
+    logger.info("✅ Текст статистики собран")
     return text, get_profile_keyboard()
 
 # ---------- ОБРАБОТЧИК КНОПКИ СТАТИСТИКИ (РЕДАКТИРУЕТ) ----------
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
-    text, keyboard = await get_profile_text_and_keyboard(callback.from_user.id)
-    if keyboard is None:
-        await callback.message.answer(text)
-    else:
-        await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
+    logger.info(f"🔹 profile_menu ВЫЗВАН для user {callback.from_user.id}")
     try:
-        await callback.answer()
-    except Exception:
-        pass
+        text, keyboard = await get_profile_text_and_keyboard(callback.from_user.id)
+        if keyboard is None:
+            await callback.message.answer(text)
+        else:
+            await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
+        try:
+            await callback.answer()
+        except Exception:
+            pass
+        logger.info("✅ profile_menu завершён")
+    except Exception as e:
+        logger.error(f"❌ Ошибка в profile_menu: {e}", exc_info=True)
+        await callback.message.answer("Ошибка загрузки статистики.")
 
 # ---------- ФУНКЦИЯ ДЛЯ ВНЕШНЕГО ВЫЗОВА (ИЗ START.PY) ----------
 async def show_profile(message: Message, user_id: int, edit: bool = False):
-    """Показывает профиль. Если edit=False – отправляет новым сообщением."""
-    text, keyboard = await get_profile_text_and_keyboard(user_id)
-    if keyboard is None:
-        await message.answer(text)
+    logger.info(f"🔹 show_profile ВЫЗВАНА для user {user_id}, edit={edit}")
+    try:
+        text, keyboard = await get_profile_text_and_keyboard(user_id)
+        logger.info(f"✅ Текст и клавиатура получены, keyboard={keyboard is not None}")
+    except Exception as e:
+        logger.error(f"❌ Ошибка в get_profile_text_and_keyboard: {e}", exc_info=True)
+        await message.answer("Ошибка загрузки статистики. Попробуйте позже.")
         return
-    if edit:
-        await safe_edit_message(message, text, reply_markup=keyboard, parse_mode="HTML")
-    else:
-        await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+
+    try:
+        if keyboard is None:
+            await message.answer(text)
+        elif edit:
+            await safe_edit_message(message, text, reply_markup=keyboard, parse_mode="HTML")
+        else:
+            await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        logger.info("✅ Сообщение отправлено")
+    except Exception as e:
+        logger.error(f"❌ Ошибка отправки сообщения: {e}", exc_info=True)
+        await message.answer("Ошибка отправки статистики. Попробуйте позже.")
 
 # ---------- ОБРАБОТЧИК ПОДПИСКИ ----------
 @router.callback_query(lambda c: c.data == "profile_subscription")
