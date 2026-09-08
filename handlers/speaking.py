@@ -450,16 +450,24 @@ async def hide_text(callback: CallbackQuery):
         await callback.message.delete()
         await callback.answer("Скрыто.")
 
-# ====================== НОВЫЙ ОБРАБОТЧИК КОМАНД (как в roleplay) ======================
-@router.message(SpeakingStates.waiting_for_voice, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
+# ====================== ПЕРЕХВАТЧИК КОМАНД (БЕЗ ПРИВЯЗКИ К СОСТОЯНИЮ) ======================
+@router.message(F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
 async def handle_commands_in_speaking(message: Message, state: FSMContext):
-    """Любая команда, кроме /support, /subscription, /agreement, завершает speaking и показывает главное меню."""
+    """Любая команда, кроме /support, /subscription, /agreement, завершает speaking если он активен."""
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
     # Проверяем, активен ли режим speaking
     if user_state.get("mode") != "speaking_active":
+        logger.info(f"handle_commands_in_speaking: режим не активен, пропускаем (user={user_id})")
         return
+    
+    # Проверяем, не находится ли пользователь в процессе фидбека
+    if user_state.get("feedback_prompt_msg_id"):
+        logger.info(f"handle_commands_in_speaking: ждём фидбек, пропускаем (user={user_id})")
+        return
+    
+    logger.info(f"handle_commands_in_speaking: завершаем speaking (user={user_id}, command={message.text})")
     
     # Удаляем клавиатуру speaking
     keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
