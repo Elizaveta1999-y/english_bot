@@ -470,5 +470,30 @@ async def show_profile(message, user_id: int, edit: bool = False):
     await profile_menu(fake_callback)
 
 # =====================================================================
-# УДАЛЕНЫ НЕИСПОЛЬЗУЕМЫЕ И ОПАСНЫЕ ФУНКЦИИ С asyncio.run
+# ФУНКЦИИ ДЛЯ СОВМЕСТИМОСТИ С LESSONS.PY
 # =====================================================================
+async def _update_stats_after_lesson(user_id: int):
+    """Обновляет статистику после урока (заглушка)."""
+    # Здесь можно добавить логику, если нужно.
+    # Пока просто ничего не делаем.
+    pass
+
+async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
+    """Обновляет статистику после практики (заглушка)."""
+    # Здесь можно добавить логику, если нужно.
+    # Пока просто ничего не делаем.
+    pass
+
+# Синхронные обёртки (для обратной совместимости с импортами)
+def update_stats_after_lesson(user_id: int):
+    """Синхронная обёртка для вызова из синхронного кода."""
+    import logging
+    logging.warning(f"update_stats_after_lesson вызвана для {user_id}, но не реализована")
+    # Возвращаем None, чтобы не сломать код
+    return None
+
+def update_stats_after_practice(user_id: int, correct: int, wrong: int):
+    """Синхронная обёртка для вызова из синхронного кода."""
+    import logging
+    logging.warning(f"update_stats_after_practice вызвана для {user_id}, но не реализована")
+    return None
