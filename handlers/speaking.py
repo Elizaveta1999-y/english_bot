@@ -56,7 +56,6 @@ async def start_speaking(callback: CallbackQuery, state: FSMContext):
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
     ])
     await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
-    # callback.answer() вызывается в start.py, здесь не нужен
 
 
 @router.callback_query(F.data.startswith("speaking_voice_"))
@@ -467,3 +466,36 @@ async def hide_text(callback: CallbackQuery):
         logger.error(f"Ошибка в hide_text: {e}")
         await callback.message.delete()
         await callback.answer("Скрыто.")
+
+
+# ====================== ПЕРЕХВАТ КОМАНД В SPEAKING ======================
+@router.message(SpeakingStates.waiting_for_voice, F.text.startswith('/'))
+async def handle_commands_in_speaking(message: Message, state: FSMContext):
+    """Перехватывает любые команды /... в режиме speaking и завершает режим."""
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    
+    # Удаляем клавиатуру
+    keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
+    if keyboard_msg_id:
+        try:
+            await message.bot.delete_message(message.chat.id, keyboard_msg_id)
+        except Exception:
+            pass
+        user_state.pop("speaking_keyboard_msg_id", None)
+    
+    # Сбрасываем режим
+    user_state["mode"] = ""
+    user_state["keyboard_hidden"] = True
+    user_state["speaking_history"] = []
+    user_state["russian_streak"] = 0
+    user_state["pending_feedback"] = None
+    user_state["feedback_prompt_msg_id"] = None
+    set_user_state(user_id, user_state)
+    await state.clear()
+    
+    # Показываем сообщение о завершении
+    await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+    
+    # Дальше команда пойдёт в свой обработчик (support, subscription, agreement и т.д.)
+    # Ничего не возвращаем – команда продолжит обработку

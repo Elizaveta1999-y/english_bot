@@ -201,12 +201,13 @@ async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    # ===== ЯВНАЯ ОЧИСТКА SPEAKING =====
+    
+    # ===== ЖЁСТКАЯ ОЧИСТКА SPEAKING =====
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
+    
+    # Если speaking активен – удаляем клавиатуру и сбрасываем
     if user_state.get("mode") == "speaking_active":
-        user_state["mode"] = ""
-        # Удаляем сообщение с клавиатурой speaking
         speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
         if speaking_kb_id:
             try:
@@ -214,9 +215,17 @@ async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
             except Exception:
                 pass
             user_state.pop("speaking_keyboard_msg_id", None)
+        user_state["mode"] = ""
+        user_state["keyboard_hidden"] = True
+        user_state["speaking_history"] = []
+        user_state["russian_streak"] = 0
+        user_state["pending_feedback"] = None
+        user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-    # ===== ДАЛЬШЕ =====
+        await callback.message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+    
+    # Дальше запускаем чтение
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_reading(callback, state)
@@ -294,11 +303,12 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
-    # ===== ЯВНАЯ ОЧИСТКА SPEAKING =====
+    
+    # ===== ЖЁСТКАЯ ОЧИСТКА SPEAKING =====
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
+    
     if user_state.get("mode") == "speaking_active":
-        user_state["mode"] = ""
         speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
         if speaking_kb_id:
             try:
@@ -306,9 +316,17 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
             except Exception:
                 pass
             user_state.pop("speaking_keyboard_msg_id", None)
+        user_state["mode"] = ""
+        user_state["keyboard_hidden"] = True
+        user_state["speaking_history"] = []
+        user_state["russian_streak"] = 0
+        user_state["pending_feedback"] = None
+        user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-    # ===== ДАЛЬШЕ =====
+        await callback.message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+    
+    # Дальше запускаем ролевую игру
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state:
