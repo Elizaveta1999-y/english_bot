@@ -31,20 +31,19 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# ========== МИДЛВАР ==========
 dp.message.middleware(SpeakingOverrideMiddleware())
 dp.callback_query.middleware(SpeakingOverrideMiddleware())
 logger.info("✅ SpeakingOverrideMiddleware зарегистрирован")
 
-# ========== ПОДКЛЮЧАЕМ РОУТЕРЫ ==========
+# ========== ПОДКЛЮЧАЕМ РОУТЕРЫ (ПРАВИЛЬНЫЙ ПОРЯДОК) ==========
 dp.include_router(agreement_router)      # /agreement
-dp.include_router(reading.router)        # перехват команд в чтении
 dp.include_router(support.router)        # /support
 dp.include_router(subscription_router)   # /subscription
-dp.include_router(roleplay.router)       # ролевые игры
-dp.include_router(roleplay_voice.router) # ролевые игры голосом
-dp.include_router(speaking.router)       # <-- speaking ПОСЛЕ support/subscription
-dp.include_router(start.router)          # start
+dp.include_router(reading.router)        # чтение (перехват команд)
+dp.include_router(speaking.router)       # speaking (после команд)
+dp.include_router(roleplay.router)
+dp.include_router(roleplay_voice.router)
+dp.include_router(start.router)
 dp.include_router(words.router)
 dp.include_router(govorenie_router)
 dp.include_router(writing.router)
