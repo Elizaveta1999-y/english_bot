@@ -134,7 +134,7 @@ async def under_construction(callback: CallbackQuery):
 
 
 # ================================================================
-# ИСПРАВЛЕННЫЕ ОБРАБОТЧИКИ – ЯВНАЯ ОЧИСТКА SPEAKING
+# ИСПРАВЛЕННЫЕ ОБРАБОТЧИКИ – БЕЗ «Практика завершена», с «Переход...»
 # ================================================================
 
 @router.callback_query(F.data == "start_reading")
@@ -167,9 +167,10 @@ async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
         user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-        await callback.message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+        # ПОКАЗЫВАЕМ «Переход...»
+        await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
     
-    # Запускаем чтение (без дополнительной очистки, чтобы не конфликтовать)
+    # Запускаем чтение
     await start_reading(callback, state)
 
 
@@ -201,7 +202,8 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
         user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-        await callback.message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
+        # ПОКАЗЫВАЕМ «Переход...»
+        await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
     
     # Дополнительная очистка ролевых игр (если есть остатки)
     user_state = get_user_state(user_id)
@@ -222,7 +224,7 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
     await start_roleplay(callback)
 
 
-# Остальные режимы – без изменений (они используют remove_all_reply_keyboards)
+# Остальные режимы – без изменений
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
     try:
@@ -230,13 +232,8 @@ async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
     except Exception:
         pass
     from handlers.speaking import start_speaking as _start_speaking
-    # Очистка других режимов
-    # Здесь можно оставить как было, но для единообразия используем remove_all_reply_keyboards
-    # Но она уже есть в start_speaking? Нет, start_speaking – это точка входа, там нет очистки.
-    # Поэтому делаем очистку здесь
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    # Удаляем roleplay клавиатуру, если есть
     roleplay_kb_id = user_state.get("reply_keyboard_msg_id")
     if roleplay_kb_id:
         try:
@@ -244,7 +241,6 @@ async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
         user_state.pop("reply_keyboard_msg_id", None)
-    # Сбрасываем roleplay режим
     if user_state.get("mode") == "roleplay_active":
         user_state["mode"] = ""
         user_state["roleplay_history"] = []
@@ -253,7 +249,6 @@ async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
         user_state.pop("roleplay_goal_ignored", None)
         set_user_state(user_id, user_state)
         await state.clear()
-    # Удаляем speaking клавиатуру, если есть (на всякий случай)
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
@@ -332,7 +327,7 @@ async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
 
 
 # ================================================================
-# ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ УДАЛЕНИЯ КЛАВИАТУР (ОСТАВЛЯЕМ)
+# ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ УДАЛЕНИЯ КЛАВИАТУР
 # ================================================================
 async def remove_all_reply_keyboards(callback: CallbackQuery):
     user_id = callback.from_user.id

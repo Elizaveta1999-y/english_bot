@@ -43,12 +43,8 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
 
-# ========== ТОЧКА ВХОДА (БЕЗ ДЕКОРАТОРА, вызывается из start.py) ==========
+# ========== ТОЧКА ВХОДА ==========
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    """
-    Запускает режим общения с AI.
-    Вызывается только из start.py, поэтому декоратор @router.callback_query отсутствует.
-    """
     logger.info(f"🔹 start_speaking вызвана для user {callback.from_user.id}")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
@@ -351,7 +347,9 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     await show_main_menu(callback.message, edit=False)
 
 
-# ---------- КНОПКИ ТЕКСТА ----------
+# ================================================================
+# КНОПКИ ТЕКСТА
+# ================================================================
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     try:
