@@ -494,9 +494,9 @@ async def go_to_next_revision(message, state, user_id=None):
     await state.update_data({"revision_index": index, "answered": False, "task": None})
     await send_task(message, state, is_revision=True, error_ids=error_ids, user_id=user_id)
 
-# ========== ПЕРЕХВАТ КОМАНД ==========
+# ========== ПЕРЕХВАТ КОМАНД (С ИСКЛЮЧЕНИЯМИ) ==========
 @router.message(
-    F.text.startswith('/'),
+    F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]),
     StateFilter(
         ListeningState.choosing_type,
         ListeningState.choosing_level,
@@ -541,6 +541,10 @@ async def listening_start(event, state: FSMContext):
     chat_id = event.chat.id if hasattr(event, 'chat') else event.message.chat.id
     await clear_user_buttons(user_id, event.bot, chat_id)
     await state.clear()
+    # Устанавливаем режим
+    user_state = get_user_state(user_id)
+    user_state["mode"] = "listening_active"
+    set_user_state(user_id, user_state)
     await state.set_state(ListeningState.choosing_type)
     await state.update_data({"user_id": user_id})
     text = "Аудирование 🎧\n\nВыберите режим:"
@@ -653,13 +657,11 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
 
     error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
 
-    # ЕСЛИ ОШИБОК НЕТ – ПРОСТО ОТВЕЧАЕМ
     if not error_ids:
         await callback.message.answer("🎉 Ошибок нет. Отличная работа!")
         await callback.answer()
         return
 
-    # ===== ЕСЛИ ОШИБКИ ЕСТЬ – НОВОЕ СООБЩЕНИЕ =====
     question_msg_id = data.get("question_message_id")
     if question_msg_id:
         try:
@@ -668,7 +670,6 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
             pass
         await state.update_data({"question_message_id": None})
 
-    # Отправляем НОВОЕ сообщение с информацией о работе над ошибками
     level_label = LEVELS.get(level, level)
     info_text = (
         f"Работа над ошибками\n"
@@ -685,8 +686,8 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
         "revision_index": 0,
         "revision_fixed": 0,
         "revision_total": len(error_ids),
-        "revision_info_msg_id": info_msg.message_id,   # <-- новое сообщение, не прогресс
-        "progress_message_id": data.get("progress_message_id")  # прогресс остаётся
+        "revision_info_msg_id": info_msg.message_id,
+        "progress_message_id": data.get("progress_message_id")
     })
 
     await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids, user_id=user_id)
@@ -1076,6 +1077,10 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     add_user_message(user_id, msg.message_id)
 
     await state.clear()
+    # Сбрасываем mode
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=False)
     await callback.answer()
@@ -1285,6 +1290,10 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     chat_id = callback.message.chat.id
     await clear_user_buttons(user_id, callback.bot, chat_id)
     await state.clear()
+    # Сбрасываем mode
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await callback.answer()

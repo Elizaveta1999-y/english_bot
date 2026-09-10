@@ -7,6 +7,7 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Voice
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from aiogram.filters import StateFilter
 from services.deepseek_govorenie import check_govorenie
 from services.speech_recognition import speech_to_text
 from utils.db import (
@@ -14,7 +15,7 @@ from utils.db import (
     get_govorenie_stats, update_govorenie_stats,
     reset_govorenie_progress, init_govorenie_session
 )
-# Убрали глобальный импорт show_main_menu
+from data.users import get_user_state, set_user_state
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -123,15 +124,29 @@ async def hide_progress_buttons(message_or_callback, state: FSMContext):
         except Exception as e:
             logger.error(f"Не удалось скрыть кнопки задания: {e}")
 
-@router.message(F.text.startswith('/'), GovorenieStates.choosing_type,
-                GovorenieStates.choosing_level, GovorenieStates.waiting_voice,
-                GovorenieStates.showing_progress, GovorenieStates.confirm_reset)
+# ==================== ПЕРЕХВАТ КОМАНД С ИСКЛЮЧЕНИЯМИ ====================
+@router.message(
+    F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]),
+    StateFilter(
+        GovorenieStates.choosing_type,
+        GovorenieStates.choosing_level,
+        GovorenieStates.waiting_voice,
+        GovorenieStates.showing_progress,
+        GovorenieStates.confirm_reset
+    )
+)
 async def handle_command_during_govorenie(message: Message, state: FSMContext):
     from handlers.start import show_main_menu  # локальный импорт
     await hide_progress_buttons(message, state)
-    await message.answer("Практика завершена")
+    await message.answer("Практика завершена.")
     await state.clear()
+    # Сбрасываем mode
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     await show_main_menu(message, edit=False)
+# ========================================================================
 
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
@@ -585,6 +600,10 @@ async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
         )
 
     await state.clear()
+    # Сбрасываем mode
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     await show_main_menu(callback.message, edit=False)
 
 @router.callback_query(F.data == "back_to_types")
@@ -599,6 +618,11 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     await callback.answer()
     await hide_progress_buttons(callback, state)
     await state.clear()
+    # Сбрасываем mode
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     await show_main_menu(callback.message, edit=False)
 
 @router.message(GovorenieStates.waiting_voice, ~F.voice)
@@ -613,4 +637,9 @@ async def start_govorenie(callback: CallbackQuery, state: FSMContext):
     """
     Запускает режим Говорение из внешнего вызова (например, из start.py).
     """
+    # Устанавливаем режим
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = "govorenie_active"
+    set_user_state(user_id, user_state)
     await start_govorenie_mode(callback, state)

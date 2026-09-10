@@ -3,15 +3,17 @@ import os
 import re
 import logging
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from aiogram.filters import StateFilter
 from services.deepseek_writing import check_writing
 from utils.db import (
     get_writing_index, set_writing_index,
     get_writing_stats, update_writing_stats,
     reset_writing_progress, init_writing_session
 )
+from data.users import get_user_state, set_user_state
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -145,12 +147,17 @@ SENTENCE_LIMITS = {
     "story":  {"beginner": 4, "intermediate": 6, "expert": 6}
 }
 
-# ================== ХЕНДЛЕРЫ КОМАНД / (В ПЕРВУЮ ОЧЕРЕДЬ) ==================
-@router.message(WritingStates.choosing_type, F.text.startswith("/"))
-@router.message(WritingStates.choosing_level, F.text.startswith("/"))
-@router.message(WritingStates.waiting_answer, F.text.startswith("/"))
-@router.message(WritingStates.showing_progress, F.text.startswith("/"))
-@router.message(WritingStates.confirm_reset, F.text.startswith("/"))
+# ================== ХЕНДЛЕРЫ КОМАНД / (С ИСКЛЮЧЕНИЯМИ) ==================
+@router.message(
+    StateFilter(
+        WritingStates.choosing_type,
+        WritingStates.choosing_level,
+        WritingStates.waiting_answer,
+        WritingStates.showing_progress,
+        WritingStates.confirm_reset
+    ),
+    F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"])
+)
 async def handle_command_in_writing(message: Message, state: FSMContext):
     data = await state.get_data()
     progress_msg_id = data.get("progress_msg_id")
@@ -173,8 +180,13 @@ async def handle_command_in_writing(message: Message, state: FSMContext):
             )
         except Exception:
             pass
-    await message.answer("Практика завершена")
+    await message.answer("Практика завершена.")
     await state.clear()
+    # Сбрасываем mode
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
@@ -709,6 +721,10 @@ async def cancel_writing(callback: CallbackQuery, state: FSMContext):
         )
 
     await state.clear()
+    # Сбрасываем mode
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
@@ -750,6 +766,11 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
     await state.clear()
+    # Сбрасываем mode
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
@@ -766,5 +787,10 @@ async def start_writing(callback: CallbackQuery, state: FSMContext):
     Запускает режим Письмо из внешнего вызова (например, из start.py).
     """
     await callback.answer()
+    # Устанавливаем режим
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = "writing_active"
+    set_user_state(user_id, user_state)
     await state.set_state(WritingStates.choosing_type)
     await show_task_types(callback.message, edit=True)

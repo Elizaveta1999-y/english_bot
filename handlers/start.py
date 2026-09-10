@@ -180,12 +180,166 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
         user_state.pop(k, None)
     set_user_state(user_id, user_state)
 
+# ================== ОЧИСТКА ГРАММАТИКИ ПРИ ПЕРЕХОДЕ ==================
+async def clear_grammar_if_active(callback: CallbackQuery, state: FSMContext):
+    """Убирает кнопки грамматики и сбрасывает состояние, если режим грамматики активен."""
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "grammar_active":
+        return
+    
+    data = await state.get_data()
+    for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
+        msg_id = data.get(key)
+        if msg_id:
+            try:
+                await callback.bot.edit_message_reply_markup(
+                    chat_id=callback.message.chat.id,
+                    message_id=msg_id,
+                    reply_markup=None
+                )
+                logger.info(f"[clear_grammar_if_active] Кнопки убраны у {key}={msg_id}")
+            except Exception as e:
+                logger.warning(f"[clear_grammar_if_active] Не удалось убрать кнопки у {msg_id}: {e}")
+    
+    await state.clear()
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    logger.info("[clear_grammar_if_active] Режим грамматики очищен")
+# =====================================================================
+
+# ================== ОЧИСТКА ЛЕКСИКИ ПРИ ПЕРЕХОДЕ ==================
+async def clear_words_if_active(callback: CallbackQuery, state: FSMContext):
+    """Убирает кнопки лексики и сбрасывает состояние, если режим лексики активен."""
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "words_active":
+        return
+    
+    from handlers.words import user_message_ids, user_sessions, remove_buttons_from_messages
+    
+    chat_id = callback.message.chat.id
+    if user_id in user_message_ids:
+        msg_ids = list(user_message_ids[user_id].values())
+        await remove_buttons_from_messages(callback.bot, chat_id, msg_ids)
+        user_message_ids[user_id] = {}
+    
+    user_sessions.pop(user_id, None)
+    
+    await state.clear()
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    logger.info("[clear_words_if_active] Режим лексики очищен")
+# ==================================================================
+
+# ================== ОЧИСТКА АУДИРОВАНИЯ ПРИ ПЕРЕХОДЕ ==================
+async def clear_listening_if_active(callback: CallbackQuery, state: FSMContext):
+    """Убирает кнопки аудирования и сбрасывает состояние, если режим аудирования активен."""
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "listening_active":
+        return
+    
+    from handlers.listening import clear_user_buttons as listening_clear_buttons
+    
+    chat_id = callback.message.chat.id
+    await listening_clear_buttons(user_id, callback.bot, chat_id)
+    
+    await state.clear()
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    logger.info("[clear_listening_if_active] Режим аудирования очищен")
+# ======================================================================
+
+# ================== ОЧИСТКА ПИСЬМА ПРИ ПЕРЕХОДЕ ==================
+async def clear_writing_if_active(callback: CallbackQuery, state: FSMContext):
+    """Убирает кнопки письма и сбрасывает состояние, если режим письма активен."""
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "writing_active":
+        return
+    
+    chat_id = callback.message.chat.id
+    data = await state.get_data()
+    
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=chat_id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=chat_id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    
+    await state.clear()
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    logger.info("[clear_writing_if_active] Режим письма очищен")
+# ==================================================================
+
+# ================== ОЧИСТКА ГОВОРЕНИЯ ПРИ ПЕРЕХОДЕ ==================
+async def clear_govorenie_if_active(callback: CallbackQuery, state: FSMContext):
+    """Убирает кнопки говорения и сбрасывает состояние, если режим говорения активен."""
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "govorenie_active":
+        return
+    
+    chat_id = callback.message.chat.id
+    data = await state.get_data()
+    
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=chat_id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=chat_id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    
+    await state.clear()
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    logger.info("[clear_govorenie_if_active] Режим говорения очищен")
+# =====================================================================
+
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking_mode(callback: CallbackQuery, state: FSMContext):
     try:
         await callback.answer()
     except Exception:
         pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_speaking(callback, state)
@@ -196,6 +350,11 @@ async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_reading(callback, state)
@@ -206,6 +365,11 @@ async def start_writing_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_writing(callback, state)
@@ -216,6 +380,11 @@ async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_govorenie(callback, state)
@@ -226,6 +395,11 @@ async def start_grammar_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_grammar(callback, state)
@@ -236,6 +410,11 @@ async def start_words_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_words(callback, state)
@@ -246,6 +425,11 @@ async def start_listening_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_listening(callback, state)
@@ -256,29 +440,29 @@ async def start_roleplay_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
     except Exception:
         pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
     await start_roleplay(callback)
 
-# =============== СТАТИСТИКА С ЛОГАМИ ===============
 @router.callback_query(F.data == "profile_menu")
 async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_profile_mode ВЫЗВАНА для user {callback.from_user.id}")
     try:
         await callback.answer()
-    except Exception as e:
-        logger.error(f"Ошибка callback.answer: {e}")
-    
+    except Exception:
+        pass
+    await clear_grammar_if_active(callback, state)
+    await clear_words_if_active(callback, state)
+    await clear_listening_if_active(callback, state)
+    await clear_writing_if_active(callback, state)
+    await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
-    
-    logger.info(f"🔹 Вызываем show_profile для user {callback.from_user.id}")
-    from handlers.profile import show_profile
-    try:
-        await show_profile(callback.message, user_id=callback.from_user.id, edit=False)
-        logger.info(f"✅ show_profile выполнена успешно")
-    except Exception as e:
-        logger.error(f"❌ Ошибка в show_profile: {e}", exc_info=True)
+    await show_profile(callback.message, user_id=callback.from_user.id, edit=False)
 
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_text_handler(message: Message, state: FSMContext):
@@ -288,6 +472,98 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state in (RoleplayStates.active.state, RoleplayStates.confirming_finish.state):
         return
+    
+    # Очистка грамматики если активна
+    if user_state.get("mode") == "grammar_active":
+        data = await state.get_data()
+        for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
+            msg_id = data.get(key)
+            if msg_id:
+                try:
+                    await message.bot.edit_message_reply_markup(
+                        chat_id=message.chat.id,
+                        message_id=msg_id,
+                        reply_markup=None
+                    )
+                except Exception:
+                    pass
+        await state.clear()
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+    
+    # Очистка лексики если активна
+    if user_state.get("mode") == "words_active":
+        from handlers.words import user_message_ids, user_sessions, remove_buttons_from_messages
+        if user_id in user_message_ids:
+            msg_ids = list(user_message_ids[user_id].values())
+            await remove_buttons_from_messages(message.bot, message.chat.id, msg_ids)
+            user_message_ids[user_id] = {}
+        user_sessions.pop(user_id, None)
+        await state.clear()
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+    
+    # Очистка аудирования если активно
+    if user_state.get("mode") == "listening_active":
+        from handlers.listening import clear_user_buttons as listening_clear_buttons
+        await listening_clear_buttons(user_id, message.bot, message.chat.id)
+        await state.clear()
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+    
+    # Очистка письма если активно
+    if user_state.get("mode") == "writing_active":
+        data = await state.get_data()
+        progress_msg_id = data.get("progress_msg_id")
+        if progress_msg_id:
+            try:
+                await message.bot.edit_message_reply_markup(
+                    chat_id=message.chat.id,
+                    message_id=progress_msg_id,
+                    reply_markup=None
+                )
+            except Exception:
+                pass
+        last_msg_id = data.get("last_task_msg_id")
+        if last_msg_id:
+            try:
+                await message.bot.edit_message_reply_markup(
+                    chat_id=message.chat.id,
+                    message_id=last_msg_id,
+                    reply_markup=None
+                )
+            except Exception:
+                pass
+        await state.clear()
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+    
+    # Очистка говорения если активно
+    if user_state.get("mode") == "govorenie_active":
+        data = await state.get_data()
+        progress_msg_id = data.get("progress_msg_id")
+        if progress_msg_id:
+            try:
+                await message.bot.edit_message_reply_markup(
+                    chat_id=message.chat.id,
+                    message_id=progress_msg_id,
+                    reply_markup=None
+                )
+            except Exception:
+                pass
+        last_msg_id = data.get("last_task_msg_id")
+        if last_msg_id:
+            try:
+                await message.bot.edit_message_reply_markup(
+                    chat_id=message.chat.id,
+                    message_id=last_msg_id,
+                    reply_markup=None
+                )
+            except Exception:
+                pass
+        await state.clear()
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
     
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:

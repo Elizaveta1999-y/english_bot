@@ -17,6 +17,7 @@ from utils.db import (
     get_order_hash, set_order_hash,
     get_connection,
 )
+from data.users import get_user_state, set_user_state
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -199,6 +200,11 @@ async def cleanup_practice(user_id: int, bot: Bot, chat_id: int, send_message: b
         logger.info(f"Сессия для user_id={user_id} удалена")
     else:
         logger.warning(f"Сессия для user_id={user_id} не найдена при очистке")
+    # Сбрасываем mode в user_state
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") == "words_active":
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
     if send_message:
         await bot.send_message(chat_id, "Практика завершена.")
 
@@ -330,6 +336,11 @@ async def words_start(event, state: FSMContext):
     if user_id not in user_message_ids:
         user_message_ids[user_id] = {}
 
+    # Устанавливаем режим
+    user_state = get_user_state(user_id)
+    user_state["mode"] = "words_active"
+    set_user_state(user_id, user_state)
+
     text = "✔️ Выберите категорию слов, которые хотите потренировать:"
     if is_message:
         sent = await event.answer(text, reply_markup=get_categories_keyboard())
@@ -339,6 +350,37 @@ async def words_start(event, state: FSMContext):
         sent = await bot.send_message(chat_id, text, reply_markup=get_categories_keyboard())
         user_message_ids[user_id]["categories"] = sent.message_id
         await event.answer()
+
+# ========== ПЕРЕХВАТ КОМАНД (С ИСКЛЮЧЕНИЯМИ) ==========
+@router.message(
+    F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]),
+    WordsState.category_chosen
+)
+async def handle_commands_in_words(message: Message, state: FSMContext):
+    logger.info(f"[CMD] Команда {message.text} в лексике, user={message.from_user.id}")
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+
+    # Убираем кнопки у всех сообщений
+    if user_id in user_message_ids:
+        msg_ids = list(user_message_ids[user_id].values())
+        await remove_buttons_from_messages(message.bot, chat_id, msg_ids)
+
+    # Удаляем сессию
+    user_sessions.pop(user_id, None)
+    if user_id in user_message_ids:
+        user_message_ids[user_id] = {}
+
+    # Сбрасываем mode
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+
+    await state.clear()
+    await message.answer("Практика завершена.")
+    from .start import show_main_menu
+    await show_main_menu(message, edit=False)
+# =======================================================
 
 @router.callback_query(F.data.startswith("word_cat_"))
 async def category_selected(callback: CallbackQuery, state: FSMContext):
@@ -509,16 +551,8 @@ async def handle_answer(message: Message, state: FSMContext):
         await message.answer("Пожалуйста, сначала выберите категорию через кнопку 'Words'.")
         return
 
+    # Игнорируем команды (их обрабатывает handle_commands_in_words)
     if message.text.startswith("/"):
-        await cleanup_practice(user_id, message.bot, message.chat.id, send_message=True)
-        command = message.text.split()[0].lower()
-        if command == "/words":
-            await words_start(message, state)
-        elif command == "/start":
-            from .start import show_main_menu
-            await show_main_menu(message, edit=False)
-        else:
-            await message.answer("Практика завершена.")
         return
 
     if session.get("revision_mode"):
@@ -629,7 +663,6 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
 
     correct = is_correct(user_answer, correct_answer)
 
-    # Находим реальный индекс слова в основном списке (по объекту)
     main_index = session["words"].index(current_word)
 
     if correct:
@@ -638,12 +671,10 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
         session["revision_corrected"] = session.get("revision_corrected", 0) + 1
         await message.answer(f"Правильно! Ответ: {correct_answer}")
     else:
-        # Неправильно – ошибка остаётся, статистика НЕ меняется
         await message.answer(f"Неправильно. Правильный ответ: {correct_answer}")
 
     session["revision_index"] = idx + 1
     if session["revision_index"] < len(error_words):
-        # Убираем кнопки у предыдущей карточки (если есть)
         old_card_id = session.get("revision_card_msg_id")
         if old_card_id:
             try:
@@ -651,7 +682,6 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
             except Exception as e:
                 logger.warning(f"Не удалось убрать кнопки у старой карточки ревизии: {e}")
 
-        # Отправляем новое сообщение со следующим словом
         next_word = error_words[session["revision_index"]]
         text = f"{next_word['word']}: _____"
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -684,13 +714,11 @@ async def finish_revision(message: Message, session: dict):
 
 async def exit_revision(message: Message, session: dict):
     session["revision_mode"] = False
-    # Убираем кнопки у последней карточки ревизии, если она есть
     if session.get("revision_card_msg_id"):
         try:
             await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=session["revision_card_msg_id"], reply_markup=None)
         except Exception:
             pass
-    # Убираем кнопки у информационного сообщения
     if session.get("revision_info_msg_id"):
         try:
             await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=session["revision_info_msg_id"], reply_markup=None)
@@ -808,7 +836,6 @@ async def revision_show_answer(callback: CallbackQuery, session: dict):
 
     session["revision_index"] = idx + 1
     if session["revision_index"] < len(error_words):
-        # Убираем кнопки у предыдущей карточки
         old_card_id = session.get("revision_card_msg_id")
         if old_card_id:
             try:
@@ -816,7 +843,6 @@ async def revision_show_answer(callback: CallbackQuery, session: dict):
             except Exception:
                 pass
 
-        # Отправляем новое сообщение со следующим словом
         next_word = error_words[session["revision_index"]]
         text = f"{next_word['word']}: _____"
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -861,6 +887,12 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
         if "card" in user_message_ids[user_id]:
             msg_ids.append(user_message_ids[user_id]["card"])
         await remove_buttons_from_messages(callback.bot, callback.message.chat.id, msg_ids)
+        user_message_ids[user_id] = {}
+
+    # Сбрасываем mode
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
 
     await callback.message.answer(
         f"{header}\n{stats_text}",
@@ -1166,6 +1198,10 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     await cleanup_practice(user_id, callback.bot, callback.message.chat.id, send_message=False)
     await state.clear()
+    # Сбрасываем mode
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
