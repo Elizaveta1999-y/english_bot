@@ -157,16 +157,18 @@ async def support_start(message: Message, state: FSMContext):
         logger.warning(f"Не удалось обновить данные пользователя в БД: {e}")
 
     username_display = "не указан"
+    db_username = None
     try:
         profile = await get_user_profile(user_id)
         if profile:
             db_username = profile.get("username")
-            if db_username:
-                username_display = f"@{db_username}"
     except Exception as e:
         logger.warning(f"Не удалось получить профиль из БД: {e}")
-        if getattr(message.from_user, "username", None):
-            username_display = f"@{message.from_user.username}"
+
+    if db_username:
+        username_display = f"@{db_username}"
+    elif getattr(message.from_user, "username", None):
+        username_display = f"@{message.from_user.username}"
 
     text = (
         "Вам нужна помощь или имеются вопросы?\n"
