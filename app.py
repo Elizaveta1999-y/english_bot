@@ -12,6 +12,7 @@ from handlers.govorenie import router as govorenie_router
 from handlers.agreement import router as agreement_router
 from utils.db import init_db
 from middleware.speaking_override import SpeakingOverrideMiddleware
+from middleware.mode_transition import ModeTransitionMiddleware
 
 logging.basicConfig(
     level=logging.INFO,
@@ -31,8 +32,11 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
+# ModeTransitionMiddleware регистрируется ПЕРВЫМ — срабатывает раньше SpeakingOverrideMiddleware
+dp.callback_query.middleware(ModeTransitionMiddleware())
 dp.message.middleware(SpeakingOverrideMiddleware())
 dp.callback_query.middleware(SpeakingOverrideMiddleware())
+logger.info("✅ ModeTransitionMiddleware зарегистрирован")
 logger.info("✅ SpeakingOverrideMiddleware зарегистрирован")
 
 # ========== ПОДКЛЮЧАЕМ РОУТЕРЫ (ПРАВИЛЬНЫЙ ПОРЯДОК) ==========
