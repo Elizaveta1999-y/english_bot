@@ -233,37 +233,29 @@ async def send_task(message, state, is_revision=False, task_type=None, level=Non
 
         order_key = get_order_key(task_type, level)
         shuffled_order = await get_random_order(user_id, order_key)
-        
-        if shuffled_order is None:
-            content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
-            current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
-            saved_hash = await get_order_hash(user_id, order_key)
-            
-            if saved_hash is None or saved_hash != current_hash:
-                order = list(range(len(tasks)))
-                random.shuffle(order)
-                shuffled_order = order
-                await set_random_order(user_id, order_key, shuffled_order)
-                await set_order_hash(user_id, order_key, current_hash)
-                await reset_progress_index(user_id, make_listening_type_key(task_type), level)
-                logger.info(f"Задания {order_key} изменились, создан новый порядок, хеш={current_hash[:8]}...")
-            else:
-                shuffled_order = await get_random_order(user_id, order_key)
-                if shuffled_order is None:
-                    order = list(range(len(tasks)))
-                    random.shuffle(order)
-                    shuffled_order = order
-                    await set_random_order(user_id, order_key, shuffled_order)
-                    await set_order_hash(user_id, order_key, current_hash)
-            
-            shuffled_order = ensure_list_of_ints(shuffled_order)
+        shuffled_order = ensure_list_of_ints(shuffled_order)
 
-        if not isinstance(shuffled_order, list) or not shuffled_order:
-            logger.warning(f"Некорректный shuffled_order для {order_key}: {shuffled_order}, пересоздаём")
+        content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
+        current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
+        saved_hash = await get_order_hash(user_id, order_key)
+
+        # Пересоздаём порядок, если он пустой, не той длины или хеш изменился
+        need_recreate = (
+            not shuffled_order
+            or len(shuffled_order) != len(tasks)
+            or saved_hash is None
+            or saved_hash != current_hash
+            or any(idx >= len(tasks) for idx in shuffled_order)
+        )
+
+        if need_recreate:
+            logger.info(f"[TASK] Пересоздаём порядок для {order_key} (хеш={current_hash[:8]}...)")
             order = list(range(len(tasks)))
             random.shuffle(order)
             shuffled_order = order
             await set_random_order(user_id, order_key, shuffled_order)
+            await set_order_hash(user_id, order_key, current_hash)
+            await reset_progress_index(user_id, make_listening_type_key(task_type), level)
 
         index = await get_progress_index(user_id, make_listening_type_key(task_type), level)
         if index >= len(shuffled_order):
@@ -354,8 +346,15 @@ async def update_progress_message(message, state, reset=False, user_id=None):
             )
             return
         except Exception as e:
-            if "message is not modified" not in str(e):
-                logger.warning(f"Ошибка обновления прогресса: {e}")
+            err_str = str(e).lower()
+            if "message is not modified" in err_str:
+                return
+            logger.warning(f"Ошибка обновления прогресса: {e}")
+            # Пытаемся удалить старое сообщение, чтобы не дублировалось
+            try:
+                await message.bot.delete_message(chat_id=chat_id, message_id=progress_msg_id)
+            except Exception:
+                pass
 
     msg = await message.answer(text, reply_markup=get_progress_keyboard())
     add_user_message(user_id, msg.message_id)
@@ -437,13 +436,13 @@ async def go_to_next_task(message, state, user_id=None):
     level = data["level"]
     order_key = get_order_key(task_type, level)
     shuffled_order = await get_random_order(user_id, order_key)
-    if shuffled_order is None:
+    shuffled_order = ensure_list_of_ints(shuffled_order)
+    if not shuffled_order:
         tasks = get_tasks_by_type_and_level(task_type, level)
         order = list(range(len(tasks)))
         random.shuffle(order)
         shuffled_order = order
         await set_random_order(user_id, order_key, shuffled_order)
-    shuffled_order = ensure_list_of_ints(shuffled_order)
 
     question_msg_id = data.get("question_message_id")
     if question_msg_id:
@@ -494,7 +493,7 @@ async def go_to_next_revision(message, state, user_id=None):
     await state.update_data({"revision_index": index, "answered": False, "task": None})
     await send_task(message, state, is_revision=True, error_ids=error_ids, user_id=user_id)
 
-# ========== ПЕРЕХВАТ КОМАНД (С ИСКЛЮЧЕНИЯМИ) ==========
+# ========== ПЕРЕХВАТ КОМАНД ==========
 @router.message(
     F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]),
     StateFilter(
@@ -541,7 +540,6 @@ async def listening_start(event, state: FSMContext):
     chat_id = event.chat.id if hasattr(event, 'chat') else event.message.chat.id
     await clear_user_buttons(user_id, event.bot, chat_id)
     await state.clear()
-    # Устанавливаем режим
     user_state = get_user_state(user_id)
     user_state["mode"] = "listening_active"
     set_user_state(user_id, user_state)
@@ -557,6 +555,12 @@ async def listening_start(event, state: FSMContext):
 
 @router.callback_query(ListeningState.choosing_type, F.data.startswith("listening_type_"))
 async def type_selected(callback: CallbackQuery, state: FSMContext):
+    # ФИКС: защита от двойного клика
+    await callback.answer()
+    current_state = await state.get_state()
+    if current_state != ListeningState.choosing_type.state:
+        return
+
     task_type = callback.data[len("listening_type_"):]
     if task_type == "one":
         task_type = "fill_one"
@@ -565,15 +569,24 @@ async def type_selected(callback: CallbackQuery, state: FSMContext):
     await state.update_data({"task_type": task_type})
     await state.set_state(ListeningState.choosing_level)
     text = "Выберите уровень:"
-    await callback.message.edit_text(text, reply_markup=get_levels_keyboard(task_type))
-    await callback.answer()
+    try:
+        await callback.message.edit_text(text, reply_markup=get_levels_keyboard(task_type))
+    except Exception as e:
+        if "message is not modified" not in str(e).lower():
+            logger.warning(f"Ошибка edit в type_selected: {e}")
 
 @router.callback_query(ListeningState.choosing_level, F.data.startswith("listening_level_"))
 async def level_selected(callback: CallbackQuery, state: FSMContext):
+    # ФИКС: защита от двойного клика — сразу отвечаем и проверяем state
+    await callback.answer()
+    current_state = await state.get_state()
+    if current_state != ListeningState.choosing_level.state:
+        logger.info(f"[level_selected] Двойной клик или неверный state, игнорируем")
+        return
+
     rest = callback.data[len("listening_level_"):]
     parts = rest.rsplit("_", 1)
     if len(parts) != 2:
-        await callback.answer("Ошибка.", show_alert=True)
         return
     task_type, level = parts[0], parts[1]
     if task_type == "one":
@@ -582,6 +595,9 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         task_type = "fill_multiple"
     user_id = callback.from_user.id
 
+    # Сразу переключаем state, чтобы повторный клик не сработал
+    await state.set_state(ListeningState.answering_task)
+
     try:
         await callback.message.delete()
     except:
@@ -589,7 +605,7 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
 
     tasks = get_tasks_by_type_and_level(task_type, level)
     if not tasks:
-        await callback.answer("Нет заданий.", show_alert=True)
+        await callback.message.answer("Нет заданий для этого типа и уровня.")
         return
 
     correct, wrong = await get_user_stats_db(user_id, make_listening_type_key(task_type), level)
@@ -598,30 +614,24 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
     content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
     current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
     saved_hash = await get_order_hash(user_id, order_key)
+    shuffled_order = await get_random_order(user_id, order_key)
+    shuffled_order = ensure_list_of_ints(shuffled_order)
 
-    if saved_hash is None or saved_hash != current_hash:
+    need_recreate = (
+        not shuffled_order
+        or len(shuffled_order) != len(tasks)
+        or saved_hash is None
+        or saved_hash != current_hash
+        or any(idx >= len(tasks) for idx in shuffled_order)
+    )
+
+    if need_recreate:
         order = list(range(len(tasks)))
         random.shuffle(order)
         shuffled_order = order
         await set_random_order(user_id, order_key, shuffled_order)
         await set_order_hash(user_id, order_key, current_hash)
         await reset_progress_index(user_id, make_listening_type_key(task_type), level)
-        logger.info(f"Задания {order_key} изменились, создан новый порядок, хеш={current_hash[:8]}...")
-    else:
-        shuffled_order = await get_random_order(user_id, order_key)
-        if shuffled_order is None:
-            order = list(range(len(tasks)))
-            random.shuffle(order)
-            shuffled_order = order
-            await set_random_order(user_id, order_key, shuffled_order)
-            await set_order_hash(user_id, order_key, current_hash)
-
-    shuffled_order = ensure_list_of_ints(shuffled_order)
-    if not shuffled_order:
-        order = list(range(len(tasks)))
-        random.shuffle(order)
-        shuffled_order = order
-        await set_random_order(user_id, order_key, shuffled_order)
 
     await state.update_data({
         "task_type": task_type,
@@ -640,11 +650,11 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
 
     await update_progress_message(callback.message, state, user_id=user_id)
     await send_task(callback.message, state, user_id=user_id)
-    await callback.answer()
 
-# ========== ИСПРАВЛЕННАЯ ФУНКЦИЯ start_revision ==========
+# ========== РАБОТА НАД ОШИБКАМИ ==========
 @router.callback_query(ListeningState.answering_task, F.data == "listening_revision")
 async def start_revision(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     data = await state.get_data()
     task_type = data.get("task_type")
     level = data.get("level")
@@ -652,14 +662,12 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
     chat_id = callback.message.chat.id
 
     if not task_type or not level:
-        await callback.answer("Ошибка.", show_alert=True)
         return
 
     error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
 
     if not error_ids:
         await callback.message.answer("🎉 Ошибок нет. Отличная работа!")
-        await callback.answer()
         return
 
     question_msg_id = data.get("question_message_id")
@@ -691,7 +699,6 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
     })
 
     await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids, user_id=user_id)
-    await callback.answer()
 
 # ========== ОБРАБОТЧИК ОТВЕТОВ (КНОПКИ) ==========
 @router.callback_query(F.data.startswith("listening_answer_"))
@@ -1052,6 +1059,7 @@ async def handle_non_text_input(message: Message, state: FSMContext):
 @router.callback_query(ListeningState.answering_task, F.data == "listening_finish")
 @router.callback_query(ListeningState.revision_mode, F.data == "listening_finish")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     data = await state.get_data()
     user_id = callback.from_user.id
     chat_id = callback.message.chat.id
@@ -1059,7 +1067,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
 
     if current_state == ListeningState.revision_mode.state:
         await finish_revision_with_summary(callback.message, state, user_id=user_id)
-        await callback.answer()
         return
 
     session_correct = data.get("session_correct", 0)
@@ -1077,13 +1084,11 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     add_user_message(user_id, msg.message_id)
 
     await state.clear()
-    # Сбрасываем mode
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=False)
-    await callback.answer()
 
 @router.callback_query(F.data == "listening_finish_session")
 async def finish_session_direct(callback: CallbackQuery, state: FSMContext):
@@ -1092,10 +1097,10 @@ async def finish_session_direct(callback: CallbackQuery, state: FSMContext):
 # ---------- СБРОС ПРОГРЕССА ----------
 @router.callback_query(ListeningState.answering_task, F.data == "listening_reset_progress")
 async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     data = await state.get_data()
     progress_msg_id = data.get("progress_message_id")
     if not progress_msg_id:
-        await callback.answer("Ошибка.", show_alert=True)
         return
 
     text = "Вы уверенны? Все ошибки и правильные ответы будут обнулены.\nЗадания будут даны с самого начала."
@@ -1108,14 +1113,13 @@ async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
         )
     except Exception as e:
         logger.error(f"Ошибка reset: {e}")
-        await callback.answer("Ошибка.", show_alert=True)
         return
 
     await state.set_state(ListeningState.confirm_reset)
-    await callback.answer()
 
 @router.callback_query(ListeningState.confirm_reset, F.data == "confirm_reset_progress_yes")
 async def confirm_reset_progress(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     data = await state.get_data()
     task_type = data.get("task_type")
     level = data.get("level")
@@ -1123,7 +1127,6 @@ async def confirm_reset_progress(callback: CallbackQuery, state: FSMContext):
     chat_id = callback.message.chat.id
 
     if not task_type or not level:
-        await callback.answer("Ошибка.", show_alert=True)
         return
 
     question_msg_id = data.get("question_message_id")
@@ -1170,21 +1173,20 @@ async def confirm_reset_progress(callback: CallbackQuery, state: FSMContext):
 
     await update_progress_message(callback.message, state, reset=True, user_id=user_id)
     await send_task(callback.message, state, user_id=user_id)
-    await callback.answer()
 
 @router.callback_query(ListeningState.confirm_reset, F.data == "confirm_reset_progress_no")
 async def cancel_reset_progress(callback: CallbackQuery, state: FSMContext):
+    await callback.answer("Отмена.")
     await update_progress_message(callback.message, state)
     await state.set_state(ListeningState.answering_task)
-    await callback.answer("Отмена.")
 
 # ---------- СБРОС ОШИБОК ----------
 @router.callback_query(ListeningState.revision_mode, F.data == "revision_reset_errors")
 async def reset_errors_request(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     data = await state.get_data()
     info_msg_id = data.get("revision_info_msg_id")
     if not info_msg_id:
-        await callback.answer("Ошибка.", show_alert=True)
         return
 
     text = (
@@ -1201,14 +1203,13 @@ async def reset_errors_request(callback: CallbackQuery, state: FSMContext):
         )
     except Exception as e:
         logger.error(f"Ошибка reset errors: {e}")
-        await callback.answer("Ошибка.", show_alert=True)
         return
 
     await state.set_state(ListeningState.confirm_reset_errors)
-    await callback.answer()
 
 @router.callback_query(ListeningState.confirm_reset_errors, F.data == "confirm_reset_errors_yes")
 async def confirm_reset_errors(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     data = await state.get_data()
     task_type = data.get("task_type")
     level = data.get("level")
@@ -1216,7 +1217,6 @@ async def confirm_reset_errors(callback: CallbackQuery, state: FSMContext):
     chat_id = callback.message.chat.id
 
     if not task_type or not level:
-        await callback.answer("Ошибка.", show_alert=True)
         return
 
     await clear_reading_errors_db(user_id, make_listening_type_key(task_type), level)
@@ -1236,10 +1236,10 @@ async def confirm_reset_errors(callback: CallbackQuery, state: FSMContext):
             logger.error(f"Ошибка: {e}")
 
     await exit_revision(callback.message, state, show_progress=True, user_id=user_id)
-    await callback.answer()
 
 @router.callback_query(ListeningState.confirm_reset_errors, F.data == "confirm_reset_errors_no")
 async def cancel_reset_errors(callback: CallbackQuery, state: FSMContext):
+    await callback.answer("Отмена.")
     data = await state.get_data()
     task_type = data.get("task_type")
     level = data.get("level")
@@ -1262,7 +1262,6 @@ async def cancel_reset_errors(callback: CallbackQuery, state: FSMContext):
             logger.error(f"Ошибка: {e}")
 
     await state.set_state(ListeningState.revision_mode)
-    await callback.answer("Отмена.")
 
 @router.callback_query(ListeningState.revision_mode, F.data == "revision_back_to_study")
 async def revision_back_to_study(callback: CallbackQuery, state: FSMContext):
@@ -1271,6 +1270,7 @@ async def revision_back_to_study(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(ListeningState.choosing_level, F.data == "listening_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     user_id = callback.from_user.id
     await state.clear()
     await state.set_state(ListeningState.choosing_type)
@@ -1282,21 +1282,19 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
         logger.warning(f"Ошибка: {e}")
         msg = await callback.message.answer(text, reply_markup=get_types_keyboard())
         add_user_message(user_id, msg.message_id)
-    await callback.answer()
 
 @router.callback_query(F.data == "listening_back_to_main")
 async def back_to_main(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     user_id = callback.from_user.id
     chat_id = callback.message.chat.id
     await clear_user_buttons(user_id, callback.bot, chat_id)
     await state.clear()
-    # Сбрасываем mode
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
-    await callback.answer()
 
 # ========== ФУНКЦИЯ ДЛЯ ВЫЗОВА ИЗ START.PY ==========
 async def start_listening(callback: CallbackQuery, state: FSMContext):

@@ -199,7 +199,8 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
         shuffled_order = data.get("shuffled_order")
         if shuffled_order is None:
             shuffled_order = await get_random_order(user_id, make_type_key(type_json, level_json))
-            if shuffled_order is None:
+            shuffled_order = ensure_list_of_ints(shuffled_order)
+            if not shuffled_order:
                 order = list(range(len(tasks)))
                 random.shuffle(order)
                 shuffled_order = order
@@ -351,7 +352,9 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
 
-    # Удаляем сообщение с Reply-клавиатурой ролевой игры (если есть)
+    user_state["mode"] = "reading_active"
+    set_user_state(user_id, user_state)
+
     reply_kb_id = user_state.get("reply_keyboard_msg_id")
     if reply_kb_id:
         try:
@@ -360,7 +363,6 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
             pass
         user_state.pop("reply_keyboard_msg_id", None)
 
-    # Сбрасываем режим ролевой игры, если активен
     if user_state.get("mode") == "roleplay_active":
         user_state["mode"] = ""
         user_state["roleplay_history"] = []
@@ -369,7 +371,6 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
         user_state.pop("roleplay_goal_ignored", None)
         set_user_state(user_id, user_state)
 
-    # Также очищаем speaking (если вдруг активен)
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
@@ -388,10 +389,13 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
         set_user_state(user_id, user_state)
         await state.clear()
 
-        # Отправляем и удаляем "Переход..."
         msg = await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
         await asyncio.sleep(0.5)
         await msg.delete()
+
+    user_state = get_user_state(user_id)
+    user_state["mode"] = "reading_active"
+    set_user_state(user_id, user_state)
 
     await clear_all_keyboards(callback.message, state)
     try:
@@ -406,6 +410,10 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == "reading_back_to_main")
 async def back_to_main(callback: CallbackQuery, state: FSMContext):
     await clear_all_keyboards(callback.message, state)
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
@@ -435,7 +443,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
 
     user_state = get_user_state(user_id)
-    user_state["mode"] = None
+    user_state["mode"] = "reading_active"
     set_user_state(user_id, user_state)
 
     type_json = TYPE_MAP.get(short_type, short_type)
@@ -455,6 +463,10 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     saved_hash = await get_order_hash(user_id, level_key)
     shuffled_order = await get_random_order(user_id, level_key)
 
+    # ===== ФИКС: преобразуем строку в список ПЕРЕД всеми проверками =====
+    shuffled_order = ensure_list_of_ints(shuffled_order)
+    # ==================================================================
+
     need_recreate = False
     reasons = []
 
@@ -464,8 +476,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     elif saved_hash != current_hash:
         reasons.append("Хеш изменился")
         need_recreate = True
-    elif shuffled_order is None:
-        reasons.append("Порядок отсутствует")
+    elif not shuffled_order:
+        reasons.append("Порядок отсутствует или пустой")
         need_recreate = True
     elif len(shuffled_order) != len(tasks):
         reasons.append(f"Длина не совпадает (БД={len(shuffled_order)}, файл={len(tasks)})")
@@ -500,21 +512,10 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         index = 0
         logger.info("Новый порядок сохранён, хеш обновлён, индекс сброшен на 0")
     else:
-        shuffled_order = ensure_list_of_ints(shuffled_order)
-        if not shuffled_order:
-            logger.warning(f"Некорректный порядок для {level_key}, пересоздаём")
-            new_order = list(range(len(tasks)))
-            random.shuffle(new_order)
-            shuffled_order = new_order
-            await set_random_order(user_id, level_key, shuffled_order)
-            await set_order_hash(user_id, level_key, current_hash)
-            await reset_progress_index(user_id, type_json, level_json)
+        index = await get_progress_index(user_id, type_json, level_json)
+        if index >= len(shuffled_order):
             index = 0
-        else:
-            index = await get_progress_index(user_id, type_json, level_json)
-            if index >= len(shuffled_order):
-                index = 0
-                await set_progress_index(user_id, type_json, level_json, 0)
+            await set_progress_index(user_id, type_json, level_json, 0)
 
     await state.update_data(shuffled_order=shuffled_order, index=index)
 
@@ -624,7 +625,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         shuffled_order = data.get("shuffled_order")
         if not shuffled_order:
             shuffled_order = await get_random_order(user_id, make_type_key(type_json, level_json))
-            if shuffled_order is None:
+            shuffled_order = ensure_list_of_ints(shuffled_order)
+            if not shuffled_order:
                 order = list(range(len(tasks)))
                 random.shuffle(order)
                 shuffled_order = order
@@ -762,7 +764,8 @@ async def handle_text_answer(message: Message, state: FSMContext):
         shuffled_order = data.get("shuffled_order")
         if not shuffled_order:
             shuffled_order = await get_random_order(user_id, make_type_key(type_json, level_json))
-            if shuffled_order is None:
+            shuffled_order = ensure_list_of_ints(shuffled_order)
+            if not shuffled_order:
                 order = list(range(len(tasks)))
                 random.shuffle(order)
                 shuffled_order = order
@@ -913,7 +916,8 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         shuffled_order = data.get("shuffled_order")
         if not shuffled_order:
             shuffled_order = await get_random_order(user_id, make_type_key(type_json, level_json))
-            if shuffled_order is None:
+            shuffled_order = ensure_list_of_ints(shuffled_order)
+            if not shuffled_order:
                 order = list(range(len(tasks)))
                 random.shuffle(order)
                 shuffled_order = order
@@ -1192,22 +1196,24 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     await show_main_menu(callback.message, edit=False)
 
     await state.clear()
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
     await callback.answer()
 
-# ====================== ПЕРЕХВАТ КОМАНД В ЧТЕНИИ (С ПРОВЕРКОЙ НА SPEAKING) ======================
-# ИСПРАВЛЕНИЕ: добавляем исключение для трёх команд, которые должны обрабатываться своими роутерами
-@router.message(F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]), ReadingStates.in_progress)
-@router.message(F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]), ReadingStates.waiting_for_text)
+# ====================== ПЕРЕХВАТ КОМАНД В ЧТЕНИИ ======================
+@router.message(F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]), ReadingStates.in_progress)
+@router.message(F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]), ReadingStates.waiting_for_text)
 async def handle_any_command_in_reading(message: Message, state: FSMContext):
-    # Проверяем, не в speaking ли пользователь
     user_state = get_user_state(message.from_user.id)
     if user_state.get("mode") == "speaking_active":
-        return  # Пропускаем команду – она пойдёт в support/subscription/agreement
+        return
 
-    # Если не в speaking – делаем как раньше
     await clear_all_keyboards(message, state)
     await message.answer("Практика завершена.")
     await state.clear()
+    user_state["mode"] = ""
+    set_user_state(message.from_user.id, user_state)
     from .start import show_main_menu
     await show_main_menu(message, edit=False)
 
@@ -1217,6 +1223,9 @@ async def handle_any_command_in_reading(message: Message, state: FSMContext):
 async def handle_main_menu_text(message: Message, state: FSMContext):
     await clear_all_keyboards(message, state)
     await state.clear()
+    user_state = get_user_state(message.from_user.id)
+    user_state["mode"] = ""
+    set_user_state(message.from_user.id, user_state)
     from .start import show_main_menu
     await show_main_menu(message, edit=False)
 

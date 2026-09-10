@@ -361,17 +361,14 @@ async def handle_commands_in_words(message: Message, state: FSMContext):
     user_id = message.from_user.id
     chat_id = message.chat.id
 
-    # Убираем кнопки у всех сообщений
     if user_id in user_message_ids:
         msg_ids = list(user_message_ids[user_id].values())
         await remove_buttons_from_messages(message.bot, chat_id, msg_ids)
 
-    # Удаляем сессию
     user_sessions.pop(user_id, None)
     if user_id in user_message_ids:
         user_message_ids[user_id] = {}
 
-    # Сбрасываем mode
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
@@ -421,6 +418,17 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     # Получаем данные из БД
     saved_hash = await get_order_hash(user_id, level_key)
     shuffled_order = await get_random_order(user_id, level_key)
+
+    # ===== ФИКС: преобразуем строку в список ПЕРЕД всеми проверками =====
+    if isinstance(shuffled_order, str):
+        try:
+            shuffled_order = json.loads(shuffled_order)
+        except Exception:
+            shuffled_order = []
+    if not isinstance(shuffled_order, list):
+        shuffled_order = []
+    # ==================================================================
+
     logger.info(f"Сохранённый хеш: {saved_hash[:16] if saved_hash else 'None'}...")
     logger.info(f"Сохранённый порядок: {shuffled_order[:20] if shuffled_order else 'None'}...")
     logger.info(f"Длина порядка: {len(shuffled_order) if shuffled_order else 0}")
@@ -435,8 +443,8 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     elif saved_hash != current_hash:
         reasons.append("Хеш не совпадает")
         need_recreate = True
-    elif shuffled_order is None:
-        reasons.append("Порядок отсутствует")
+    elif not shuffled_order:
+        reasons.append("Порядок отсутствует или пустой")
         need_recreate = True
     elif len(shuffled_order) != len(words):
         reasons.append(f"Длина не совпадает (БД={len(shuffled_order)}, файл={len(words)})")
@@ -551,7 +559,6 @@ async def handle_answer(message: Message, state: FSMContext):
         await message.answer("Пожалуйста, сначала выберите категорию через кнопку 'Words'.")
         return
 
-    # Игнорируем команды (их обрабатывает handle_commands_in_words)
     if message.text.startswith("/"):
         return
 
@@ -889,7 +896,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
         await remove_buttons_from_messages(callback.bot, callback.message.chat.id, msg_ids)
         user_message_ids[user_id] = {}
 
-    # Сбрасываем mode
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
@@ -1198,7 +1204,6 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     await cleanup_practice(user_id, callback.bot, callback.message.chat.id, send_message=False)
     await state.clear()
-    # Сбрасываем mode
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
