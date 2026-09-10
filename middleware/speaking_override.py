@@ -43,14 +43,19 @@ class SpeakingOverrideMiddleware(BaseMiddleware):
                 "hide_text_",
                 "show_feedback_confirm",
                 "continue_speaking",
-                "start_",   # все режимы
-                "support",  # для кнопки поддержки
+                "start_",           # все режимы
+                "support",          # для кнопки поддержки
                 "subscription",
                 "agreement",
+                "profile_menu",     # <<< ДОБАВЛЕНО – статистика
+                "profile_",         # <<< ДОБАВЛЕНО – подписка, сброс и т.д.
+                "back_to_main_menu",
+                "back_to_profile",
+                "back_to_main",
             )):
                 return await handler(event, data)
 
-            # Обрабатываем только back_to_main
+            # Обрабатываем только back_to_main (оставлен на случай, если startswith не сработает)
             if event.data == "back_to_main":
                 user_state["mode"] = ""
                 user_state["keyboard_hidden"] = True
