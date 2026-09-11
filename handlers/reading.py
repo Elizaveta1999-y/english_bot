@@ -336,6 +336,11 @@ async def update_progress_message(message: Message, user_id: int, short_type: st
             logger.debug(f"Прогресс обновлён (редактирование) msg_id={progress_msg_id}")
             return
         except Exception as e:
+            err_str = str(e).lower()
+            if "message is not modified" in err_str:
+                # ФИКС: текст не изменился – не создаём новое сообщение
+                logger.debug(f"Прогресс не изменился, пропускаем msg_id={progress_msg_id}")
+                return
             logger.warning(f"Не удалось отредактировать прогресс msg_id={progress_msg_id}: {e}")
             sent_msg = await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
             await state.update_data(progress_msg_id=sent_msg.message_id)
@@ -463,9 +468,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     saved_hash = await get_order_hash(user_id, level_key)
     shuffled_order = await get_random_order(user_id, level_key)
 
-    # ===== ФИКС: преобразуем строку в список ПЕРЕД всеми проверками =====
     shuffled_order = ensure_list_of_ints(shuffled_order)
-    # ==================================================================
 
     need_recreate = False
     reasons = []

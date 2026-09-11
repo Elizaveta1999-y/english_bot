@@ -6,7 +6,6 @@ from data.users import get_user_state, set_user_state
 
 logger = logging.getLogger(__name__)
 
-# Callback'и, при которых нужно чистить текущий активный режим
 TRANSITION_CALLBACKS = (
     "start_speaking",
     "start_reading",
@@ -29,11 +28,9 @@ class ModeTransitionMiddleware(BaseMiddleware):
         event: CallbackQuery,
         data: Dict[str, Any]
     ) -> Any:
-        # Работаем только с callback'ами
         if not isinstance(event, CallbackQuery):
             return await handler(event, data)
 
-        # Работаем только при переходах между режимами
         if event.data not in TRANSITION_CALLBACKS:
             return await handler(event, data)
 
@@ -41,7 +38,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
         user_state = get_user_state(user_id)
         mode = user_state.get("mode")
 
-        # Если режим не активен – ничего не чистим
         if not mode:
             return await handler(event, data)
 
@@ -51,8 +47,23 @@ class ModeTransitionMiddleware(BaseMiddleware):
         try:
             state = data.get("state")
 
+            # --- ЧТЕНИЕ ---
+            if mode == "reading_active":
+                if state:
+                    sdata = await state.get_data()
+                    for key in ("last_task_msg_id", "progress_msg_id"):
+                        msg_id = sdata.get(key)
+                        if msg_id and chat_id:
+                            try:
+                                await event.bot.edit_message_reply_markup(
+                                    chat_id=chat_id, message_id=msg_id, reply_markup=None
+                                )
+                            except Exception:
+                                pass
+                    await state.clear()
+
             # --- ГРАММАТИКА ---
-            if mode == "grammar_active":
+            elif mode == "grammar_active":
                 if state:
                     sdata = await state.get_data()
                     for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
@@ -142,7 +153,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
                 if state:
                     await state.clear()
 
-            # --- СБРОС ФЛАГА РЕЖИМА ---
             user_state["mode"] = ""
             set_user_state(user_id, user_state)
             logger.info(f"[ModeTransition] Режим {mode} очищен")
@@ -150,5 +160,4 @@ class ModeTransitionMiddleware(BaseMiddleware):
         except Exception as e:
             logger.error(f"[ModeTransition] Ошибка очистки: {e}", exc_info=True)
 
-        # Передаём управление дальше (в роутеры)
         return await handler(event, data)

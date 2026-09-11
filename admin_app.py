@@ -182,9 +182,32 @@ async def ensure_db_structure():
                 date BIGINT NOT NULL
             )
         """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS admin_actions (
+                id SERIAL PRIMARY KEY,
+                admin_id BIGINT NOT NULL,
+                action TEXT NOT NULL,
+                details TEXT,
+                target_user_id BIGINT,
+                created_at BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
+            )
+        """)
         logger.info("✅ Структура БД обновлена")
     except Exception as e:
         logger.error(f"⚠️ Ошибка при обновлении БД: {e}")
+    finally:
+        await conn.close()
+
+# ---------- ЛОГИРОВАНИЕ ДЕЙСТВИЙ АДМИНА ----------
+async def log_admin_action(admin_id: int, action: str, details: str = "", target_user_id: int = None):
+    conn = await get_db()
+    try:
+        await conn.execute("""
+            INSERT INTO admin_actions (admin_id, action, details, target_user_id, created_at)
+            VALUES ($1, $2, $3, $4, EXTRACT(EPOCH FROM NOW())::BIGINT)
+        """, admin_id, action, details, target_user_id)
+    except Exception as e:
+        logger.error(f"Ошибка записи лога: {e}")
     finally:
         await conn.close()
 
@@ -501,7 +524,7 @@ async def logout():
     response.delete_cookie("admin_auth")
     return response
 
-# ---- ГЛАВНАЯ (с предупреждениями) ----
+# ---- ГЛАВНАЯ ----
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     conn = await get_db()
@@ -513,6 +536,12 @@ async def index(request: Request):
     total_voice_minutes = round(total_voice / 60, 1)
     voice_week = total_voice_minutes
     voice_month = total_voice_minutes
+    admin_logs = await conn.fetch("""
+        SELECT admin_id, action, details, target_user_id, created_at
+        FROM admin_actions
+        ORDER BY created_at DESC
+        LIMIT 10
+    """)
     await conn.close()
     stats = {
         "total_users": total_users,
@@ -542,33 +571,49 @@ async def index(request: Request):
         if days_left <= 3 and days_left >= 0:
             warnings.append(f"⏰ Через {days_left} дней списание ${render.get('amount', '7')} за Render")
 
+    logs_display = []
+    for row in admin_logs:
+        time_str = datetime.fromtimestamp(row["created_at"]).strftime("%Y-%m-%d %H:%M")
+        target = f"пользователя {row['target_user_id']}" if row["target_user_id"] else ""
+        details = row["details"] or ""
+        action_text = f"{row['action']} {target} {details}".strip()
+        logs_display.append({
+            "time": time_str,
+            "text": action_text
+        })
+
     return templates.TemplateResponse("index.html", {
         "request": request,
         "stats": stats,
-        "warnings": warnings
+        "warnings": warnings,
+        "admin_logs": logs_display
     })
 
-# ---- ПОЛЬЗОВАТЕЛИ (с пагинацией) ----
+# ---- ПОЛЬЗОВАТЕЛИ ----
 @app.get("/users", response_class=HTMLResponse)
-async def users_list(request: Request, search: str = "", page: int = 1, limit: int = 20):
+async def users_list(request: Request, search: str = "", page: int = 1, limit: int = 20, subscription: str = ""):
     conn = await get_db()
     offset = (page - 1) * limit
     search_pattern = f"%{search}%" if search else "%%"
-    total_count = await conn.fetchval(
-        "SELECT COUNT(*) FROM users WHERE (user_id::text ILIKE $1 OR username ILIKE $1 OR first_name ILIKE $1 OR last_name ILIKE $1)",
-        search_pattern
-    )
-    query = """
+    params = [search_pattern]
+    where_parts = ["(user_id::text ILIKE $1 OR username ILIKE $1 OR first_name ILIKE $1 OR last_name ILIKE $1)"]
+    if subscription == "active":
+        where_parts.append("subscription_until > EXTRACT(EPOCH FROM NOW())::BIGINT")
+    where_clause = " AND ".join(where_parts)
+    total_query = f"SELECT COUNT(*) FROM users WHERE {where_clause}"
+    total_count = await conn.fetchval(total_query, *params)
+    query = f"""
         SELECT user_id, username, first_name, last_name,
                registered_at, last_active, subscription_until,
                total_voice_seconds_month,
                COALESCE(speaking_seconds_month, 0) + COALESCE(roleplay_seconds_month, 0) as voice_minutes
         FROM users
-        WHERE (user_id::text ILIKE $1 OR username ILIKE $1 OR first_name ILIKE $1 OR last_name ILIKE $1)
+        WHERE {where_clause}
         ORDER BY user_id DESC
         LIMIT $2 OFFSET $3
     """
-    rows = await conn.fetch(query, search_pattern, limit, offset)
+    params.extend([limit, offset])
+    rows = await conn.fetch(query, *params)
     await conn.close()
 
     users = []
@@ -592,10 +637,11 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
         "page": page,
         "limit": limit,
         "total_pages": total_pages,
-        "total_count": total_count
+        "total_count": total_count,
+        "subscription": subscription
     })
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (С ЦВЕТАМИ НА БЭКЕНДЕ) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (без столбца «Неправильно» в грамматике и лексике) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     try:
@@ -608,9 +654,16 @@ async def user_detail(request: Request, user_id: int):
         writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
         govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
         
-        # ===== ПОЛУЧАЕМ РЕАЛЬНЫЕ ОШИБКИ =====
         error_rows = await conn.fetch("SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key", user_id)
         error_counts = {row["type_key"]: row["cnt"] for row in error_rows}
+        
+        admin_logs = await conn.fetch("""
+            SELECT admin_id, action, details, created_at
+            FROM admin_actions
+            WHERE target_user_id = $1
+            ORDER BY created_at DESC
+            LIMIT 20
+        """, user_id)
         
         await conn.close()
 
@@ -621,7 +674,14 @@ async def user_detail(request: Request, user_id: int):
             else:
                 user[field] = "—"
 
-        # Обработка прогресса
+        logs_display = []
+        for row in admin_logs:
+            logs_display.append({
+                "time": datetime.fromtimestamp(row["created_at"]).strftime("%Y-%m-%d %H:%M"),
+                "action": row["action"],
+                "details": row["details"] or "—"
+            })
+
         progress_data = {}
         for r in progress_rows:
             key = r["type_key"]
@@ -636,7 +696,7 @@ async def user_detail(request: Request, user_id: int):
             progress_data[key][display_level]["correct"] += correct
             progress_data[key][display_level]["wrong"] += wrong
 
-        # ===== ГРАММАТИКА =====
+        # ===== ГРАММАТИКА (только correct, percent, errors) =====
         grammar_items = []
         for raw_key, display_name in GRAMMAR_TYPES.items():
             db_key = f"grammar_{raw_key}"
@@ -652,13 +712,12 @@ async def user_detail(request: Request, user_id: int):
             grammar_items.append({
                 "subtype": display_name,
                 "correct": total_correct,
-                "wrong": total_wrong,
                 "total": total,
                 "percent": percent,
                 "errors": errors
             })
 
-        # ===== ЛЕКСИКА =====
+        # ===== ЛЕКСИКА (только correct, percent, errors) =====
         lexis_items = []
         for raw_key, display_name in LEXIS_TYPES.items():
             db_key = f"words_{raw_key}"
@@ -674,13 +733,12 @@ async def user_detail(request: Request, user_id: int):
             lexis_items.append({
                 "subtype": display_name,
                 "correct": total_correct,
-                "wrong": total_wrong,
                 "total": total,
                 "percent": percent,
                 "errors": errors
             })
 
-        # ===== ЧТЕНИЕ (с цветами) =====
+        # ===== ЧТЕНИЕ =====
         reading_items = []
         color_map = {
             "Новичок": "#e6f0fa",
@@ -704,10 +762,10 @@ async def user_detail(request: Request, user_id: int):
                     "wrong": wrong,
                     "total": total,
                     "percent": percent,
-                    "style": style  # <-- цвет уже здесь
+                    "style": style
                 })
 
-        # ===== АУДИРОВАНИЕ (с цветами) =====
+        # ===== АУДИРОВАНИЕ =====
         listening_items = []
         for raw_key, display_name in LISTENING_TYPES.items():
             db_key = f"listening_{raw_key}"
@@ -726,7 +784,7 @@ async def user_detail(request: Request, user_id: int):
                     "wrong": wrong,
                     "total": total,
                     "percent": percent,
-                    "style": style  # <-- цвет уже здесь
+                    "style": style
                 })
 
         # ===== ПИСЬМО =====
@@ -811,13 +869,14 @@ async def user_detail(request: Request, user_id: int):
             "writing_items": writing_items,
             "govorenie_items": govorenie_items,
             "speaking_minutes": speaking_minutes,
-            "roleplay_minutes": roleplay_minutes
+            "roleplay_minutes": roleplay_minutes,
+            "admin_logs": logs_display
         })
     except Exception as e:
         logger.error(f"Ошибка в user_detail для {user_id}: {e}", exc_info=True)
         return HTMLResponse(f"<h1>Ошибка</h1><pre>{e}</pre>", status_code=500)
 
-# ---- ОСТАЛЬНЫЕ ЭНДПОИНТЫ (без изменений) ----
+# ---- ДЕЙСТВИЯ ----
 @app.get("/debug-progress/{user_id}")
 async def debug_progress(user_id: int):
     conn = await get_db()
@@ -826,7 +885,8 @@ async def debug_progress(user_id: int):
     return {"user_id": user_id, "progress": [dict(r) for r in rows]}
 
 @app.post("/user/{user_id}/extend")
-async def extend_subscription(user_id: int, days: int = Form(...), reason: str = Form("")):
+async def extend_subscription(request: Request, user_id: int, days: int = Form(...), reason: str = Form("")):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
     conn = await get_db()
     now = int(datetime.now().timestamp())
     row = await conn.fetchrow("SELECT subscription_until, subscription_count FROM users WHERE user_id = $1", user_id)
@@ -838,17 +898,25 @@ async def extend_subscription(user_id: int, days: int = Form(...), reason: str =
     if reason.strip():
         await set_bonus_notification(user_id, reason)
     await conn.close()
+    if reason.strip():
+        action_text = f"Бонус: {reason}"
+    else:
+        action_text = f"Продление на {days} дней"
+    await log_admin_action(admin_id, "Продление подписки", action_text, user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/user/{user_id}/cancel")
-async def cancel_subscription(user_id: int):
+async def cancel_subscription(request: Request, user_id: int):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
     conn = await get_db()
     await conn.execute("UPDATE users SET subscription_until = 0 WHERE user_id = $1", user_id)
     await conn.close()
+    await log_admin_action(admin_id, "Отмена подписки", "", user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/user/{user_id}/reset_progress")
-async def reset_user_progress(user_id: int):
+async def reset_user_progress(request: Request, user_id: int):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
     conn = await get_db()
     await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
@@ -859,10 +927,12 @@ async def reset_user_progress(user_id: int):
     await conn.execute("DELETE FROM random_order WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM user_states WHERE user_id = $1", user_id)
     await conn.close()
+    await log_admin_action(admin_id, "Сброс прогресса", "", user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/user/{user_id}/clear_all_data")
-async def clear_all_user_data(user_id: int):
+async def clear_all_user_data(request: Request, user_id: int):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
     conn = await get_db()
     await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
@@ -875,10 +945,12 @@ async def clear_all_user_data(user_id: int):
     await conn.execute("UPDATE users SET subscription_until = 0, subscription_started = 0, subscription_count = 0, trial_until = 0, trial_started = 0 WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM income WHERE user_id = $1", user_id)
     await conn.close()
+    await log_admin_action(admin_id, "Очистка всех данных", "", user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/extend_all")
-async def extend_all_subscriptions(days: int = Form(...)):
+async def extend_all_subscriptions(request: Request, days: int = Form(...)):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
     reason = "🎉 Тебе начислены бонусные дни!\nТвоя подписка продлена до 15.08.2026.\nПриносим извинения за временные неудобства и дарим эти дни в качестве компенсации.\nСпасибо за терпение! 🙏"
     conn = await get_db()
     now = int(datetime.now().timestamp())
@@ -895,8 +967,10 @@ async def extend_all_subscriptions(days: int = Form(...)):
         WHERE subscription_until > 0
     """, reason)
     await conn.close()
+    await log_admin_action(admin_id, "Массовое продление", f"всем пользователям на {days} дней", None)
     return RedirectResponse(url="/", status_code=303)
 
+# ---- УПРАВЛЕНИЕ БОТОМ ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)

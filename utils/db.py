@@ -159,8 +159,13 @@ async def init_db():
 async def get_or_create_user(user_id: int, username: str = None, first_name: str = None, last_name: str = None):
     conn = await get_connection()
     await conn.execute("""
-        INSERT INTO users (user_id, username, first_name, last_name) VALUES ($1, $2, $3, $4)
-        ON CONFLICT (user_id) DO UPDATE SET last_active = EXTRACT(EPOCH FROM NOW())::BIGINT
+        INSERT INTO users (user_id, username, first_name, last_name)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (user_id) DO UPDATE SET
+            username = EXCLUDED.username,
+            first_name = EXCLUDED.first_name,
+            last_name = EXCLUDED.last_name,
+            last_active = EXTRACT(EPOCH FROM NOW())::BIGINT
     """, user_id, username, first_name, last_name)
     row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
     await conn.close()
@@ -767,7 +772,7 @@ async def update_user_subscription(user_id: int, new_end: int):
     await conn.close()
 
 # =====================================================================
-# !!! ИСПРАВЛЕННАЯ ФУНКЦИЯ СБРОСА (очищает также random_order и progress_index)
+# ИСПРАВЛЕННАЯ ФУНКЦИЯ СБРОСА (очищает также random_order и progress_index)
 # =====================================================================
 async def reset_full_progress(user_id: int):
     conn = await get_connection()

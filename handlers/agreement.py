@@ -15,6 +15,24 @@ async def clear_active_mode(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
 
+    # --- ЧТЕНИЕ ---
+    if mode == "reading_active":
+        data = await state.get_data()
+        for key in ("last_task_msg_id", "progress_msg_id"):
+            msg_id = data.get(key)
+            if msg_id:
+                try:
+                    await message.bot.edit_message_reply_markup(
+                        chat_id=message.chat.id, message_id=msg_id, reply_markup=None
+                    )
+                except Exception:
+                    pass
+        await state.clear()
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        await message.answer("Практика завершена.")
+        return
+
     if mode == "speaking_active":
         speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
         if speaking_kb_id:
