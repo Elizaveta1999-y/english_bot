@@ -25,6 +25,33 @@ def set_user_state(user_id: int, state: dict):
     with open(USERS_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
+async def get_or_create_user(user_id: int, username: str = None, first_name: str = None, last_name: str = None) -> dict:
+    """
+    Возвращает пользователя из users.json, создаёт запись, если её нет,
+    и обновляет данные профиля (username, first_name, last_name).
+    """
+    _ensure_table()
+    with open(USERS_FILE, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    key = str(user_id)
+    user = data.get(key)
+    if user is None:
+        user = {}
+
+    if username is not None:
+        user['username'] = username
+    if first_name is not None:
+        user['first_name'] = first_name
+    if last_name is not None:
+        user['last_name'] = last_name
+
+    data[key] = user
+    with open(USERS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+    return user
+
 def add_to_history(user_id: int, role: str, content: str):
     """
     Добавляет сообщение в историю, соответствующую текущему режиму пользователя.
