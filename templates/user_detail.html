@@ -7,6 +7,7 @@
     .btn-outline-danger { border-color: #ccc; color: #333; }
     .btn-outline-danger:hover { background: #f5f5f5; border-color: #aaa; }
     .section-title { margin-top: 25px; margin-bottom: 10px; font-weight: 400; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    .action-badge { font-size: 0.9rem; margin-right: 6px; margin-bottom: 6px; display: inline-block; }
 </style>
 
 <h2>👤 Пользователь {{ user.user_id }}</h2>
@@ -27,10 +28,47 @@
     </div>
 </div>
 
-<!-- Прогресс по тренажёрам -->
+<!-- ================== ИСТОРИЯ ДЕЙСТВИЙ АДМИНА ================== -->
+<h4 class="section-title">📋 История действий администратора</h4>
+
+{% if total_admin_actions and total_admin_actions > 0 %}
+    <div class="alert alert-info py-2">
+        <strong>Всего действий:</strong> {{ total_admin_actions }}
+    </div>
+    <div class="mb-3">
+        {% for stat in action_stats %}
+            <span class="badge bg-primary action-badge">
+                {{ stat.action }}: {{ stat.count }} раз(а)
+                <small class="text-white-50">· последний: {{ stat.last_at }}</small>
+            </span>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-secondary py-2">
+        Ты ещё не выполняла действий с этим пользователем.
+    </div>
+{% endif %}
+
+<div class="table-responsive">
+    <table class="table table-sm table-striped">
+        <thead><tr><th style="width: 160px;">Время</th><th>Действие</th><th>Подробности</th></tr></thead>
+        <tbody>
+        {% for log in admin_logs %}
+            <tr>
+                <td>{{ log.time }}</td>
+                <td>{{ log.action }}</td>
+                <td>{{ log.details or '—' }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="3" class="text-muted">Нет записей</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- ============================================================ -->
+
 <h4 class="section-title">📈 Прогресс по тренажёрам</h4>
 
-<!-- Грамматика (без столбца "Неправильно") -->
 <div class="row">
     <div class="col-md-6">
         <h5>Грамматика</h5>
@@ -74,7 +112,6 @@
     </div>
 </div>
 
-<!-- Чтение и Аудирование (с цветами) -->
 <div class="row">
     <div class="col-md-6">
         <h5>Чтение</h5>
@@ -120,7 +157,6 @@
     </div>
 </div>
 
-<!-- Письмо и Говорение -->
 <div class="row">
     <div class="col-md-6">
         <h4 class="section-title">✍️ Письмо</h4>
@@ -166,26 +202,6 @@
     </div>
 </div>
 
-<!-- Логи администратора -->
-<h4 class="section-title">📋 История действий администратора</h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead><tr><th>Время</th><th>Действие</th><th>Подробности</th></tr></thead>
-        <tbody>
-        {% for log in admin_logs %}
-            <tr>
-                <td>{{ log.time }}</td>
-                <td>{{ log.action }}</td>
-                <td>{{ log.details or '—' }}</td>
-            </tr>
-        {% else %}
-            <tr><td colspan="3">Нет записей</td></tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<!-- Управление подпиской -->
 <h4 class="section-title">🛠️ Управление подпиской</h4>
 <form method="post" action="/user/{{ user.user_id }}/extend" class="row g-3 mb-3">
     <div class="col-auto">
@@ -202,7 +218,6 @@
     <button class="btn btn-danger" type="submit">❌ Отменить подписку</button>
 </form>
 
-<!-- Опасные действия -->
 <h4 class="section-title">⚠️ Опасные действия</h4>
 <form method="post" action="/user/{{ user.user_id }}/reset_progress" onsubmit="return confirm('Удалить ВСЕ данные прогресса этого пользователя? Это необратимо.')" class="d-inline">
     <button class="btn btn-outline-danger" type="submit">🗑️ Сбросить прогресс</button>

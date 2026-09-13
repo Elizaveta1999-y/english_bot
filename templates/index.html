@@ -3,9 +3,8 @@
 {% block content %}
 <h2>Общая статистика</h2>
 
-<!-- Предупреждения -->
 {% if warnings %}
-    <div class="warning-banner">
+    <div class="warning-banner alert alert-warning">
         <strong>⚠️ Внимание:</strong>
         <ul class="mb-0">
         {% for warn in warnings %}
@@ -59,24 +58,8 @@
         </div>
     </div>
 </div>
-<div class="row mt-4">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Продлить подписку ВСЕМ пользователям</h5>
-                <form method="post" action="/extend_all" class="row g-3">
-                    <div class="col-auto">
-                        <input type="number" name="days" class="form-control" placeholder="Кол-во дней" value="30" min="1" required>
-                    </div>
-                    <div class="col-auto">
-                        <button class="btn btn-success" type="submit">Продлить всем</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="mt-4">
     <a href="/bot" class="btn btn-secondary">Управление ботом</a>
+    <a href="/paid_users" class="btn btn-secondary">💳 Платные пользователи</a>
 </div>
 {% endblock %}

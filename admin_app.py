@@ -641,7 +641,63 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
         "subscription": subscription
     })
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (без столбца «Неправильно» в грамматике и лексике) ----
+# ---- ПЛАТНЫЕ ПОЛЬЗОВАТЕЛИ (только активная подписка) ----
+@app.get("/paid_users", response_class=HTMLResponse)
+async def paid_users_list(request: Request, search: str = "", page: int = 1, limit: int = 20):
+    conn = await get_db()
+    offset = (page - 1) * limit
+    search_pattern = f"%{search}%" if search else "%%"
+    params = [search_pattern]
+    where_parts = [
+        "(user_id::text ILIKE $1 OR username ILIKE $1 OR first_name ILIKE $1 OR last_name ILIKE $1)",
+        "subscription_until > EXTRACT(EPOCH FROM NOW())::BIGINT"
+    ]
+    where_clause = " AND ".join(where_parts)
+    total_count = await conn.fetchval(f"SELECT COUNT(*) FROM users WHERE {where_clause}", *params)
+    query = f"""
+        SELECT user_id, username, first_name, last_name,
+               registered_at, last_active, subscription_until, subscription_started,
+               subscription_count,
+               COALESCE(speaking_seconds_month, 0) + COALESCE(roleplay_seconds_month, 0) as voice_seconds
+        FROM users
+        WHERE {where_clause}
+        ORDER BY subscription_until ASC
+        LIMIT $2 OFFSET $3
+    """
+    params.extend([limit, offset])
+    rows = await conn.fetch(query, *params)
+    await conn.close()
+
+    now = int(datetime.now().timestamp())
+    users = []
+    for row in rows:
+        sub_until = row["subscription_until"] or 0
+        days_left = (sub_until - now) // 86400 if sub_until else 0
+        users.append({
+            "user_id": row["user_id"],
+            "username": row["username"] or "—",
+            "first_name": row["first_name"] or "",
+            "last_name": row["last_name"] or "",
+            "registered_at": datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
+            "last_active": datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M") if row["last_active"] else "—",
+            "subscription_started": datetime.fromtimestamp(row["subscription_started"]).strftime("%Y-%m-%d") if row["subscription_started"] else "—",
+            "subscription_until": datetime.fromtimestamp(sub_until).strftime("%Y-%m-%d") if sub_until else "—",
+            "days_left": max(0, days_left),
+            "subscription_count": row["subscription_count"] or 0,
+            "voice_minutes": round(row["voice_seconds"] / 60, 1) if row["voice_seconds"] else 0,
+        })
+    total_pages = (total_count + limit - 1) // limit if total_count else 1
+    return templates.TemplateResponse("paid_users.html", {
+        "request": request,
+        "users": users,
+        "search": search,
+        "page": page,
+        "limit": limit,
+        "total_pages": total_pages,
+        "total_count": total_count,
+    })
+
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     try:
@@ -653,18 +709,26 @@ async def user_detail(request: Request, user_id: int):
         progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
         writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
         govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
-        
+
         error_rows = await conn.fetch("SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key", user_id)
         error_counts = {row["type_key"]: row["cnt"] for row in error_rows}
-        
+
         admin_logs = await conn.fetch("""
             SELECT admin_id, action, details, created_at
             FROM admin_actions
             WHERE target_user_id = $1
             ORDER BY created_at DESC
-            LIMIT 20
+            LIMIT 50
         """, user_id)
-        
+
+        action_stats_rows = await conn.fetch("""
+            SELECT action, COUNT(*) as cnt, MAX(created_at) as last_at
+            FROM admin_actions
+            WHERE target_user_id = $1
+            GROUP BY action
+            ORDER BY cnt DESC
+        """, user_id)
+
         await conn.close()
 
         user = dict(user_row)
@@ -682,6 +746,15 @@ async def user_detail(request: Request, user_id: int):
                 "details": row["details"] or "—"
             })
 
+        action_stats = []
+        for row in action_stats_rows:
+            action_stats.append({
+                "action": row["action"],
+                "count": row["cnt"],
+                "last_at": datetime.fromtimestamp(row["last_at"]).strftime("%Y-%m-%d %H:%M") if row["last_at"] else "—"
+            })
+        total_admin_actions = sum(s["count"] for s in action_stats)
+
         progress_data = {}
         for r in progress_rows:
             key = r["type_key"]
@@ -696,7 +769,7 @@ async def user_detail(request: Request, user_id: int):
             progress_data[key][display_level]["correct"] += correct
             progress_data[key][display_level]["wrong"] += wrong
 
-        # ===== ГРАММАТИКА (только correct, percent, errors) =====
+        # ===== ГРАММАТИКА =====
         grammar_items = []
         for raw_key, display_name in GRAMMAR_TYPES.items():
             db_key = f"grammar_{raw_key}"
@@ -717,7 +790,7 @@ async def user_detail(request: Request, user_id: int):
                 "errors": errors
             })
 
-        # ===== ЛЕКСИКА (только correct, percent, errors) =====
+        # ===== ЛЕКСИКА =====
         lexis_items = []
         for raw_key, display_name in LEXIS_TYPES.items():
             db_key = f"words_{raw_key}"
@@ -870,7 +943,9 @@ async def user_detail(request: Request, user_id: int):
             "govorenie_items": govorenie_items,
             "speaking_minutes": speaking_minutes,
             "roleplay_minutes": roleplay_minutes,
-            "admin_logs": logs_display
+            "admin_logs": logs_display,
+            "action_stats": action_stats,
+            "total_admin_actions": total_admin_actions
         })
     except Exception as e:
         logger.error(f"Ошибка в user_detail для {user_id}: {e}", exc_info=True)
@@ -967,8 +1042,8 @@ async def extend_all_subscriptions(request: Request, days: int = Form(...)):
         WHERE subscription_until > 0
     """, reason)
     await conn.close()
-    await log_admin_action(admin_id, "Массовое продление", f"всем пользователям на {days} дней", None)
-    return RedirectResponse(url="/", status_code=303)
+    await log_admin_action(admin_id, "Массовое продление", f"всем платным пользователям на {days} дней", None)
+    return RedirectResponse(url="/paid_users", status_code=303)
 
 # ---- УПРАВЛЕНИЕ БОТОМ ----
 @app.post("/bot/toggle")
