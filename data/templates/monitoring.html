@@ -22,9 +22,9 @@
     <div class="col-md-6">
         <div class="monitoring-card">
             <h5>DeepSeek</h5>
-            <p><span class="label">Баланс:</span> <span class="value" id="deepseek-balance">{{ deepseek.balance }}</span> CNY</p>
+            <p><span class="label">Баланс:</span> <span class="value">{{ deepseek.balance }}</span> CNY</p>
             <p><span class="label">Порог:</span> {{ deepseek.threshold }} CNY</p>
-            <p><span class="label">Обновлено:</span> <span class="updated" id="deepseek-updated">{{ deepseek.last_updated }}</span></p>
+            <p><span class="label">Обновлено:</span> <span class="updated">{{ deepseek.last_updated }}</span></p>
             <p><span class="label">Статус:</span> 
                 {% if deepseek.balance_float > 0 %}
                     {% if deepseek.balance_float < deepseek.threshold_float %}
@@ -95,20 +95,4 @@
 <div class="mt-3">
     <a href="/" class="btn btn-secondary">На главную</a>
 </div>
-
-<script>
-    async function refreshDeepSeekBalance() {
-        try {
-            const res = await fetch('/api/deepseek-balance');
-            const data = await res.json();
-            const balanceEl = document.getElementById('deepseek-balance');
-            const updatedEl = document.getElementById('deepseek-updated');
-            if (balanceEl) balanceEl.textContent = data.balance;
-            if (updatedEl) updatedEl.textContent = new Date().toLocaleString('ru-RU');
-        } catch (e) {
-            console.error('Ошибка обновления баланса DeepSeek:', e);
-        }
-    }
-    setInterval(refreshDeepSeekBalance, 30000);
-</script>
 {% endblock %}

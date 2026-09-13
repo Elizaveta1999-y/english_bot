@@ -22,28 +22,9 @@
         <p><span class="detail-label">Количество подписок:</span> <span class="detail-value">{{ user.subscription_count }}</span></p>
         <p><span class="detail-label">Пробный период (начало):</span> <span class="detail-value">{{ user.trial_started }}</span></p>
         <p><span class="detail-label">Пробный период (окончание):</span> <span class="detail-value">{{ user.trial_until }}</span></p>
-        <p><span class="detail-label">Использовано голоса (месяц):</span> <span class="detail-value">{{ total_display }}</span></p>
-        <p><span class="detail-label">Общение с AI (голос, месяц):</span> <span class="detail-value">{{ speaking_display }}</span></p>
-        <p><span class="detail-label">Ролевые игры (голос, месяц):</span> <span class="detail-value">{{ roleplay_display }}</span></p>
-
-        <div class="mt-3">
-            <div class="d-flex justify-content-between mb-1">
-                <span class="detail-label">Лимит голоса: {{ total_display }} / 5 ч</span>
-                <span class="detail-label">{{ voice_percent }}%</span>
-            </div>
-            <div class="progress" style="height: 22px;">
-                <div class="progress-bar
-                            {% if voice_percent >= 90 %}bg-danger
-                            {% elif voice_percent >= 70 %}bg-warning
-                            {% else %}bg-success{% endif %}"
-                     role="progressbar"
-                     style="width: {{ voice_percent }}%;"
-                     aria-valuenow="{{ voice_percent }}"
-                     aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
-            </div>
-        </div>
+        <p><span class="detail-label">Использовано голоса (месяц):</span> <span class="detail-value">{{ (user.total_voice_seconds_month / 60) | round(1) }} мин</span></p>
+        <p><span class="detail-label">Общение с AI (голос, месяц):</span> <span class="detail-value">{{ speaking_minutes }} мин</span></p>
+        <p><span class="detail-label">Ролевые игры (голос, месяц):</span> <span class="detail-value">{{ roleplay_minutes }} мин</span></p>
     </div>
 </div>
 

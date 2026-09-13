@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Общая статистика</h2>
+
+{% if warnings %}
+    <div class="warning-banner alert alert-warning">
+        <strong>⚠️ Внимание:</strong>
+        <ul class="mb-0">
+        {% for warn in warnings %}
+            <li>{{ warn }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<div class="row mt-4">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Всего пользователей</h5>
+                <p class="card-text">{{ stats.total_users }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Активных подписок</h5>
+                <p class="card-text">{{ stats.subscriptions }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Пробный период</h5>
+                <p class="card-text">{{ stats.trial_active }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Голосовых минут (за неделю)</h5>
+                <p class="card-text">{{ stats.voice_week }} мин</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Голосовых минут (за месяц)</h5>
+                <p class="card-text">{{ stats.voice_month }} мин</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-4">
+    <a href="/bot" class="btn btn-secondary">Управление ботом</a>
+    <a href="/paid_users" class="btn btn-secondary">💳 Платные пользователи</a>
+</div>
+{% endblock %}

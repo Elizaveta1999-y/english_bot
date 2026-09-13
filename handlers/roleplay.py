@@ -6,7 +6,7 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, C
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.exceptions import TelegramBadRequest
-from data.users import get_user_state, set_user_state
+from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
 from services.deepseek import chat
 from handlers.voice import bot_texts
 from speaking.services.stt import voice_to_text
@@ -72,7 +72,7 @@ CATEGORY_VOICE_MAP = {
     "news": MAN_VOICE_ID
 }
 
-# ========== СИТУАЦИИ (ЗАМЕНИТЕ ЭТОТ СЛОВАРЬ НА ВАШИ ДАННЫЕ) ==========
+# ========== СИТУАЦИИ ==========
 TOPICS = {
     "work": [
         {
@@ -2063,7 +2063,7 @@ async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ========== ОБРАБОТЧИК ЛЮБЫХ КОМАНД В РЕЖИМЕ (ИСПРАВЛЕН: добавлено исключение для трёх команд) ==========
+# ========== ОБРАБОТЧИК ЛЮБЫХ КОМАНД В РЕЖИМЕ ==========
 @router.message(RoleplayStates.active, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
 @router.message(RoleplayStates.confirming_finish, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
 async def handle_commands_in_roleplay(message: Message, state: FSMContext):
@@ -2279,6 +2279,16 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     if user_state.get("mode") != "roleplay_active":
         logger.info("mode != roleplay_active, пропускаем")
         return
+
+    if is_voice_limit_reached(user_id):
+        await message.answer(
+            "Ты проговорил(а) целых 5 часов в этом месяце — это отличный результат!\n"
+            "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
+            "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
+        )
+        return
+
+    add_voice_seconds(user_id, message.voice.duration or 0, "roleplay")
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 

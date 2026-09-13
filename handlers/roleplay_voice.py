@@ -5,7 +5,7 @@ import random
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
-from data.users import get_user_state, set_user_state
+from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
 from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
 from handlers.voice import convert_to_opus, bot_texts
@@ -64,6 +64,18 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     if user_state.get("mode") != "roleplay_active":
         logger.info("mode != roleplay_active, пропускаем")
         return
+
+    if is_voice_limit_reached(user_id):
+        await message.answer(
+            "Ты проговорил(а) целых 5 часов в этом месяце — это отличный результат!\n"
+            "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
+            "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
+        )
+        return
+
+    audio_obj_pre = message.voice or message.audio
+    if audio_obj_pre is not None:
+        add_voice_seconds(user_id, audio_obj_pre.duration or 0, "roleplay")
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
@@ -294,7 +306,6 @@ async def roleplay_voice_hide(callback: CallbackQuery):
         parts = callback.data.split('_')
         user_id = int(parts[-2])
         msg_id = int(parts[-1])
-        # Возвращаем кнопку "Текст" и убираем текст
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
         ])

@@ -134,7 +134,7 @@ async def ensure_db_structure():
         """)
         await conn.execute("""
             INSERT INTO api_balances (service, balance, threshold, link)
-            VALUES ('deepseek', 'неизвестно', '30', 'https://platform.deepseek.com/api_keys'),
+            VALUES ('deepseek', 'неизвестно', '10', 'https://platform.deepseek.com/api_keys'),
                    ('elevenlabs', 'неизвестно', '10000', 'https://elevenlabs.io/app/settings/billing')
             ON CONFLICT (service) DO NOTHING
         """)
@@ -433,6 +433,12 @@ async def charts_data(days: int = 30, type: str = "all"):
         activity = await get_activity_data(days)
         return JSONResponse({"new_users": new_users, "activity": activity})
 
+@app.get("/api/deepseek-balance")
+async def api_deepseek_balance():
+    """Возвращает актуальный баланс DeepSeek в JSON (для автообновления на странице)."""
+    balance = await get_deepseek_balance()
+    return JSONResponse({"balance": balance})
+
 # ---------- СТРАНИЦЫ ----------
 @app.get("/charts", response_class=HTMLResponse)
 async def charts_page(request: Request):
@@ -556,7 +562,7 @@ async def index(request: Request):
     warnings = []
     try:
         deep_val = float(deepseek.get("balance", 0)) if deepseek.get("balance") and deepseek.get("balance").replace('.','').isdigit() else float('inf')
-        if deep_val < float(deepseek.get("threshold", 30)):
+        if deep_val < float(deepseek.get("threshold", 10)):
             warnings.append(f"⚠️ Баланс DeepSeek: {deepseek.get('balance')} CNY (порог {deepseek.get('threshold')})")
     except: pass
     try:
@@ -641,7 +647,7 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
         "subscription": subscription
     })
 
-# ---- ПЛАТНЫЕ ПОЛЬЗОВАТЕЛИ (только активная подписка) ----
+# ---- ПЛАТНЫЕ ПОЛЬЗОВАТЕЛИ ----
 @app.get("/paid_users", response_class=HTMLResponse)
 async def paid_users_list(request: Request, search: str = "", page: int = 1, limit: int = 20):
     conn = await get_db()
@@ -929,8 +935,26 @@ async def user_detail(request: Request, user_id: int):
                 })
         govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-        speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
-        roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
+        def _fmt(secs):
+            secs = int(secs or 0)
+            if secs <= 0:
+                return "0 сек"
+            h = secs // 3600
+            m = (secs % 3600) // 60
+            s = secs % 60
+            if h > 0:
+                return f"{h} ч {m} мин {s} сек"
+            if m > 0:
+                return f"{m} мин {s} сек"
+            return f"{s} сек"
+
+        speaking_display = _fmt(user.get("speaking_seconds_month"))
+        roleplay_display = _fmt(user.get("roleplay_seconds_month"))
+        total_display = _fmt(user.get("total_voice_seconds_month"))
+
+        VOICE_LIMIT_SECONDS = 5 * 3600
+        voice_used_secs = int(user.get("total_voice_seconds_month") or 0)
+        voice_percent = round(min(100, voice_used_secs / VOICE_LIMIT_SECONDS * 100), 1)
 
         return templates.TemplateResponse("user_detail.html", {
             "request": request,
@@ -941,8 +965,10 @@ async def user_detail(request: Request, user_id: int):
             "listening_items": listening_items,
             "writing_items": writing_items,
             "govorenie_items": govorenie_items,
-            "speaking_minutes": speaking_minutes,
-            "roleplay_minutes": roleplay_minutes,
+            "speaking_display": speaking_display,
+            "roleplay_display": roleplay_display,
+            "total_display": total_display,
+            "voice_percent": voice_percent,
             "admin_logs": logs_display,
             "action_stats": action_stats,
             "total_admin_actions": total_admin_actions
@@ -967,8 +993,17 @@ async def extend_subscription(request: Request, user_id: int, days: int = Form(.
     row = await conn.fetchrow("SELECT subscription_until, subscription_count FROM users WHERE user_id = $1", user_id)
     current = row["subscription_until"] if row and row["subscription_until"] else now
     new_until = max(current, now) + days * 86400
+    counter_was_reset = False
     if current <= now:
-        await conn.execute("UPDATE users SET subscription_started = $1 WHERE user_id = $2", now, user_id)
+        await conn.execute("""
+            UPDATE users
+            SET subscription_started = $1,
+                speaking_seconds_month = 0,
+                roleplay_seconds_month = 0,
+                total_voice_seconds_month = 0
+            WHERE user_id = $2
+        """, now, user_id)
+        counter_was_reset = True
     await conn.execute("UPDATE users SET subscription_until = $1, subscription_count = subscription_count + 1 WHERE user_id = $2", new_until, user_id)
     if reason.strip():
         await set_bonus_notification(user_id, reason)
@@ -978,6 +1013,8 @@ async def extend_subscription(request: Request, user_id: int, days: int = Form(.
     else:
         action_text = f"Продление на {days} дней"
     await log_admin_action(admin_id, "Продление подписки", action_text, user_id)
+    if counter_was_reset:
+        await log_admin_action(admin_id, "Обнуление счётчика минут при оплате", f"лимит 5 ч сброшен", user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/user/{user_id}/cancel")
@@ -1091,7 +1128,7 @@ async def get_api_balance(service: str) -> dict:
     row = await conn.fetchrow("SELECT balance, last_updated, threshold, link FROM api_balances WHERE service = $1", service)
     await conn.close()
     if row:
-        threshold = row["threshold"] or "30"
+        threshold = row["threshold"] or "10"
         return {
             "balance": row["balance"] or "неизвестно",
             "last_updated": row["last_updated"] or 0,
@@ -1101,7 +1138,7 @@ async def get_api_balance(service: str) -> dict:
     return {
         "balance": "неизвестно",
         "last_updated": 0,
-        "threshold": "30" if service == "deepseek" else "10000",
+        "threshold": "10" if service == "deepseek" else "10000",
         "link": "#"
     }
 
@@ -1151,16 +1188,11 @@ async def get_deepseek_balance():
             if resp.status_code == 200:
                 data = resp.json()
                 logger.info(f"DeepSeek API raw response: {data}")
-                balance = data.get("total_balance")
-                if balance is None:
-                    balance = data.get("topped_up_balance")
-                if balance is None:
-                    balance = data.get("granted_balance")
-                if balance is None:
-                    balance = data.get("balance")
-                if balance is None:
-                    return "неизвестно"
-                return str(balance)
+                balance_infos = data.get("balance_infos", [])
+                for info in balance_infos:
+                    if info.get("currency") == "CNY":
+                        return str(info.get("total_balance", "неизвестно"))
+                return "неизвестно"
             else:
                 logger.warning(f"DeepSeek API вернул {resp.status_code}: {resp.text}")
                 return "ошибка"
@@ -1220,7 +1252,7 @@ async def check_balances_and_notify():
         await update_api_balance("elevenlabs", elevenlabs_balance or "неизвестно")
 
         try:
-            threshold_str = deepseek_data.get("threshold") or "30"
+            threshold_str = deepseek_data.get("threshold") or "10"
             deep_threshold = float(threshold_str)
             if deepseek_balance and deepseek_balance.replace('.', '').isdigit():
                 deep_val = float(deepseek_balance)
@@ -1269,7 +1301,7 @@ async def monitoring_page(request: Request):
         render = await get_render_payment()
 
         if not deepseek or deepseek.get("balance") == "неизвестно":
-            await update_api_balance("deepseek", "неизвестно", "30")
+            await update_api_balance("deepseek", "неизвестно", "10")
             deepseek = await get_api_balance("deepseek")
         if not elevenlabs or elevenlabs.get("balance") == "неизвестно":
             await update_api_balance("elevenlabs", "неизвестно", "10000")
@@ -1294,8 +1326,8 @@ async def monitoring_page(request: Request):
         deepseek_numeric = {
             "balance": deepseek_balance_str,
             "balance_float": safe_float(deepseek_balance_str),
-            "threshold": deepseek.get("threshold", "30"),
-            "threshold_float": safe_float(deepseek.get("threshold", "30")),
+            "threshold": deepseek.get("threshold", "10"),
+            "threshold_float": safe_float(deepseek.get("threshold", "10")),
             "last_updated": deepseek.get("last_updated", 0),
             "link": deepseek.get("link", "#")
         }

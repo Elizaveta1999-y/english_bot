@@ -1,6 +1,7 @@
 import os
 import json
 import logging
+from datetime import datetime
 
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -10,9 +11,10 @@ logger = logging.getLogger(__name__)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Render иногда отдаёт старую схему "postgres://" — psycopg2 её не понимает
 if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+VOICE_LIMIT_SECONDS = 5 * 3600  # 5 часов — лимит голосового общения в месяц
 
 _connection_pool = None
 _table_ready = False
@@ -28,7 +30,6 @@ def _get_pool():
 
 
 def _ensure_table():
-    """Создаёт таблицу users (если её нет) и добавляет колонку state."""
     global _table_ready
     if _table_ready:
         return
@@ -58,7 +59,6 @@ def _ensure_table():
 
 
 def get_user_state(user_id: int) -> dict:
-    """Возвращает состояние пользователя (словарь) из Postgres."""
     _ensure_table()
     conn = _get_pool().getconn()
     try:
@@ -73,7 +73,6 @@ def get_user_state(user_id: int) -> dict:
 
 
 def set_user_state(user_id: int, state: dict):
-    """Сохраняет состояние пользователя в Postgres (создаёт запись при необходимости)."""
     _ensure_table()
     state_json = json.dumps(state, ensure_ascii=False)
     conn = _get_pool().getconn()
@@ -98,11 +97,6 @@ def set_user_state(user_id: int, state: dict):
 
 async def get_or_create_user(user_id: int, username: str = None,
                              first_name: str = None, last_name: str = None) -> dict:
-    """
-    Создаёт пользователя в Postgres, если его нет, и обновляет профиль
-    (username, first_name, last_name, last_active). Возвращает state.
-    Оставлено async, потому что в start.py вызывается через await.
-    """
     _ensure_table()
     conn = _get_pool().getconn()
     try:
@@ -133,12 +127,85 @@ async def get_or_create_user(user_id: int, username: str = None,
         _get_pool().putconn(conn)
 
 
+def is_voice_limit_reached(user_id: int) -> bool:
+    """
+    True, если лимит голоса (5 ч/мес) достигнут ИЛИ подписка истекла/отсутствует.
+    """
+    _ensure_table()
+    conn = _get_pool().getconn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT subscription_until, COALESCE(total_voice_seconds_month, 0) FROM users WHERE user_id = %s",
+                (user_id,)
+            )
+            row = cur.fetchone()
+            if row is None:
+                return True
+            sub_until = row[0] or 0
+            used = row[1] or 0
+            now_ts = int(datetime.now().timestamp())
+            if sub_until <= now_ts:
+                return True
+            return used >= VOICE_LIMIT_SECONDS
+    finally:
+        _get_pool().putconn(conn)
+
+
+def add_voice_seconds(user_id: int, seconds: int, mode: str):
+    """
+    Прибавляет секунды голоса в счётчик, только если подписка активна.
+    mode: 'speaking' или 'roleplay'.
+    Если подписка истекла — сбрасывает все голосовые счётчики в 0.
+    """
+    if mode not in ("speaking", "roleplay"):
+        return
+    if not seconds or seconds <= 0:
+        return
+
+    _ensure_table()
+    conn = _get_pool().getconn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("SELECT subscription_until FROM users WHERE user_id = %s", (user_id,))
+            row = cur.fetchone()
+            if row is None:
+                return
+            sub_until = row[0] or 0
+            now_ts = int(datetime.now().timestamp())
+
+            if sub_until <= now_ts:
+                cur.execute("""
+                    UPDATE users
+                    SET speaking_seconds_month = 0,
+                        roleplay_seconds_month = 0,
+                        total_voice_seconds_month = 0
+                    WHERE user_id = %s
+                """, (user_id,))
+            else:
+                if mode == "speaking":
+                    cur.execute("""
+                        UPDATE users
+                        SET speaking_seconds_month = COALESCE(speaking_seconds_month, 0) + %s,
+                            total_voice_seconds_month = COALESCE(total_voice_seconds_month, 0) + %s
+                        WHERE user_id = %s
+                    """, (seconds, seconds, user_id))
+                else:
+                    cur.execute("""
+                        UPDATE users
+                        SET roleplay_seconds_month = COALESCE(roleplay_seconds_month, 0) + %s,
+                            total_voice_seconds_month = COALESCE(total_voice_seconds_month, 0) + %s
+                        WHERE user_id = %s
+                    """, (seconds, seconds, user_id))
+        conn.commit()
+    except Exception as e:
+        conn.rollback()
+        logger.error(f"[users] Ошибка add_voice_seconds({user_id}, {mode}, {seconds}): {e}")
+    finally:
+        _get_pool().putconn(conn)
+
+
 def add_to_history(user_id: int, role: str, content: str):
-    """
-    Добавляет сообщение в историю, соответствующую текущему режиму пользователя.
-    Режим определяется из поля 'mode' в состоянии пользователя.
-    Если режим не задан, используется ключ 'history'.
-    """
     state = get_user_state(user_id)
     mode = state.get('mode', 'general')
     history_key = f"{mode}_history"
@@ -149,11 +216,6 @@ def add_to_history(user_id: int, role: str, content: str):
 
 
 def get_user_history(user_id: int, mode: str = None) -> list:
-    """
-    Возвращает историю для указанного режима.
-    Если mode не указан, используется текущий режим из состояния.
-    Если режим не задан, возвращается история по ключу 'history'.
-    """
     state = get_user_state(user_id)
     if mode is None:
         mode = state.get('mode', 'general')
@@ -162,10 +224,6 @@ def get_user_history(user_id: int, mode: str = None) -> list:
 
 
 def clear_user_history(user_id: int, mode: str = None):
-    """
-    Очищает историю для указанного режима.
-    Если mode не указан, используется текущий режим из состояния.
-    """
     state = get_user_state(user_id)
     if mode is None:
         mode = state.get('mode', 'general')
@@ -176,13 +234,11 @@ def clear_user_history(user_id: int, mode: str = None):
 
 
 def set_user_mode(user_id: int, mode: str):
-    """Устанавливает текущий режим пользователя (например, 'speaking', 'roleplay')."""
     state = get_user_state(user_id)
     state['mode'] = mode
     set_user_state(user_id, state)
 
 
 def get_user_mode(user_id: int) -> str:
-    """Возвращает текущий режим пользователя."""
     state = get_user_state(user_id)
     return state.get('mode', '')

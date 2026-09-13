@@ -9,7 +9,7 @@ from aiogram.fsm.context import FSMContext
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
-from data.users import get_user_state, set_user_state
+from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
 from services.deepseek import chat
 from handlers.lessons import show_practice_task, parse_user_answers
 from states.speaking_states import SpeakingStates
@@ -86,6 +86,14 @@ async def handle_voice(message: Message, state: FSMContext):
         if current_state != SpeakingStates.waiting_for_voice:
             await state.set_state(SpeakingStates.waiting_for_voice)
 
+        if is_voice_limit_reached(user_id):
+            await message.answer(
+                "Ты проговорил(а) целых 5 часов в этом месяце — это отличный результат!\n"
+                "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
+                "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
+            )
+            return
+
         feedback_id = user_state.get("feedback_prompt_msg_id")
         logger.info(f"🔹 ПРОВЕРКА перед обработкой: feedback_prompt_msg_id = {feedback_id}")
         if feedback_id:
@@ -97,6 +105,8 @@ async def handle_voice(message: Message, state: FSMContext):
         file = await bot.get_file(message.voice.file_id)
         file_bytes = await bot.download_file(file.file_path)
         duration = message.voice.duration
+
+        add_voice_seconds(user_id, duration, "speaking")
 
         MAX_DURATION = 180
         if duration > MAX_DURATION:
