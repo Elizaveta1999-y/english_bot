@@ -1,7 +1,5 @@
 import os
 import logging
-import re
-import random
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
@@ -15,11 +13,9 @@ from handlers.roleplay import build_system_prompt, call_ai_with_system, is_forbi
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ==================== ГОЛОСА ====================
-WOMAN_VOICE_ID = "uYXf8XasLslADfZ2MB4u"   # новый женский
-MAN_VOICE_ID = "nucVFUFVgPmKHjgXNbJ7"     # новый мужской
+WOMAN_VOICE_ID = "uYXf8XasLslADfZ2MB4u"
+MAN_VOICE_ID = "nucVFUFVgPmKHjgXNbJ7"
 
-# ==================== КАРТА КАТЕГОРИЙ -> ГОЛОС ====================
 CATEGORY_VOICE_MAP = {
     "work": WOMAN_VOICE_ID,
     "travel": MAN_VOICE_ID,
@@ -56,13 +52,10 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
 
 @router.message(F.voice | F.audio, RoleplayStates.active)
 async def roleplay_voice_handler(message: Message, state: FSMContext):
-    logger.info("=== roleplay_voice_handler ВЫЗВАН ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    logger.info(f"user_id={user_id}, mode={user_state.get('mode')}")
 
     if user_state.get("mode") != "roleplay_active":
-        logger.info("mode != roleplay_active, пропускаем")
         return
 
     if is_voice_limit_reached(user_id):
@@ -87,7 +80,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
         file = await message.bot.get_file(audio_obj.file_id)
         file_bytes = await message.bot.download_file(file.file_path)
         text = await voice_to_text(file_bytes.read())
-        logger.info(f"Распознанный текст: {text[:50]}...")
     except Exception as e:
         logger.error(f"Ошибка распознавания: {e}")
         await message.answer("Не удалось распознать голосовое сообщение. Попробуйте написать текстом.")
@@ -116,7 +108,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     history = user_state.get("roleplay_history", [])
 
     ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
-    logger.info(f"Ответ ИИ: {ai_response[:50]}...")
 
     ai_response_clean, goals_achieved = process_ai_response(ai_response)
 
@@ -130,14 +121,11 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     if show_english_reminder:
         await message.answer("✨Feel free to use English!")
 
-    # Используем заранее сохранённый голос (устанавливается при выборе темы)
     voice_id = user_state.get("voice_id")
     if not voice_id:
-        # если почему-то не задан – берём женский по умолчанию
         voice_id = WOMAN_VOICE_ID
         user_state["voice_id"] = voice_id
         set_user_state(user_id, user_state)
-    logger.info(f"Используем голос ID: {voice_id}")
 
     tts_text = truncate_for_tts(ai_response_clean)
 
@@ -210,12 +198,8 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
-# ============================================================
-# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ
-# ============================================================
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_show_text_"))
 async def roleplay_voice_show_text(callback: CallbackQuery):
-    logger.info(f"=== roleplay_voice_show_text: {callback.data} ===")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[-2])
@@ -242,7 +226,6 @@ async def roleplay_voice_show_text(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_translate_"))
 async def roleplay_voice_translate(callback: CallbackQuery):
-    logger.info(f"=== roleplay_voice_translate: {callback.data} ===")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[-2])
@@ -274,7 +257,6 @@ async def roleplay_voice_translate(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_original_"))
 async def roleplay_voice_original(callback: CallbackQuery):
-    logger.info(f"=== roleplay_voice_original: {callback.data} ===")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[-2])
@@ -301,7 +283,6 @@ async def roleplay_voice_original(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_hide_"))
 async def roleplay_voice_hide(callback: CallbackQuery):
-    logger.info(f"=== roleplay_voice_hide: {callback.data} ===")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[-2])
@@ -316,7 +297,6 @@ async def roleplay_voice_hide(callback: CallbackQuery):
             reply_markup=keyboard
         )
         await callback.answer()
-        logger.info("roleplay_voice_hide успешно выполнен")
     except Exception as e:
         logger.error(f"Ошибка в roleplay_voice_hide: {e}", exc_info=True)
         await callback.message.delete()

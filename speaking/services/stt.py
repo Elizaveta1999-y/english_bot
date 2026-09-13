@@ -1,7 +1,10 @@
 import os
 import tempfile
+import logging
 import requests
 from pydub import AudioSegment
+
+logger = logging.getLogger(__name__)
 
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 
@@ -52,18 +55,13 @@ async def voice_to_text(file_bytes: bytes) -> str:
             # Извлекаем текст из ответа Scribe
             text = result.get("text", "")
             if text:
-                print(f"ElevenLabs Scribe recognized: '{text}'")
                 return text
             else:
-                print(f"Empty response from ElevenLabs")
                 return ""
         else:
-            print(f"ElevenLabs API error: {response.status_code} - {response.text}")
             return ""
             
     except requests.exceptions.Timeout:
-        print("ElevenLabs API timeout")
         return ""
     except Exception as e:
-        print(f"ElevenLabs STT error: {e}")
         return ""

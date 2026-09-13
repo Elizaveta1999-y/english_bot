@@ -1004,7 +1004,7 @@ async def extend_subscription(request: Request, user_id: int, days: int = Form(.
             WHERE user_id = $2
         """, now, user_id)
         counter_was_reset = True
-    await conn.execute("UPDATE users SET subscription_until = $1, subscription_count = subscription_count + 1 WHERE user_id = $2", new_until, user_id)
+    await conn.execute("UPDATE users SET subscription_until = $1 WHERE user_id = $2", new_until, user_id)
     if reason.strip():
         await set_bonus_notification(user_id, reason)
     await conn.close()
@@ -1069,7 +1069,6 @@ async def extend_all_subscriptions(request: Request, days: int = Form(...)):
     await conn.execute("""
         UPDATE users
         SET subscription_until = GREATEST(subscription_until, $1) + $2 * 86400,
-            subscription_count = subscription_count + 1,
             subscription_started = CASE WHEN subscription_until <= $1 THEN $1 ELSE subscription_started END
         WHERE subscription_until > 0
     """, now, days)

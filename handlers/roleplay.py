@@ -16,8 +16,6 @@ from handlers.voice import convert_to_opus, truncate_for_tts
 logger = logging.getLogger(__name__)
 router = Router()
 
-logger.info("=== РОУТЕР ROLEPLAY ЗАГРУЖЕН ===")
-
 class RoleplayStates(StatesGroup):
     active = State()
     confirming_exit = State()
@@ -1574,9 +1572,8 @@ async def remove_roleplay_keyboard(user_id: int, bot):
     if msg_id:
         try:
             await bot.delete_message(chat_id=user_id, message_id=msg_id)
-            logger.info(f"Удалено сообщение с клавиатурой (ID {msg_id})")
-        except Exception as e:
-            logger.error(f"Не удалось удалить сообщение с клавиатурой: {e}")
+        except Exception:
+            pass
         user_state.pop("reply_keyboard_msg_id", None)
         set_user_state(user_id, user_state)
         return True
@@ -1603,13 +1600,11 @@ async def goal_continue(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_reply_markup(reply_markup=None)
     await callback.message.answer("Продолжаем общение!")
 
-# ====================== ИСПРАВЛЕНИЕ: ОЧИСТКА SPEAKING ПРИ ВХОДЕ В РОЛЕВУЮ ИГРУ ======================
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
 
-    # ---- ОЧИСТКА SPEAKING (как в clear_speaking) ----
     keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
     if keyboard_msg_id:
         try:
@@ -1628,7 +1623,6 @@ async def start_roleplay(callback: CallbackQuery, state: FSMContext):
         set_user_state(user_id, user_state)
         await state.clear()
         await callback.message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-    # ------------------------------------------------
 
     await callback.message.delete()
     await callback.message.answer(
@@ -1670,7 +1664,6 @@ async def noop(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
-    logger.info(f"show_topics cat_id={cat_id} page={page}")
     if cat_id is None:
         cat_id = callback.data[4:]
     topics_list = TOPICS.get(cat_id, [])
@@ -2036,10 +2029,8 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
         logger.error(f"Ошибка show_main_menu: {e}")
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ====================== ГЛАВНЫЙ ОБРАБОТЧИК ДЛЯ "ГЛАВНОЕ МЕНЮ" ======================
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
-    logger.info("=== back_to_main_menu_from_roleplay ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
@@ -2063,15 +2054,12 @@ async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ========== ОБРАБОТЧИК ЛЮБЫХ КОМАНД В РЕЖИМЕ ==========
 @router.message(RoleplayStates.active, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
 @router.message(RoleplayStates.confirming_finish, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
 async def handle_commands_in_roleplay(message: Message, state: FSMContext):
-    logger.info(f"=== handle_commands_in_roleplay: {message.text} ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "roleplay_active":
-        logger.info("handle_commands_in_roleplay: режим не активен, пропускаем")
         return
 
     await remove_roleplay_keyboard(user_id, message.bot)
@@ -2094,7 +2082,6 @@ async def handle_commands_in_roleplay(message: Message, state: FSMContext):
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ---------- Остальные обработчики ----------
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -2234,12 +2221,22 @@ async def roleplay_text_translate(callback: CallbackQuery):
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Оригинал", callback_data=f"roleplay_text_original_{user_id}_{msg_id}")]
         ])
-        await callback.bot.edit_message_text(
-            translation,
-            chat_id=callback.message.chat.id,
-            message_id=callback.message.message_id,
-            reply_markup=keyboard
-        )
+
+        is_voice = bool(callback.message.voice or callback.message.audio or callback.message.video_note)
+        if is_voice:
+            await callback.bot.edit_message_caption(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                caption=translation,
+                reply_markup=keyboard
+            )
+        else:
+            await callback.bot.edit_message_text(
+                translation,
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                reply_markup=keyboard
+            )
         await callback.answer()
     except Exception as e:
         logger.error(f"Ошибка в roleplay_text_translate: {e}", exc_info=True)
@@ -2259,12 +2256,22 @@ async def roleplay_text_original(callback: CallbackQuery):
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"roleplay_text_translate_{user_id}_{msg_id}")]
         ])
-        await callback.bot.edit_message_text(
-            text,
-            chat_id=callback.message.chat.id,
-            message_id=callback.message.message_id,
-            reply_markup=keyboard
-        )
+
+        is_voice = bool(callback.message.voice or callback.message.audio or callback.message.video_note)
+        if is_voice:
+            await callback.bot.edit_message_caption(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                caption=text,
+                reply_markup=keyboard
+            )
+        else:
+            await callback.bot.edit_message_text(
+                text,
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                reply_markup=keyboard
+            )
         await callback.answer()
     except Exception as e:
         logger.error(f"Ошибка в roleplay_text_original: {e}", exc_info=True)
@@ -2272,12 +2279,10 @@ async def roleplay_text_original(callback: CallbackQuery):
 
 @router.message(RoleplayStates.active, F.voice)
 async def handle_roleplay_voice(message: Message, state: FSMContext):
-    logger.info("=== handle_roleplay_voice ВЫЗВАН ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
     if user_state.get("mode") != "roleplay_active":
-        logger.info("mode != roleplay_active, пропускаем")
         return
 
     if is_voice_limit_reached(user_id):
@@ -2296,7 +2301,6 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
         file = await message.bot.get_file(message.voice.file_id)
         file_bytes = await message.bot.download_file(file.file_path)
         user_text = await voice_to_text(file_bytes.read())
-        logger.info(f"Распознано: {user_text[:50]}...")
     except Exception as e:
         logger.error(f"Ошибка распознавания: {e}")
         await message.answer("Не удалось распознать голос. Попробуйте написать текстом.")
@@ -2382,9 +2386,6 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
-# ================================================================
-# БЛОКИРОВКА СООБЩЕНИЙ В СОСТОЯНИИ confirming_finish
-# ================================================================
 @router.message(RoleplayStates.confirming_finish, F.text)
 async def block_messages_during_confirmation(message: Message, state: FSMContext):
     if message.text.startswith('/'):
@@ -2399,7 +2400,6 @@ async def block_messages_during_confirmation(message: Message, state: FSMContext
 async def block_voice_during_confirmation(message: Message, state: FSMContext):
     await message.answer("Пожалуйста, выберите действие с помощью кнопок ниже.")
 
-# ================================================================
 def process_ai_response(response: str) -> tuple[str, bool]:
     if response.startswith("GOALS_ACHIEVED"):
         cleaned = response.replace("GOALS_ACHIEVED", "").strip()
