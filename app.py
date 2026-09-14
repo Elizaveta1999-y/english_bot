@@ -13,6 +13,7 @@ from handlers.agreement import router as agreement_router
 from utils.db import init_db
 from middleware.speaking_override import SpeakingOverrideMiddleware
 from middleware.mode_transition import ModeTransitionMiddleware
+from middleware.bot_active import BotActiveMiddleware
 
 logging.basicConfig(
     level=logging.WARNING,
@@ -35,17 +36,24 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# ModeTransitionMiddleware регистрируется ПЕРВЫМ — срабатывает раньше SpeakingOverrideMiddleware
+# ========== MIDDLEWARE ==========
+# BotActiveMiddleware — САМЫЙ ПЕРВЫЙ. Проверяет "техработы" и гасит апдейт.
+dp.message.middleware(BotActiveMiddleware())
+dp.callback_query.middleware(BotActiveMiddleware())
+
+# ModeTransitionMiddleware — обрабатывает смену режимов
 dp.callback_query.middleware(ModeTransitionMiddleware())
+
+# SpeakingOverrideMiddleware — перехватывает сообщения в speaking
 dp.message.middleware(SpeakingOverrideMiddleware())
 dp.callback_query.middleware(SpeakingOverrideMiddleware())
 
-# ========== ПОДКЛЮЧАЕМ РОУТЕРЫ (ПРАВИЛЬНЫЙ ПОРЯДОК) ==========
+# ========== ПОДКЛЮЧАЕМ РОУТЕРЫ ==========
 dp.include_router(agreement_router)      # /agreement
 dp.include_router(support.router)        # /support
 dp.include_router(subscription_router)   # /subscription
-dp.include_router(reading.router)        # чтение (перехват команд)
-dp.include_router(speaking.router)       # speaking (после команд)
+dp.include_router(reading.router)        # чтение
+dp.include_router(speaking.router)       # speaking
 dp.include_router(roleplay.router)
 dp.include_router(roleplay_voice.router)
 dp.include_router(start.router)

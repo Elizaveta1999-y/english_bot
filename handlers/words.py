@@ -48,8 +48,6 @@ for filename in os.listdir(WORDS_DIR):
                 "instruction": "Напишите перевод на английский."
             }
 
-logger.info(f"Доступные категории: {list(AVAILABLE_CATEGORIES.keys())}")
-
 class WordsState(StatesGroup):
     category_chosen = State()
 
@@ -174,32 +172,20 @@ async def reset_word_progress(user_id: int, category_key: str):
 async def remove_buttons_from_messages(bot: Bot, chat_id: int, message_ids: list):
     if not message_ids:
         return
-    logger.info(f"Убираем кнопки у сообщений: {message_ids}")
     for msg_id in message_ids:
         if msg_id:
             try:
                 await bot.edit_message_reply_markup(chat_id=chat_id, message_id=msg_id, reply_markup=None)
-                logger.debug(f"Кнопки убраны у сообщения {msg_id}")
             except Exception as e:
                 error_text = str(e).lower()
-                if "message is not modified" in error_text:
-                    logger.debug(f"Сообщение {msg_id} уже без кнопок, пропускаем")
-                else:
-                    logger.warning(f"Не удалось убрать кнопки у {msg_id}: {e}")
+                if "message is not modified" not in error_text:
+                    logger.debug(f"Не удалось убрать кнопки у {msg_id}: {e}")
 
 async def cleanup_practice(user_id: int, bot: Bot, chat_id: int, send_message: bool = True):
-    logger.info(f"Очистка практики для user_id={user_id}, send_message={send_message}")
     if user_id in user_message_ids:
         msg_ids = list(user_message_ids[user_id].values())
-        logger.info(f"Найдены ID сообщений для очистки: {msg_ids}")
         await remove_buttons_from_messages(bot, chat_id, msg_ids)
-    else:
-        logger.warning(f"Нет сообщений для очистки для user_id={user_id}")
-    session = user_sessions.pop(user_id, None)
-    if session:
-        logger.info(f"Сессия для user_id={user_id} удалена")
-    else:
-        logger.warning(f"Сессия для user_id={user_id} не найдена при очистке")
+    user_sessions.pop(user_id, None)
     # Сбрасываем mode в user_state
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "words_active":
@@ -238,15 +224,12 @@ async def send_or_update_progress(
                 reply_markup=keyboard,
                 parse_mode="HTML"
             )
-            logger.debug(f"Прогресс обновлён (редактирование) msg_id={msg_id}")
             return msg_id
         except Exception as e:
             error_text = str(e).lower()
             if "message is not modified" in error_text:
-                logger.debug(f"Прогресс не изменился, пропускаем редактирование msg_id={msg_id}")
                 return msg_id
             else:
-                logger.warning(f"Не удалось отредактировать прогресс msg_id={msg_id}, отправляем новое: {e}")
                 sent = await bot.send_message(chat_id, text, reply_markup=keyboard, parse_mode="HTML")
                 if user_id not in user_message_ids:
                     user_message_ids[user_id] = {}
@@ -271,13 +254,10 @@ async def send_new_word_card(
     if old_msg_id:
         try:
             await bot.edit_message_reply_markup(chat_id=chat_id, message_id=old_msg_id, reply_markup=None)
-            logger.debug(f"Кнопки убраны у старой карточки {old_msg_id}")
         except Exception as e:
             error_text = str(e).lower()
-            if "message is not modified" in error_text:
-                logger.debug(f"Старая карточка {old_msg_id} уже без кнопок")
-            else:
-                logger.warning(f"Не удалось убрать кнопки у карточки {old_msg_id}: {e}")
+            if "message is not modified" not in error_text:
+                logger.debug(f"Не удалось убрать кнопки у карточки {old_msg_id}: {e}")
 
     if is_revision:
         words = session.get("revision_words", [])
@@ -300,7 +280,6 @@ async def send_new_word_card(
     text = f"{word['word']}: _____"
     keyboard = get_task_keyboard()
     sent = await bot.send_message(chat_id, text, reply_markup=keyboard, parse_mode="HTML")
-    logger.debug(f"Отправлена новая карточка msg_id={sent.message_id}")
     if user_id not in user_message_ids:
         user_message_ids[user_id] = {}
     key = "revision_card" if is_revision else "card"
@@ -311,7 +290,6 @@ async def send_new_word_card(
 @router.callback_query(F.data == "start_words")
 @router.message(Command("words"))
 async def words_start(event, state: FSMContext):
-    logger.info("Вызван words_start")
     if isinstance(event, Message):
         user_id = event.from_user.id
         chat_id = event.chat.id
@@ -319,8 +297,8 @@ async def words_start(event, state: FSMContext):
         is_message = True
         try:
             await event.delete()
-        except Exception as e:
-            logger.warning(f"Не удалось удалить сообщение с командой: {e}")
+        except Exception:
+            pass
     else:
         user_id = event.from_user.id
         chat_id = event.message.chat.id
@@ -328,15 +306,14 @@ async def words_start(event, state: FSMContext):
         is_message = False
         try:
             await event.message.delete()
-        except Exception as e:
-            logger.warning(f"Не удалось удалить сообщение: {e}")
+        except Exception:
+            pass
 
     await cleanup_practice(user_id, bot, chat_id, send_message=False)
     await state.clear()
     if user_id not in user_message_ids:
         user_message_ids[user_id] = {}
 
-    # Устанавливаем режим
     user_state = get_user_state(user_id)
     user_state["mode"] = "words_active"
     set_user_state(user_id, user_state)
@@ -357,7 +334,6 @@ async def words_start(event, state: FSMContext):
     WordsState.category_chosen
 )
 async def handle_commands_in_words(message: Message, state: FSMContext):
-    logger.info(f"[CMD] Команда {message.text} в лексике, user={message.from_user.id}")
     user_id = message.from_user.id
     chat_id = message.chat.id
 
@@ -383,15 +359,12 @@ async def handle_commands_in_words(message: Message, state: FSMContext):
 async def category_selected(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     category_key = callback.data.replace("word_cat_", "")
-    logger.info(f"========== ВХОД В КАТЕГОРИЮ: {category_key} ==========")
-    logger.info(f"user_id={user_id}")
 
     if user_id in user_message_ids and "categories" in user_message_ids[user_id]:
         del user_message_ids[user_id]["categories"]
 
     try:
         words = load_words(category_key)
-        logger.info(f"Загружено слов из файла: {len(words)}")
     except FileNotFoundError:
         await callback.answer("Файл с этой категорией не найден.", show_alert=True)
         return
@@ -408,18 +381,13 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         return
 
     level_key = make_type_key(category_key)
-    logger.info(f"level_key={level_key}")
 
-    # Вычисляем хеш
     content_str = json.dumps(words, sort_keys=True, ensure_ascii=False)
     current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
-    logger.info(f"Текущий хеш файла: {current_hash[:16]}...")
 
-    # Получаем данные из БД
     saved_hash = await get_order_hash(user_id, level_key)
     shuffled_order = await get_random_order(user_id, level_key)
 
-    # ===== ФИКС: преобразуем строку в список ПЕРЕД всеми проверками =====
     if isinstance(shuffled_order, str):
         try:
             shuffled_order = json.loads(shuffled_order)
@@ -427,13 +395,7 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
             shuffled_order = []
     if not isinstance(shuffled_order, list):
         shuffled_order = []
-    # ==================================================================
 
-    logger.info(f"Сохранённый хеш: {saved_hash[:16] if saved_hash else 'None'}...")
-    logger.info(f"Сохранённый порядок: {shuffled_order[:20] if shuffled_order else 'None'}...")
-    logger.info(f"Длина порядка: {len(shuffled_order) if shuffled_order else 0}")
-
-    # Проверки
     need_recreate = False
     reasons = []
 
@@ -456,34 +418,24 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         reasons.append("Порядок не перемешан")
         need_recreate = True
 
-    if reasons:
-        logger.info(f"Причины пересоздания: {', '.join(reasons)}")
-    else:
-        logger.info("Все проверки пройдены, порядок валидный")
-
     if need_recreate:
-        logger.info(f"!!! ПЕРЕСОЗДАЁМ ПОРЯДОК для {category_key} !!!")
         conn = await get_connection()
         await conn.execute("DELETE FROM random_order WHERE user_id = $1 AND level_key = $2", user_id, level_key)
         await conn.close()
-        logger.info("Старая запись удалена")
 
         new_order = list(range(len(words)))
         random.shuffle(new_order)
         shuffled_order = new_order
-        logger.info(f"Новый порядок: {shuffled_order[:30]}...")
 
         await set_random_order(user_id, level_key, shuffled_order)
         await set_order_hash(user_id, level_key, current_hash)
         await reset_progress_index(user_id, level_key, "beginner")
         start_index = 0
-        logger.info("Новый порядок сохранён, хеш обновлён, индекс сброшен на 0")
     else:
         start_index = await get_progress_index(user_id, level_key, "beginner")
         if start_index >= len(shuffled_order):
             start_index = 0
             await set_progress_index(user_id, level_key, "beginner", 0)
-        logger.info(f"Используем существующий порядок, индекс={start_index}")
 
     session = {
         "words": words,
@@ -508,8 +460,8 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
 
     try:
         await callback.message.delete()
-    except Exception as e:
-        logger.warning(f"Не удалось удалить сообщение: {e}")
+    except Exception:
+        pass
 
     meta = AVAILABLE_CATEGORIES.get(category_key, {})
     instruction = meta.get("instruction", "Напишите перевод на английский.")
@@ -525,7 +477,6 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
             force_buttons=True
         )
         session["progress_msg_id"] = progress_msg_id
-        logger.info(f"Создано сообщение прогресса msg_id={progress_msg_id}")
     except Exception as e:
         logger.error(f"Ошибка отправки прогресса: {e}")
         await callback.message.answer("Ошибка при запуске режима.")
@@ -542,7 +493,6 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
             is_revision=False
         )
         session["card_msg_id"] = card_msg_id
-        logger.info(f"Создана карточка msg_id={card_msg_id}")
     except Exception as e:
         logger.error(f"Ошибка отправки карточки: {e}")
         await callback.message.answer("Ошибка при запуске режима.")
@@ -620,7 +570,6 @@ async def handle_answer(message: Message, state: FSMContext):
         )
         if new_progress_id != progress_msg_id:
             session["progress_msg_id"] = new_progress_id
-            logger.info(f"Обновлён progress_msg_id на {new_progress_id}")
     except Exception as e:
         logger.error(f"Ошибка обновления прогресса: {e}")
 
@@ -686,8 +635,8 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
         if old_card_id:
             try:
                 await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=old_card_id, reply_markup=None)
-            except Exception as e:
-                logger.warning(f"Не удалось убрать кнопки у старой карточки ревизии: {e}")
+            except Exception:
+                pass
 
         next_word = error_words[session["revision_index"]]
         text = f"{next_word['word']}: _____"
@@ -731,7 +680,7 @@ async def exit_revision(message: Message, session: dict):
             await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=session["revision_info_msg_id"], reply_markup=None)
         except Exception:
             pass
-    
+
     session.pop("revision_info_msg_id", None)
     session.pop("revision_card_msg_id", None)
     session.pop("revision_words", None)
