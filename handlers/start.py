@@ -92,7 +92,7 @@ async def start_handler(message: Message, state: FSMContext):
             user_state["feedback_prompt_msg_id"] = None
             set_user_state(user_id, user_state)
             await state.clear()
-            
+
             msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
             await asyncio.sleep(0.5)
             await msg.delete()
@@ -143,27 +143,27 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
     user_id = callback.from_user.id
     chat_id = callback.message.chat.id
     bot = callback.bot
-    
+
     user_state = get_user_state(user_id)
     if not user_state:
         return
-    
+
     is_active = (
         user_state.get("mode") in ("speaking_active", "roleplay_active") or
         user_state.get("reply_keyboard_msg_id") is not None or
         user_state.get("speaking_keyboard_msg_id") is not None
     )
-    
+
     if not is_active:
         return
-    
+
     try:
         msg = await bot.send_message(chat_id, "Переход...", reply_markup=ReplyKeyboardRemove())
         await asyncio.sleep(0.5)
         await msg.delete()
     except Exception:
         pass
-    
+
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
@@ -171,7 +171,7 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
         except Exception:
             pass
         user_state.pop("speaking_keyboard_msg_id", None)
-    
+
     roleplay_kb_id = user_state.get("reply_keyboard_msg_id")
     if roleplay_kb_id:
         try:
@@ -179,7 +179,7 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
         except Exception:
             pass
         user_state.pop("reply_keyboard_msg_id", None)
-    
+
     keys_to_remove = [k for k in list(user_state.keys()) if k.startswith("roleplay") or k.startswith("speaking") or k in ("mode", "russian_counter", "voice_id")]
     for k in keys_to_remove:
         user_state.pop(k, None)
@@ -187,12 +187,11 @@ async def remove_all_reply_keyboards(callback: CallbackQuery):
 
 # ================== ОЧИСТКА ГРАММАТИКИ ПРИ ПЕРЕХОДЕ ==================
 async def clear_grammar_if_active(callback: CallbackQuery, state: FSMContext):
-    """Убирает кнопки грамматики и сбрасывает состояние, если режим грамматики активен."""
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "grammar_active":
         return
-    
+
     data = await state.get_data()
     for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
         msg_id = data.get(key)
@@ -203,70 +202,63 @@ async def clear_grammar_if_active(callback: CallbackQuery, state: FSMContext):
                     message_id=msg_id,
                     reply_markup=None
                 )
-                logger.info(f"[clear_grammar_if_active] Кнопки убраны у {key}={msg_id}")
-            except Exception as e:
-                logger.warning(f"[clear_grammar_if_active] Не удалось убрать кнопки у {msg_id}: {e}")
-    
+            except Exception:
+                pass
+
     await state.clear()
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
-    logger.info("[clear_grammar_if_active] Режим грамматики очищен")
 # =====================================================================
 
 # ================== ОЧИСТКА ЛЕКСИКИ ПРИ ПЕРЕХОДЕ ==================
 async def clear_words_if_active(callback: CallbackQuery, state: FSMContext):
-    """Убирает кнопки лексики и сбрасывает состояние, если режим лексики активен."""
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "words_active":
         return
-    
+
     from handlers.words import user_message_ids, user_sessions, remove_buttons_from_messages
-    
+
     chat_id = callback.message.chat.id
     if user_id in user_message_ids:
         msg_ids = list(user_message_ids[user_id].values())
         await remove_buttons_from_messages(callback.bot, chat_id, msg_ids)
         user_message_ids[user_id] = {}
-    
+
     user_sessions.pop(user_id, None)
-    
+
     await state.clear()
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
-    logger.info("[clear_words_if_active] Режим лексики очищен")
 # ==================================================================
 
 # ================== ОЧИСТКА АУДИРОВАНИЯ ПРИ ПЕРЕХОДЕ ==================
 async def clear_listening_if_active(callback: CallbackQuery, state: FSMContext):
-    """Убирает кнопки аудирования и сбрасывает состояние, если режим аудирования активен."""
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "listening_active":
         return
-    
+
     from handlers.listening import clear_user_buttons as listening_clear_buttons
-    
+
     chat_id = callback.message.chat.id
     await listening_clear_buttons(user_id, callback.bot, chat_id)
-    
+
     await state.clear()
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
-    logger.info("[clear_listening_if_active] Режим аудирования очищен")
 # ======================================================================
 
 # ================== ОЧИСТКА ПИСЬМА ПРИ ПЕРЕХОДЕ ==================
 async def clear_writing_if_active(callback: CallbackQuery, state: FSMContext):
-    """Убирает кнопки письма и сбрасывает состояние, если режим письма активен."""
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "writing_active":
         return
-    
+
     chat_id = callback.message.chat.id
     data = await state.get_data()
-    
+
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -277,7 +269,7 @@ async def clear_writing_if_active(callback: CallbackQuery, state: FSMContext):
             )
         except Exception:
             pass
-    
+
     last_msg_id = data.get("last_task_msg_id")
     if last_msg_id:
         try:
@@ -288,24 +280,22 @@ async def clear_writing_if_active(callback: CallbackQuery, state: FSMContext):
             )
         except Exception:
             pass
-    
+
     await state.clear()
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
-    logger.info("[clear_writing_if_active] Режим письма очищен")
 # ==================================================================
 
 # ================== ОЧИСТКА ГОВОРЕНИЯ ПРИ ПЕРЕХОДЕ ==================
 async def clear_govorenie_if_active(callback: CallbackQuery, state: FSMContext):
-    """Убирает кнопки говорения и сбрасывает состояние, если режим говорения активен."""
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "govorenie_active":
         return
-    
+
     chat_id = callback.message.chat.id
     data = await state.get_data()
-    
+
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -316,7 +306,7 @@ async def clear_govorenie_if_active(callback: CallbackQuery, state: FSMContext):
             )
         except Exception:
             pass
-    
+
     last_msg_id = data.get("last_task_msg_id")
     if last_msg_id:
         try:
@@ -327,11 +317,10 @@ async def clear_govorenie_if_active(callback: CallbackQuery, state: FSMContext):
             )
         except Exception:
             pass
-    
+
     await state.clear()
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
-    logger.info("[clear_govorenie_if_active] Режим говорения очищен")
 # =====================================================================
 
 @router.callback_query(F.data == "start_speaking")
@@ -473,11 +462,13 @@ async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
 async def main_menu_text_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    
+
     current_state = await state.get_state()
+
+    # Если состояние ролевой игры активно — пропускаем, обработает roleplay.py
     if current_state in (RoleplayStates.active.state, RoleplayStates.confirming_finish.state):
         return
-    
+
     # Очистка грамматики если активна
     if user_state.get("mode") == "grammar_active":
         data = await state.get_data()
@@ -495,7 +486,7 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         await state.clear()
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
-    
+
     # Очистка лексики если активна
     if user_state.get("mode") == "words_active":
         from handlers.words import user_message_ids, user_sessions, remove_buttons_from_messages
@@ -507,7 +498,7 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         await state.clear()
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
-    
+
     # Очистка аудирования если активно
     if user_state.get("mode") == "listening_active":
         from handlers.listening import clear_user_buttons as listening_clear_buttons
@@ -515,7 +506,7 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         await state.clear()
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
-    
+
     # Очистка письма если активно
     if user_state.get("mode") == "writing_active":
         data = await state.get_data()
@@ -542,7 +533,7 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         await state.clear()
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
-    
+
     # Очистка говорения если активно
     if user_state.get("mode") == "govorenie_active":
         data = await state.get_data()
@@ -569,7 +560,26 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         await state.clear()
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
-    
+
+    # ============= ОЧИСТКА РОЛЕВОЙ ИГРЫ (state уже сброшен, но mode остался) =============
+    if user_state.get("mode") == "roleplay_active":
+        rp_kb_id = user_state.get("reply_keyboard_msg_id")
+        if rp_kb_id:
+            try:
+                await message.bot.delete_message(message.chat.id, rp_kb_id)
+            except Exception:
+                pass
+            user_state.pop("reply_keyboard_msg_id", None)
+        user_state["mode"] = ""
+        user_state["roleplay_history"] = []
+        user_state["russian_counter"] = 0
+        user_state.pop("roleplay_goal_notified", None)
+        user_state.pop("roleplay_goal_ignored", None)
+        user_state.pop("voice_id", None)
+        set_user_state(user_id, user_state)
+        await state.clear()
+    # ==================================================================================
+
     speaking_kb_id = user_state.get("speaking_keyboard_msg_id")
     if speaking_kb_id:
         try:
@@ -577,7 +587,7 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         except Exception:
             pass
         user_state.pop("speaking_keyboard_msg_id", None)
-    
+
     if user_state.get("mode") == "speaking_active":
         user_state["mode"] = ""
         user_state["keyboard_hidden"] = True
@@ -587,9 +597,11 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
         user_state["feedback_prompt_msg_id"] = None
         set_user_state(user_id, user_state)
         await state.clear()
-        
-        msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
-        await asyncio.sleep(0.5)
-        await msg.delete()
-    
+
+    # Гарантированно убираем Reply-клавиатуру и показываем главное меню
+    try:
+        await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
+    except Exception:
+        pass
+
     await show_main_menu(message, edit=False)

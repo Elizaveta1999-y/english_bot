@@ -1470,7 +1470,6 @@ TOPICS = {
 }
 # ===================================================================
 
-# ---------- Клавиатуры ----------
 def get_categories_keyboard():
     buttons = []
     for i in range(0, len(CATEGORIES), 2):
@@ -1566,7 +1565,6 @@ async def send_goal_completion_message(message: Message, user_id: int, user_stat
     )
 
 async def remove_roleplay_keyboard(user_id: int, bot):
-    """Удаляет сообщение с Reply-клавиатурой ролевой игры."""
     user_state = get_user_state(user_id)
     msg_id = user_state.get("reply_keyboard_msg_id")
     if msg_id:
@@ -2194,6 +2192,7 @@ async def handle_unsupported_content(message: Message, state: FSMContext):
         return
     await message.answer("Пожалуйста, отправляйте текстовые или голосовые сообщения для продолжения диалога.")
 
+# =================== ПЕРЕВОД И ОРИГИНАЛ ===================
 @router.callback_query(lambda c: c.data.startswith("roleplay_text_translate_"))
 async def roleplay_text_translate(callback: CallbackQuery):
     try:
@@ -2218,12 +2217,13 @@ async def roleplay_text_translate(callback: CallbackQuery):
             translation = re.sub(r'^(перевод\s*[:.]\s*|вот\s*перевод\s*[:.]\s*)', '', translation, flags=re.IGNORECASE)
             translation = translation.strip()
             user_texts[msg_id]["translation"] = translation
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="Оригинал", callback_data=f"roleplay_text_original_{user_id}_{msg_id}")]
-        ])
 
         is_voice = bool(callback.message.voice or callback.message.audio or callback.message.video_note)
         if is_voice:
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="US", callback_data=f"roleplay_text_original_{user_id}_{msg_id}"),
+                 InlineKeyboardButton(text="Скрыть", callback_data=f"roleplay_text_hide_{user_id}_{msg_id}")]
+            ])
             await callback.bot.edit_message_caption(
                 chat_id=callback.message.chat.id,
                 message_id=callback.message.message_id,
@@ -2231,6 +2231,9 @@ async def roleplay_text_translate(callback: CallbackQuery):
                 reply_markup=keyboard
             )
         else:
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="Оригинал", callback_data=f"roleplay_text_original_{user_id}_{msg_id}")]
+            ])
             await callback.bot.edit_message_text(
                 translation,
                 chat_id=callback.message.chat.id,
@@ -2253,12 +2256,13 @@ async def roleplay_text_original(callback: CallbackQuery):
             await callback.answer("Текст не найден.", show_alert=True)
             return
         text = user_texts[msg_id]["text"]
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="Перевести", callback_data=f"roleplay_text_translate_{user_id}_{msg_id}")]
-        ])
 
         is_voice = bool(callback.message.voice or callback.message.audio or callback.message.video_note)
         if is_voice:
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="RUS", callback_data=f"roleplay_text_translate_{user_id}_{msg_id}"),
+                 InlineKeyboardButton(text="Скрыть", callback_data=f"roleplay_text_hide_{user_id}_{msg_id}")]
+            ])
             await callback.bot.edit_message_caption(
                 chat_id=callback.message.chat.id,
                 message_id=callback.message.message_id,
@@ -2266,6 +2270,9 @@ async def roleplay_text_original(callback: CallbackQuery):
                 reply_markup=keyboard
             )
         else:
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="Перевести", callback_data=f"roleplay_text_translate_{user_id}_{msg_id}")]
+            ])
             await callback.bot.edit_message_text(
                 text,
                 chat_id=callback.message.chat.id,
@@ -2276,6 +2283,36 @@ async def roleplay_text_original(callback: CallbackQuery):
     except Exception as e:
         logger.error(f"Ошибка в roleplay_text_original: {e}", exc_info=True)
         await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("roleplay_text_hide_"))
+async def roleplay_text_hide(callback: CallbackQuery):
+    try:
+        parts = callback.data.split('_')
+        user_id = int(parts[-2])
+        msg_id = int(parts[-1])
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_text_translate_{user_id}_{msg_id}")]
+        ])
+        is_voice = bool(callback.message.voice or callback.message.audio or callback.message.video_note)
+        if is_voice:
+            await callback.bot.edit_message_caption(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                caption="",
+                reply_markup=keyboard
+            )
+        else:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                reply_markup=keyboard
+            )
+        await callback.answer()
+    except Exception as e:
+        logger.error(f"Ошибка в roleplay_text_hide: {e}", exc_info=True)
+        await callback.answer()
+
+# =============================================================
 
 @router.message(RoleplayStates.active, F.voice)
 async def handle_roleplay_voice(message: Message, state: FSMContext):
