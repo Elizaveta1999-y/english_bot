@@ -44,7 +44,6 @@ ENCOURAGE_TEXT = "Говори развернуто, так эффективне
 
 # ========== ТОЧКА ВХОДА ==========
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔹 start_speaking вызвана для user {callback.from_user.id}")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")],
@@ -272,15 +271,14 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
 
-@router.message(F.text == "🏠 Главное меню")
+# ---------- ВАЖНО: проверка mode вынесена В ФИЛЬТР, а не внутрь ----------
+@router.message(
+    F.text == "🏠 Главное меню",
+    lambda m: get_user_state(m.from_user.id).get("mode") == "speaking_active"
+)
 async def exit_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-
-    # Не обрабатываем, если пользователь не в режиме speaking (чтобы не перехватывать ролевую игру)
-    if user_state.get("mode") != "speaking_active":
-        return
-
     keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
     if keyboard_msg_id:
         try:
@@ -456,19 +454,15 @@ async def hide_text(callback: CallbackQuery):
 # ====================== ПЕРЕХВАТЧИК КОМАНД ТОЛЬКО В СОСТОЯНИИ SPEAKING ======================
 @router.message(SpeakingStates.waiting_for_voice, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]))
 async def handle_commands_in_speaking(message: Message, state: FSMContext):
-    """Любая команда, кроме разрешённых, завершает speaking."""
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
-    # Проверяем, активен ли режим speaking
     if user_state.get("mode") != "speaking_active":
         return
 
-    # Проверяем, не ждёт ли пользователь фидбек
     if user_state.get("feedback_prompt_msg_id"):
         return
 
-    # Удаляем клавиатуру speaking
     keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
     if keyboard_msg_id:
         try:
@@ -477,7 +471,6 @@ async def handle_commands_in_speaking(message: Message, state: FSMContext):
             pass
         user_state.pop("speaking_keyboard_msg_id", None)
 
-    # Сбрасываем состояние speaking
     user_state["mode"] = ""
     user_state["keyboard_hidden"] = True
     user_state["speaking_history"] = []
