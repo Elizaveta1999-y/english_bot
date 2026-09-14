@@ -15,9 +15,12 @@ from middleware.speaking_override import SpeakingOverrideMiddleware
 from middleware.mode_transition import ModeTransitionMiddleware
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.WARNING,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
+logging.getLogger("aiogram.event").setLevel(logging.WARNING)
+logging.getLogger("aiohttp.access").setLevel(logging.WARNING)
+logging.getLogger("speaking.services.tts").setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -36,8 +39,6 @@ dp = Dispatcher()
 dp.callback_query.middleware(ModeTransitionMiddleware())
 dp.message.middleware(SpeakingOverrideMiddleware())
 dp.callback_query.middleware(SpeakingOverrideMiddleware())
-logger.info("✅ ModeTransitionMiddleware зарегистрирован")
-logger.info("✅ SpeakingOverrideMiddleware зарегистрирован")
 
 # ========== ПОДКЛЮЧАЕМ РОУТЕРЫ (ПРАВИЛЬНЫЙ ПОРЯДОК) ==========
 dp.include_router(agreement_router)      # /agreement
@@ -68,7 +69,6 @@ async def set_commands(bot: Bot):
         BotCommand(command="agreement", description="Пользовательское соглашение"),
     ]
     await bot.set_my_commands(commands)
-    logger.info("✅ Команды установлены")
 
 async def on_startup():
     await init_db()

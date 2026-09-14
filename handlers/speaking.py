@@ -276,6 +276,11 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
 async def exit_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
+
+    # Не обрабатываем, если пользователь не в режиме speaking (чтобы не перехватывать ролевую игру)
+    if user_state.get("mode") != "speaking_active":
+        return
+
     keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
     if keyboard_msg_id:
         try:
@@ -299,7 +304,6 @@ async def handle_text_in_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("feedback_prompt_msg_id"):
-        logger.info(f"⏭️ Игнорируем текст, ждём фидбек (user={user_id})")
         return
     await message.bot.send_chat_action(chat_id=message.chat.id, action='typing')
     await message.answer("Запишите и отправьте голосовое сообщение.")
@@ -309,7 +313,6 @@ async def handle_media_in_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("feedback_prompt_msg_id"):
-        logger.info(f"⏭️ Игнорируем медиа, ждём фидбек (user={user_id})")
         return
     await message.bot.send_chat_action(chat_id=message.chat.id, action='typing')
     await message.answer("Запишите и отправьте голосовое сообщение.")
@@ -456,17 +459,15 @@ async def handle_commands_in_speaking(message: Message, state: FSMContext):
     """Любая команда, кроме разрешённых, завершает speaking."""
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    
+
     # Проверяем, активен ли режим speaking
     if user_state.get("mode") != "speaking_active":
         return
-    
+
     # Проверяем, не ждёт ли пользователь фидбек
     if user_state.get("feedback_prompt_msg_id"):
         return
-    
-    logger.info(f"handle_commands_in_speaking: завершаем speaking (user={user_id}, command={message.text})")
-    
+
     # Удаляем клавиатуру speaking
     keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
     if keyboard_msg_id:
@@ -475,7 +476,7 @@ async def handle_commands_in_speaking(message: Message, state: FSMContext):
         except Exception:
             pass
         user_state.pop("speaking_keyboard_msg_id", None)
-    
+
     # Сбрасываем состояние speaking
     user_state["mode"] = ""
     user_state["keyboard_hidden"] = True
@@ -485,8 +486,8 @@ async def handle_commands_in_speaking(message: Message, state: FSMContext):
     user_state["feedback_prompt_msg_id"] = None
     set_user_state(user_id, user_state)
     await state.clear()
-    
+
     await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-    
+
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
