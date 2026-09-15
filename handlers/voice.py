@@ -10,7 +10,7 @@ from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
-from services.deepseek import chat
+from services.deepseek import DeepSeekError
 from handlers.lessons import show_practice_task, parse_user_answers
 from states.speaking_states import SpeakingStates
 from pydub import AudioSegment
@@ -122,6 +122,11 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
 
         user_text = await voice_to_text(file_bytes.read())
+
+        if user_text is None:
+            await message.answer("Сервис распознавания временно недоступен. Попробуй ещё раз через минуту.")
+            return
+
         if not user_text:
             await message.answer("Не понял, повторите.")
             return
@@ -133,7 +138,11 @@ async def handle_voice(message: Message, state: FSMContext):
             warning += "Сообщение слишком длинное, обрезано до 500 слов.\n\n"
 
         speaking_history = user_state.get("speaking_history", [])
-        reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
+        try:
+            reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
+        except DeepSeekError:
+            await message.answer("Сервис проверки временно недоступен. Попробуй ещё раз через минуту — твой ответ не потерян, просто отправь голосовое снова.")
+            return
 
         user_state = get_user_state(user_id)
 
@@ -223,6 +232,11 @@ async def handle_voice(message: Message, state: FSMContext):
         file = await bot.get_file(message.voice.file_id)
         file_bytes = await bot.download_file(file.file_path)
         user_text = await voice_to_text(file_bytes.read())
+
+        if user_text is None:
+            await message.answer("Сервис распознавания временно недоступен. Попробуй ещё раз через минуту.")
+            return
+
         if not user_text:
             await message.answer("Не понял, повторите.")
             return

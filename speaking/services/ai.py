@@ -1,7 +1,7 @@
 import re
 import logging
 from data.users import get_user_state, set_user_state
-from services.deepseek import chat
+from services.deepseek import chat, DeepSeekError
 
 logger = logging.getLogger(__name__)
 
@@ -135,13 +135,12 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             "The explanation MUST be in Russian. Do not add any extra words before the <blockquote>."
         )
         try:
-            check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=300, temperature=0.2)
-        except Exception as e:
-            logger.error(f"Ошибка при проверке грамматики: {e}")
-            return ("⚠️ Не удалось проверить грамматику. Попробуйте ещё раз.", "", False)
+            check_result = await chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=300, temperature=0.2)
+        except DeepSeekError:
+            raise  # пусть handlers/voice.py покажет «Сервис временно недоступен»
 
         if not check_result or not check_result.strip():
-            return ("⚠️ Не удалось проверить грамматику. Попробуйте ещё раз.", "", False)
+            raise DeepSeekError("Пустой ответ при проверке грамматики")
 
         # ---- НОРМАЛИЗУЕМ ОТВЕТ ----
         check_result_clean = check_result.strip().upper()
@@ -163,7 +162,10 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
                 f"Student: {user_text}\n"
                 f"Your voice reply (natural, short, end with a question):"
             )
-            reply_text = chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+            try:
+                reply_text = await chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+            except DeepSeekError:
+                raise
             reply_text = reply_text.strip()
             if not reply_text:
                 reply_text = "Sorry, I didn't get that. Could you repeat?"
@@ -211,7 +213,10 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"Student: {user_text}\n"
             f"Your voice reply (natural, short, end with a question):"
         )
-        reply_text = chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+        try:
+            reply_text = await chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+        except DeepSeekError:
+            raise
         reply_text = reply_text.strip()
         if not reply_text:
             reply_text = "Sorry, I didn't get that. Could you repeat?"
@@ -253,7 +258,10 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         f"Your voice reply (natural, short, end with a question):"
     )
     
-    reply_text = chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+    try:
+        reply_text = await chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+    except DeepSeekError:
+        raise
     reply_text = reply_text.strip()
     if not reply_text:
         if has_cyrillic:
@@ -278,7 +286,10 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"Provide only the correct English translation, without any extra words. "
             f"Do not include the original Russian."
         )
-        translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=600, temperature=0.3)
+        try:
+            translation = await chat(translation_prompt, system_message="You are a translator.", max_tokens=600, temperature=0.3)
+        except DeepSeekError:
+            raise
         correction_text = f"✔️ {translation}"
         
         if "russian_translation_count" not in state:
@@ -317,7 +328,7 @@ async def process_roleplay_message(user_id: int, user_text: str, history: list =
         )
     
     user_prompt = f"Context:\n{context}\n\nUser: {user_text}\nYour reply (short, in character, end with a question):"
-    response = chat(user_prompt, system_message=system_message, max_tokens=150, temperature=0.7)
+    response = await chat(user_prompt, system_message=system_message, max_tokens=150, temperature=0.7)
     response = response.strip()
     if not response.endswith('?'):
         response += " What do you think?"

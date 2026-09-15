@@ -486,11 +486,21 @@ async def handle_voice_message(message: Message, state: FSMContext):
             level=level,
             duration=duration
         )
-        logger.info(f"Ответ получен: оценка={score}, фидбек={feedback[:50]}...")
     except Exception as e:
         logger.error(f"Ошибка ИИ: {e}")
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
+
+    # ---------- ПРОВЕРКА НА СБОЙ DEEPSEEK ----------
+    if feedback is None or score is None:
+        await message.answer(
+            "Сервис проверки временно недоступен. Попробуй ещё раз через минуту — "
+            "твой ответ не потерян, просто отправь голосовое снова."
+        )
+        return
+    # ----------------------------------------------
+
+    logger.info(f"Ответ получен: оценка={score}, фидбек={feedback[:50]}...")
 
     criteria_keywords = [
         'Содержание ответа:', 'Полнота ответов:', 'Грамматика:', 'Словарный запас:',

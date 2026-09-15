@@ -7,7 +7,7 @@ from data.users import get_user_state, set_user_state, add_voice_seconds, is_voi
 from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
 from handlers.voice import convert_to_opus, bot_texts
-from services.deepseek import chat
+from services.deepseek import chat, DeepSeekError
 from handlers.roleplay import build_system_prompt, call_ai_with_system, is_forbidden, is_cyrillic, RoleplayStates, process_ai_response, send_goal_completion_message
 
 logger = logging.getLogger(__name__)
@@ -85,6 +85,10 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
         await message.answer("Не удалось распознать голосовое сообщение. Попробуйте написать текстом.")
         return
 
+    if text is None:
+        await message.answer("Сервис распознавания временно недоступен. Попробуй ещё раз через минуту.")
+        return
+
     if not text:
         await message.answer("Не удалось распознать речь. Попробуйте сказать чётче или напишите текстом.")
         return
@@ -107,7 +111,11 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     system_prompt = build_system_prompt(topic, description, goals)
     history = user_state.get("roleplay_history", [])
 
-    ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
+    try:
+        ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
+    except DeepSeekError:
+        await message.answer("Сервис временно недоступен. Попробуйте ещё раз через минуту — твой ответ не потерян, просто отправь голосовое снова.")
+        return
 
     ai_response_clean, goals_achieved = process_ai_response(ai_response)
 
@@ -238,7 +246,11 @@ async def roleplay_voice_translate(callback: CallbackQuery):
         if user_texts[msg_id]["translation"]:
             translation = user_texts[msg_id]["translation"]
         else:
-            translation = chat(f"Переведи на русский: {text}", max_tokens=600, temperature=0.3)
+            try:
+                translation = await chat(f"Переведи на русский: {text}", max_tokens=600, temperature=0.3)
+            except DeepSeekError:
+                await callback.answer("Сервис перевода временно недоступен. Попробуйте позже.", show_alert=True)
+                return
             user_texts[msg_id]["translation"] = translation
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="US", callback_data=f"roleplay_voice_original_{user_id}_{msg_id}"),

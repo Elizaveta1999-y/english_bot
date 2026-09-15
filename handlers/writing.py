@@ -18,7 +18,6 @@ from data.users import get_user_state, set_user_state
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ---------- Загрузка заданий ----------
 TASKS_FILE = os.path.join(os.path.dirname(__file__), "../data/writing_tasks.json")
 
 LEVEL_MAP = {
@@ -65,9 +64,8 @@ FORBIDDEN_WORDS = [
     "политика", "путин", "зеленский", "война", "санкции"
 ]
 
-# ---------- ЛИМИТЫ ----------
-MAX_WORDS = 500      # максимальное количество слов
-MAX_CHARS = 3000     # максимальное количество символов
+MAX_WORDS = 500
+MAX_CHARS = 3000
 
 class WritingStates(StatesGroup):
     choosing_type = State()
@@ -76,7 +74,6 @@ class WritingStates(StatesGroup):
     showing_progress = State()
     confirm_reset = State()
 
-# ---------- Клавиатуры ----------
 def get_types_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📧 Email", callback_data="type_email")],
@@ -116,7 +113,6 @@ def get_progress_keyboard():
         [InlineKeyboardButton(text="Сбросить прогресс", callback_data="reset_progress")]
     ])
 
-# ---------- Проверки ----------
 def is_meaningful_english(text: str) -> bool:
     if not re.search(r'[a-zA-Z]', text):
         return False
@@ -134,7 +130,6 @@ def contains_forbidden(text: str) -> bool:
             return True
     return False
 
-# ---------- Подсчёт предложений ----------
 def count_sentences(text: str) -> int:
     text = text.replace('...', '.')
     parts = re.split(r'[.!?]+', text)
@@ -147,7 +142,6 @@ SENTENCE_LIMITS = {
     "story":  {"beginner": 4, "intermediate": 6, "expert": 6}
 }
 
-# ================== ХЕНДЛЕРЫ КОМАНД / (С ИСКЛЮЧЕНИЯМИ) ==================
 @router.message(
     StateFilter(
         WritingStates.choosing_type,
@@ -182,7 +176,6 @@ async def handle_command_in_writing(message: Message, state: FSMContext):
             pass
     await message.answer("Практика завершена.")
     await state.clear()
-    # Сбрасываем mode
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
@@ -190,7 +183,6 @@ async def handle_command_in_writing(message: Message, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
-# ---------- Entry ----------
 @router.callback_query(F.data == "start_writing")
 async def start_writing_mode(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -284,7 +276,6 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
     await show_progress_card(callback.message, state, edit=True)
     await show_task(callback.message, state, edit=False)
 
-# ---------- Карточка прогресса ----------
 async def show_progress_card(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     user_id = data.get("user_id")
@@ -319,7 +310,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
         f"Напишите {task_type} согласно заданию.\n\n"
     )
 
-    # Обязательная структура только для эссе
     if task_type == "essay":
         card_text += (
             "_Обязательная структура:_\n"
@@ -344,7 +334,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
 
     await state.set_state(WritingStates.showing_progress)
 
-# ---------- Показ задания ----------
 async def show_task(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     task = data.get("current_task")
@@ -395,7 +384,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
 
     await state.set_state(WritingStates.waiting_answer)
 
-# ---------- СБРОС ПРОГРЕССА ----------
 @router.callback_query(F.data == "reset_progress")
 async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -472,12 +460,10 @@ async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
     await show_progress_card(callback.message, state, edit=True)
     await show_task(callback.message, state, edit=False)
 
-# ---------- ОБРАБОТКА ОТВЕТА (после команд) ----------
 @router.message(WritingStates.waiting_answer, F.text)
 async def handle_user_answer(message: Message, state: FSMContext):
     user_text = message.text
 
-    # 1. Проверка на осмысленность (английский, не слишком коротко)
     if not is_meaningful_english(user_text):
         if re.search(r'[а-яА-Я]', user_text) and not re.search(r'[a-zA-Z]', user_text):
             await message.answer("Ваш ответ должен быть на английском языке. Пожалуйста, перепишите.")
@@ -485,7 +471,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
             await message.answer("Ваш ответ не содержит осмысленного текста.\nПожалуйста, перепишите.")
         return
 
-    # 2. Проверка на запрещённые слова
     if contains_forbidden(user_text):
         await message.answer("Текст содержит неподходящие для изучения темы. Пожалуйста, напишите что-то другое.")
         return
@@ -518,7 +503,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
     index = data.get("index", 0)
     tasks = data.get("tasks", [])
 
-    # ---------- НОВЫЕ ПРОВЕРКИ НА МАКСИМАЛЬНУЮ ДЛИНУ ----------
     word_count = len(user_text.split())
     char_count = len(user_text)
 
@@ -540,7 +524,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
         )
         return
 
-    # ---- Проверка длины (минимальная и максимальная для конкретного типа) ----
     if task_type == "email":
         count = len(user_text.split())
         if level == "beginner":
@@ -578,7 +561,15 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # --- СОХРАНЯЕМ СТАТИСТИКУ ---
+    # ---------- ПРОВЕРКА НА СБОЙ DEEPSEEK ----------
+    if feedback is None or score is None:
+        await message.answer(
+            "Сервис проверки временно недоступен. Попробуй ещё раз через минуту — "
+            "твой текст не потерян, просто отправь его снова."
+        )
+        return
+    # ----------------------------------------------
+
     await update_writing_stats(user_id, task_type, level, score)
 
     last_msg_id = data.get("last_task_msg_id")
@@ -593,7 +584,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    # --- ОТПРАВЛЯЕМ ФИДБЕК С ОЦЕНКОЙ (HTML) ---
     feedback_with_score = f"{feedback}\n\n<b>Оценка:</b> {score}/5"
     await message.answer(feedback_with_score, parse_mode="HTML")
 
@@ -617,7 +607,6 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
     )
     await show_task(message, state, edit=False)
 
-# ---------- Кнопки управления ----------
 @router.callback_query(WritingStates.waiting_answer, F.data == "writing_next_task")
 async def next_task_button(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -661,7 +650,6 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     sample = task.get("sample_answer", "Пример ответа отсутствует.")
     await callback.message.answer(f"Пример ответа:\n\n{sample}")
 
-    # Убираем кнопку "Показать ответ" из исходного сообщения с заданием
     new_keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Следующее задание", callback_data="writing_next_task")],
         [InlineKeyboardButton(text="Завершить", callback_data="cancel_writing")]
@@ -671,9 +659,6 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     except Exception:
         pass
 
-    # НЕ переключаем задание, пользователь может написать свой ответ
-
-# ---------- ЗАВЕРШЕНИЕ СЕССИИ (кнопка "Завершить") ----------
 @router.callback_query(WritingStates.waiting_answer, F.data == "cancel_writing")
 async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -724,14 +709,12 @@ async def cancel_writing(callback: CallbackQuery, state: FSMContext):
         )
 
     await state.clear()
-    # Сбрасываем mode
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ---------- Навигация ----------
 @router.callback_query(F.data == "writing_back_to_types")
 async def writing_back_to_types(callback: CallbackQuery, state: FSMContext):
     if await state.get_state() is None:
@@ -769,7 +752,6 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
     await state.clear()
-    # Сбрасываем mode
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
@@ -777,20 +759,12 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ---------- Не текстовые сообщения ----------
 @router.message(WritingStates.waiting_answer, F.content_type.in_({'photo', 'document', 'audio', 'voice', 'video', 'sticker', 'animation', 'video_note', 'contact', 'location'}))
 async def handle_non_text_in_writing(message: Message, state: FSMContext):
     await message.answer("Введите текстовый ответ.")
 
-# =====================================================================
-# ФУНКЦИЯ ДЛЯ ВЫЗОВА ИЗ START.PY
-# =====================================================================
 async def start_writing(callback: CallbackQuery, state: FSMContext):
-    """
-    Запускает режим Письмо из внешнего вызова (например, из start.py).
-    """
     await callback.answer()
-    # Устанавливаем режим
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = "writing_active"

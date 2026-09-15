@@ -7,7 +7,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.exceptions import TelegramBadRequest
 from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
-from services.deepseek import chat
+from services.deepseek import chat, DeepSeekError
 from handlers.voice import bot_texts
 from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
@@ -1540,14 +1540,10 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list,
     prompt = ""
     for m in messages:
         prompt += f"{m['role']}: {m['content']}\n"
-    try:
-        response = chat(prompt, max_tokens=max_tokens, temperature=0.7)
-        if response.startswith(':'):
-            response = response[1:].strip()
-        return response
-    except Exception as e:
-        logger.error(f"Ошибка вызова ИИ: {e}")
-        return "Произошла ошибка. Попробуйте ещё раз."
+    response = await chat(prompt, max_tokens=max_tokens, temperature=0.7)
+    if response.startswith(':'):
+        response = response[1:].strip()
+    return response
 
 async def send_goal_completion_message(message: Message, user_id: int, user_state: dict, state: FSMContext, bot):
     if user_state.get("roleplay_goal_notified", False):
@@ -1798,7 +1794,12 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
         system_prompt = build_system_prompt(topic, description, goals)
         first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English, 2-3 sentences."
-        first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=300)
+        try:
+            first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=300)
+        except DeepSeekError:
+            await callback.message.answer("Сервис временно недоступен. Попробуйте начать игру ещё раз через минуту.")
+            await state.clear()
+            return
 
         first_response_clean, goals_achieved = process_ai_response(first_response)
 
@@ -1879,10 +1880,9 @@ async def finish_roleplay(message: Message, state: FSMContext):
             "Has the user achieved all goals? Answer only 'Yes' or 'No'."
         )
         try:
-            check_response = chat(check_prompt, max_tokens=10, temperature=0)
+            check_response = await chat(check_prompt, max_tokens=10, temperature=0)
             goals_achieved = "yes" in check_response.lower()
-        except Exception as e:
-            logger.error(f"Ошибка проверки целей: {e}")
+        except DeepSeekError:
             goals_achieved = False
 
         if not goals_achieved:
@@ -1964,10 +1964,9 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "Никаких других слов."
         )
         try:
-            examples = chat(example_prompt, max_tokens=150, temperature=0.7)
-        except Exception as e:
-            logger.error(f"Ошибка генерации примеров: {e}")
-            examples = "Не удалось сгенерировать примеры."
+            examples = await chat(example_prompt, max_tokens=150, temperature=0.7)
+        except DeepSeekError:
+            examples = "Не удалось сгенерировать примеры. Попробуйте позже."
         feedback_text = (
             "Вы общались только на русском языке. В следующий раз старайтесь использовать английский.\n"
             "Вот примеры фраз, которые вы могли бы сказать:\n" + examples
@@ -1994,10 +1993,9 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "Фидбек:"
         )
         try:
-            feedback = chat(feedback_prompt, max_tokens=500, temperature=0.5)
-        except Exception as e:
-            logger.error(f"Ошибка получения фидбека: {e}")
-            await message.answer("Не удалось получить фидбек. Попробуйте позже.")
+            feedback = await chat(feedback_prompt, max_tokens=500, temperature=0.5)
+        except DeepSeekError:
+            await message.answer("Сервис проверки временно недоступен. Попробуйте позже.")
             return
         feedback_text = feedback
 
@@ -2108,12 +2106,11 @@ async def give_hint(message: Message, state: FSMContext):
         "Никаких других слов, только эти три варианта."
     )
     try:
-        hint = chat(prompt, max_tokens=100, temperature=0.7)
+        hint = await chat(prompt, max_tokens=100, temperature=0.7)
         if not hint.strip():
             hint = "Попробуйте продолжить диалог своими словами."
-    except Exception as e:
-        logger.error(f"Ошибка получения подсказки: {e}")
-        await message.answer("Не удалось получить подсказку. Попробуйте позже.")
+    except DeepSeekError:
+        await message.answer("Сервис подсказок временно недоступен. Попробуйте позже.")
         return
     await message.answer(f"💡 {hint}")
 
@@ -2152,7 +2149,11 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     system_prompt = build_system_prompt(topic, description, goals)
     history = user_state.get("roleplay_history", [])
 
-    ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=300)
+    try:
+        ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=300)
+    except DeepSeekError:
+        await message.answer("Сервис временно недоступен. Попробуйте ещё раз через минуту.")
+        return
     ai_response_clean, goals_achieved = process_ai_response(ai_response)
 
     history.append({"role": "user", "text": user_text})
@@ -2207,11 +2208,15 @@ async def roleplay_text_translate(callback: CallbackQuery):
         if user_texts[msg_id]["translation"]:
             translation = user_texts[msg_id]["translation"]
         else:
-            translation = chat(
-                f"Переведи следующий текст на русский. Верни только перевод, без кавычек и без пояснений: {text}",
-                max_tokens=600,
-                temperature=0.3
-            )
+            try:
+                translation = await chat(
+                    f"Переведи следующий текст на русский. Верни только перевод, без кавычек и без пояснений: {text}",
+                    max_tokens=600,
+                    temperature=0.3
+                )
+            except DeepSeekError:
+                await callback.answer("Сервис перевода временно недоступен. Попробуйте позже.", show_alert=True)
+                return
             translation = translation.strip()
             translation = translation.strip('"').strip("'")
             translation = re.sub(r'^(перевод\s*[:.]\s*|вот\s*перевод\s*[:.]\s*)', '', translation, flags=re.IGNORECASE)
@@ -2367,7 +2372,11 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
 
-    ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=300)
+    try:
+        ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=300)
+    except DeepSeekError:
+        await message.answer("Сервис временно недоступен. Попробуйте ещё раз через минуту.")
+        return
     ai_response_clean, goals_achieved = process_ai_response(ai_response)
 
     history.append({"role": "user", "text": user_text})

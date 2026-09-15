@@ -13,7 +13,18 @@ if not DEEPSEEK_API_KEY:
 
 BASE_URL = "https://api.deepseek.com/v1"
 
+# ---------- НАСТРОЙКИ СЕТИ ----------
+REQUEST_TIMEOUT = 90
+MAX_RETRIES = 5
+RETRY_DELAYS = [2, 4, 8, 16]
+
+
 async def check_writing(task_text: str, user_answer: str, level: str, keywords: list, task_type: str) -> tuple:
+    """
+    Проверяет письменный ответ через DeepSeek.
+    При успехе: (feedback, score).
+    При провале: (None, None) — вызывающий код сам показывает сообщение пользователю.
+    """
     # --- Формируем промпт ---
     if task_type == "email":
         criteria = (
@@ -54,7 +65,7 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
         strictness = "мягкий. Хвали за попытку, даже если есть ошибки. Не требуй сложных конструкций."
     elif level == "intermediate":
         strictness = "средний. Обращай внимание на структуру, время, артикли, но не будь слишком строг."
-    else:  # expert
+    else:
         strictness = "строгий. Разбирай все ошибки: грамматику, лексику, стиль. Требуй высокого уровня."
 
     prompt = (
@@ -102,74 +113,52 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
         "temperature": 0.5
     }
 
-    # ---------- НАСТРОЙКИ РЕТРАЯ ----------
-    MAX_RETRIES = 3
-    RETRY_DELAY = 1.5  # секунд между попытками
+    last_error = None
 
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.post(url, headers=headers, json=payload, timeout=30) as resp:
-                    resp.raise_for_status()
+            timeout = aiohttp.ClientTimeout(total=REQUEST_TIMEOUT)
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.post(url, headers=headers, json=payload) as resp:
+                    if resp.status != 200:
+                        text = await resp.text()
+                        raise Exception(f"HTTP {resp.status}: {text[:200]}")
+
                     data = await resp.json()
                     feedback = data["choices"][0]["message"]["content"]
 
-            # Проверяем, что ответ не пустой
-            if feedback and feedback.strip():
-                # Извлекаем оценку
-                score = 3
-                # Ищем <b>Оценка: X/5</b>
-                match = re.search(r'<b>Оценка:\s*(\d+)\s*/\s*5</b>', feedback)
-                if not match:
-                    # fallback: поиск без тегов
-                    match = re.search(r'Оценка:\s*(\d+)\s*/\s*5', feedback)
-                if match:
-                    score = int(match.group(1))
-                    if score < 1:
-                        score = 1
-                    elif score > 5:
-                        score = 5
-                    # Удаляем строку с оценкой, чтобы не дублировать
-                    feedback = re.sub(r'<b>Оценка:\s*\d+\s*/\s*5</b>', '', feedback).strip()
-                    feedback = re.sub(r'Оценка:\s*\d+\s*/\s*5', '', feedback).strip()
+            if not feedback or not feedback.strip():
+                raise Exception("Пустой ответ от DeepSeek")
 
-                return feedback, score
-            else:
-                # Пустой ответ – логируем и пробуем снова
-                logger.warning(
-                    f"Пустой ответ от DeepSeek (попытка {attempt}/{MAX_RETRIES}) "
-                    f"для user_answer: {user_answer[:50]}..."
-                )
-                if attempt == MAX_RETRIES:
-                    # Последняя попытка – возвращаем сообщение об ошибке
-                    error_msg = (
-                        "Не удалось получить оценку от ИИ. Попробуйте позже или обратитесь в поддержку.\n"
-                        "Ваш ответ не был засчитан, вы можете отправить его снова."
-                    )
-                    return error_msg, 3
-                await asyncio.sleep(RETRY_DELAY)
-                continue
+            # Извлекаем оценку
+            score = 3
+            match = re.search(r'<b>Оценка:\s*(\d+)\s*/\s*5</b>', feedback)
+            if not match:
+                match = re.search(r'Оценка:\s*(\d+)\s*/\s*5', feedback)
+            if match:
+                score = int(match.group(1))
+                if score < 1:
+                    score = 1
+                elif score > 5:
+                    score = 5
+                feedback = re.sub(r'<b>Оценка:\s*\d+\s*/\s*5</b>', '', feedback).strip()
+                feedback = re.sub(r'Оценка:\s*\d+\s*/\s*5', '', feedback).strip()
+
+            return feedback, score
 
         except asyncio.TimeoutError:
-            logger.error(f"Таймаут DeepSeek API (попытка {attempt}/{MAX_RETRIES})")
-            if attempt == MAX_RETRIES:
-                return "Превышено время ожидания ответа. Попробуйте позже.", 3
-            await asyncio.sleep(RETRY_DELAY)
-            continue
-
+            last_error = "timeout"
+            logger.warning(f"Writing: таймаут DeepSeek (попытка {attempt}/{MAX_RETRIES})")
         except aiohttp.ClientError as e:
-            logger.error(f"HTTP ошибка DeepSeek API (попытка {attempt}/{MAX_RETRIES}): {e}")
-            if attempt == MAX_RETRIES:
-                return f"Ошибка связи с сервером. Попробуйте позже. ({e})", 3
-            await asyncio.sleep(RETRY_DELAY)
-            continue
-
+            last_error = f"client_error: {e}"
+            logger.warning(f"Writing: ClientError (попытка {attempt}/{MAX_RETRIES}): {e}")
         except Exception as e:
-            logger.error(f"Неизвестная ошибка в check_writing (попытка {attempt}/{MAX_RETRIES}): {e}")
-            if attempt == MAX_RETRIES:
-                return "Произошла непредвиденная ошибка. Попробуйте позже.", 3
-            await asyncio.sleep(RETRY_DELAY)
-            continue
+            last_error = str(e)
+            logger.warning(f"Writing: ошибка (попытка {attempt}/{MAX_RETRIES}): {e}")
 
-    # Если цикл завершился без return (защита)
-    return "Не удалось получить оценку. Попробуйте позже.", 3
+        if attempt < MAX_RETRIES:
+            delay = RETRY_DELAYS[attempt - 1] if attempt - 1 < len(RETRY_DELAYS) else RETRY_DELAYS[-1]
+            await asyncio.sleep(delay)
+
+    logger.error(f"Writing: все попытки исчерпаны. Последняя ошибка: {last_error}")
+    return None, None

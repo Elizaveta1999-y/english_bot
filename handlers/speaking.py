@@ -7,7 +7,7 @@ from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from data.users import set_user_state, get_user_state
-from services.deepseek import chat
+from services.deepseek import chat, DeepSeekError
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
@@ -164,7 +164,11 @@ async def show_feedback(message: Message, state: FSMContext):
             "Твой фидбек (строго по правилам):"
         )
 
-        feedback = chat(prompt, max_tokens=1000, temperature=0.4)
+        try:
+            feedback = await chat(prompt, max_tokens=1000, temperature=0.4)
+        except DeepSeekError:
+            await message.answer("Сервис проверки временно недоступен. Попробуй ещё раз через минуту.")
+            return
         feedback = feedback.replace('<br>', '\n').replace('<br/>', '\n')
 
         user_state["pending_feedback"] = feedback
@@ -377,16 +381,13 @@ async def translate_text(callback: CallbackQuery):
             return
         text = user_texts[msg_id]["text"]
         try:
-            translation = await asyncio.wait_for(
-                asyncio.to_thread(chat, f"Переведи на русский следующий текст, верни только перевод, без кавычек и дополнительных пояснений: {text}", max_tokens=600, temperature=0.3),
-                timeout=30.0
+            translation = await chat(
+                f"Переведи на русский следующий текст, верни только перевод, без кавычек и дополнительных пояснений: {text}",
+                max_tokens=600,
+                temperature=0.3,
             )
-        except asyncio.TimeoutError:
-            await callback.answer("Превышено время ожидания перевода. Попробуйте позже.", show_alert=True)
-            return
-        except Exception as e:
-            logger.error(f"Ошибка перевода: {e}", exc_info=True)
-            await callback.answer("Не удалось перевести. Попробуйте позже.", show_alert=True)
+        except DeepSeekError:
+            await callback.answer("Сервис перевода временно недоступен. Попробуйте позже.", show_alert=True)
             return
         user_texts[msg_id]["translation"] = translation
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
