@@ -3,7 +3,7 @@ from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardRemove
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from data.users import get_user_state, set_user_state, get_or_create_user
+from data.users import get_user_state, set_user_state, get_or_create_user, start_trial_if_needed
 from handlers.reading import clear_all_keyboards
 from handlers.grammar import GrammarStates, finish_grammar
 from handlers.words import cleanup_practice
@@ -74,6 +74,9 @@ async def start_handler(message: Message, state: FSMContext):
     first_name = message.from_user.first_name
     last_name = message.from_user.last_name
     await get_or_create_user(user_id, username, first_name, last_name)
+
+    # Активация триала при первом /start
+    start_trial_if_needed(user_id)
 
     await cleanup_practice(user_id, bot, chat_id, send_message=False)
 

@@ -136,7 +136,15 @@ async def init_db():
         ADD COLUMN IF NOT EXISTS total_voice_seconds_month BIGINT DEFAULT 0,
         ADD COLUMN IF NOT EXISTS voice_reset_month INTEGER DEFAULT 0,
         ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
-        ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT ''
+        ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT '',
+        ADD COLUMN IF NOT EXISTS speaking_seconds_month BIGINT DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS roleplay_seconds_month BIGINT DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS subscription_started BIGINT DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS subscription_count INTEGER DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS trial_voice_count INTEGER DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS is_unlimited BOOLEAN DEFAULT FALSE
     """)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS bot_settings (

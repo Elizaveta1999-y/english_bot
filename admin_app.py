@@ -435,7 +435,6 @@ async def charts_data(days: int = 30, type: str = "all"):
 
 @app.get("/api/deepseek-balance")
 async def api_deepseek_balance():
-    """Возвращает актуальный баланс DeepSeek в JSON (для автообновления на странице)."""
     balance = await get_deepseek_balance()
     return JSONResponse({"balance": balance})
 
@@ -952,7 +951,8 @@ async def user_detail(request: Request, user_id: int):
         roleplay_display = _fmt(user.get("roleplay_seconds_month"))
         total_display = _fmt(user.get("total_voice_seconds_month"))
 
-        VOICE_LIMIT_SECONDS = 5 * 3600
+        # ⚠️ ИЗМЕНЕНО: было 5 * 3600, стало 2.5 часа = 9000 секунд
+        VOICE_LIMIT_SECONDS = 9000
         voice_used_secs = int(user.get("total_voice_seconds_month") or 0)
         voice_percent = round(min(100, voice_used_secs / VOICE_LIMIT_SECONDS * 100), 1)
 
@@ -1014,7 +1014,7 @@ async def extend_subscription(request: Request, user_id: int, days: int = Form(.
         action_text = f"Продление на {days} дней"
     await log_admin_action(admin_id, "Продление подписки", action_text, user_id)
     if counter_was_reset:
-        await log_admin_action(admin_id, "Обнуление счётчика минут при оплате", f"лимит 5 ч сброшен", user_id)
+        await log_admin_action(admin_id, "Обнуление счётчика минут при оплате", f"лимит 2.5 ч сброшен", user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/user/{user_id}/cancel")
