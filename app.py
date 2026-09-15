@@ -1,13 +1,13 @@
 import os
+import time
 import logging
 from aiohttp import web
-from aiogram import Bot, Dispatcher
-from aiogram.types import BotCommand
+from aiogram import Bot, Dispatcher, BaseMiddleware
+from aiogram.types import BotCommand, TelegramObject
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from aiogram.fsm.storage.redis import RedisStorage
 from redis.asyncio import Redis
-from aiogram_ratelimiter import RateLimiter, Rate
-from aiogram_ratelimiter.storages.redis import RedisStorage as RLRateStorage
+from typing import Callable, Dict, Any, Awaitable
 from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing, roleplay_voice
 from handlers.subscription import router as subscription_router
 from handlers.reading import router as reading_router
@@ -43,30 +43,62 @@ bot = Bot(token=BOT_TOKEN)
 REDIS_URL = os.getenv("REDIS_URL")
 
 if REDIS_URL:
-    # FSM-состояния в Redis (чтобы не терять при рестарте и для мультиворкера в будущем)
-    redis_client = Redis.from_url(REDIS_URL)
-    storage = RedisStorage(redis=redis_client)
-    logger.warning("Redis подключён: FSM в Redis, rate limiting включён")
+    redis_client = Redis.from_url(REDIS_URL, decode_responses=True)
+    storage = RedisStorage.from_url(REDIS_URL)
+    logger.warning("Redis подключён: FSM в Redis")
 else:
-    storage = None
     redis_client = None
-    logger.warning("REDIS_URL не задан: FSM в памяти, rate limiting ОТКЛЮЧЁН")
+    storage = None
+    logger.warning("REDIS_URL не задан: FSM в памяти")
+
+
+# ========== ПРОСТОЙ RATE LIMITER ==========
+class SimpleRateLimiter(BaseMiddleware):
+    """
+    Ограничивает количество апдейтов от одного пользователя.
+    Лимит: MAX_EVENTS за WINDOW_SECONDS секунд.
+    Работает через Redis (INCR + EXPIRE).
+    """
+
+    def __init__(self, redis_client: Redis, max_events: int = 30, window_seconds: int = 1):
+        self.redis = redis_client
+        self.max_events = max_events
+        self.window = window_seconds
+
+    async def __call__(
+        self,
+        handler: Callable[[TelegramObject, Dict[str, Any]], Awaitable[Any]],
+        event: TelegramObject,
+        data: Dict[str, Any],
+    ) -> Any:
+        user = data.get("event_from_user")
+        if user is None:
+            return await handler(event, data)
+
+        key = f"ratelimit:{user.id}"
+        try:
+            count = await self.redis.incr(key)
+            if count == 1:
+                await self.redis.expire(key, self.window)
+            if count > self.max_events:
+                # Превышен лимит — молча игнорируем
+                logger.debug(f"Rate limit exceeded for user {user.id} ({count} в {self.window} сек)")
+                return
+        except Exception as e:
+            # Если Redis упал — не блокируем пользователя, просто пропускаем
+            logger.warning(f"Rate limiter error: {e}")
+
+        return await handler(event, data)
+
 
 dp = Dispatcher(storage=storage) if storage else Dispatcher()
 
 # ========== RATE LIMITING ==========
 if redis_client is not None:
-    try:
-        rate_storage = RLRateStorage(redis=redis_client)
-        rate_limiter = RateLimiter(
-            storage=rate_storage,
-            default_rate=Rate(30, 1),  # 30 событий в 1 секунду на пользователя
-        )
-        dp.message.middleware(rate_limiter)
-        dp.callback_query.middleware(rate_limiter)
-        logger.warning("Rate limiting: 30 событий/сек на пользователя")
-    except Exception as e:
-        logger.error(f"Не удалось включить rate limiting: {e}")
+    rate_limiter = SimpleRateLimiter(redis_client, max_events=30, window_seconds=1)
+    dp.message.middleware(rate_limiter)
+    dp.callback_query.middleware(rate_limiter)
+    logger.warning("Rate limiting: 30 событий/сек на пользователя")
 
 # ========== MIDDLEWARE ==========
 dp.message.middleware(BotActiveMiddleware())

@@ -7,7 +7,7 @@ from utils.db import get_connection
 logger = logging.getLogger(__name__)
 
 TECH_MESSAGE = (
-    "🛠️ Небольшая пауза\n\n"
+    "🛠️ <b>Небольшая пауза</b>\n\n"
     "Мы проводим технические работы, чтобы бот работал ещё лучше.\n"
     "Твои данные и прогресс в полной безопасности — ничего не потеряется.\n\n"
     "Скоро вернёмся! 💙"
@@ -43,12 +43,12 @@ class BotActiveMiddleware(BaseMiddleware):
         # Бот на техработах
         if isinstance(event, Message):
             try:
-                await event.answer(TECH_MESSAGE)
+                await event.answer(TECH_MESSAGE, parse_mode="HTML")
             except Exception:
                 pass
         elif isinstance(event, CallbackQuery):
             try:
-                await event.answer(TECH_MESSAGE, show_alert=True)
+                await event.answer(TECH_MESSAGE, show_alert=True, parse_mode="HTML")
             except Exception:
                 pass
         return

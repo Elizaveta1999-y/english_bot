@@ -166,7 +166,7 @@ def get_profile_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="💳 Подписка", callback_data="profile_subscription")],
         [InlineKeyboardButton(text="🔄 Сбросить прогресс", callback_data="profile_reset_confirm")],
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="profile_back")]
     ])
 
 def get_settings_keyboard(notif_on: bool, time_str: str):
