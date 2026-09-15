@@ -68,7 +68,7 @@ def get_progress_keyboard():
 def get_reset_confirmation_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Да, сбросить", callback_data="g_confirm_reset_yes")],
-        [InlineKeyboardButton(text="Назад", callback_data="g_confirm_reset_no")]
+        [InlineKeyboardButton(text="Нет, назад", callback_data="g_confirm_reset_no")]
     ])
 
 MIN_DURATION_BY_LEVEL = {
@@ -91,15 +91,18 @@ def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> b
 
 async def hide_progress_buttons(message_or_callback, state: FSMContext):
     data = await state.get_data()
+
+    # Правильно определяем chat_id и bot для Message и CallbackQuery
+    if isinstance(message_or_callback, Message):
+        chat_id = message_or_callback.chat.id
+        bot = message_or_callback.bot
+    else:
+        chat_id = message_or_callback.message.chat.id
+        bot = message_or_callback.message.bot
+
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
-            if hasattr(message_or_callback, 'bot'):
-                chat_id = message_or_callback.chat.id
-                bot = message_or_callback.bot
-            else:
-                chat_id = message_or_callback.message.chat.id
-                bot = message_or_callback.message.bot
             await bot.edit_message_reply_markup(
                 chat_id=chat_id,
                 message_id=progress_msg_id,
@@ -107,16 +110,10 @@ async def hide_progress_buttons(message_or_callback, state: FSMContext):
             )
         except Exception as e:
             logger.error(f"Не удалось скрыть кнопку сброса: {e}")
-    
+
     last_task_msg_id = data.get("last_task_msg_id")
     if last_task_msg_id:
         try:
-            if hasattr(message_or_callback, 'bot'):
-                chat_id = message_or_callback.chat.id
-                bot = message_or_callback.bot
-            else:
-                chat_id = message_or_callback.message.chat.id
-                bot = message_or_callback.message.bot
             await bot.edit_message_reply_markup(
                 chat_id=chat_id,
                 message_id=last_task_msg_id,
@@ -298,6 +295,7 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     task = data.get("current_task")
     task_type = data.get("task_type")
+    level = data.get("level")
     if not task:
         await message.answer("Ошибка: задание не найдено.")
         return
@@ -332,8 +330,17 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
     elif task_type == "fluency":
         text = f"{task.get('instruction', '')}\n\n<b>{task['topic']}</b>"
     elif task_type == "interview":
+        instruction = task.get('instruction', '')
+        # Для экспертного уровня приводим упоминание лимита времени к 3 минутам
+        if level == "advanced":
+            instruction = re.sub(
+                r'не более\s+2\s+минут',
+                'не более 3 минут',
+                instruction,
+                flags=re.IGNORECASE
+            )
         questions = "\n".join([f"{i+1}. {q}" for i, q in enumerate(task['questions'])])
-        text = f"{task.get('instruction', '')}\n\n{questions}"
+        text = f"{instruction}\n\n{questions}"
     else:
         text = "Неизвестный тип задания."
 
@@ -611,7 +618,7 @@ async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
     from handlers.start import show_main_menu
     await callback.answer()
     await hide_progress_buttons(callback, state)
-    
+
     user_id = callback.from_user.id
     data = await state.get_data()
     task_type = data.get("task_type")
@@ -659,7 +666,6 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
 @router.message(GovorenieStates.waiting_voice, ~F.voice)
 async def handle_non_voice_in_govorenie(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
-
 
 # =====================================================================
 # ФУНКЦИЯ ДЛЯ ВЫЗОВА ИЗ START.PY
