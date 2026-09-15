@@ -8,6 +8,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.filters import StateFilter
 from services.deepseek_writing import check_writing
+from utils.helpers import with_thinking
 from utils.db import (
     get_writing_index, set_writing_index,
     get_writing_stats, update_writing_stats,
@@ -323,7 +324,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     keyboard = get_progress_keyboard()
 
     if edit:
-        # Редактируем именно сообщение-карточку по progress_msg_id
         progress_msg_id = data.get("progress_msg_id")
         if progress_msg_id:
             try:
@@ -338,7 +338,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
                 if "message is not modified" not in str(e):
                     logger.error(f"Не удалось обновить карточку прогресса: {e}")
         else:
-            # Нет сохранённого id — отправляем новую карточку
             sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
             await state.update_data(progress_msg_id=sent.message_id)
     else:
@@ -562,20 +561,26 @@ async def handle_user_answer(message: Message, state: FSMContext):
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+
+    # "Думаю..." + запрос к ИИ
     try:
-        feedback, score = await check_writing(
-            task_text=task.get('task_text', ''),
-            user_answer=user_text,
-            level=level,
-            keywords=task.get('keywords', []),
-            task_type=task_type
+        thinking_msg, (feedback, score) = await with_thinking(
+            message,
+            check_writing(
+                task_text=task.get('task_text', ''),
+                user_answer=user_text,
+                level=level,
+                keywords=task.get('keywords', []),
+                task_type=task_type
+            )
         )
     except Exception as e:
+        logger.error(f"Ошибка check_writing: {e}")
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
     if feedback is None or score is None:
-        await message.answer(
+        await thinking_msg.edit_text(
             "Сервис проверки временно недоступен. Попробуй ещё раз через минуту — "
             "твой текст не потерян, просто отправь его снова."
         )
@@ -595,10 +600,15 @@ async def handle_user_answer(message: Message, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
+    # Заменяем "Думаю..." на фидбек в том же сообщении
     feedback_with_score = f"{feedback}\n\n<b>Оценка:</b> {score}/5"
-    await message.answer(feedback_with_score, parse_mode="HTML")
+    try:
+        await thinking_msg.edit_text(feedback_with_score, parse_mode="HTML")
+    except Exception as e:
+        logger.error(f"Не удалось отредактировать сообщение с фидбеком: {e}")
+        await message.answer(feedback_with_score, parse_mode="HTML")
 
-    # Обновляем карточку прогресса — теперь редактируется правильное сообщение
+    # Обновляем карточку прогресса
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:

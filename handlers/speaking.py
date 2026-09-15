@@ -164,17 +164,29 @@ async def show_feedback(message: Message, state: FSMContext):
             "Твой фидбек (строго по правилам):"
         )
 
+        # "Думаю..." пока ИИ анализирует диалог
+        thinking_msg = await message.answer("🤔 Думаю...")
+
         try:
             feedback = await chat(prompt, max_tokens=1000, temperature=0.4)
         except DeepSeekError:
-            await message.answer("Сервис проверки временно недоступен. Попробуй ещё раз через минуту.")
+            try:
+                await thinking_msg.edit_text("Сервис проверки временно недоступен. Попробуй ещё раз через минуту.")
+            except Exception:
+                pass
             return
+
         feedback = feedback.replace('<br>', '\n').replace('<br/>', '\n')
 
         user_state["pending_feedback"] = feedback
         set_user_state(user_id, user_state)
 
         if count < 6:
+            # Убираем "Думаю..." и показываем сообщение с кнопками
+            try:
+                await thinking_msg.delete()
+            except Exception:
+                pass
             await message.bot.send_chat_action(chat_id=message.chat.id, action='typing')
             await message.answer("У вас пока мало сообщений, фидбек может быть неполным.", reply_markup=ReplyKeyboardRemove())
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -191,11 +203,21 @@ async def show_feedback(message: Message, state: FSMContext):
             user_state["pending_feedback"] = None
             set_user_state(user_id, user_state)
             await message.bot.send_chat_action(chat_id=message.chat.id, action='typing')
-            await message.answer("Фидбек готов:", reply_markup=ReplyKeyboardRemove())
-            await message.answer(
-                f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
-                parse_mode="HTML"
-            )
+
+            # Редактируем "Думаю..." в готовый фидбек
+            try:
+                await thinking_msg.edit_text(
+                    f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
+                    parse_mode="HTML"
+                )
+            except Exception as e:
+                logger.error(f"Не удалось отредактировать сообщение с фидбеком: {e}")
+                await message.answer("Фидбек готов:", reply_markup=ReplyKeyboardRemove())
+                await message.answer(
+                    f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
+                    parse_mode="HTML"
+                )
+
             keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
             if keyboard_msg_id:
                 try:

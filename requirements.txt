@@ -14,3 +14,4 @@ apscheduler==3.10.4
 httpx
 psycopg2-binary==2.9.9
 redis
+websockets

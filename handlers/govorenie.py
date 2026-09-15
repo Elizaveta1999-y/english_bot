@@ -10,6 +10,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.filters import StateFilter
 from services.deepseek_govorenie import check_govorenie
 from services.speech_recognition import speech_to_text
+from utils.helpers import with_thinking
 from utils.db import (
     get_govorenie_task_id, set_govorenie_task_id,
     get_govorenie_stats, update_govorenie_stats,
@@ -136,7 +137,7 @@ async def hide_progress_buttons(message_or_callback, state: FSMContext):
     )
 )
 async def handle_command_during_govorenie(message: Message, state: FSMContext):
-    from handlers.start import show_main_menu  # локальный импорт
+    from handlers.start import show_main_menu
     await hide_progress_buttons(message, state)
     await message.answer("Практика завершена.")
     await state.clear()
@@ -271,7 +272,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     keyboard = get_progress_keyboard()
 
     if edit:
-        # Редактируем именно сообщение-карточку по progress_msg_id
         progress_msg_id = data.get("progress_msg_id")
         if progress_msg_id:
             try:
@@ -494,21 +494,26 @@ async def handle_voice_message(message: Message, state: FSMContext):
             return
 
     logger.info("Вызов check_govorenie...")
+
+    # "Думаю..." + запрос к ИИ
     try:
-        feedback, score = await check_govorenie(
-            task=task,
-            task_type=task_type,
-            user_text=user_text,
-            level=level,
-            duration=duration
+        thinking_msg, (feedback, score) = await with_thinking(
+            message,
+            check_govorenie(
+                task=task,
+                task_type=task_type,
+                user_text=user_text,
+                level=level,
+                duration=duration
+            )
         )
     except Exception as e:
-        logger.error(f"Ошибка ИИ: {e}")
+        logger.error(f"Ошибка check_govorenie: {e}")
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
     if feedback is None or score is None:
-        await message.answer(
+        await thinking_msg.edit_text(
             "Сервис проверки временно недоступен. Попробуй ещё раз через минуту — "
             "твой ответ не потерян, просто отправь голосовое снова."
         )
@@ -524,10 +529,10 @@ async def handle_voice_message(message: Message, state: FSMContext):
         feedback = feedback.replace(keyword, f'<b>{keyword}</b>')
 
     if "не соответствует теме" in feedback or "совершенно не соответствует теме" in feedback:
-        await message.answer(
-            f"{feedback}",
-            parse_mode="HTML"
-        )
+        try:
+            await thinking_msg.edit_text(feedback, parse_mode="HTML")
+        except Exception:
+            await message.answer(feedback, parse_mode="HTML")
         await message.answer("Попробуйте ещё раз, запишите ответ на это же задание.")
         return
 
@@ -545,13 +550,16 @@ async def handle_voice_message(message: Message, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    await message.answer(
-        f"{feedback}\n\n<b>Оценка: {score}/5</b>",
-        parse_mode="HTML"
-    )
+    # Заменяем "Думаю..." на фидбек в том же сообщении
+    feedback_with_score = f"{feedback}\n\n<b>Оценка: {score}/5</b>"
+    try:
+        await thinking_msg.edit_text(feedback_with_score, parse_mode="HTML")
+    except Exception as e:
+        logger.error(f"Не удалось отредактировать сообщение с фидбеком: {e}")
+        await message.answer(feedback_with_score, parse_mode="HTML")
+
     logger.info("Фидбек отправлен")
 
-    # Обновляем карточку прогресса — теперь редактируется правильное сообщение
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:

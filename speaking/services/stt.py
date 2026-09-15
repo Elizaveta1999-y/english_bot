@@ -1,89 +1,124 @@
 import os
-import tempfile
-import logging
+import json
+import base64
 import asyncio
-import aiohttp
+import logging
+import tempfile
+import websockets
 from pydub import AudioSegment
 
 logger = logging.getLogger(__name__)
 
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 
-# ---------- НАСТРОЙКИ СЕТИ ----------
-REQUEST_TIMEOUT = 90
-MAX_RETRIES = 5
-RETRY_DELAYS = [2, 4, 8, 16]
+# Формат аудио для реалтайм-распознавания
+SAMPLE_RATE = 16000
+CHUNK_DURATION_MS = 100  # отправляем чанки по 100 мс
 
 
 async def voice_to_text(file_bytes: bytes) -> str:
     """
-    Распознаёт речь через ElevenLabs Scribe v2 API.
+    Распознаёт речь через ElevenLabs Scribe v2 Realtime (WebSocket).
     Возвращает:
       - строку с текстом при успехе (может быть пустой, если речи не было),
-      - None при сбое API/сети (чтобы вызывающий код отличил «не распозналось» от «API упал»).
+      - None при сбое API/сети.
     """
+    if not ELEVENLABS_API_KEY:
+        logger.error("STT: ELEVENLABS_API_KEY не задан")
+        return None
+
     temp_ogg = None
-    temp_wav = None
+    temp_pcm = None
 
     try:
-        # Сохраняем входящий OGG файл
+        # Сохраняем OGG
         with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as f:
             f.write(file_bytes)
             temp_ogg = f.name
 
-        # Конвертируем в WAV (ElevenLabs Scribe принимает WAV или MP3)
-        temp_wav = tempfile.mktemp(suffix=".wav")
+        # Конвертируем в PCM 16kHz mono (формат для реалтайма)
+        temp_pcm = tempfile.mktemp(suffix=".pcm")
         audio = AudioSegment.from_ogg(temp_ogg)
-        audio.export(temp_wav, format="wav")
+        audio = audio.set_frame_rate(SAMPLE_RATE).set_channels(1).set_sample_width(2)
+        audio.export(temp_pcm, format="raw")
 
-        url = "https://api.elevenlabs.io/v1/speech-to-text"
-        headers = {"xi-api-key": ELEVENLABS_API_KEY}
-        data = {
-            "model_id": "scribe_v2",
-            "language_code": "en",
-            "diarize": "false",
-            "tag_audio_events": "false"
-        }
+        # Читаем PCM целиком
+        with open(temp_pcm, "rb") as f:
+            pcm_data = f.read()
 
+        # URL с параметрами
+        url = (
+            "wss://api.elevenlabs.io/v1/speech-to-text/realtime"
+            f"?model_id=scribe_v2_realtime"
+            f"&audio_format=pcm_{SAMPLE_RATE}"
+            f"&language_code=en"
+            f"&commit_strategy=vad"
+            f"&vad_silence_threshold_secs=1.0"
+            f"&include_timestamps=false"
+        )
+
+        full_text = ""
         last_error = None
 
-        for attempt in range(1, MAX_RETRIES + 1):
+        for attempt in range(1, 4):  # 3 попытки
             try:
-                timeout = aiohttp.ClientTimeout(total=REQUEST_TIMEOUT)
-                async with aiohttp.ClientSession(timeout=timeout) as session:
-                    with open(temp_wav, "rb") as audio_file:
-                        form = aiohttp.FormData()
-                        form.add_field(
-                            "file",
-                            audio_file,
-                            filename="audio.wav",
-                            content_type="audio/wav"
-                        )
-                        for key, value in data.items():
-                            form.add_field(key, value)
+                async with websockets.connect(
+                    url,
+                    additional_headers={"xi-api-key": ELEVENLABS_API_KEY},
+                    ping_interval=20,
+                    ping_timeout=10,
+                ) as ws:
+                    # Отправляем аудио чанками по CHUNK_DURATION_MS
+                    chunk_size = int(SAMPLE_RATE * 2 * (CHUNK_DURATION_MS / 1000))  # байт на чанк
+                    for i in range(0, len(pcm_data), chunk_size):
+                        chunk = pcm_data[i:i + chunk_size]
+                        msg = {
+                            "message_type": "input_audio_chunk",
+                            "audio_base_64": base64.b64encode(chunk).decode(),
+                            "sample_rate": SAMPLE_RATE,
+                        }
+                        await ws.send(json.dumps(msg))
+                        # Небольшая пауза, чтобы имитировать реальный поток
+                        await asyncio.sleep(0.05)
 
-                        async with session.post(url, headers=headers, data=form) as resp:
-                            if resp.status != 200:
-                                text = await resp.text()
-                                raise Exception(f"HTTP {resp.status}: {text[:200]}")
-                            result = await resp.json()
+                    # Сигнал конца потока
+                    await ws.send(json.dumps({
+                        "message_type": "input_audio_chunk",
+                        "audio_base_64": "",
+                        "commit": True,
+                    }))
 
-                text = result.get("text", "")
-                return text  # может быть "" если речи нет — это нормально
+                    # Читаем ответы, пока не получим committed_transcript
+                    while True:
+                        try:
+                            message = await asyncio.wait_for(ws.recv(), timeout=15.0)
+                        except asyncio.TimeoutError:
+                            # Таймаут — возможно, транскрипт уже пришёл частями
+                            break
 
-            except asyncio.TimeoutError:
-                last_error = "timeout"
-                logger.warning(f"STT: таймаут ElevenLabs (попытка {attempt}/{MAX_RETRIES})")
-            except aiohttp.ClientError as e:
-                last_error = f"client_error: {e}"
-                logger.warning(f"STT: ClientError (попытка {attempt}/{MAX_RETRIES}): {e}")
+                        data = json.loads(message)
+                        msg_type = data.get("message_type")
+
+                        if msg_type == "partial_transcript":
+                            # Частичный транскрипт — можно логировать, но не финальный
+                            pass
+
+                        elif msg_type == "committed_transcript":
+                            full_text = data.get("text", "")
+                            break
+
+                        elif msg_type in ("error", "auth_error", "quota_exceeded"):
+                            raise Exception(f"STT error: {data.get('error', msg_type)}")
+
+                    # Если получили текст — выходим из цикла попыток
+                    if full_text is not None:
+                        return full_text
+
             except Exception as e:
                 last_error = str(e)
-                logger.warning(f"STT: ошибка (попытка {attempt}/{MAX_RETRIES}): {e}")
-
-            if attempt < MAX_RETRIES:
-                delay = RETRY_DELAYS[attempt - 1] if attempt - 1 < len(RETRY_DELAYS) else RETRY_DELAYS[-1]
-                await asyncio.sleep(delay)
+                logger.warning(f"STT WebSocket ошибка (попытка {attempt}/3): {e}")
+                if attempt < 3:
+                    await asyncio.sleep(2 ** attempt)
 
         logger.error(f"STT: все попытки исчерпаны. Последняя ошибка: {last_error}")
         return None
@@ -93,13 +128,9 @@ async def voice_to_text(file_bytes: bytes) -> str:
         return None
 
     finally:
-        if temp_ogg and os.path.exists(temp_ogg):
-            try:
-                os.unlink(temp_ogg)
-            except Exception:
-                pass
-        if temp_wav and os.path.exists(temp_wav):
-            try:
-                os.unlink(temp_wav)
-            except Exception:
-                pass
+        for path in (temp_ogg, temp_pcm):
+            if path and os.path.exists(path):
+                try:
+                    os.unlink(path)
+                except Exception:
+                    pass

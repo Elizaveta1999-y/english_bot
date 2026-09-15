@@ -8,6 +8,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.exceptions import TelegramBadRequest
 from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
 from services.deepseek import chat, DeepSeekError
+from utils.helpers import with_thinking
 from handlers.voice import bot_texts
 from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
@@ -1794,6 +1795,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
         system_prompt = build_system_prompt(topic, description, goals)
         first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English, 2-3 sentences."
+
         try:
             first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=300)
         except DeepSeekError:
@@ -1964,9 +1966,17 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "Никаких других слов."
         )
         try:
-            examples = await chat(example_prompt, max_tokens=150, temperature=0.7)
+            thinking_msg, examples = await with_thinking(
+                message,
+                chat(example_prompt, max_tokens=150, temperature=0.7)
+            )
         except DeepSeekError:
-            examples = "Не удалось сгенерировать примеры. Попробуйте позже."
+            await message.answer("Сервис временно недоступен. Попробуйте позже.")
+            return
+        try:
+            await thinking_msg.delete()
+        except Exception:
+            pass
         feedback_text = (
             "Вы общались только на русском языке. В следующий раз старайтесь использовать английский.\n"
             "Вот примеры фраз, которые вы могли бы сказать:\n" + examples
@@ -1993,10 +2003,17 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "Фидбек:"
         )
         try:
-            feedback = await chat(feedback_prompt, max_tokens=500, temperature=0.5)
+            thinking_msg, feedback = await with_thinking(
+                message,
+                chat(feedback_prompt, max_tokens=500, temperature=0.5)
+            )
         except DeepSeekError:
             await message.answer("Сервис проверки временно недоступен. Попробуйте позже.")
             return
+        try:
+            await thinking_msg.delete()
+        except Exception:
+            pass
         feedback_text = feedback
 
     user_state["mode"] = ""
@@ -2346,6 +2363,10 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     except Exception as e:
         logger.error(f"Ошибка распознавания: {e}")
         await message.answer("Не удалось распознать голос. Попробуйте написать текстом.")
+        return
+
+    if user_text is None:
+        await message.answer("Сервис распознавания временно недоступен. Попробуй ещё раз через минуту.")
         return
 
     if not user_text:

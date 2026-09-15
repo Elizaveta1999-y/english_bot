@@ -1,5 +1,5 @@
 import os
-import time
+import asyncio
 import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher, BaseMiddleware
@@ -37,7 +37,74 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 WEBHOOK_PATH = "/webhook"
 WEBHOOK_SECRET = "my-secret-key"
 
-bot = Bot(token=BOT_TOKEN)
+
+# ========== БОТ С ОЧЕРЕДЬЮ ОТПРАВКИ ==========
+class RateLimitedBot(Bot):
+    """
+    Бот, который пропускает все исходящие запросы через глобальный лимит.
+    Это предотвращает ошибки 429 от Telegram при массовой отправке.
+    """
+
+    # Лимит: 30 операций в секунду на весь бот
+    MAX_PER_SECOND = 30
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._send_lock = asyncio.Lock()
+        self._last_send = 0.0
+        self._min_interval = 1.0 / self.MAX_PER_SECOND
+
+    async def _wait_turn(self):
+        async with self._send_lock:
+            now = asyncio.get_event_loop().time()
+            delta = now - self._last_send
+            if delta < self._min_interval:
+                await asyncio.sleep(self._min_interval - delta)
+            self._last_send = asyncio.get_event_loop().time()
+
+    # Перехватываем все основные отправки
+    async def send_message(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().send_message(*args, **kwargs)
+
+    async def send_voice(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().send_voice(*args, **kwargs)
+
+    async def send_photo(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().send_photo(*args, **kwargs)
+
+    async def send_document(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().send_document(*args, **kwargs)
+
+    async def send_audio(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().send_audio(*args, **kwargs)
+
+    async def send_video(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().send_video(*args, **kwargs)
+
+    async def send_animation(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().send_animation(*args, **kwargs)
+
+    async def edit_message_text(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().edit_message_text(*args, **kwargs)
+
+    async def edit_message_caption(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().edit_message_caption(*args, **kwargs)
+
+    async def edit_message_reply_markup(self, *args, **kwargs):
+        await self._wait_turn()
+        return await super().edit_message_reply_markup(*args, **kwargs)
+
+
+bot = RateLimitedBot(token=BOT_TOKEN)
 
 # ========== REDIS ==========
 REDIS_URL = os.getenv("REDIS_URL")
@@ -52,12 +119,11 @@ else:
     logger.warning("REDIS_URL не задан: FSM в памяти")
 
 
-# ========== ПРОСТОЙ RATE LIMITER ==========
+# ========== RATE LIMITER НА ВХОДЯЩИЕ ==========
 class SimpleRateLimiter(BaseMiddleware):
     """
     Ограничивает количество апдейтов от одного пользователя.
-    Лимит: MAX_EVENTS за WINDOW_SECONDS секунд.
-    Работает через Redis (INCR + EXPIRE).
+    Защищает от спама от одного человека.
     """
 
     def __init__(self, redis_client: Redis, max_events: int = 30, window_seconds: int = 1):
@@ -81,11 +147,9 @@ class SimpleRateLimiter(BaseMiddleware):
             if count == 1:
                 await self.redis.expire(key, self.window)
             if count > self.max_events:
-                # Превышен лимит — молча игнорируем
-                logger.debug(f"Rate limit exceeded for user {user.id} ({count} в {self.window} сек)")
+                logger.debug(f"Rate limit exceeded for user {user.id}")
                 return
         except Exception as e:
-            # Если Redis упал — не блокируем пользователя, просто пропускаем
             logger.warning(f"Rate limiter error: {e}")
 
         return await handler(event, data)
@@ -93,12 +157,11 @@ class SimpleRateLimiter(BaseMiddleware):
 
 dp = Dispatcher(storage=storage) if storage else Dispatcher()
 
-# ========== RATE LIMITING ==========
 if redis_client is not None:
     rate_limiter = SimpleRateLimiter(redis_client, max_events=30, window_seconds=1)
     dp.message.middleware(rate_limiter)
     dp.callback_query.middleware(rate_limiter)
-    logger.warning("Rate limiting: 30 событий/сек на пользователя")
+    logger.warning("Rate limiting на входящие: 30 событий/сек на пользователя")
 
 # ========== MIDDLEWARE ==========
 dp.message.middleware(BotActiveMiddleware())
@@ -109,7 +172,7 @@ dp.callback_query.middleware(ModeTransitionMiddleware())
 dp.message.middleware(SpeakingOverrideMiddleware())
 dp.callback_query.middleware(SpeakingOverrideMiddleware())
 
-# ========== ПОДКЛЮЧАЕМ РОУТЕРЫ ==========
+# ========== РОУТЕРЫ ==========
 dp.include_router(agreement_router)
 dp.include_router(support.router)
 dp.include_router(subscription_router)
@@ -128,7 +191,7 @@ dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(profile.router)
 
-# ========== КОМАНДЫ МЕНЮ ==========
+
 async def set_commands(bot: Bot):
     await bot.delete_my_commands()
     commands = [
@@ -139,6 +202,7 @@ async def set_commands(bot: Bot):
     ]
     await bot.set_my_commands(commands)
 
+
 async def on_startup():
     await init_db()
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
@@ -147,6 +211,7 @@ async def on_startup():
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     await set_commands(bot)
+
 
 dp.startup.register(on_startup)
 
