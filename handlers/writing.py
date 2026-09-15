@@ -371,7 +371,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
     text = f"{task_text}\n\n"
     if task_type in ["email", "post"] and expected_length != 'не указан':
         text += f"Объём: {expected_length}\n"
-    text += f"\n_Максимум: {MAX_WORDS} слов (около {MAX_CHARS} символов)._"
 
     keyboard = get_action_keyboard()
     try:
@@ -585,7 +584,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await state.update_data(last_task_msg_id=None)
 
     # --- ОТПРАВЛЯЕМ ФИДБЕК С ОЦЕНКОЙ (HTML) ---
-    feedback_with_score = f"<b>Оценка:</b> {score}/5\n\n{feedback}"
+    feedback_with_score = f"{feedback}\n\n<b>Оценка:</b> {score}/5"
     await message.answer(feedback_with_score, parse_mode="HTML")
 
     progress_msg_id = data.get("progress_msg_id")
@@ -652,23 +651,17 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     sample = task.get("sample_answer", "Пример ответа отсутствует.")
     await callback.message.answer(f"Пример ответа:\n\n{sample}")
 
-    await callback.message.edit_reply_markup(reply_markup=None)
+    # Убираем кнопку "Показать ответ" из исходного сообщения с заданием
+    new_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Следующее задание", callback_data="writing_next_task")],
+        [InlineKeyboardButton(text="Завершить", callback_data="cancel_writing")]
+    ])
+    try:
+        await callback.message.edit_reply_markup(reply_markup=new_keyboard)
+    except Exception:
+        pass
 
-    task_type = data.get("task_type")
-    level = data.get("level")
-    index = data.get("index", 0)
-    tasks = data.get("tasks", [])
-    user_id = callback.from_user.id
-
-    next_index = index + 1
-    if next_index >= len(tasks):
-        next_index = 0
-    await set_writing_index(user_id, task_type, level, next_index)
-    await state.update_data(
-        index=next_index,
-        current_task=tasks[next_index]
-    )
-    await show_task(callback.message, state, edit=False)
+    # НЕ переключаем задание, пользователь может написать свой ответ
 
 # ---------- ЗАВЕРШЕНИЕ СЕССИИ (кнопка "Завершить") ----------
 @router.callback_query(WritingStates.waiting_answer, F.data == "cancel_writing")

@@ -78,13 +78,15 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
         "Например:\n"
         "<blockquote>1. Используй более разнообразную лексику.</blockquote>\n"
         "<blockquote>2. Обрати внимание на порядок слов.</blockquote>\n"
-        "Максимум одна похвала, если текст действительно хорош.\n"
-        "В конце поставь <b>Оценка: X/5</b>.\n"
+        "Если текст действительно хорош (оценка 4 или 5), добавь ОДНУ короткую похвалу и РОВНО ОДИН смайлик из набора: 👍🏻, 👏🏻, 🤩, 😉. "
+        "Во всём ответе должен быть только один смайлик. Если текст не очень хорош, смайлик не добавляй.\n"
+        "В конце поставь <b>Оценка: X/5</b> (именно в таком формате, без двоеточия после 'Оценка').\n"
         "Форматируй ответ с помощью HTML: заголовки жирным (<b>), советы внутри <blockquote>.\n"
         "Не используй Markdown-разметку (звёздочки, `>` и т.п.).\n"
         "Ответ должен быть кратким, не более 5-6 предложений в сумме (кроме советов).\n"
         "Начинай ответ сразу с разбора, без приветствий и вступлений.\n"
         "Не пиши 'Привет', 'Здравствуйте' и т.п.\n"
+        "Не используй другие эмодзи, кроме разрешённого одного.\n"
     )
 
     url = f"{BASE_URL}/chat/completions"
@@ -113,17 +115,13 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
 
             # Проверяем, что ответ не пустой
             if feedback and feedback.strip():
-                # Убираем лишние HTML-теги (защита от некорректного форматирования)
-                feedback = re.sub(r'<[^>]+>', '', feedback)  # но это удалит все теги, нам не нужно
-                # Лучше не удалять теги, они нужны. Оставим как есть.
-                # Удалим только возможные Markdown-символы (звёздочки) если они остались.
-                # Но мы попросили HTML, так что оставим.
                 # Извлекаем оценку
                 score = 3
-                match = re.search(r'<b>Оценка:</b>\s*(\d+)\s*[/]?\s*5', feedback)
+                # Ищем <b>Оценка: X/5</b>
+                match = re.search(r'<b>Оценка:\s*(\d+)\s*/\s*5</b>', feedback)
                 if not match:
                     # fallback: поиск без тегов
-                    match = re.search(r'Оценка:\s*(\d+)\s*[/]?\s*5', feedback)
+                    match = re.search(r'Оценка:\s*(\d+)\s*/\s*5', feedback)
                 if match:
                     score = int(match.group(1))
                     if score < 1:
@@ -131,8 +129,8 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
                     elif score > 5:
                         score = 5
                     # Удаляем строку с оценкой, чтобы не дублировать
-                    feedback = re.sub(r'<b>Оценка:</b>\s*\d+\s*[/]?\s*5', '', feedback).strip()
-                    feedback = re.sub(r'Оценка:\s*\d+\s*[/]?\s*5', '', feedback).strip()
+                    feedback = re.sub(r'<b>Оценка:\s*\d+\s*/\s*5</b>', '', feedback).strip()
+                    feedback = re.sub(r'Оценка:\s*\d+\s*/\s*5', '', feedback).strip()
 
                 return feedback, score
             else:
