@@ -13,7 +13,7 @@ if not DEEPSEEK_API_KEY:
 DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
 
 # Сколько ждём ответа от DeepSeek (секунд)
-REQUEST_TIMEOUT = 90
+REQUEST_TIMEOUT = 1
 # Сколько попыток всего (1 + 4 повтора)
 MAX_ATTEMPTS = 5
 # Паузы между попытками (экспоненциальные)
