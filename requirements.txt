@@ -13,4 +13,5 @@ python-multipart==0.0.9
 apscheduler==3.10.4
 httpx
 psycopg2-binary==2.9.9
-
+redis
+aiogram-ratelimiter

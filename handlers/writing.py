@@ -321,16 +321,29 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     card_text += f"Ваш средний балл: {avg_score}/5"
 
     keyboard = get_progress_keyboard()
-    try:
-        if edit:
-            await message.edit_text(card_text, reply_markup=keyboard, parse_mode="Markdown")
-            await state.update_data(progress_msg_id=message.message_id)
+
+    if edit:
+        # Редактируем именно сообщение-карточку по progress_msg_id
+        progress_msg_id = data.get("progress_msg_id")
+        if progress_msg_id:
+            try:
+                await message.bot.edit_message_text(
+                    chat_id=message.chat.id,
+                    message_id=progress_msg_id,
+                    text=card_text,
+                    reply_markup=keyboard,
+                    parse_mode="Markdown"
+                )
+            except Exception as e:
+                if "message is not modified" not in str(e):
+                    logger.error(f"Не удалось обновить карточку прогресса: {e}")
         else:
+            # Нет сохранённого id — отправляем новую карточку
             sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
             await state.update_data(progress_msg_id=sent.message_id)
-    except Exception as e:
-        if "message is not modified" not in str(e):
-            raise
+    else:
+        sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
+        await state.update_data(progress_msg_id=sent.message_id)
 
     await state.set_state(WritingStates.showing_progress)
 
@@ -561,14 +574,12 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # ---------- ПРОВЕРКА НА СБОЙ DEEPSEEK ----------
     if feedback is None or score is None:
         await message.answer(
             "Сервис проверки временно недоступен. Попробуй ещё раз через минуту — "
             "твой текст не потерян, просто отправь его снова."
         )
         return
-    # ----------------------------------------------
 
     await update_writing_stats(user_id, task_type, level, score)
 
@@ -587,12 +598,13 @@ async def handle_user_answer(message: Message, state: FSMContext):
     feedback_with_score = f"{feedback}\n\n<b>Оценка:</b> {score}/5"
     await message.answer(feedback_with_score, parse_mode="HTML")
 
+    # Обновляем карточку прогресса — теперь редактируется правильное сообщение
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
             await show_progress_card(message, state, edit=True)
-        except Exception:
-            pass
+        except Exception as e:
+            logger.error(f"Не удалось обновить карточку: {e}")
 
     await go_to_next_task(message, state, user_id, task_type, level, index, tasks)
 

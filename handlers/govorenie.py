@@ -140,7 +140,6 @@ async def handle_command_during_govorenie(message: Message, state: FSMContext):
     await hide_progress_buttons(message, state)
     await message.answer("Практика завершена.")
     await state.clear()
-    # Сбрасываем mode
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
@@ -270,12 +269,29 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     card_text += f"\nВаш средний балл: {avg_score}/5"
 
     keyboard = get_progress_keyboard()
+
     if edit:
-        sent = await message.edit_text(card_text, reply_markup=keyboard, parse_mode="HTML")
+        # Редактируем именно сообщение-карточку по progress_msg_id
+        progress_msg_id = data.get("progress_msg_id")
+        if progress_msg_id:
+            try:
+                await message.bot.edit_message_text(
+                    chat_id=message.chat.id,
+                    message_id=progress_msg_id,
+                    text=card_text,
+                    reply_markup=keyboard,
+                    parse_mode="HTML"
+                )
+            except Exception as e:
+                if "message is not modified" not in str(e):
+                    logger.error(f"Не удалось обновить карточку прогресса: {e}")
+        else:
+            sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="HTML")
+            await state.update_data(progress_msg_id=sent.message_id)
     else:
         sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="HTML")
+        await state.update_data(progress_msg_id=sent.message_id)
 
-    await state.update_data(progress_msg_id=sent.message_id)
     await state.set_state(GovorenieStates.showing_progress)
 
 async def show_task(message: Message, state: FSMContext, edit: bool = False):
@@ -491,14 +507,12 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # ---------- ПРОВЕРКА НА СБОЙ DEEPSEEK ----------
     if feedback is None or score is None:
         await message.answer(
             "Сервис проверки временно недоступен. Попробуй ещё раз через минуту — "
             "твой ответ не потерян, просто отправь голосовое снова."
         )
         return
-    # ----------------------------------------------
 
     logger.info(f"Ответ получен: оценка={score}, фидбек={feedback[:50]}...")
 
@@ -537,6 +551,7 @@ async def handle_voice_message(message: Message, state: FSMContext):
     )
     logger.info("Фидбек отправлен")
 
+    # Обновляем карточку прогресса — теперь редактируется правильное сообщение
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -610,7 +625,6 @@ async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
         )
 
     await state.clear()
-    # Сбрасываем mode
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
@@ -628,7 +642,6 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     await callback.answer()
     await hide_progress_buttons(callback, state)
     await state.clear()
-    # Сбрасываем mode
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
@@ -644,10 +657,6 @@ async def handle_non_voice_in_govorenie(message: Message, state: FSMContext):
 # ФУНКЦИЯ ДЛЯ ВЫЗОВА ИЗ START.PY
 # =====================================================================
 async def start_govorenie(callback: CallbackQuery, state: FSMContext):
-    """
-    Запускает режим Говорение из внешнего вызова (например, из start.py).
-    """
-    # Устанавливаем режим
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = "govorenie_active"

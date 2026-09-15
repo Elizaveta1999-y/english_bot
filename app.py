@@ -4,6 +4,10 @@ from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
+from aiogram.fsm.storage.redis import RedisStorage
+from redis.asyncio import Redis
+from aiogram_ratelimiter import RateLimiter, Rate
+from aiogram_ratelimiter.storages.redis import RedisStorage as RLRateStorage
 from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing, roleplay_voice
 from handlers.subscription import router as subscription_router
 from handlers.reading import router as reading_router
@@ -34,26 +38,51 @@ WEBHOOK_PATH = "/webhook"
 WEBHOOK_SECRET = "my-secret-key"
 
 bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
+
+# ========== REDIS ==========
+REDIS_URL = os.getenv("REDIS_URL")
+
+if REDIS_URL:
+    # FSM-состояния в Redis (чтобы не терять при рестарте и для мультиворкера в будущем)
+    redis_client = Redis.from_url(REDIS_URL)
+    storage = RedisStorage(redis=redis_client)
+    logger.warning("Redis подключён: FSM в Redis, rate limiting включён")
+else:
+    storage = None
+    redis_client = None
+    logger.warning("REDIS_URL не задан: FSM в памяти, rate limiting ОТКЛЮЧЁН")
+
+dp = Dispatcher(storage=storage) if storage else Dispatcher()
+
+# ========== RATE LIMITING ==========
+if redis_client is not None:
+    try:
+        rate_storage = RLRateStorage(redis=redis_client)
+        rate_limiter = RateLimiter(
+            storage=rate_storage,
+            default_rate=Rate(30, 1),  # 30 событий в 1 секунду на пользователя
+        )
+        dp.message.middleware(rate_limiter)
+        dp.callback_query.middleware(rate_limiter)
+        logger.warning("Rate limiting: 30 событий/сек на пользователя")
+    except Exception as e:
+        logger.error(f"Не удалось включить rate limiting: {e}")
 
 # ========== MIDDLEWARE ==========
-# BotActiveMiddleware — САМЫЙ ПЕРВЫЙ. Проверяет "техработы" и гасит апдейт.
 dp.message.middleware(BotActiveMiddleware())
 dp.callback_query.middleware(BotActiveMiddleware())
 
-# ModeTransitionMiddleware — обрабатывает смену режимов
 dp.callback_query.middleware(ModeTransitionMiddleware())
 
-# SpeakingOverrideMiddleware — перехватывает сообщения в speaking
 dp.message.middleware(SpeakingOverrideMiddleware())
 dp.callback_query.middleware(SpeakingOverrideMiddleware())
 
 # ========== ПОДКЛЮЧАЕМ РОУТЕРЫ ==========
-dp.include_router(agreement_router)      # /agreement
-dp.include_router(support.router)        # /support
-dp.include_router(subscription_router)   # /subscription
-dp.include_router(reading.router)        # чтение
-dp.include_router(speaking.router)       # speaking
+dp.include_router(agreement_router)
+dp.include_router(support.router)
+dp.include_router(subscription_router)
+dp.include_router(reading.router)
+dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
 dp.include_router(roleplay_voice.router)
 dp.include_router(start.router)
