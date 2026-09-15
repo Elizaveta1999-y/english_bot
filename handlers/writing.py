@@ -317,8 +317,18 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
         f"*Режим:* {mode_text}\n"
         f"*Уровень:* {level_text}\n\n"
         f"Напишите {task_type} согласно заданию.\n\n"
-        f"Ваш средний балл: {avg_score}/5"
     )
+
+    # Обязательная структура только для эссе
+    if task_type == "essay":
+        card_text += (
+            "_Обязательная структура:_\n"
+            "_1. Начало (вступление)_\n"
+            "_2. Основная часть (аргументы/примеры)_\n"
+            "_3. Конец (заключение)_\n\n"
+        )
+
+    card_text += f"Ваш средний балл: {avg_score}/5"
 
     keyboard = get_progress_keyboard()
     try:
