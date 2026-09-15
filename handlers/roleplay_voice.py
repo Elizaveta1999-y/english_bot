@@ -3,7 +3,16 @@ import logging
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
-from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
+from data.users import (
+    get_user_state,
+    set_user_state,
+    add_voice_seconds,
+    check_voice_access,
+    get_user_access_level,
+    increment_trial_voice,
+    ACCESS_TRIAL,
+    ACCESS_SUBSCRIBED,
+)
 from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
 from handlers.voice import convert_to_opus, bot_texts
@@ -50,6 +59,10 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
         return truncated[:last_space] + '...'
     return truncated + '...'
 
+async def show_subscription_offer(message: Message, user_id: int):
+    from handlers.subscription import show_subscription
+    await show_subscription(message, user_id, from_profile=False, edit=False)
+
 @router.message(F.voice | F.audio, RoleplayStates.active)
 async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -58,25 +71,28 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     if user_state.get("mode") != "roleplay_active":
         return
 
-    if is_voice_limit_reached(user_id):
-        await message.answer(
-            "Ты проговорил(а) целых 5 часов в этом месяце — это отличный результат!\n"
-            "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
-            "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
-        )
+    # Проверка доступа к голосу
+    allowed, reason = check_voice_access(user_id)
+    if not allowed:
+        if reason == "sub_voice_limit":
+            await message.answer(
+                "Ты проговорил(а) целых 2.5 часа в этом месяце — это отличный результат!\n"
+                "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
+                "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
+            )
+        else:
+            await show_subscription_offer(message, user_id)
         return
-
-    audio_obj_pre = message.voice or message.audio
-    if audio_obj_pre is not None:
-        add_voice_seconds(user_id, audio_obj_pre.duration or 0, "roleplay")
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
+    duration = 0
     try:
         audio_obj = message.voice or message.audio
         if audio_obj is None:
             await message.answer("Не удалось найти аудиофайл.")
             return
+        duration = audio_obj.duration or 0
         file = await message.bot.get_file(audio_obj.file_id)
         file_bytes = await message.bot.download_file(file.file_path)
         text = await voice_to_text(file_bytes.read())
@@ -118,6 +134,14 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
         return
 
     ai_response_clean, goals_achieved = process_ai_response(ai_response)
+
+    # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ ГОЛОСА ПОСЛЕ УСПЕШНОЙ ОБРАБОТКИ =====
+    access_level = get_user_access_level(user_id)
+    if access_level == ACCESS_TRIAL:
+        increment_trial_voice(user_id)
+    elif access_level == ACCESS_SUBSCRIBED:
+        add_voice_seconds(user_id, duration, "roleplay")
+    # ================================================================
 
     history.append({"role": "user", "text": text})
     history.append({"role": "assistant", "text": ai_response_clean})

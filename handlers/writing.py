@@ -14,7 +14,14 @@ from utils.db import (
     get_writing_stats, update_writing_stats,
     reset_writing_progress, init_writing_session
 )
-from data.users import get_user_state, set_user_state
+from data.users import (
+    get_user_state,
+    set_user_state,
+    check_writing_access,
+    get_user_access_level,
+    increment_trial_writing,
+    ACCESS_TRIAL,
+)
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -142,6 +149,10 @@ SENTENCE_LIMITS = {
     "post":   {"beginner": 3, "intermediate": 4, "expert": 6},
     "story":  {"beginner": 4, "intermediate": 6, "expert": 6}
 }
+
+async def show_subscription_offer(message: Message, user_id: int):
+    from handlers.subscription import show_subscription
+    await show_subscription(message, user_id, from_profile=False, edit=False)
 
 @router.message(
     StateFilter(
@@ -560,6 +571,14 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer(f"Слишком длинно! Сократите до {max_count} {unit}.")
         return
 
+    # ===== ПРОВЕРКА ДОСТУПА К ПИСЬМУ =====
+    allowed, reason = check_writing_access(user_id)
+    if not allowed:
+        # reason: "trial_writing_limit" или "free_no_access" — оба ведут к офферу
+        await show_subscription_offer(message, user_id)
+        return
+    # ====================================
+
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
 
     # "Думаю..." + запрос к ИИ
@@ -585,6 +604,11 @@ async def handle_user_answer(message: Message, state: FSMContext):
             "твой текст не потерян, просто отправь его снова."
         )
         return
+
+    # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ В ТРИАЛЕ =====
+    if get_user_access_level(user_id) == ACCESS_TRIAL:
+        increment_trial_writing(user_id)
+    # ===========================================
 
     await update_writing_stats(user_id, task_type, level, score)
 

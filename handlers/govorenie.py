@@ -16,7 +16,14 @@ from utils.db import (
     get_govorenie_stats, update_govorenie_stats,
     reset_govorenie_progress, init_govorenie_session
 )
-from data.users import get_user_state, set_user_state
+from data.users import (
+    get_user_state,
+    set_user_state,
+    check_govorenie_access,
+    get_user_access_level,
+    increment_trial_govorenie,
+    ACCESS_TRIAL,
+)
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -92,7 +99,6 @@ def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> b
 async def hide_progress_buttons(message_or_callback, state: FSMContext):
     data = await state.get_data()
 
-    # Правильно определяем chat_id и bot для Message и CallbackQuery
     if isinstance(message_or_callback, Message):
         chat_id = message_or_callback.chat.id
         bot = message_or_callback.bot
@@ -121,6 +127,10 @@ async def hide_progress_buttons(message_or_callback, state: FSMContext):
             )
         except Exception as e:
             logger.error(f"Не удалось скрыть кнопки задания: {e}")
+
+async def show_subscription_offer(message: Message, user_id: int):
+    from handlers.subscription import show_subscription
+    await show_subscription(message, user_id, from_profile=False, edit=False)
 
 # ==================== ПЕРЕХВАТ КОМАНД С ИСКЛЮЧЕНИЯМИ ====================
 @router.message(
@@ -331,7 +341,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         text = f"{task.get('instruction', '')}\n\n<b>{task['topic']}</b>"
     elif task_type == "interview":
         instruction = task.get('instruction', '')
-        # Для экспертного уровня приводим упоминание лимита времени к 3 минутам
         if level == "advanced":
             instruction = re.sub(
                 r'не более\s+2\s+минут',
@@ -427,6 +436,14 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Ошибка: задание не найдено. Начните заново.")
         await state.clear()
         return
+
+    # ===== ПРОВЕРКА ДОСТУПА К ГОВОРЕНИЮ =====
+    allowed, reason = check_govorenie_access(user_id)
+    if not allowed:
+        # reason: "trial_govorenie_limit" или "free_no_access" — оба ведут к офферу
+        await show_subscription_offer(message, user_id)
+        return
+    # =========================================
 
     voice: Voice = message.voice
     duration = voice.duration
@@ -542,6 +559,11 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer(feedback, parse_mode="HTML")
         await message.answer("Попробуйте ещё раз, запишите ответ на это же задание.")
         return
+
+    # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ В ТРИАЛЕ =====
+    if get_user_access_level(user_id) == ACCESS_TRIAL:
+        increment_trial_govorenie(user_id)
+    # ===========================================
 
     await update_govorenie_stats(user_id, task_type, level, score)
 

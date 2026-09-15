@@ -9,7 +9,17 @@ from aiogram.fsm.context import FSMContext
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
-from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
+from data.users import (
+    get_user_state,
+    set_user_state,
+    add_voice_seconds,
+    is_voice_limit_reached,
+    check_voice_access,
+    get_user_access_level,
+    increment_trial_voice,
+    ACCESS_TRIAL,
+    ACCESS_SUBSCRIBED,
+)
 from services.deepseek import DeepSeekError
 from handlers.lessons import show_practice_task, parse_user_answers
 from states.speaking_states import SpeakingStates
@@ -24,11 +34,13 @@ WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
 MAX_TTS_LENGTH = 3000
 
+
 def convert_to_opus(mp3_path: str) -> str:
     ogg_path = tempfile.mktemp(suffix=".ogg")
     cmd = ["ffmpeg", "-i", mp3_path, "-c:a", "libopus", "-ar", "16000", "-ac", "1", "-b:a", "16k", ogg_path, "-y"]
     subprocess.run(cmd, check=True, capture_output=True)
     return ogg_path
+
 
 def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
     if len(text) <= max_len:
@@ -38,6 +50,13 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
     if last_space > 0:
         return truncated[:last_space] + '...'
     return truncated + '...'
+
+
+async def show_subscription_offer(message: Message, user_id: int):
+    """Показать оффер подписки (локальный импорт, чтобы не было циклической зависимости)."""
+    from handlers.subscription import show_subscription
+    await show_subscription(message, user_id, from_profile=False, edit=False)
+
 
 @router.message(F.voice)
 async def handle_voice(message: Message, state: FSMContext):
@@ -77,12 +96,18 @@ async def handle_voice(message: Message, state: FSMContext):
         if current_state != SpeakingStates.waiting_for_voice:
             await state.set_state(SpeakingStates.waiting_for_voice)
 
-        if is_voice_limit_reached(user_id):
-            await message.answer(
-                "Ты проговорил(а) целых 2.5 часа в этом месяце — это отличный результат!\n"
-                "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
-                "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
-            )
+        # Проверка доступа к голосу (триал / подписка / бесплатный / whitelist)
+        allowed, reason = check_voice_access(user_id)
+        if not allowed:
+            if reason == "sub_voice_limit":
+                await message.answer(
+                    "Ты проговорил(а) целых 2.5 часа в этом месяце — это отличный результат!\n"
+                    "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
+                    "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
+                )
+            else:
+                # trial_voice_limit или free_no_access → оффер подписки
+                await show_subscription_offer(message, user_id)
             return
 
         feedback_id = user_state.get("feedback_prompt_msg_id")
@@ -94,8 +119,6 @@ async def handle_voice(message: Message, state: FSMContext):
         file = await bot.get_file(message.voice.file_id)
         file_bytes = await bot.download_file(file.file_path)
         duration = message.voice.duration
-
-        add_voice_seconds(user_id, duration, "speaking")
 
         MAX_DURATION = 180
         if duration > MAX_DURATION:
@@ -143,6 +166,15 @@ async def handle_voice(message: Message, state: FSMContext):
         except DeepSeekError:
             await message.answer("Сервис проверки временно недоступен. Попробуй ещё раз через минуту — твой ответ не потерян, просто отправь голосовое снова.")
             return
+
+        # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ ГОЛОСА ПОСЛЕ УСПЕШНОЙ ОБРАБОТКИ =====
+        access_level = get_user_access_level(user_id)
+        if access_level == ACCESS_TRIAL:
+            increment_trial_voice(user_id)
+        elif access_level == ACCESS_SUBSCRIBED:
+            add_voice_seconds(user_id, duration, "speaking")
+        # ACCESS_UNLIMITED — ничего не пишем
+        # ================================================================
 
         user_state = get_user_state(user_id)
 

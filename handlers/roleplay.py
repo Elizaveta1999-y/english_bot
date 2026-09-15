@@ -6,7 +6,17 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, C
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.exceptions import TelegramBadRequest
-from data.users import get_user_state, set_user_state, add_voice_seconds, is_voice_limit_reached
+from data.users import (
+    get_user_state,
+    set_user_state,
+    add_voice_seconds,
+    check_voice_access,
+    get_user_access_level,
+    increment_trial_voice,
+    ACCESS_TRIAL,
+    ACCESS_SUBSCRIBED,
+    ACCESS_FREE,
+)
 from services.deepseek import chat, DeepSeekError
 from utils.helpers import with_thinking
 from handlers.voice import bot_texts
@@ -1546,6 +1556,11 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list,
         response = response[1:].strip()
     return response
 
+async def show_subscription_offer(message: Message, user_id: int):
+    """Показать оффер подписки (локальный импорт для избежания циклической зависимости)."""
+    from handlers.subscription import show_subscription
+    await show_subscription(message, user_id, from_profile=False, edit=False)
+
 async def send_goal_completion_message(message: Message, user_id: int, user_state: dict, state: FSMContext, bot):
     if user_state.get("roleplay_goal_notified", False):
         return
@@ -2146,6 +2161,11 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     if user_text.startswith('/'):
         return
 
+    # Проверка доступа: бесплатный (после триала без подписки) — блок + оффер
+    if get_user_access_level(user_id) == ACCESS_FREE:
+        await show_subscription_offer(message, user_id)
+        return
+
     if is_forbidden(user_text):
         await message.answer("Пожалуйста, не отходите от темы диалога.")
         return
@@ -2344,17 +2364,22 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     if user_state.get("mode") != "roleplay_active":
         return
 
-    if is_voice_limit_reached(user_id):
-        await message.answer(
-            "Ты проговорил(а) целых 5 часов в этом месяце — это отличный результат!\n"
-            "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
-            "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
-        )
+    # Проверка доступа к голосу (триал / подписка / бесплатный / whitelist)
+    allowed, reason = check_voice_access(user_id)
+    if not allowed:
+        if reason == "sub_voice_limit":
+            await message.answer(
+                "Ты проговорил(а) целых 2.5 часа в этом месяце — это отличный результат!\n"
+                "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
+                "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
+            )
+        else:
+            await show_subscription_offer(message, user_id)
         return
 
-    add_voice_seconds(user_id, message.voice.duration or 0, "roleplay")
-
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
+
+    duration = message.voice.duration or 0
 
     try:
         file = await message.bot.get_file(message.voice.file_id)
@@ -2399,6 +2424,15 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
         await message.answer("Сервис временно недоступен. Попробуйте ещё раз через минуту.")
         return
     ai_response_clean, goals_achieved = process_ai_response(ai_response)
+
+    # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ ГОЛОСА ПОСЛЕ УСПЕШНОЙ ОБРАБОТКИ =====
+    access_level = get_user_access_level(user_id)
+    if access_level == ACCESS_TRIAL:
+        increment_trial_voice(user_id)
+    elif access_level == ACCESS_SUBSCRIBED:
+        add_voice_seconds(user_id, duration, "roleplay")
+    # ACCESS_UNLIMITED — ничего не пишем
+    # ================================================================
 
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response_clean})
