@@ -27,6 +27,9 @@ from handlers.voice import convert_to_opus, truncate_for_tts
 logger = logging.getLogger(__name__)
 router = Router()
 
+MAX_VOICE_DURATION = 120      # 2 минуты
+MAX_TEXT_LENGTH = 500         # 500 символов
+
 class RoleplayStates(StatesGroup):
     active = State()
     confirming_exit = State()
@@ -568,7 +571,7 @@ TOPICS = {
     "shopping": [
         {
             "name": "Помощь в выборе платья",
-            "description": "Вы в магазине одежды, продавец помогает выбрать платье на выпускной.",
+            "description": "Вы в магазине одежды, продавец помогает выбрать платье на мероприятие.",
             "goals": ["Опишите мероприятие", "Примерьте несколько вариантов", "Обсудите выбор"]
         },
         {
@@ -1025,7 +1028,7 @@ TOPICS = {
             "goals": ["Узнайте о часах работы", "Спросите, как получить читательский билет", "Выберите книги"]
         },
         {
-            "name": "Разговор о книге на книжном клубе",
+            "name": "Разговор о книге в книжном клубе",
             "description": "Вы участвуете в книжном клубе и обсуждаете прочитанную книгу.",
             "goals": ["Выскажите своё мнение", "Поспорьте о персонажах", "Предложите следующую книгу"]
         },
@@ -2047,7 +2050,10 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "1. Сначала блок <b>Цели</b> — оцени, достигнуты ли цели пользователя.\n"
             "2. Затем блок <b>Грамматика</b> — выдели 2-3 основные грамматические ошибки с исправлениями.\n"
             "3. Затем блок <b>Удачное</b> — отметь удачные фразы (максимум одна похвала, если есть за что).\n"
-            "4. Затем блок <b>Советы</b> — предложи, что можно улучшить.\n"
+            "4. Затем блок <b>Советы</b> — предложи МАКСИМУМ 2 совета. Каждый совет должен быть оформлен как цитата и пронумерован, например:\n"
+            "1. \"...\"\n"
+            "2. \"...\"\n"
+            "Больше 2 советов не пиши.\n"
             "Учти следующие моменты:\n"
             "- Если пользователь отходил от темы, мягко укажи на это в блоке Советов и напомни тему.\n"
             "- Будь конструктивным, обращайся на 'ты'.\n"
@@ -2055,7 +2061,8 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "- Можно добавить ТОЛЬКО ОДИН смайлик на весь фидбек. Максимум один смайлик во всём ответе.\n"
             "- Не используй приветствия и обращения типа 'ученик', 'пользователь'. Обращайся на 'ты'.\n"
             "- Не включай пункт о длине диалога.\n"
-            "- Не нумеруй пункты.\n\n"
+            "- В блоках Цели, Грамматика, Удачное — не нумеруй пункты.\n"
+            "- В блоке Советы — обязательно нумеруй (1., 2.) и оформляй каждый совет как цитату в кавычках.\n\n"
             "Тема: " + topic + "\n"
             "Цели пользователя: " + goals_text + "\n"
             "Диалог:\n" + dialog_text + "\n\n"
@@ -2215,6 +2222,10 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         return
 
     if user_text.startswith('/'):
+        return
+
+    if len(user_text) > MAX_TEXT_LENGTH:
+        await message.answer("Слишком длинное сообщение, попробуй написать короче.")
         return
 
     if get_user_access_level(user_id) == ACCESS_FREE:
@@ -2434,6 +2445,11 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     if user_state.get("mode") != "roleplay_active":
         return
 
+    duration = message.voice.duration or 0
+    if duration > MAX_VOICE_DURATION:
+        await message.answer("Слишком длинное сообщение, попробуй сказать короче.")
+        return
+
     allowed, reason = check_voice_access(user_id)
     if not allowed:
         if reason == "sub_voice_limit":
@@ -2447,8 +2463,6 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
-
-    duration = message.voice.duration or 0
 
     try:
         file = await message.bot.get_file(message.voice.file_id)
