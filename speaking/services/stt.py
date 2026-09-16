@@ -13,7 +13,8 @@ ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 
 # Формат аудио для реалтайм-распознавания
 SAMPLE_RATE = 16000
-CHUNK_DURATION_MS = 100  # отправляем чанки по 100 мс
+CHUNK_DURATION_MS = 250          # 250 мс аудио в одном чанке
+CHUNK_SEND_INTERVAL = 0.10       # пауза между чанками (отправляем в ~2.5x быстрее реального времени)
 
 # Сетевые настройки WebSocket
 PING_INTERVAL = 30
@@ -37,24 +38,20 @@ async def voice_to_text(file_bytes: bytes) -> str:
     temp_pcm = None
 
     try:
-        # Сохраняем OGG
         with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as f:
             f.write(file_bytes)
             temp_ogg = f.name
 
-        # Конвертируем в PCM 16kHz mono (формат для реалтайма)
         temp_pcm = tempfile.mktemp(suffix=".pcm")
         audio = AudioSegment.from_ogg(temp_ogg)
         audio = audio.set_frame_rate(SAMPLE_RATE).set_channels(1).set_sample_width(2)
         audio.export(temp_pcm, format="raw")
 
-        # Читаем PCM целиком
         with open(temp_pcm, "rb") as f:
             pcm_data = f.read()
 
         logger.warning(f"STT: размер PCM {len(pcm_data)} байт (~{len(pcm_data) / (SAMPLE_RATE * 2):.1f} сек)")
 
-        # URL с параметрами
         url = (
             "wss://api.elevenlabs.io/v1/speech-to-text/realtime"
             f"?model_id=scribe_v2_realtime"
@@ -76,12 +73,12 @@ async def voice_to_text(file_bytes: bytes) -> str:
                     additional_headers={"xi-api-key": ELEVENLABS_API_KEY},
                     ping_interval=PING_INTERVAL,
                     ping_timeout=PING_TIMEOUT,
-                    max_size=None,  # снимаем лимит 1 МБ — иначе длинное аудио рвёт соединение
+                    max_size=None,
+                    max_queue=256,          # увеличиваем приёмный буфер
                 ) as ws:
-                    # Отправляем аудио чанками
                     chunk_size = int(SAMPLE_RATE * 2 * (CHUNK_DURATION_MS / 1000))
                     total_chunks = (len(pcm_data) + chunk_size - 1) // chunk_size
-                    logger.warning(f"STT: отправка {total_chunks} чанков (попытка {attempt}/{MAX_RETRIES})")
+                    logger.warning(f"STT: отправка {total_chunks} чанков по {CHUNK_DURATION_MS} мс (попытка {attempt}/{MAX_RETRIES})")
 
                     for i in range(0, len(pcm_data), chunk_size):
                         chunk = pcm_data[i:i + chunk_size]
@@ -91,6 +88,8 @@ async def voice_to_text(file_bytes: bytes) -> str:
                             "sample_rate": SAMPLE_RATE,
                         }
                         await ws.send(json.dumps(msg))
+                        # Троттлинг: не заливаем всё сразу
+                        await asyncio.sleep(CHUNK_SEND_INTERVAL)
 
                     # Сигнал конца потока
                     await ws.send(json.dumps({
@@ -99,7 +98,6 @@ async def voice_to_text(file_bytes: bytes) -> str:
                         "commit": True,
                     }))
 
-                    # Читаем ответы, пока не упрёмся в таймаут
                     while True:
                         try:
                             message = await asyncio.wait_for(ws.recv(), timeout=30.0)
