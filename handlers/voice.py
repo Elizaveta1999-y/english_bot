@@ -132,7 +132,11 @@ async def handle_voice(message: Message, state: FSMContext):
                 trimmed_path = f"temp_voice_trimmed_{user_id}.ogg"
                 trimmed.export(trimmed_path, format="ogg")
                 with open(trimmed_path, 'rb') as f:
-                    new_voice_msg = await message.reply_voice(voice=f, caption="")
+                    audio_bytes = f.read()
+                new_voice_msg = await message.reply_voice(
+                    voice=BufferedInputFile(audio_bytes, filename="voice.ogg"),
+                    caption=""
+                )
                 await message.delete()
                 os.remove(temp_path)
                 os.remove(trimmed_path)
