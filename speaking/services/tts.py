@@ -45,7 +45,7 @@ async def _generate_voice(text: str, voice_id: str):
     """Внутренняя функция: открывает WebSocket, отправляет текст, собирает аудио."""
 
     url = f"wss://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream-input"
-    url += f"?model_id={MODEL_ID}&output_format=mp3_44100_64"
+    url += f"?model_id={MODEL_ID}&output_format=mp3_44100_64&inactivity_timeout=120"
 
     audio_chunks = []
     context_id = None
