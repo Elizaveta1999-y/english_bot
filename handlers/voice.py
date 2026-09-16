@@ -3,6 +3,7 @@ import tempfile
 import subprocess
 import logging
 import re
+from io import BytesIO
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReactionTypeEmoji
 from aiogram.fsm.context import FSMContext
@@ -135,8 +136,7 @@ async def handle_voice(message: Message, state: FSMContext):
                     trimmed_path, "-y"
                 ], check=True, capture_output=True)
                 with open(trimmed_path, 'rb') as f:
-                    audio_bytes = f.read()
-                file_bytes = BufferedInputFile(audio_bytes, filename="voice.ogg")
+                    file_bytes = BytesIO(f.read())
                 os.remove(temp_path)
                 os.remove(trimmed_path)
             except Exception as e:
