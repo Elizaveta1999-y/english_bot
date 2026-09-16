@@ -130,7 +130,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 audio = AudioSegment.from_file(temp_path, format="ogg")
                 trimmed = audio[:MAX_DURATION * 1000]
                 trimmed_path = f"temp_voice_trimmed_{user_id}.ogg"
-                trimmed.export(trimmed_path, format="ogg")
+                trimmed.export(trimmed_path, format="ogg", codec="libopus", bitrate="16k")
                 with open(trimmed_path, 'rb') as f:
                     audio_bytes = f.read()
                 new_voice_msg = await message.reply_voice(
