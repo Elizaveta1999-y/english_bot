@@ -243,7 +243,7 @@ TOPICS = {
         {
             "name": "Визит к парикмахеру",
             "description": "Вы пришли в парикмахерскую и объясняете мастеру, какую стрижку хотите.",
-            "goals": ["Покажите пример или опишите желаемый стиль", "Обсудите длину", "Спросите о средствах для укладки"]
+            "goals": ["Опишите желаемый стиль", "Обсудите длину", "Спросите о средствах для укладки"]
         },
         {
             "name": "Покупка продуктов в супермаркете",
@@ -402,11 +402,6 @@ TOPICS = {
             "goals": ["Спросите о его интересах", "Расскажите о возможных карьерных путях", "Поддержите его выбор"],
             "ai_role": "teenage",
             "user_role": "parent"
-        },
-        {
-            "name": "Поздравление с днём рождения второй половинки",
-            "description": "Вы готовите сюрприз и поздравляете партнёра.",
-            "goals": ["Скажите тёплые слова", "Предложите подарок", "Расскажите о планах на день"]
         },
         {
             "name": "Обсуждение отпуска с семьёй",
@@ -954,11 +949,6 @@ TOPICS = {
             "name": "Заявка на ипотечный кредит",
             "description": "Вы приходите в банк, чтобы подать заявку на ипотеку. Менеджер проверяет документы.",
             "goals": ["Предоставьте пакет документов", "Узнайте одобрение", "Обсудите подписание договора"]
-        },
-        {
-            "name": "Разговор с застройщиком о сдаче дома",
-            "description": "Вы звоните застройщику, чтобы уточнить сроки сдачи квартиры в новостройке.",
-            "goals": ["Спросите о дате сдачи", "Уточните качество отделки", "Попросите информацию о документах на квартиру"]
         },
         {
             "name": "Поиск комнаты для студента",
@@ -1574,7 +1564,7 @@ def build_system_prompt(topic: str, description: str, goals: list, ai_role: str 
         "Do not mention this token or its meaning anywhere in your text. "
         "If the goals are not yet achieved, do not write anything like this at all.\n"
         "7. Respond naturally, in character.\n"
-        "8. Keep your responses short: 2-3 sentences, concise and to the point.\n"
+        "8. Keep your responses VERY short: 1-2 short sentences, maximum 20 words total. Be concise. Do not write long paragraphs.\n"
     )
     if ai_role and user_role:
         prompt += f"9. You must never act as the {user_role}. Always act as the {ai_role}.\n"
@@ -1854,13 +1844,13 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
                 f"You are the {topic_info['ai_role']}. The user is the {topic_info['user_role']}. "
                 "Start the conversation in character as your role. "
                 "If it's natural for your character to speak first, do so. "
-                "Respond naturally in English, 2-3 sentences."
+                "Respond naturally in English, 1-2 short sentences."
             )
         else:
-            first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English, 2-3 sentences."
+            first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English, 1-2 short sentences."
 
         try:
-            first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=300)
+            first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=80)
         except DeepSeekError:
             await callback.message.answer("Сервис временно недоступен. Попробуйте начать игру ещё раз через минуту.")
             await state.clear()
@@ -1936,7 +1926,6 @@ async def finish_roleplay(message: Message, state: FSMContext):
         await message.answer("Отправьте несколько сообщений, чтобы получить фидбек.", reply_markup=None)
         return
 
-    # Если бот уже сообщал о достижении целей — не перепроверяем
     if user_state.get("roleplay_goals_confirmed", False):
         await generate_feedback(message, state, user_id, user_state)
         return
@@ -2054,17 +2043,19 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         goals_text = "\n".join(goals) if goals else "Нет целей"
         feedback_prompt = (
             "Ты – языковой тренер. Проанализируй диалог пользователя с ИИ в ролевой игре и дай краткий фидбек на русском языке.\n"
+            "СТРУКТУРА ОТВЕТА (строго в этом порядке):\n"
+            "1. Сначала блок <b>Цели</b> — оцени, достигнуты ли цели пользователя.\n"
+            "2. Затем блок <b>Грамматика</b> — выдели 2-3 основные грамматические ошибки с исправлениями.\n"
+            "3. Затем блок <b>Удачное</b> — отметь удачные фразы (максимум одна похвала, если есть за что).\n"
+            "4. Затем блок <b>Советы</b> — предложи, что можно улучшить.\n"
             "Учти следующие моменты:\n"
-            "- Если пользователь отходил от темы, мягко укажи на это и напомни тему.\n"
-            "- Выдели 2-3 основные грамматические ошибки с исправлениями.\n"
-            "- Отметь удачные фразы (максимум одну похвалу, если есть за что).\n"
-            "- Предложи, что можно улучшить.\n"
-            "- Оцени, насколько пользователь достиг целей.\n"
-            "Будь конструктивным, обращайся на 'ты'.\n"
-            "Форматируй ответ без звёздочек, используй HTML-теги <b> для выделения заголовков пунктов. Например: <b>Грамматика</b>, <b>Советы</b>, <b>Цели</b>. Можно добавить 1-2 смайлика, например 📝, 💡, 🎯.\n"
-            "Не используй приветствия и обращения типа 'ученик', 'пользователь'. Обращайся на 'ты'.\n"
-            "Не включай пункт о длине диалога.\n"
-            "Не нумеруй пункты.\n\n"
+            "- Если пользователь отходил от темы, мягко укажи на это в блоке Советов и напомни тему.\n"
+            "- Будь конструктивным, обращайся на 'ты'.\n"
+            "- Форматируй ответ без звёздочек, используй HTML-теги <b> для выделения заголовков пунктов.\n"
+            "- Можно добавить ТОЛЬКО ОДИН смайлик на весь фидбек. Максимум один смайлик во всём ответе.\n"
+            "- Не используй приветствия и обращения типа 'ученик', 'пользователь'. Обращайся на 'ты'.\n"
+            "- Не включай пункт о длине диалога.\n"
+            "- Не нумеруй пункты.\n\n"
             "Тема: " + topic + "\n"
             "Цели пользователя: " + goals_text + "\n"
             "Диалог:\n" + dialog_text + "\n\n"
@@ -2253,7 +2244,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     history = user_state.get("roleplay_history", [])
 
     try:
-        ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=300)
+        ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=80)
     except DeepSeekError:
         await message.answer("Сервис временно недоступен. Попробуйте ещё раз через минуту.")
         return
@@ -2499,7 +2490,7 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
 
     try:
-        ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=300)
+        ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=80)
     except DeepSeekError:
         await message.answer("Сервис временно недоступен. Попробуйте ещё раз через минуту.")
         return
