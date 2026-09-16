@@ -127,10 +127,13 @@ async def handle_voice(message: Message, state: FSMContext):
                 await message.answer("Голосовое сообщение длиннее 3 минут, обработана только первая часть. Записывайте более короткие сообщения для качественной обработки.")
                 temp_path = f"temp_voice_{user_id}.ogg"
                 await bot.download_file(file.file_path, temp_path)
-                audio = AudioSegment.from_file(temp_path, format="ogg")
-                trimmed = audio[:MAX_DURATION * 1000]
                 trimmed_path = f"temp_voice_trimmed_{user_id}.ogg"
-                trimmed.export(trimmed_path, format="ogg", codec="libopus", bitrate="16k")
+                subprocess.run([
+                    "ffmpeg", "-i", temp_path,
+                    "-t", "180",
+                    "-c:a", "libopus", "-ar", "16000", "-ac", "1", "-b:a", "16k",
+                    trimmed_path, "-y"
+                ], check=True, capture_output=True)
                 with open(trimmed_path, 'rb') as f:
                     audio_bytes = f.read()
                 new_voice_msg = await message.reply_voice(

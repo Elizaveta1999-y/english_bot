@@ -15,6 +15,12 @@ ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 SAMPLE_RATE = 16000
 CHUNK_DURATION_MS = 100  # отправляем чанки по 100 мс
 
+# Сетевые настройки WebSocket
+PING_INTERVAL = 30
+PING_TIMEOUT = 30
+MAX_RETRIES = 4
+RETRY_DELAYS = [2, 4, 8]
+
 
 async def voice_to_text(file_bytes: bytes) -> str:
     """
@@ -60,16 +66,16 @@ async def voice_to_text(file_bytes: bytes) -> str:
         full_text = ""
         last_error = None
 
-        for attempt in range(1, 4):  # 3 попытки
+        for attempt in range(1, MAX_RETRIES + 1):
             try:
                 async with websockets.connect(
                     url,
                     additional_headers={"xi-api-key": ELEVENLABS_API_KEY},
-                    ping_interval=20,
-                    ping_timeout=10,
+                    ping_interval=PING_INTERVAL,
+                    ping_timeout=PING_TIMEOUT,
                 ) as ws:
                     # Отправляем аудио чанками по CHUNK_DURATION_MS
-                    chunk_size = int(SAMPLE_RATE * 2 * (CHUNK_DURATION_MS / 1000))  # байт на чанк
+                    chunk_size = int(SAMPLE_RATE * 2 * (CHUNK_DURATION_MS / 1000))
                     for i in range(0, len(pcm_data), chunk_size):
                         chunk = pcm_data[i:i + chunk_size]
                         msg = {
@@ -78,7 +84,6 @@ async def voice_to_text(file_bytes: bytes) -> str:
                             "sample_rate": SAMPLE_RATE,
                         }
                         await ws.send(json.dumps(msg))
-                        # Небольшая пауза, чтобы имитировать реальный поток
                         await asyncio.sleep(0.05)
 
                     # Сигнал конца потока
@@ -93,14 +98,12 @@ async def voice_to_text(file_bytes: bytes) -> str:
                         try:
                             message = await asyncio.wait_for(ws.recv(), timeout=15.0)
                         except asyncio.TimeoutError:
-                            # Таймаут — возможно, транскрипт уже пришёл частями
                             break
 
                         data = json.loads(message)
                         msg_type = data.get("message_type")
 
                         if msg_type == "partial_transcript":
-                            # Частичный транскрипт — можно логировать, но не финальный
                             pass
 
                         elif msg_type == "committed_transcript":
@@ -110,15 +113,22 @@ async def voice_to_text(file_bytes: bytes) -> str:
                         elif msg_type in ("error", "auth_error", "quota_exceeded"):
                             raise Exception(f"STT error: {data.get('error', msg_type)}")
 
-                    # Если получили текст — выходим из цикла попыток
                     if full_text is not None:
                         return full_text
 
+            except websockets.exceptions.ConnectionClosed as e:
+                last_error = f"ConnectionClosed: {e}"
+                logger.warning(f"STT WebSocket соединение закрыто (попытка {attempt}/{MAX_RETRIES}): {e}")
+            except asyncio.TimeoutError:
+                last_error = "timeout"
+                logger.warning(f"STT таймаут (попытка {attempt}/{MAX_RETRIES})")
             except Exception as e:
                 last_error = str(e)
-                logger.warning(f"STT WebSocket ошибка (попытка {attempt}/3): {e}")
-                if attempt < 3:
-                    await asyncio.sleep(2 ** attempt)
+                logger.warning(f"STT WebSocket ошибка (попытка {attempt}/{MAX_RETRIES}): {e}")
+
+            if attempt < MAX_RETRIES:
+                delay = RETRY_DELAYS[attempt - 1] if attempt - 1 < len(RETRY_DELAYS) else RETRY_DELAYS[-1]
+                await asyncio.sleep(delay)
 
         logger.error(f"STT: все попытки исчерпаны. Последняя ошибка: {last_error}")
         return None
