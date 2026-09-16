@@ -31,6 +31,7 @@ class RoleplayStates(StatesGroup):
     active = State()
     confirming_exit = State()
     confirming_finish = State()
+    awaiting_goals_choice = State()
 
 CATEGORIES = [
     ("💼 Work & Business", "work"),
@@ -1566,7 +1567,12 @@ def build_system_prompt(topic: str, description: str, goals: list, ai_role: str 
         "it is NOT considered off-topic. Only warn if the user starts talking about completely unrelated things.\n"
         "4. You do not discuss topics unrelated to the role-play.\n"
         "5. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue.\n"
-        "6. At the end of each response, assess if the user achieved ALL goals. If yes, respond with exactly the word: GOALS_ACHIEVED. Do not add any other text about completion. If not, respond as usual.\n"
+        "6. SPECIAL MARKER: At the END of your response, ONLY if the user has achieved ALL goals, add the exact token GOALS_ACHIEVED on its own, as the very last thing in your message. "
+        "Write it EXACTLY in Latin uppercase letters: GOALS_ACHIEVED. "
+        "NEVER translate it, NEVER write it in Russian (never write ЦЕЛИ_ДОСТИГНУТЫ or similar), "
+        "NEVER write it inside the sentence, NEVER add punctuation around it. "
+        "Do not mention this token or its meaning anywhere in your text. "
+        "If the goals are not yet achieved, do not write anything like this at all.\n"
         "7. Respond naturally, in character.\n"
         "8. Keep your responses short: 2-3 sentences, concise and to the point.\n"
     )
@@ -1591,21 +1597,6 @@ async def show_subscription_offer(message: Message, user_id: int):
     from handlers.subscription import show_subscription
     await show_subscription(message, user_id, from_profile=False, edit=False)
 
-async def send_goal_completion_message(message: Message, user_id: int, user_state: dict, state: FSMContext, bot):
-    if user_state.get("roleplay_goal_notified", False):
-        return
-    user_state["roleplay_goal_notified"] = True
-    set_user_state(user_id, user_state)
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Завершить", callback_data="roleplay_goal_finish"),
-         InlineKeyboardButton(text="Продолжить", callback_data="roleplay_goal_continue")]
-    ])
-    await message.answer(
-        "Похоже, вы выполнили все основные цели этой ситуации. 🎉\n"
-        "Предлагаю завершить и посмотреть результаты!",
-        reply_markup=keyboard
-    )
-
 async def remove_roleplay_keyboard(user_id: int, bot):
     user_state = get_user_state(user_id)
     msg_id = user_state.get("reply_keyboard_msg_id")
@@ -1619,6 +1610,21 @@ async def remove_roleplay_keyboard(user_id: int, bot):
         return True
     return False
 
+async def send_goal_completion_message(message: Message, user_id: int, state: FSMContext):
+    user_state = get_user_state(user_id)
+    user_state["roleplay_goals_confirmed"] = True
+    set_user_state(user_id, user_state)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Завершить", callback_data="roleplay_goal_finish"),
+         InlineKeyboardButton(text="Продолжить", callback_data="roleplay_goal_continue")]
+    ])
+    await message.answer(
+        "🎉 Похоже, вы выполнили все основные цели этой ситуации.\n"
+        "Хотите завершить игру или продолжить?",
+        reply_markup=keyboard
+    )
+    await state.set_state(RoleplayStates.awaiting_goals_choice)
+
 # ---------- Обработчики ----------
 @router.callback_query(F.data == "roleplay_goal_finish")
 async def goal_finish(callback: CallbackQuery, state: FSMContext):
@@ -1626,19 +1632,16 @@ async def goal_finish(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     await callback.message.edit_reply_markup(reply_markup=None)
-    fake_message = callback.message
-    await generate_feedback(fake_message, state, user_id, user_state)
+    await state.clear()
+    await generate_feedback(callback.message, state, user_id, user_state)
 
 @router.callback_query(F.data == "roleplay_goal_continue")
 async def goal_continue(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["roleplay_goal_notified"] = True
-    user_state["roleplay_goal_ignored"] = True
-    set_user_state(user_id, user_state)
     await callback.message.edit_reply_markup(reply_markup=None)
     await callback.message.answer("Продолжаем общение!")
+    await state.set_state(RoleplayStates.active)
 
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery, state: FSMContext):
@@ -1802,6 +1805,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
             "russian_counter": 0,
             "roleplay_goal_notified": False,
             "roleplay_goal_ignored": False,
+            "roleplay_goals_confirmed": False,
             "voice_id": voice_id,
             "reply_keyboard_msg_id": None,
             "ai_role": topic_info.get("ai_role"),
@@ -1884,8 +1888,8 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
             reply_markup=keyboard_translate
         )
 
-        if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
-            await send_goal_completion_message(callback.message, user_id, user_state, state, callback.bot)
+        if goals_achieved and not user_state.get("roleplay_goals_confirmed", False):
+            await send_goal_completion_message(callback.message, user_id, state)
 
     except Exception as e:
         logger.error(f"Ошибка в topic_chosen: {e}", exc_info=True)
@@ -1920,16 +1924,21 @@ async def back_to_main_menu_from_categories(callback: CallbackQuery):
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
+@router.message(RoleplayStates.awaiting_goals_choice, F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("roleplay_history", [])
     goals = user_state.get("roleplay_goals", [])
-    topic = user_state.get("roleplay_topic", "")
 
     user_messages = [m for m in history if m["role"] == "user"]
     if len(user_messages) < 3:
         await message.answer("Отправьте несколько сообщений, чтобы получить фидбек.", reply_markup=None)
+        return
+
+    # Если бот уже сообщал о достижении целей — не перепроверяем
+    if user_state.get("roleplay_goals_confirmed", False):
+        await generate_feedback(message, state, user_id, user_state)
         return
 
     if goals:
@@ -2080,6 +2089,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     user_state["russian_counter"] = 0
     user_state.pop("roleplay_goal_notified", None)
     user_state.pop("roleplay_goal_ignored", None)
+    user_state.pop("roleplay_goals_confirmed", None)
     user_state.pop("ai_role", None)
     user_state.pop("user_role", None)
     await remove_roleplay_keyboard(user_id, message.bot)
@@ -2104,6 +2114,7 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
+@router.message(RoleplayStates.awaiting_goals_choice, F.text == "🏠 Главное меню")
 async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
@@ -2115,6 +2126,7 @@ async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
     user_state["russian_counter"] = 0
     user_state.pop("roleplay_goal_notified", None)
     user_state.pop("roleplay_goal_ignored", None)
+    user_state.pop("roleplay_goals_confirmed", None)
     user_state.pop("voice_id", None)
     user_state.pop("ai_role", None)
     user_state.pop("user_role", None)
@@ -2132,6 +2144,7 @@ async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
 
 @router.message(RoleplayStates.active, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
 @router.message(RoleplayStates.confirming_finish, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
+@router.message(RoleplayStates.awaiting_goals_choice, F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement"]))
 async def handle_commands_in_roleplay(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
@@ -2145,6 +2158,7 @@ async def handle_commands_in_roleplay(message: Message, state: FSMContext):
     user_state["russian_counter"] = 0
     user_state.pop("roleplay_goal_notified", None)
     user_state.pop("roleplay_goal_ignored", None)
+    user_state.pop("roleplay_goals_confirmed", None)
     user_state.pop("voice_id", None)
     user_state.pop("ai_role", None)
     user_state.pop("user_role", None)
@@ -2161,6 +2175,7 @@ async def handle_commands_in_roleplay(message: Message, state: FSMContext):
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
+@router.message(RoleplayStates.awaiting_goals_choice, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
@@ -2270,8 +2285,21 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         reply_markup=keyboard
     )
 
-    if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
-        await send_goal_completion_message(message, user_id, user_state, state, message.bot)
+    if goals_achieved and not user_state.get("roleplay_goals_confirmed", False):
+        await send_goal_completion_message(message, user_id, state)
+
+@router.message(RoleplayStates.awaiting_goals_choice, F.text)
+async def block_text_during_goals_choice(message: Message, state: FSMContext):
+    if message.text in ("💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню"):
+        return
+    if message.text.startswith('/'):
+        await handle_commands_in_roleplay(message, state)
+        return
+    await message.answer("Пожалуйста, выберите действие с помощью кнопок ниже.")
+
+@router.message(RoleplayStates.awaiting_goals_choice, F.voice)
+async def block_voice_during_goals_choice(message: Message, state: FSMContext):
+    await message.answer("Пожалуйста, выберите действие с помощью кнопок ниже.")
 
 @router.message(RoleplayStates.active, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
 async def handle_unsupported_content(message: Message, state: FSMContext):
@@ -2533,8 +2561,8 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     else:
         await message.answer(ai_response_clean)
 
-    if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
-        await send_goal_completion_message(message, user_id, user_state, state, message.bot)
+    if goals_achieved and not user_state.get("roleplay_goals_confirmed", False):
+        await send_goal_completion_message(message, user_id, state)
 
 @router.message(RoleplayStates.confirming_finish, F.text)
 async def block_messages_during_confirmation(message: Message, state: FSMContext):
@@ -2551,13 +2579,24 @@ async def block_voice_during_confirmation(message: Message, state: FSMContext):
     await message.answer("Пожалуйста, выберите действие с помощью кнопок ниже.")
 
 def process_ai_response(response: str) -> tuple[str, bool]:
-    if response.startswith("GOALS_ACHIEVED"):
-        cleaned = response.replace("GOALS_ACHIEVED", "").strip()
-        if cleaned.startswith(','):
-            cleaned = cleaned[1:].strip()
-        if cleaned.startswith('.'):
-            cleaned = cleaned[1:].strip()
-        if cleaned.startswith(':'):
-            cleaned = cleaned[1:].strip()
-        return cleaned, True
-    return response, False
+    goals_achieved = False
+    cleaned = response
+
+    patterns = [
+        r'GOALS_ACHIEVED',
+        r'ЦЕЛИ[_\s]+ДОСТИГНУТЫ',
+        r'Goals?\s+achieved',
+        r'Цели\s+достигнуты',
+        r'GOALS\s+ACHIEVED',
+    ]
+    for pattern in patterns:
+        if re.search(pattern, cleaned, re.IGNORECASE):
+            goals_achieved = True
+            cleaned = re.sub(pattern, '', cleaned, flags=re.IGNORECASE)
+
+    cleaned = cleaned.strip()
+    cleaned = re.sub(r'^[,.:;\-\s]+', '', cleaned)
+    cleaned = re.sub(r'[,.:;\-\s]+$', '', cleaned)
+    cleaned = cleaned.strip()
+
+    return cleaned, goals_achieved
