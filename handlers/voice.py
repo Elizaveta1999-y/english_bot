@@ -136,16 +136,9 @@ async def handle_voice(message: Message, state: FSMContext):
                 ], check=True, capture_output=True)
                 with open(trimmed_path, 'rb') as f:
                     audio_bytes = f.read()
-                new_voice_msg = await message.reply_voice(
-                    voice=BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                    caption=""
-                )
-                await message.delete()
+                file_bytes = BufferedInputFile(audio_bytes, filename="voice.ogg")
                 os.remove(temp_path)
                 os.remove(trimmed_path)
-                message = new_voice_msg
-                file = await bot.get_file(message.voice.file_id)
-                file_bytes = await bot.download_file(file.file_path)
             except Exception as e:
                 logger.error(f"Ошибка обрезки голосового: {e}")
                 await message.answer("Не удалось обработать голосовое. Запишите сообщение короче 3 минут или попробуйте позже.")
