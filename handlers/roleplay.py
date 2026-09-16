@@ -122,7 +122,9 @@ TOPICS = {
         {
             "name": "Звонок клиенту с предложением сервиса",
             "description": "Вы обзваниваете существующих клиентов, чтобы предложить им дополнительный сервис.",
-            "goals": ["Представьтесь и напомните о компании", "Опишите преимущества нового сервиса", "Назначьте встречу для обсуждения"]
+            "goals": ["Представьтесь и напомните о компании", "Опишите преимущества нового сервиса", "Назначьте встречу для обсуждения"],
+            "ai_role": "client receiving a sales call",
+            "user_role": "salesperson making the call"
         },
         {
             "name": "План действий на неделю с руководителем",
@@ -137,7 +139,9 @@ TOPICS = {
         {
             "name": "Обратная связь подчинённому",
             "description": "Вы руководитель, даёте обратную связь сотруднику, который допустил ошибку в отчёте.",
-            "goals": ["Укажите на ошибку", "Объясните, как её избежать в будущем", "Поддержите сотрудника"]
+            "goals": ["Укажите на ошибку", "Объясните, как её избежать в будущем", "Поддержите сотрудника"],
+            "ai_role": "subordinate receiving feedback",
+            "user_role": "manager giving feedback"
         },
         {
             "name": "Ведение переговоров о зарплате",
@@ -152,7 +156,9 @@ TOPICS = {
         {
             "name": "Увольнение сотрудника",
             "description": "Вы сообщаете подчинённому о сокращении штата. Это сложный разговор.",
-            "goals": ["Сообщите новость максимально деликатно", "Объясните причины", "Обсудите компенсацию и дальнейшие шаги"]
+            "goals": ["Сообщите новость максимально деликатно", "Объясните причины", "Обсудите компенсацию и дальнейшие шаги"],
+            "ai_role": "employee being laid off",
+            "user_role": "manager delivering the news"
         },
         {
             "name": "Нетворкинг на конференции",
@@ -379,8 +385,10 @@ TOPICS = {
         },
         {
             "name": "Воспитание подростка, разговор об оценках",
-            "description": "Вы обсуждаете с сыном-подростком его успеваемость и планируете дополнительные занятия.",
-            "goals": ["Спросите о причинах плохих оценок", "Предложите помощь репетитора", "Договоритесь о контроле"]
+            "description": "Вы обсуждаете с подростком его успеваемость и планируете дополнительные занятия.",
+            "goals": ["Спросите о причинах плохих оценок", "Предложите помощь репетитора", "Договоритесь о контроле"],
+            "ai_role": "teenage",
+            "user_role": "parent"
         },
         {
             "name": "Принятие решения о переезде",
@@ -388,9 +396,11 @@ TOPICS = {
             "goals": ["Выскажите свои страхи и надежды", "Выслушайте мнение каждого члена семьи", "Примите общее решение"]
         },
         {
-            "name": "Разговор с дочерью о выборе профессии",
-            "description": "Дочь стоит перед выбором вуза, вы помогаете ей определиться.",
-            "goals": ["Спросите о её интересах", "Расскажите о возможных карьерных путях", "Поддержите её выбор"]
+            "name": "Разговор с подростком о выборе профессии",
+            "description": "Подросток стоит перед выбором вуза, вы помогаете ему определиться.",
+            "goals": ["Спросите о его интересах", "Расскажите о возможных карьерных путях", "Поддержите его выбор"],
+            "ai_role": "teenage",
+            "user_role": "parent"
         },
         {
             "name": "Поздравление с днём рождения второй половинки",
@@ -420,7 +430,9 @@ TOPICS = {
         {
             "name": "Просьба помочь с домашними делами",
             "description": "Вы просите вторую половинку помочь с уборкой квартиры.",
-            "goals": ["Вежливо попросите о помощи", "Объясните, что вам нужно", "Обсудите, как распределить задачи"]
+            "goals": ["Вежливо попросите о помощи", "Объясните, что вам нужно", "Обсудите, как распределить задачи"],
+            "ai_role": "partner being asked for help",
+            "user_role": "partner asking for help"
         }
     ],
     "tech": [
@@ -698,7 +710,9 @@ TOPICS = {
         {
             "name": "Небольшая беседа с новыми соседями",
             "description": "Вы знакомитесь с новыми жильцами в доме, предлагаете помощь.",
-            "goals": ["Представьтесь", "Спросите, нужна ли помощь", "Расскажите о районе"]
+            "goals": ["Представьтесь", "Спросите, нужна ли помощь", "Расскажите о районе"],
+            "ai_role": "new neighbor",
+            "user_role": "existing resident welcoming new neighbor"
         }
     ],
     "education": [
@@ -745,7 +759,9 @@ TOPICS = {
         {
             "name": "Участие в семинаре – вопрос выступающему",
             "description": "На научном семинаре вы хотите задать вопрос докладчику.",
-            "goals": ["Представьтесь", "Задайте конкретный вопрос", "Выслушайте ответ"]
+            "goals": ["Представьтесь", "Задайте конкретный вопрос", "Выслушайте ответ"],
+            "ai_role": "speaker/presenter",
+            "user_role": "attendee asking a question"
         },
         {
             "name": "Обсуждение курсовой с руководителем",
@@ -966,7 +982,9 @@ TOPICS = {
         {
             "name": "Спор с соседями о шуме",
             "description": "Соседи делают ремонт в выходной день. Вы звоните им, чтобы договориться.",
-            "goals": ["Вежливо выразите недовольство", "Обсудите тихие часы", "Придите к соглашению"]
+            "goals": ["Вежливо выразите недовольство", "Обсудите тихие часы", "Придите к соглашению"],
+            "ai_role": "neighbor making noise",
+            "user_role": "neighbor complaining about noise"
         },
         {
             "name": "Оформление договора купли-продажи",
@@ -1341,7 +1359,9 @@ TOPICS = {
         {
             "name": "Рецепт в видеоформате",
             "description": "Вы сняли видео рецепта и обсуждаете его с аудиторией.",
-            "goals": ["Расскажите о процессе", "Ответьте на вопросы", "Попросите обратную связь"]
+            "goals": ["Расскажите о процессе", "Ответьте на вопросы", "Попросите обратную связь"],
+            "ai_role": "audience/viewer",
+            "user_role": "video author/chef"
         },
         {
             "name": "Заказ кофе с собой",
@@ -1479,6 +1499,7 @@ TOPICS = {
         }
     ]
 }
+
 # ===================================================================
 
 def get_categories_keyboard():
@@ -1513,9 +1534,16 @@ def is_forbidden(text: str) -> bool:
             return True
     return False
 
-def build_system_prompt(topic: str, description: str, goals: list) -> str:
+def build_system_prompt(topic: str, description: str, goals: list, ai_role: str = None, user_role: str = None) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
-    return (
+    role_instruction = ""
+    if ai_role and user_role:
+        role_instruction = (
+            f"You are the {ai_role}. The user is the {user_role}. "
+            f"You must never act as the {user_role}. Always stay in your role as the {ai_role}.\n\n"
+        )
+    prompt = (
+        f"{role_instruction}"
         f"You are a character in a role-playing game for learning English. "
         f"Situation: {description}\n"
         f"Topic: {topic}\n"
@@ -1542,6 +1570,9 @@ def build_system_prompt(topic: str, description: str, goals: list) -> str:
         "7. Respond naturally, in character.\n"
         "8. Keep your responses short: 2-3 sentences, concise and to the point.\n"
     )
+    if ai_role and user_role:
+        prompt += f"9. You must never act as the {user_role}. Always act as the {ai_role}.\n"
+    return prompt
 
 async def call_ai_with_system(system_prompt: str, user_text: str, history: list, max_tokens: int = 500) -> str:
     messages = [{"role": "system", "content": system_prompt}]
@@ -1557,7 +1588,6 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list,
     return response
 
 async def show_subscription_offer(message: Message, user_id: int):
-    """Показать оффер подписки (локальный импорт для избежания циклической зависимости)."""
     from handlers.subscription import show_subscription
     await show_subscription(message, user_id, from_profile=False, edit=False)
 
@@ -1773,7 +1803,9 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
             "roleplay_goal_notified": False,
             "roleplay_goal_ignored": False,
             "voice_id": voice_id,
-            "reply_keyboard_msg_id": None
+            "reply_keyboard_msg_id": None,
+            "ai_role": topic_info.get("ai_role"),
+            "user_role": topic_info.get("user_role")
         })
 
         await state.set_state(RoleplayStates.active)
@@ -1808,8 +1840,20 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
         await callback.bot.send_chat_action(chat_id=callback.message.chat.id, action="typing")
 
-        system_prompt = build_system_prompt(topic, description, goals)
-        first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English, 2-3 sentences."
+        system_prompt = build_system_prompt(
+            topic, description, goals,
+            ai_role=topic_info.get("ai_role"),
+            user_role=topic_info.get("user_role")
+        )
+        if topic_info.get("ai_role") and topic_info.get("user_role"):
+            first_prompt = (
+                f"You are the {topic_info['ai_role']}. The user is the {topic_info['user_role']}. "
+                "Start the conversation in character as your role. "
+                "If it's natural for your character to speak first, do so. "
+                "Respond naturally in English, 2-3 sentences."
+            )
+        else:
+            first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English, 2-3 sentences."
 
         try:
             first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=300)
@@ -2036,6 +2080,8 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     user_state["russian_counter"] = 0
     user_state.pop("roleplay_goal_notified", None)
     user_state.pop("roleplay_goal_ignored", None)
+    user_state.pop("ai_role", None)
+    user_state.pop("user_role", None)
     await remove_roleplay_keyboard(user_id, message.bot)
     set_user_state(user_id, user_state)
     await state.clear()
@@ -2070,6 +2116,8 @@ async def back_to_main_menu_from_roleplay(message: Message, state: FSMContext):
     user_state.pop("roleplay_goal_notified", None)
     user_state.pop("roleplay_goal_ignored", None)
     user_state.pop("voice_id", None)
+    user_state.pop("ai_role", None)
+    user_state.pop("user_role", None)
     set_user_state(user_id, user_state)
     await state.clear()
 
@@ -2098,6 +2146,8 @@ async def handle_commands_in_roleplay(message: Message, state: FSMContext):
     user_state.pop("roleplay_goal_notified", None)
     user_state.pop("roleplay_goal_ignored", None)
     user_state.pop("voice_id", None)
+    user_state.pop("ai_role", None)
+    user_state.pop("user_role", None)
     set_user_state(user_id, user_state)
     await state.clear()
 
@@ -2161,7 +2211,6 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     if user_text.startswith('/'):
         return
 
-    # Проверка доступа: бесплатный (после триала без подписки) — блок + оффер
     if get_user_access_level(user_id) == ACCESS_FREE:
         await show_subscription_offer(message, user_id)
         return
@@ -2183,7 +2232,9 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     topic = user_state.get("roleplay_topic", "")
     description = user_state.get("roleplay_description", "")
     goals = user_state.get("roleplay_goals", [])
-    system_prompt = build_system_prompt(topic, description, goals)
+    ai_role = user_state.get("ai_role")
+    user_role = user_state.get("user_role")
+    system_prompt = build_system_prompt(topic, description, goals, ai_role=ai_role, user_role=user_role)
     history = user_state.get("roleplay_history", [])
 
     try:
@@ -2364,7 +2415,6 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     if user_state.get("mode") != "roleplay_active":
         return
 
-    # Проверка доступа к голосу (триал / подписка / бесплатный / whitelist)
     allowed, reason = check_voice_access(user_id)
     if not allowed:
         if reason == "sub_voice_limit":
@@ -2413,7 +2463,9 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     topic = user_state.get("roleplay_topic", "")
     description = user_state.get("roleplay_description", "")
     goals = user_state.get("roleplay_goals", [])
-    system_prompt = build_system_prompt(topic, description, goals)
+    ai_role = user_state.get("ai_role")
+    user_role = user_state.get("user_role")
+    system_prompt = build_system_prompt(topic, description, goals, ai_role=ai_role, user_role=user_role)
     history = user_state.get("roleplay_history", [])
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -2425,14 +2477,11 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
         return
     ai_response_clean, goals_achieved = process_ai_response(ai_response)
 
-    # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ ГОЛОСА ПОСЛЕ УСПЕШНОЙ ОБРАБОТКИ =====
     access_level = get_user_access_level(user_id)
     if access_level == ACCESS_TRIAL:
         increment_trial_voice(user_id)
     elif access_level == ACCESS_SUBSCRIBED:
         add_voice_seconds(user_id, duration, "roleplay")
-    # ACCESS_UNLIMITED — ничего не пишем
-    # ================================================================
 
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response_clean})
