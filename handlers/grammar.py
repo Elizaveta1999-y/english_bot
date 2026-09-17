@@ -136,7 +136,6 @@ for task_type, tasks in RAW_TASKS.items():
     TASKS_BY_TYPE[task_type] = tasks
     logger.info(f"[LOAD] Тип '{task_type}': {len(tasks)} заданий")
 
-# ИСКЛЮЧАЕМ: to_be_скобки, раскрытие_скобок, добавьте_s
 EXCLUDED_TYPES = {"to_be_скобки", "раскрытие_скобок", "добавьте_s"}
 TASK_TYPES = [t for t in TASKS_BY_TYPE.keys() if t not in EXCLUDED_TYPES]
 
@@ -436,7 +435,6 @@ async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False,
 
 # ---------- Функция завершения грамматики ----------
 async def finish_grammar(message: Message, state: FSMContext, bot: Bot):
-    """Завершает текущую сессию грамматики: убирает кнопки, сбрасывает состояние."""
     try:
         data = await state.get_data()
         for msg_id_key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
@@ -568,7 +566,8 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
         progress_msg_id=None,
         task_msg_id=None,
         revision_msg_id=None,
-        revision_header_msg_id=None
+        revision_header_msg_id=None,
+        viewed=0
     )
 
     bot = callback.bot
@@ -595,8 +594,6 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(GrammarStates.in_progress, F.data.startswith("grammar_answer:"))
 @router.callback_query(GrammarStates.waiting_for_text, F.data.startswith("grammar_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
-    # ВНИМАНИЕ: этот обработчик не используется в текущих клавиатурах,
-    # но оставлен для совместимости. Логика работы над ошибками обновлена.
     logger.info(f"[CALLBACK] handle_button_answer от {callback.from_user.id}, data={callback.data}")
     parts = callback.data.split(":")
     if len(parts) < 5:
@@ -685,12 +682,11 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
         await callback.message.answer(result_text, parse_mode="HTML")
 
-        # Сценарий 1: всё исправлено
         if not revision_errors:
             await callback.message.answer(
                 f"🎉 Вы исправили все ошибки!\nИсправлено: {total_errors}\nОсталось: 0"
             )
-            await state.update_data(is_revision=False)
+            await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
             if rev_msg_id:
                 try:
@@ -727,7 +723,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer()
             return
 
-        # Сценарий 2: прошли полный круг
         if viewed >= total_errors:
             исправлено = total_errors - len(revision_errors)
             if исправлено == 0:
@@ -735,7 +730,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             else:
                 text = f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_errors)}"
             await callback.message.answer(text)
-            await state.update_data(is_revision=False)
+            await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
             if rev_msg_id:
                 try:
@@ -772,7 +767,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer()
             return
 
-        # Сценарий 3: продолжаем
         if correct:
             if revision_index >= len(revision_errors):
                 revision_index = 0
@@ -795,7 +789,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         return
 
     else:
-        # Обычный режим (не используется в текущих клавиатурах, но оставлен на всякий)
         if correct:
             await update_grammar_stats(user_id, type_key, level_key, True)
             session_correct += 1
@@ -901,6 +894,9 @@ async def handle_text_answer(message: Message, state: FSMContext):
                 text += f"\n<blockquote>{explanation}</blockquote>"
             return text
 
+    tasks = get_tasks(short_type)
+    order = await get_or_create_order(user_id, short_type)
+
     if is_revision:
         revision_errors = data.get("revision_errors", [])
         revision_index = data.get("revision_index", 0)
@@ -934,12 +930,11 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
         await message.answer(result_text, parse_mode="HTML")
 
-        # Сценарий 1: всё исправлено
         if not revision_errors:
             await message.answer(
                 f"🎉 Вы исправили все ошибки!\nИсправлено: {total_errors}\nОсталось: 0"
             )
-            await state.update_data(is_revision=False)
+            await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
             if rev_msg_id:
                 try:
@@ -975,7 +970,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
             return
 
-        # Сценарий 2: прошли полный круг
         if viewed >= total_errors:
             исправлено = total_errors - len(revision_errors)
             if исправлено == 0:
@@ -983,7 +977,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             else:
                 text = f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_errors)}"
             await message.answer(text)
-            await state.update_data(is_revision=False)
+            await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
             if rev_msg_id:
                 try:
@@ -1019,7 +1013,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
             return
 
-        # Сценарий 3: продолжаем
         if correct:
             if revision_index >= len(revision_errors):
                 revision_index = 0
@@ -1070,9 +1063,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     await message.answer(result_text, parse_mode="HTML")
     logger.info(f"[TEXT] Отправлен результат: {result_text}")
-
-    tasks = get_tasks(short_type)
-    order = await get_or_create_order(user_id, short_type)
 
     next_index = index + 1
     if next_index >= len(order):
@@ -1128,6 +1118,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     data = await state.get_data()
     tasks = get_tasks(short_type)
+    order = await get_or_create_order(user_id, short_type)
 
     task_id = data.get("current_task_id")
     if task_id is not None:
@@ -1138,7 +1129,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             return
     else:
         logger.warning(f"[show_answer] current_task_id отсутствует, использую индекс {index}")
-        order = await get_or_create_order(user_id, short_type)
         if index >= len(order):
             logger.error(f"[show_answer] Ошибка порядка, order={order}, index={index}")
             await callback.answer("Ошибка порядка")
@@ -1203,9 +1193,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         total_errors = data.get("total_errors", len(revision_errors))
         viewed = data.get("viewed", 0) + 1
 
-        # Задание ОСТАЁТСЯ в списке — пользователь не исправил его, только посмотрел
-
-        # Сценарий 1: список пуст (не должно случиться, но на всякий)
         if not revision_errors:
             await callback.message.answer(
                 f"Вы просмотрели все задания с ошибками.\nОсталось: 0"
@@ -1213,7 +1200,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer()
             return
 
-        # Сценарий 2: прошли полный круг
         if viewed >= total_errors:
             исправлено = total_errors - len(revision_errors)
             if исправлено == 0:
@@ -1221,7 +1207,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             else:
                 text = f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_errors)}"
             await callback.message.answer(text)
-            await state.update_data(is_revision=False)
+            await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
             if rev_msg_id:
                 try:
@@ -1240,7 +1226,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 except Exception:
                     pass
                 await state.update_data(revision_header_msg_id=None)
-            order = await get_or_create_order(user_id, short_type)
             current_index = await get_grammar_index(user_id, type_key, level_key)
             if current_index >= len(order):
                 current_index = 0
@@ -1259,7 +1244,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer()
             return
 
-        # Сценарий 3: продолжаем
         revision_index = (revision_index + 1) % len(revision_errors)
         await state.update_data(revision_index=revision_index, viewed=viewed)
 
@@ -1272,7 +1256,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         logger.info(f"[show_answer] Показ следующего ошибочного задания, id={next_error_id}")
 
     else:
-        order = await get_or_create_order(user_id, short_type)
         next_index = index + 1
         if next_index >= len(order):
             next_index = 0
@@ -1553,11 +1536,37 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
 async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
     logger.info(f"[CALLBACK] grammar_cancel_reset от {callback.from_user.id}")
     await callback.answer()
-    try:
-        await callback.message.edit_reply_markup(reply_markup=None)
-        logger.info("[grammar_cancel_reset] Кнопки убраны у сообщения подтверждения")
-    except Exception as e:
-        logger.error(f"[grammar_cancel_reset] Ошибка убирания кнопок: {e}")
+    user_id = callback.from_user.id
+    data = await state.get_data()
+    short_type = data.get("short_type")
+
+    if not short_type:
+        try:
+            await callback.message.edit_reply_markup(reply_markup=None)
+        except Exception:
+            pass
+        return
+
+    type_key = make_type_key(short_type)
+    level_key = "all"
+    tasks = get_tasks(short_type)
+    order = await get_or_create_order(user_id, short_type)
+    current_index = await get_grammar_index(user_id, type_key, level_key)
+    if current_index >= len(order):
+        current_index = 0
+    real_index = order[current_index]
+    task = tasks[real_index]
+
+    await send_or_update_progress(
+        callback.bot,
+        callback.message.chat.id,
+        user_id,
+        short_type,
+        task,
+        msg_id=callback.message.message_id,
+        edit=True
+    )
+    logger.info("[grammar_cancel_reset] Карточка прогресса восстановлена")
 
 # ---------- Завершение сессии ----------
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_finish_session")
