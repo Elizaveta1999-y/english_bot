@@ -304,8 +304,9 @@ async def show_question(message, state, is_revision=False, user_id=None):
     else:
         return
 
-    if is_revision:
-        keyboard = get_revision_card_keyboard(task_id)
+    # ВАЖНО: в revision-режиме оставляем те же кнопки ответа,
+    # что и в обычном режиме — иначе пользователь не сможет отвечать.
+    # (Раньше здесь была перезапись на get_revision_card_keyboard — убрано.)
 
     msg = await message.answer(text, reply_markup=keyboard)
     add_user_message(user_id, msg.message_id)
