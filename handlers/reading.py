@@ -1053,7 +1053,8 @@ async def reading_revision(event, state: FSMContext):
         [InlineKeyboardButton(text="Учебный режим", callback_data="reading_back_to_mode")],
         [InlineKeyboardButton(text="Сбросить ошибки", callback_data="reading_clear_errors")]
     ])
-    await message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
+    # Отправляем НОВЫМ сообщением, не редактируем прогресс
+    await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
     await show_revision_task(message, state)
     if answer_func:
