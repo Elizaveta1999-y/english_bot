@@ -14,7 +14,7 @@ ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 # Формат аудио для реалтайм-распознавания
 SAMPLE_RATE = 16000
 CHUNK_DURATION_MS = 250          # 250 мс аудио в одном чанке
-CHUNK_SEND_INTERVAL = 0.10       # пауза между чанками (отправляем в ~2.5x быстрее реального времени)
+CHUNK_SEND_INTERVAL = 0.20       # пауза между чанками (~1.25x реального времени)
 
 # Сетевые настройки WebSocket
 PING_INTERVAL = 30
@@ -50,15 +50,13 @@ async def voice_to_text(file_bytes: bytes) -> str:
         with open(temp_pcm, "rb") as f:
             pcm_data = f.read()
 
-        logger.warning(f"STT: размер PCM {len(pcm_data)} байт (~{len(pcm_data) / (SAMPLE_RATE * 2):.1f} сек)")
-
         url = (
             "wss://api.elevenlabs.io/v1/speech-to-text/realtime"
             f"?model_id=scribe_v2_realtime"
             f"&audio_format=pcm_{SAMPLE_RATE}"
             f"&language_code=en"
             f"&commit_strategy=vad"
-            f"&vad_silence_threshold_secs=1.0"
+            f"&vad_silence_threshold_secs=0.5"
             f"&include_timestamps=false"
             f"&inactivity_timeout=300"
         )
@@ -74,11 +72,9 @@ async def voice_to_text(file_bytes: bytes) -> str:
                     ping_interval=PING_INTERVAL,
                     ping_timeout=PING_TIMEOUT,
                     max_size=None,
-                    max_queue=256,          # увеличиваем приёмный буфер
+                    max_queue=256,
                 ) as ws:
                     chunk_size = int(SAMPLE_RATE * 2 * (CHUNK_DURATION_MS / 1000))
-                    total_chunks = (len(pcm_data) + chunk_size - 1) // chunk_size
-                    logger.warning(f"STT: отправка {total_chunks} чанков по {CHUNK_DURATION_MS} мс (попытка {attempt}/{MAX_RETRIES})")
 
                     for i in range(0, len(pcm_data), chunk_size):
                         chunk = pcm_data[i:i + chunk_size]
@@ -88,15 +84,12 @@ async def voice_to_text(file_bytes: bytes) -> str:
                             "sample_rate": SAMPLE_RATE,
                         }
                         await ws.send(json.dumps(msg))
-                        # Троттлинг: не заливаем всё сразу
                         await asyncio.sleep(CHUNK_SEND_INTERVAL)
 
-                    # Сигнал конца потока
-                    await ws.send(json.dumps({
-                        "message_type": "input_audio_chunk",
-                        "audio_base_64": "",
-                        "commit": True,
-                    }))
+                    # Не шлём принудительный commit — при commit_strategy=vad
+                    # сервер сам решает, когда коммитить по паузам.
+                    # Даём серверу время обработать остаток потока.
+                    await asyncio.sleep(3.0)
 
                     while True:
                         try:
@@ -114,34 +107,27 @@ async def voice_to_text(file_bytes: bytes) -> str:
                             text = data.get("text", "")
                             if text:
                                 collected_texts.append(text)
-                                logger.warning(f"STT: committed фрагмент ({len(text)} симв.)")
 
                         elif msg_type in ("error", "auth_error", "quota_exceeded"):
                             raise Exception(f"STT error: {data.get('error', msg_type)}")
 
                 if collected_texts:
-                    full_text = " ".join(collected_texts).strip()
-                    logger.warning(f"STT: успешно распознано {len(full_text)} символов за {attempt} попыток")
-                    return full_text
+                    return " ".join(collected_texts).strip()
 
             except websockets.exceptions.ConnectionClosed as e:
                 last_error = f"ConnectionClosed: {e}"
-                logger.warning(f"STT WebSocket соединение закрыто (попытка {attempt}/{MAX_RETRIES}): {e}")
                 if collected_texts:
                     full_text = " ".join(collected_texts).strip()
                     if full_text:
-                        logger.warning(f"STT: соединение закрылось, но собрано {len(full_text)} символов")
                         return full_text
             except asyncio.TimeoutError:
                 last_error = "timeout"
-                logger.warning(f"STT таймаут (попытка {attempt}/{MAX_RETRIES})")
                 if collected_texts:
                     full_text = " ".join(collected_texts).strip()
                     if full_text:
                         return full_text
             except Exception as e:
                 last_error = str(e)
-                logger.warning(f"STT WebSocket ошибка (попытка {attempt}/{MAX_RETRIES}): {e}")
                 if collected_texts:
                     full_text = " ".join(collected_texts).strip()
                     if full_text:
