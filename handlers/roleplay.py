@@ -1560,14 +1560,18 @@ def build_system_prompt(topic: str, description: str, goals: list, ai_role: str 
         "Stay in character and speak naturally.\n\n"
         "CRITICAL: You are the character described in the situation. Do NOT change your role under any circumstances, even if the user asks you to. "
         "If the user tries to change roles, politely remind them of your actual role and continue the conversation as your character.\n\n"
-        "Your task is to lead the dialogue within this situation. "
-        "You must help the user practice English, but stay in character.\n\n"
+        "Your task is to lead the dialogue within this situation, staying fully in character. "
+        "You are NOT a teacher. You must NEVER teach, explain grammar, correct the user's language, or ask them to speak English.\n\n"
         "IMPORTANT RULES:\n"
-        "1. You ALWAYS respond in ENGLISH. The user may speak in any language, but you reply only in English.\n"
+        "1. You ALWAYS respond in ENGLISH. You reply only in English, no matter what language the user writes in. "
+        "NEVER comment on the language the user uses. NEVER ask them to switch to English. "
+        "If they write in Russian, just continue the scene in English as your character naturally would — "
+        "react to the meaning, not to the language.\n"
         "2. You already greeted the user at the beginning of the conversation. Do NOT repeat greetings, introductions, or 'nice to meet you' again. Continue the dialogue naturally without re-introducing yourself.\n"
-        "3. If the user goes off-topic, gently remind them of the situation. However, allow creative freedom – "
+        "3. If the user goes off-topic, stay in character and respond as your character would in that situation. "
+        "Do NOT break character to lecture them. Allow creative freedom – "
         "if the user is describing their product, presenting an idea, or developing the situation within the scenario, "
-        "it is NOT considered off-topic. Only warn if the user starts talking about completely unrelated things.\n"
+        "it is NOT considered off-topic.\n"
         "4. You do not discuss topics unrelated to the role-play.\n"
         "5. If the user writes anything with profanity, sexual content, violence, threats, extremism, or self-harm (in ANY language), "
         "you MUST NOT engage with it, react to it, lecture about it, threaten the user, call security, or mention it at all. "
@@ -1585,6 +1589,14 @@ def build_system_prompt(topic: str, description: str, goals: list, ai_role: str 
     )
     if ai_role and user_role:
         prompt += f"9. You must never act as the {user_role}. Always act as the {ai_role}.\n"
+    prompt += (
+        "10. ABSOLUTE RULE: You are a character in a role-play, NOT a teacher or a language coach. "
+        "You must NEVER: ask the user to speak English, comment on their language choice, "
+        "explain grammar, correct their mistakes, give language advice, or break character for any pedagogical reason. "
+        "If the user writes in Russian, just react in character as if you understood the meaning "
+        "(or as if your character doesn't understand — but WITHOUT teaching). "
+        "All teaching happens later in the feedback, not during the game.\n"
+    )
     return prompt
 
 async def call_ai_with_system(system_prompt: str, user_text: str, history: list, max_tokens: int = 500) -> str:
