@@ -1513,12 +1513,22 @@ def is_cyrillic(text: str) -> bool:
     return bool(re.search('[а-яА-Я]', text))
 
 FORBIDDEN_WORDS = [
+    # English profanity
     "fuck", "bitch", "shit", "cunt", "dick", "pussy", "fucking", "motherfucker", "asshole", "bastard", "damn",
     "penis", "vagina", "cum", "orgasm", "masturbate", "sperm", "erection", "prostitute", "porn", "xxx",
-    "suicide", "kill myself", "cut myself", "self-harm", "die", "death", "hang myself", "overdose",
-    "murder", "rape", "torture", "assault", "kill", "terrorist", "bomb", "shoot", "stab",
-    "nazi", "hitler", "stalin", "terrorism", "dictator", "fascist", "communist", "putin", "zelensky", "trump", "biden",
-    "allah", "muhammad", "jesus", "bible", "quran", "prophet", "church", "mosque", "synagogue", "god", "holy", "priest", "imam"
+    "suicide", "kill myself", "cut myself", "self-harm", "hang myself", "overdose",
+    "murder", "rape", "torture", "assault", "terrorist", "bomb", "shoot", "stab",
+    "nazi", "hitler", "stalin", "terrorism", "dictator", "fascist", "communist",
+    "allah", "muhammad", "jesus", "bible", "quran", "prophet", "church", "mosque", "synagogue",
+    # Russian profanity / vulgar
+    "хуй", "хуя", "хую", "хуе", "пизд", "бляд", "блят", "ебан", "ебал", "ебет", "еби", "ёб",
+    "ебат", "ёбат", "ебуч", "выеб", "заеб", "наеб", "отъеб", "подъеб", "приеб", "проеб", "уеб",
+    "муд", "манда", "шлюх", "сука", "суки", "гандон", "гондон", "дроч", "минет", "оргазм",
+    "член", "сосат", "сосёт", "трах", "шлюха", "проститут", "порн", "секс",
+    # Russian extremist / suicide
+    "суицид", "самоубий", "убить себя", "повеситься", "порезать вены", "передоз",
+    "теракт", "взрыв", "бомба", "убийство", "изнасил", "пытк", "нацист", "гитлер", "сталин",
+    "фашист", "экстремист",
 ]
 
 def is_forbidden(text: str) -> bool:
@@ -1559,7 +1569,11 @@ def build_system_prompt(topic: str, description: str, goals: list, ai_role: str 
         "if the user is describing their product, presenting an idea, or developing the situation within the scenario, "
         "it is NOT considered off-topic. Only warn if the user starts talking about completely unrelated things.\n"
         "4. You do not discuss topics unrelated to the role-play.\n"
-        "5. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue.\n"
+        "5. If the user writes anything with profanity, sexual content, violence, threats, extremism, or self-harm (in ANY language), "
+        "you MUST NOT engage with it, react to it, lecture about it, threaten the user, call security, or mention it at all. "
+        "Instead, respond ONLY with: 'Let's return to our situation' — and continue the role-play naturally on the next turn. "
+        "You must NEVER threaten the user, NEVER say you will call security or tie them up, NEVER lecture them about manners. "
+        "You must NEVER break character to react to provocation. Just ignore and redirect.\n"
         "6. SPECIAL MARKER: At the END of your response, ONLY if the user has achieved ALL goals, add the exact token GOALS_ACHIEVED on its own, as the very last thing in your message. "
         "Write it EXACTLY in Latin uppercase letters: GOALS_ACHIEVED. "
         "NEVER translate it, NEVER write it in Russian (never write ЦЕЛИ_ДОСТИГНУТЫ or similar), "
@@ -2073,7 +2087,14 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "Вот примеры фраз, которые вы могли бы сказать:\n" + examples
         )
     else:
-        dialog_text = "\n".join([f'{m["role"]}: {m["text"]}' for m in history])
+        # Фильтруем историю — убираем сообщения пользователя с запрещёнными темами
+        filtered_history = []
+        for m in history:
+            if m["role"] == "user" and is_forbidden(m["text"]):
+                continue
+            filtered_history.append(m)
+
+        dialog_text = "\n".join([f'{m["role"]}: {m["text"]}' for m in filtered_history])
         goals_text = "\n".join(goals) if goals else "Нет целей"
         feedback_prompt = (
             "Ты – языковой тренер. Проанализируй диалог пользователя с ИИ в ролевой игре и дай краткий фидбек на русском языке.\n"
@@ -2087,6 +2108,10 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "Больше 2 советов не пиши. Не используй кавычки — только тег <blockquote>.\n"
             "Учти следующие моменты:\n"
             "- Если пользователь отходил от темы, мягко укажи на это в блоке Советов и напомни тему.\n"
+            "- КРИТИЧЕСКИ ВАЖНО: если в диалоге встречаются темы насилия, суицида, экстремизма, пошлости, мата, "
+            "угроз или оскорблений — НЕ анализируй их, НЕ упоминай, НЕ цитируй, НЕ давай по ним советов и исправлений. "
+            "Просто полностью игнорируй эти фрагменты и работай только с нейтральной частью диалога. "
+            "Если весь диалог состоит из таких тем — напиши только: 'В этом диалоге нечего разбирать с точки зрения языка.'\n"
             "- Будь конструктивным, обращайся на 'ты'.\n"
             "- Форматируй ответ без звёздочек, используй HTML-теги <b> для выделения заголовков пунктов.\n"
             "- Можно добавить ТОЛЬКО ОДИН смайлик на весь фидбек. Максимум один смайлик во всём ответе.\n"
@@ -2264,7 +2289,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         return
 
     if is_forbidden(user_text):
-        await message.answer("Пожалуйста, не отходите от темы диалога.")
+        await message.answer("Let's return to our situation.")
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -2515,7 +2540,7 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
         return
 
     if is_forbidden(user_text):
-        await message.answer("Пожалуйста, не отходите от темы диалога.")
+        await message.answer("Let's return to our situation.")
         return
 
     if is_cyrillic(user_text):
