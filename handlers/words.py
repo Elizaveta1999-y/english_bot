@@ -125,7 +125,7 @@ def split_answers(answer_str: str) -> list:
 def is_correct(user_answer: str, correct_answer) -> bool:
     user_ans = normalize_text(user_answer)
     if isinstance(correct_answer, str):
-        variants = split_answers(correct_answer)
+        variants = [normalize_text(v) for v in split_answers(correct_answer)]
     else:
         variants = [normalize_text(str(v)) for v in correct_answer]
     return user_ans in variants
@@ -151,11 +151,11 @@ async def update_word_stats(user_id: int, category_key: str, correct: bool):
 async def reset_word_stats(user_id: int, category_key: str):
     await reset_user_stats_db(user_id, make_type_key(category_key), "beginner")
 
-async def add_word_error(user_id: int, category_key: str, word_index: int):
-    await add_reading_error_db(user_id, make_type_key(category_key), "beginner", word_index)
+async def add_word_error(user_id: int, category_key: str, word_id: int):
+    await add_reading_error_db(user_id, make_type_key(category_key), "beginner", word_id)
 
-async def remove_word_error(user_id: int, category_key: str, word_index: int):
-    await remove_reading_error_db(user_id, make_type_key(category_key), "beginner", word_index)
+async def remove_word_error(user_id: int, category_key: str, word_id: int):
+    await remove_reading_error_db(user_id, make_type_key(category_key), "beginner", word_id)
 
 async def get_word_errors(user_id: int, category_key: str):
     return await get_reading_errors_db(user_id, make_type_key(category_key), "beginner")
@@ -167,6 +167,10 @@ async def reset_word_progress(user_id: int, category_key: str):
     await reset_progress_index(user_id, make_type_key(category_key), "beginner")
     await reset_word_stats(user_id, category_key)
     await clear_word_errors(user_id, category_key)
+
+def words_by_id(words: list) -> dict:
+    """Строит словарь id -> word. Используется для поиска слова по id ошибки."""
+    return {w["id"]: w for w in words if "id" in w}
 
 # ---------- Убираем кнопки ----------
 async def remove_buttons_from_messages(bot: Bot, chat_id: int, message_ids: list):
@@ -186,7 +190,6 @@ async def cleanup_practice(user_id: int, bot: Bot, chat_id: int, send_message: b
         msg_ids = list(user_message_ids[user_id].values())
         await remove_buttons_from_messages(bot, chat_id, msg_ids)
     user_sessions.pop(user_id, None)
-    # Сбрасываем mode в user_state
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "words_active":
         user_state["mode"] = ""
@@ -328,7 +331,6 @@ async def words_start(event, state: FSMContext):
         user_message_ids[user_id]["categories"] = sent.message_id
         await event.answer()
 
-# ========== ПЕРЕХВАТ КОМАНД (С ИСКЛЮЧЕНИЯМИ) ==========
 @router.message(
     F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]),
     WordsState.category_chosen
@@ -353,7 +355,6 @@ async def handle_commands_in_words(message: Message, state: FSMContext):
     await message.answer("Практика завершена.")
     from .start import show_main_menu
     await show_main_menu(message, edit=False)
-# =======================================================
 
 @router.callback_query(F.data.startswith("word_cat_"))
 async def category_selected(callback: CallbackQuery, state: FSMContext):
@@ -439,6 +440,7 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
 
     session = {
         "words": words,
+        "words_by_id": words_by_id(words),
         "shuffled_order": shuffled_order,
         "index": start_index,
         "correct": 0,
@@ -452,9 +454,9 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         "revision_index": 0,
         "revision_info_msg_id": None,
         "revision_card_msg_id": None,
-        "revision_corrected": 0,
         "revision_total": 0,
         "revision_initial_errors": [],
+        "viewed": 0,
     }
     user_sessions[user_id] = session
 
@@ -529,11 +531,12 @@ async def handle_answer(message: Message, state: FSMContext):
 
     correct_answer = current_word["answer"]
     user_answer = message.text
+    word_id = current_word["id"]
 
     correct = is_correct(user_answer, correct_answer)
 
     if correct:
-        await remove_word_error(user_id, category_key, word_idx)
+        await remove_word_error(user_id, category_key, word_id)
         await update_word_stats(user_id, category_key, True)
         session["correct"] += 1
 
@@ -544,7 +547,7 @@ async def handle_answer(message: Message, state: FSMContext):
         await message.answer(result_text, parse_mode="HTML")
     else:
         await update_word_stats(user_id, category_key, False)
-        await add_word_error(user_id, category_key, word_idx)
+        await add_word_error(user_id, category_key, word_id)
         session["wrong"] += 1
 
         example = current_word.get("example")
@@ -592,80 +595,94 @@ async def handle_answer(message: Message, state: FSMContext):
 async def handle_revision_answer(message: Message, session: dict, state: FSMContext):
     user_id = message.from_user.id
     category_key = session["category"]
-    error_words = session.get("revision_words", [])
-    idx = session.get("revision_index", 0)
+    revision_words = session.get("revision_words", [])
+    revision_index = session.get("revision_index", 0)
+    total_errors = session.get("revision_total", len(revision_words))
+    viewed = session.get("viewed", 0)
 
-    if idx >= len(error_words):
-        corrected = session.get("revision_corrected", 0)
-        total = session.get("revision_total", len(error_words))
-        remaining = total - corrected
-
-        if remaining == 0:
-            await message.answer("🎉 Вы исправили все ошибки!")
-        else:
-            if corrected == 0:
-                await message.answer("Вы не исправили ни одной ошибки.")
-            else:
-                await message.answer(
-                    f"Вы исправили {corrected} из {total} ошибок. Осталось ошибок: {remaining}"
-                )
+    if not revision_words:
+        await message.answer("🎉 Вы исправили все ошибки!")
         await exit_revision(message, session)
         return
 
-    current_word = error_words[idx]
+    if revision_index >= len(revision_words):
+        revision_index = 0
+
+    current_word = revision_words[revision_index]
     session["current_word"] = current_word
     correct_answer = current_word["answer"]
     user_answer = message.text
+    word_id = current_word["id"]
 
     correct = is_correct(user_answer, correct_answer)
 
-    main_index = session["words"].index(current_word)
-
     if correct:
-        await remove_word_error(user_id, category_key, main_index)
+        await remove_word_error(user_id, category_key, word_id)
         await update_word_stats(user_id, category_key, True)
-        session["revision_corrected"] = session.get("revision_corrected", 0) + 1
         await message.answer(f"Правильно! Ответ: {correct_answer}")
+        revision_words.pop(revision_index)
     else:
         await message.answer(f"Неправильно. Правильный ответ: {correct_answer}")
+        revision_index += 1
 
-    session["revision_index"] = idx + 1
-    if session["revision_index"] < len(error_words):
-        old_card_id = session.get("revision_card_msg_id")
-        if old_card_id:
-            try:
-                await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=old_card_id, reply_markup=None)
-            except Exception:
-                pass
+    viewed += 1
 
-        next_word = error_words[session["revision_index"]]
-        text = f"{next_word['word']}: _____"
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="Показать ответ", callback_data="word_revision_show_answer"),
-             InlineKeyboardButton(text="Завершить", callback_data="word_revision_finish")]
-        ])
-        sent = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-        session["revision_card_msg_id"] = sent.message_id
-        if user_id not in user_message_ids:
-            user_message_ids[user_id] = {}
-        user_message_ids[user_id]["revision_card"] = sent.message_id
-    else:
-        await finish_revision(message, session)
-
-async def finish_revision(message: Message, session: dict):
-    corrected = session.get("revision_corrected", 0)
-    total = session.get("revision_total", 0)
-    remaining = total - corrected
-
-    if remaining == 0:
+    if not revision_words:
+        session["revision_words"] = revision_words
+        session["revision_index"] = 0
+        session["viewed"] = viewed
         await message.answer("🎉 Вы исправили все ошибки!")
-    else:
-        if corrected == 0:
+        await exit_revision(message, session)
+        return
+
+    if viewed >= total_errors:
+        session["revision_words"] = revision_words
+        session["viewed"] = viewed
+        исправлено = total_errors - len(revision_words)
+        if исправлено == 0:
             await message.answer("Вы не исправили ни одной ошибки.")
         else:
-            await message.answer(
-                f"Вы исправили {corrected} из {total} ошибок. Осталось ошибок: {remaining}"
-            )
+            await message.answer(f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_words)}")
+        await exit_revision(message, session)
+        return
+
+    if revision_index >= len(revision_words):
+        revision_index = 0
+
+    session["revision_words"] = revision_words
+    session["revision_index"] = revision_index
+    session["viewed"] = viewed
+
+    old_card_id = session.get("revision_card_msg_id")
+    if old_card_id:
+        try:
+            await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=old_card_id, reply_markup=None)
+        except Exception:
+            pass
+
+    next_word = revision_words[revision_index]
+    text = f"{next_word['word']}: _____"
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Показать ответ", callback_data="word_revision_show_answer"),
+         InlineKeyboardButton(text="Завершить", callback_data="word_revision_finish")]
+    ])
+    sent = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+    session["revision_card_msg_id"] = sent.message_id
+    if user_id not in user_message_ids:
+        user_message_ids[user_id] = {}
+    user_message_ids[user_id]["revision_card"] = sent.message_id
+
+async def finish_revision(message: Message, session: dict):
+    revision_words = session.get("revision_words", [])
+    total_errors = session.get("revision_total", 0)
+    исправлено = total_errors - len(revision_words)
+
+    if исправлено == 0 and revision_words:
+        await message.answer("Вы не исправили ни одной ошибки.")
+    elif not revision_words:
+        await message.answer("🎉 Вы исправили все ошибки!")
+    else:
+        await message.answer(f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось ошибок: {len(revision_words)}")
     await exit_revision(message, session)
 
 async def exit_revision(message: Message, session: dict):
@@ -685,9 +702,9 @@ async def exit_revision(message: Message, session: dict):
     session.pop("revision_card_msg_id", None)
     session.pop("revision_words", None)
     session.pop("revision_index", None)
-    session.pop("revision_corrected", None)
     session.pop("revision_total", None)
     session.pop("revision_initial_errors", None)
+    session.pop("viewed", None)
 
     category_key = session["category"]
     user_id = message.from_user.id
@@ -776,13 +793,20 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
 # ---------- Показать ответ в режиме ревизии ----------
 async def revision_show_answer(callback: CallbackQuery, session: dict):
-    error_words = session.get("revision_words", [])
-    idx = session.get("revision_index", 0)
-    if idx >= len(error_words):
+    user_id = callback.from_user.id
+    revision_words = session.get("revision_words", [])
+    revision_index = session.get("revision_index", 0)
+    total_errors = session.get("revision_total", len(revision_words))
+    viewed = session.get("viewed", 0) + 1
+
+    if not revision_words:
         await callback.answer("Нет слов для показа.", show_alert=True)
         return
 
-    word = error_words[idx]
+    if revision_index >= len(revision_words):
+        revision_index = 0
+
+    word = revision_words[revision_index]
     correct_answer = word["answer"]
     example = word.get("example")
     text = f"Правильный ответ: {correct_answer}"
@@ -790,29 +814,44 @@ async def revision_show_answer(callback: CallbackQuery, session: dict):
         text += f"\n\n<i>{example}</i>"
     await callback.message.answer(text, parse_mode="HTML")
 
-    session["revision_index"] = idx + 1
-    if session["revision_index"] < len(error_words):
-        old_card_id = session.get("revision_card_msg_id")
-        if old_card_id:
-            try:
-                await callback.bot.edit_message_reply_markup(chat_id=callback.message.chat.id, message_id=old_card_id, reply_markup=None)
-            except Exception:
-                pass
+    revision_index += 1
 
-        next_word = error_words[session["revision_index"]]
-        text = f"{next_word['word']}: _____"
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="Показать ответ", callback_data="word_revision_show_answer"),
-             InlineKeyboardButton(text="Завершить", callback_data="word_revision_finish")]
-        ])
-        sent = await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-        session["revision_card_msg_id"] = sent.message_id
-        user_id = callback.from_user.id
-        if user_id not in user_message_ids:
-            user_message_ids[user_id] = {}
-        user_message_ids[user_id]["revision_card"] = sent.message_id
-    else:
-        await finish_revision(callback.message, session)
+    if viewed >= total_errors:
+        session["viewed"] = viewed
+        session["revision_index"] = 0
+        исправлено = total_errors - len(revision_words)
+        if исправлено == 0:
+            await callback.message.answer("Вы не исправили ни одной ошибки.")
+        else:
+            await callback.message.answer(f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_words)}")
+        await exit_revision(callback.message, session)
+        await callback.answer()
+        return
+
+    if revision_index >= len(revision_words):
+        revision_index = 0
+
+    session["revision_index"] = revision_index
+    session["viewed"] = viewed
+
+    old_card_id = session.get("revision_card_msg_id")
+    if old_card_id:
+        try:
+            await callback.bot.edit_message_reply_markup(chat_id=callback.message.chat.id, message_id=old_card_id, reply_markup=None)
+        except Exception:
+            pass
+
+    next_word = revision_words[revision_index]
+    text = f"{next_word['word']}: _____"
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Показать ответ", callback_data="word_revision_show_answer"),
+         InlineKeyboardButton(text="Завершить", callback_data="word_revision_finish")]
+    ])
+    sent = await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+    session["revision_card_msg_id"] = sent.message_id
+    if user_id not in user_message_ids:
+        user_message_ids[user_id] = {}
+    user_message_ids[user_id]["revision_card"] = sent.message_id
 
     await callback.answer()
 
@@ -878,8 +917,10 @@ async def word_revision(callback: CallbackQuery, state: FSMContext):
     initial_errors = errors.copy()
     session["revision_initial_errors"] = initial_errors
 
-    words = session["words"]
-    error_words = [words[i] for i in errors if i < len(words)]
+    words_by_id_map = session.get("words_by_id") or words_by_id(session["words"])
+    session["words_by_id"] = words_by_id_map
+
+    error_words = [words_by_id_map[i] for i in errors if i in words_by_id_map]
     if not error_words:
         await callback.message.answer("Ошибочные слова не найдены.")
         return
@@ -919,8 +960,8 @@ async def word_revision(callback: CallbackQuery, state: FSMContext):
     session["revision_words"] = error_words
     session["revision_index"] = 0
     session["revision_mode"] = True
-    session["revision_corrected"] = 0
     session["revision_total"] = len(error_words)
+    session["viewed"] = 0
 
     first_word = error_words[0]
     text_card = f"{first_word['word']}: _____"
@@ -1156,8 +1197,18 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
-    from .start import show_main_menu
-    await show_main_menu(callback.message, edit=True)
+
+    from .start import WELCOME_TEXT, get_main_menu_keyboard
+    try:
+        await callback.message.edit_text(
+            WELCOME_TEXT,
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode="HTML"
+        )
+    except Exception as e:
+        logger.warning(f"back_to_main: не удалось отредактировать, отправляю новое: {e}")
+        from .start import show_main_menu
+        await show_main_menu(callback.message, edit=False)
     await callback.answer()
 
 @router.message(WordsState.category_chosen, ~F.text)
@@ -1166,5 +1217,4 @@ async def non_text_input(message: Message, state: FSMContext):
 
 # ========== ОБЁРТКА ДЛЯ СОВМЕСТИМОСТИ С ИМПОРТОМ ИЗ start.py ==========
 async def start_words(event, state: FSMContext):
-    """Обёртка для вызова words_start из других модулей (например, start.py)"""
     await words_start(event, state)
