@@ -24,13 +24,11 @@ from utils.db import (
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ---------- Состояния ----------
 class GrammarStates(StatesGroup):
     choosing_type = State()
     waiting_for_text = State()
     in_progress = State()
 
-# ---------- ВСТРОЕННОЕ ГЛАВНОЕ МЕНЮ ----------
 WELCOME_TEXT = (
     "<b>Добро пожаловать в умный тренажер Английского языка! 🇺🇸</b>\n\n"
     "Проходи уроки, выполняй задания и общайся голосом со своим персональным AI-тьютором! 🧠\n"
@@ -65,19 +63,16 @@ async def show_main_menu(message: Message, edit: bool = False):
     else:
         await message.answer(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
 
-# ---------- Перехват команд ----------
 @router.message(
     F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]),
     StateFilter(GrammarStates.choosing_type, GrammarStates.waiting_for_text, GrammarStates.in_progress)
 )
 async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: Bot):
-    logger.info(f"[CMD] Получена команда: {message.text} от {message.from_user.id} в активной грамматике")
     data = await state.get_data()
     task_msg_id = data.get("task_msg_id")
     progress_msg_id = data.get("progress_msg_id")
     revision_msg_id = data.get("revision_msg_id")
     revision_header_msg_id = data.get("revision_header_msg_id")
-    logger.info(f"[CMD] task_msg_id={task_msg_id}, progress_msg_id={progress_msg_id}, revision_msg_id={revision_msg_id}, revision_header_msg_id={revision_header_msg_id}")
 
     for msg_id in [task_msg_id, progress_msg_id, revision_msg_id, revision_header_msg_id]:
         if msg_id:
@@ -87,7 +82,6 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
                     message_id=msg_id,
                     reply_markup=None
                 )
-                logger.info(f"[CMD] Кнопки убраны у сообщения {msg_id}")
             except Exception as e:
                 logger.error(f"[CMD] Не удалось убрать кнопки у {msg_id}: {e}")
 
@@ -98,7 +92,6 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
 
     try:
         await show_main_menu(message, edit=False)
-        logger.info("[CMD] Главное меню показано (новое сообщение)")
     except Exception as e:
         logger.error(f"[CMD] Ошибка показа главного меню: {e}")
 
@@ -106,9 +99,7 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
     user_state = get_user_state(message.from_user.id)
     user_state["mode"] = ""
     set_user_state(message.from_user.id, user_state)
-    logger.info("[CMD] Состояние и режим сброшены")
 
-# ---------- Обработчик не-текстовых сообщений ----------
 @router.message(
     or_f(
         GrammarStates.in_progress,
@@ -117,24 +108,19 @@ async def handle_commands_in_grammar(message: Message, state: FSMContext, bot: B
     ~F.text
 )
 async def handle_non_text_in_grammar(message: Message, state: FSMContext):
-    logger.info(f"[NON-TEXT] Получено не-текстовое сообщение от {message.from_user.id}")
     await message.answer("Введите текстовый ответ")
 
-# ---------- Загрузка заданий ----------
 TASKS_FILE = "data/grammar_tasks.json"
 
 def load_tasks() -> Dict[str, List[Dict]]:
-    logger.info("[LOAD] Загрузка заданий из файла")
     with open(TASKS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
-    logger.info(f"[LOAD] Загружено {len(data)} типов заданий")
     return data
 
 RAW_TASKS = load_tasks()
 TASKS_BY_TYPE = {}
 for task_type, tasks in RAW_TASKS.items():
     TASKS_BY_TYPE[task_type] = tasks
-    logger.info(f"[LOAD] Тип '{task_type}': {len(tasks)} заданий")
 
 EXCLUDED_TYPES = {"to_be_скобки", "раскрытие_скобок", "добавьте_s"}
 TASK_TYPES = [t for t in TASKS_BY_TYPE.keys() if t not in EXCLUDED_TYPES]
@@ -162,7 +148,6 @@ def make_type_key(task_type: str) -> str:
 def get_tasks(task_type: str) -> List[Dict]:
     return TASKS_BY_TYPE.get(task_type, [])
 
-# ---------- Клавиатуры ----------
 def get_type_keyboard() -> InlineKeyboardMarkup:
     buttons = []
     for t in TASK_TYPES:
@@ -201,7 +186,6 @@ def get_clear_errors_confirmation_keyboard() -> InlineKeyboardMarkup:
         [InlineKeyboardButton(text="Назад", callback_data="grammar_cancel_clear_errors")]
     ])
 
-# ---------- Вспомогательные функции ----------
 def extract_instruction_and_task(question: str) -> tuple:
     lines = question.split('\n', 1)
     if len(lines) > 1:
@@ -219,18 +203,14 @@ def extract_instruction_and_task(question: str) -> tuple:
         task_text = question
     return instruction, task_text
 
-# ---------- Функции для работы со случайным порядком ----------
 async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
     type_key = make_type_key(short_type)
-    logger.info(f"[ORDER] Получение порядка для {user_id}, тип {short_type}")
-
     tasks = get_tasks(short_type)
     if not tasks:
         return []
 
     content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
     current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
-    logger.info(f"[ORDER] Текущий хеш: {current_hash[:16]}...")
 
     saved_hash = await get_order_hash(user_id, type_key)
     order = await get_random_order(user_id, type_key)
@@ -242,9 +222,6 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
             order = []
     if not isinstance(order, list):
         order = []
-
-    logger.info(f"[ORDER] Сохранённый хеш: {saved_hash[:16] if saved_hash else 'None'}...")
-    logger.info(f"[ORDER] Порядок: {order[:20] if order else 'None'}...")
 
     need_recreate = False
     reasons = []
@@ -269,16 +246,13 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
         need_recreate = True
 
     if need_recreate:
-        logger.info(f"Причины пересоздания для {short_type}: {', '.join(reasons)}")
         indices = list(range(len(tasks)))
         random.shuffle(indices)
         await set_random_order(user_id, type_key, indices)
         await set_order_hash(user_id, type_key, current_hash)
         await reset_grammar_index(user_id, type_key, "all")
-        logger.info(f"[ORDER] Новый порядок сохранён, хеш обновлён, индекс сброшен")
         return indices
     else:
-        logger.info(f"[ORDER] Порядок получен из БД, длина {len(order)}")
         return order
 
 async def reset_order(user_id: int, short_type: str) -> List[int]:
@@ -290,10 +264,8 @@ async def reset_order(user_id: int, short_type: str) -> List[int]:
     content_str = json.dumps(tasks, sort_keys=True, ensure_ascii=False)
     current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
     await set_order_hash(user_id, type_key, current_hash)
-    logger.info(f"[ORDER] Порядок сброшен для {user_id}, тип {short_type}")
     return indices
 
-# ---------- Отправка прогресса ----------
 async def send_or_update_progress(
     bot: Bot,
     chat_id: int,
@@ -303,16 +275,13 @@ async def send_or_update_progress(
     msg_id: int = None,
     edit: bool = False
 ) -> int:
-    logger.info(f"[PROGRESS] user={user_id}, type={short_type}, edit={edit}, msg_id={msg_id}")
     if edit and msg_id is None:
-        logger.warning("[PROGRESS] edit=True без msg_id – игнорируем")
         return None
 
     type_key = make_type_key(short_type)
     correct, wrong = await get_grammar_stats(user_id, type_key, "all")
     errors = await get_grammar_errors(user_id, type_key, "all")
     errors_len = len(errors)
-    logger.info(f"[PROGRESS] stats: correct={correct}, wrong={wrong}, errors={errors_len}")
 
     display_type = f"{TYPE_EMOJIS.get(short_type, '')} {short_type.replace('_', ' ')}"
 
@@ -334,22 +303,18 @@ async def send_or_update_progress(
 
     if not edit and msg_id is None:
         sent = await bot.send_message(chat_id, text, reply_markup=keyboard, parse_mode="HTML")
-        logger.info(f"[PROGRESS] Создано новое сообщение, id={sent.message_id}")
         return sent.message_id
 
     if edit and msg_id is not None:
         try:
             await bot.edit_message_text(text, chat_id=chat_id, message_id=msg_id, reply_markup=keyboard, parse_mode="HTML")
-            logger.info(f"[PROGRESS] Отредактировано сообщение {msg_id}")
             return msg_id
         except Exception as e:
             logger.error(f"[PROGRESS] Ошибка редактирования {msg_id}: {e}")
             return msg_id
 
-    logger.warning(f"[PROGRESS] Непонятная ситуация, msg_id={msg_id}, edit={edit}")
     return msg_id
 
-# ---------- Отправка задания ----------
 async def send_or_update_task(
     bot: Bot,
     chat_id: int,
@@ -361,12 +326,10 @@ async def send_or_update_task(
     is_revision: bool = False,
     msg_id: int = None
 ) -> int:
-    logger.info(f"[TASK] user={user_id}, type={short_type}, revision={is_revision}, msg_id={msg_id}")
     tasks = get_tasks(short_type)
     if task_id is not None:
         task = next((t for t in tasks if t.get("id") == task_id), None)
         if not task:
-            logger.error(f"[TASK] Задание с id {task_id} не найдено")
             await bot.send_message(chat_id, "Задание не найдено.")
             return None
     else:
@@ -376,7 +339,6 @@ async def send_or_update_task(
         real_index = order[index]
         task = tasks[real_index] if real_index < len(tasks) else None
         if not task:
-            logger.error(f"[TASK] Задание по индексу {index} не найдено")
             await bot.send_message(chat_id, "Задание не найдено.")
             return None
 
@@ -391,7 +353,6 @@ async def send_or_update_task(
     _, task_text = extract_instruction_and_task(task['question'])
     if not task_text:
         task_text = task['question']
-        logger.warning(f"[TASK] task_text был пуст, используем весь вопрос: {task_text[:50]}...")
 
     short_type_code = SHORT_TYPE[short_type]
     callback_index = index if not is_revision else -1
@@ -400,21 +361,17 @@ async def send_or_update_task(
     if msg_id:
         try:
             await bot.edit_message_reply_markup(chat_id, msg_id, reply_markup=None)
-            logger.info(f"[TASK] Убраны кнопки у старого сообщения {msg_id}")
         except Exception as e:
             logger.error(f"[TASK] Не удалось убрать кнопки у {msg_id}: {e}")
 
     sent = await bot.send_message(chat_id, task_text, reply_markup=keyboard, parse_mode="HTML")
-    logger.info(f"[TASK] Создано новое задание, id={sent.message_id}")
     if task.get("input_type") == "text":
         await state.set_state(GrammarStates.waiting_for_text)
     else:
         await state.set_state(GrammarStates.in_progress)
     return sent.message_id
 
-# ---------- Вход в режим выбора типа ----------
 async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False, state: FSMContext = None):
-    logger.info(f"[ENTER] user={user_id}, edit={edit}")
     user_state = get_user_state(user_id)
     user_state["mode"] = "grammar_active"
     set_user_state(user_id, user_state)
@@ -425,15 +382,12 @@ async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False,
     if edit:
         try:
             await message.edit_text(text, reply_markup=keyboard)
-            logger.info("[ENTER] Сообщение отредактировано")
         except Exception as e:
             logger.error(f"[ENTER] Не удалось отредактировать: {e}, отправляем новое")
             await message.answer(text, reply_markup=keyboard)
     else:
         await message.answer(text, reply_markup=keyboard)
-        logger.info("[ENTER] Отправлено новое сообщение")
 
-# ---------- Функция завершения грамматики ----------
 async def finish_grammar(message: Message, state: FSMContext, bot: Bot):
     try:
         data = await state.get_data()
@@ -442,7 +396,6 @@ async def finish_grammar(message: Message, state: FSMContext, bot: Bot):
             if msg_id:
                 try:
                     await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=msg_id, reply_markup=None)
-                    logger.info(f"[finish_grammar] Кнопки убраны у сообщения {msg_id}")
                 except Exception as e:
                     logger.error(f"[finish_grammar] Не удалось убрать кнопки у {msg_id}: {e}")
     except Exception as e:
@@ -452,12 +405,9 @@ async def finish_grammar(message: Message, state: FSMContext, bot: Bot):
     user_state = get_user_state(message.from_user.id)
     user_state["mode"] = ""
     set_user_state(message.from_user.id, user_state)
-    logger.info("[finish_grammar] Состояние и режим сброшены")
 
-# ---------- Обработчики callback'ов ----------
 @router.callback_query(F.data == "start_grammar")
 async def start_grammar(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] start_grammar от {callback.from_user.id}")
     await callback.answer()
     try:
         data = await state.get_data()
@@ -466,7 +416,6 @@ async def start_grammar(callback: CallbackQuery, state: FSMContext):
             if msg_id:
                 try:
                     await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=msg_id)
-                    logger.info(f"[start_grammar] Удалено сообщение {key} id={msg_id}")
                 except Exception as e:
                     logger.error(f"[start_grammar] Не удалось удалить сообщение {msg_id}: {e}")
     except Exception as e:
@@ -476,25 +425,21 @@ async def start_grammar(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "grammar_back_to_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] back_to_main_menu от {callback.from_user.id}")
     await callback.answer()
 
     chat_id = callback.message.chat.id
     data = await state.get_data()
-    logger.info(f"[back_to_main_menu] data keys: {list(data.keys())}")
 
     for key in ("task_msg_id", "progress_msg_id", "revision_msg_id", "revision_header_msg_id"):
         msg_id = data.get(key)
         if msg_id:
             try:
                 await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=msg_id, reply_markup=None)
-                logger.info(f"[back_to_main_menu] Кнопки убраны у {key}: {msg_id}")
             except Exception as e:
                 logger.warning(f"[back_to_main_menu] Не удалось убрать кнопки у {key}: {e}")
 
     try:
         await show_main_menu(callback.message, edit=True)
-        logger.info("[back_to_main_menu] Главное меню показано через редактирование")
     except Exception as e:
         logger.error(f"[back_to_main_menu] Ошибка редактирования: {e}")
         try:
@@ -507,15 +452,12 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     user_state = get_user_state(callback.from_user.id)
     user_state["mode"] = ""
     set_user_state(callback.from_user.id, user_state)
-    logger.info("[back_to_main_menu] Состояние и режим очищены")
 
 @router.callback_query(GrammarStates.choosing_type, F.data == "grammar_back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] back_to_types от {callback.from_user.id}")
     await callback.answer()
     try:
         await callback.message.delete()
-        logger.info("[back_to_types] Сообщение с кнопками удалено")
     except Exception as e:
         logger.error(f"[back_to_types] Не удалось удалить сообщение: {e}")
     await state.clear()
@@ -524,25 +466,21 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
     set_user_state(callback.from_user.id, user_state)
     try:
         await show_main_menu(callback.message, edit=False)
-        logger.info("[back_to_types] Главное меню отправлено")
     except Exception as e:
         logger.error(f"[back_to_types] Ошибка показа главного меню: {e}", exc_info=True)
 
 @router.callback_query(GrammarStates.choosing_type, F.data.startswith("grammar_type_"))
 async def select_type(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] select_type от {callback.from_user.id}, data={callback.data}")
     await callback.answer()
     short_code = callback.data.replace("grammar_type_", "")
     short_type = LONG_TYPE.get(short_code)
     if not short_type:
-        logger.error(f"[select_type] Неизвестный тип: {short_code}")
         await callback.message.answer("Ошибка: неизвестный тип.")
         return
 
     user_id = callback.from_user.id
     tasks = get_tasks(short_type)
     if not tasks:
-        logger.warning(f"[select_type] Нет заданий для типа {short_type}")
         await callback.message.answer("Заданий для этого типа пока нет.")
         return
 
@@ -585,25 +523,20 @@ async def select_type(callback: CallbackQuery, state: FSMContext):
     await state.update_data(progress_msg_id=progress_msg_id, task_msg_id=task_msg_id)
     try:
         await callback.message.delete()
-        logger.info("[select_type] Сообщение с выбором типа удалено")
     except Exception as e:
         logger.error(f"[select_type] Не удалось удалить сообщение с выбором типа: {e}")
-    logger.info(f"[select_type] Сессия начата, progress_id={progress_msg_id}, task_id={task_msg_id}")
 
 # ---------- Обработка ответов (кнопки) ----------
 @router.callback_query(GrammarStates.in_progress, F.data.startswith("grammar_answer:"))
 @router.callback_query(GrammarStates.waiting_for_text, F.data.startswith("grammar_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] handle_button_answer от {callback.from_user.id}, data={callback.data}")
     parts = callback.data.split(":")
     if len(parts) < 5:
-        logger.error("[handle_button_answer] Неверный формат callback")
         await callback.answer("Ошибка формата")
         return
     short_type_code, index_str, chosen_idx_str, mode = parts[1], parts[2], parts[3], parts[4]
     short_type = LONG_TYPE.get(short_type_code)
     if not short_type:
-        logger.error(f"[handle_button_answer] Неизвестный тип: {short_type_code}")
         await callback.answer("Ошибка: неизвестный тип.")
         return
     index = int(index_str)
@@ -614,13 +547,11 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     order = await get_or_create_order(user_id, short_type)
     if index >= len(order):
-        logger.error(f"[handle_button_answer] Ошибка порядка, order={order}, index={index}")
         await callback.answer("Ошибка порядка заданий")
         return
     real_index = order[index]
     tasks = get_tasks(short_type)
     if real_index >= len(tasks):
-        logger.error(f"[handle_button_answer] Индекс {real_index} вне диапазона")
         await callback.answer("Задание не найдено")
         return
     task = tasks[real_index]
@@ -630,8 +561,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     level_key = "all"
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
-
-    logger.info(f"[handle_button_answer] Ответ {'правильный' if correct else 'неправильный'}")
 
     def get_result_text(correct_flag, task_obj):
         if correct_flag:
@@ -677,8 +606,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                     message_id=old_task_msg_id,
                     reply_markup=None
                 )
-            except Exception as e:
-                logger.error(f"[handle_button_answer] Ошибка убирания кнопок: {e}")
+            except Exception:
+                pass
 
         await callback.message.answer(result_text, parse_mode="HTML")
 
@@ -838,17 +767,14 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 @router.message(GrammarStates.waiting_for_text, F.text)
 async def handle_text_answer(message: Message, state: FSMContext):
     if message.text.startswith('/'):
-        logger.info("[TEXT] Игнорируем команду как текстовый ответ")
         return
 
-    logger.info(f"[TEXT] handle_text_answer от {message.from_user.id}, текст: {message.text[:50]}...")
     data = await state.get_data()
     short_type = data.get("short_type")
     index = data.get("current_index", 0)
     is_revision = data.get("is_revision", False)
     task = data.get("actual_task")
     if not task:
-        logger.warning("[TEXT] Задание не найдено в состоянии")
         await message.answer("Задание не найдено. Попробуйте выбрать тип заново.")
         await state.clear()
         return
@@ -876,8 +802,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
-
-    logger.info(f"[TEXT] Ответ {'правильный' if correct else 'неправильный'}")
 
     def get_result_text(correct_flag, task_obj):
         if correct_flag:
@@ -1040,14 +964,12 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.update_data(session_correct=session_correct)
             await remove_grammar_error(user_id, type_key, level_key, task["id"])
             result_text = get_result_text(True, task)
-            logger.info("[TEXT] Правильно, статистика обновлена")
         else:
             await update_grammar_stats(user_id, type_key, level_key, False)
             session_wrong += 1
             await state.update_data(session_wrong=session_wrong)
             await add_grammar_error(user_id, type_key, level_key, task["id"])
             result_text = get_result_text(False, task)
-            logger.info("[TEXT] Неправильно, добавлена ошибка")
 
     old_task_msg_id = data.get("task_msg_id")
     if old_task_msg_id:
@@ -1057,12 +979,10 @@ async def handle_text_answer(message: Message, state: FSMContext):
                 message_id=old_task_msg_id,
                 reply_markup=None
             )
-            logger.info(f"[TEXT] Кнопки убраны у задания {old_task_msg_id}")
         except Exception as e:
             logger.error(f"[TEXT] Ошибка убирания кнопок: {e}")
 
     await message.answer(result_text, parse_mode="HTML")
-    logger.info(f"[TEXT] Отправлен результат: {result_text}")
 
     next_index = index + 1
     if next_index >= len(order):
@@ -1094,22 +1014,18 @@ async def handle_text_answer(message: Message, state: FSMContext):
         msg_id=None
     )
     await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
-    logger.info(f"[TEXT] Переход к следующему заданию, index={next_index}")
 
 # ---------- Показать ответ ----------
 @router.callback_query(GrammarStates.in_progress, F.data.startswith("grammar_show_answer:"))
 @router.callback_query(GrammarStates.waiting_for_text, F.data.startswith("grammar_show_answer:"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] show_answer от {callback.from_user.id}, data={callback.data}")
     parts = callback.data.split(":")
     if len(parts) < 4:
-        logger.error("[show_answer] Неверный формат callback")
         await callback.answer("Ошибка формата")
         return
     short_type_code, index_str, mode = parts[1], parts[2], parts[3]
     short_type = LONG_TYPE.get(short_type_code)
     if not short_type:
-        logger.error(f"[show_answer] Неизвестный тип: {short_type_code}")
         await callback.answer("Ошибка: неизвестный тип.")
         return
     index = int(index_str)
@@ -1124,23 +1040,17 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     if task_id is not None:
         task = next((t for t in tasks if t.get("id") == task_id), None)
         if not task:
-            logger.error(f"[show_answer] Задание с id {task_id} не найдено")
             await callback.answer("Задание не найдено")
             return
     else:
-        logger.warning(f"[show_answer] current_task_id отсутствует, использую индекс {index}")
         if index >= len(order):
-            logger.error(f"[show_answer] Ошибка порядка, order={order}, index={index}")
             await callback.answer("Ошибка порядка")
             return
         real_index = order[index]
         task = tasks[real_index] if real_index < len(tasks) else None
         if not task:
-            logger.error(f"[show_answer] Задание по индексу {real_index} не найдено")
             await callback.answer("Задание не найдено")
             return
-
-    logger.info(f"[show_answer] Показываем ответ для задания id={task.get('id')}, тип {short_type}, revision={is_revision}")
 
     correct_answer = task.get("correct")
     if task.get("input_type") == "text":
@@ -1177,12 +1087,10 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 message_id=old_task_msg_id,
                 reply_markup=None
             )
-            logger.info(f"[show_answer] Кнопки убраны у задания {old_task_msg_id}")
         except Exception as e:
             logger.error(f"[show_answer] Ошибка убирания кнопок: {e}")
 
     await callback.message.answer(msg_text, parse_mode="HTML")
-    logger.info(f"[show_answer] Отправлен правильный ответ: {msg_text}")
 
     type_key = make_type_key(short_type)
     level_key = "all"
@@ -1194,9 +1102,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         viewed = data.get("viewed", 0) + 1
 
         if not revision_errors:
-            await callback.message.answer(
-                f"Вы просмотрели все задания с ошибками.\nОсталось: 0"
-            )
+            await callback.message.answer("Вы просмотрели все задания с ошибками.\nОсталось: 0")
             await callback.answer()
             return
 
@@ -1253,7 +1159,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             task_id=next_error_id, is_revision=True, msg_id=None
         )
         await state.update_data(revision_msg_id=new_rev_msg_id)
-        logger.info(f"[show_answer] Показ следующего ошибочного задания, id={next_error_id}")
 
     else:
         next_index = index + 1
@@ -1273,7 +1178,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             msg_id=None
         )
         await state.update_data(task_msg_id=new_task_msg_id)
-        logger.info(f"[show_answer] Переход к следующему заданию, index={next_index}")
 
     await callback.answer()
 
@@ -1281,13 +1185,11 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_revision")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_revision")
 async def grammar_revision(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] grammar_revision от {callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
     if not short_type:
-        logger.warning("[grammar_revision] Тип не выбран")
         await callback.message.answer("Сначала выберите тип задания.")
         return
 
@@ -1295,7 +1197,6 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
     level_key = "all"
     errors = await get_grammar_errors(user_id, type_key, level_key)
     if not errors:
-        logger.info("[grammar_revision] Ошибок нет")
         await callback.message.answer("🎉 Ошибок нет! Отличная работа.")
         return
 
@@ -1307,7 +1208,6 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
                 message_id=old_progress_id,
                 reply_markup=None
             )
-            logger.info(f"[grammar_revision] Кнопки убраны у прогресса {old_progress_id}")
         except Exception as e:
             logger.error(f"[grammar_revision] Ошибка убирания кнопок у прогресса: {e}")
 
@@ -1319,7 +1219,6 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
                 message_id=old_task_msg_id,
                 reply_markup=None
             )
-            logger.info(f"[grammar_revision] Кнопки убраны у старого задания {old_task_msg_id}")
         except Exception as e:
             logger.error(f"[grammar_revision] Ошибка убирания кнопок у старого задания: {e}")
 
@@ -1337,7 +1236,6 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
     tasks = get_tasks(short_type)
     task = next((t for t in tasks if t.get("id") == task_id), None)
     if not task:
-        logger.error(f"[grammar_revision] Задание с id {task_id} не найдено")
         await callback.message.answer("Задание с ошибкой не найдено.")
         return
 
@@ -1349,7 +1247,6 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
         [InlineKeyboardButton(text="Сбросить ошибки", callback_data="grammar_clear_errors")]
     ])
     header_msg = await callback.message.answer(header_text, reply_markup=keyboard, parse_mode="HTML")
-    logger.info("[grammar_revision] Отправлен заголовок с кнопками 'Учебный режим' и 'Сбросить ошибки'")
     await state.update_data(revision_header_msg_id=header_msg.message_id)
 
     rev_msg_id = await send_or_update_task(
@@ -1363,18 +1260,15 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
         msg_id=None
     )
     await state.update_data(revision_msg_id=rev_msg_id)
-    logger.info(f"[grammar_revision] Начало работы над ошибками, rev_msg_id={rev_msg_id}")
 
 # ---------- Обработчик кнопки "Учебный режим" ----------
 @router.callback_query(F.data == "grammar_back_to_learning")
 async def back_to_learning(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] back_to_learning от {callback.from_user.id}")
     await callback.answer()
     data = await state.get_data()
     short_type = data.get("short_type")
     user_id = callback.from_user.id
     if not short_type:
-        logger.warning("[back_to_learning] Тип не выбран, переход в главное меню")
         await state.clear()
         try:
             await show_main_menu(callback.message, edit=True)
@@ -1422,7 +1316,6 @@ async def back_to_learning(callback: CallbackQuery, state: FSMContext):
                 message_id=rev_msg_id,
                 reply_markup=None
             )
-            logger.info(f"[back_to_learning] Кнопки убраны у revision-сообщения {rev_msg_id}")
         except Exception as e:
             logger.error(f"[back_to_learning] Ошибка убирания кнопок у revision-сообщения: {e}")
         await state.update_data(revision_msg_id=None)
@@ -1435,12 +1328,10 @@ async def back_to_learning(callback: CallbackQuery, state: FSMContext):
                 message_id=rev_header_id,
                 reply_markup=None
             )
-            logger.info(f"[back_to_learning] Кнопки убраны у заголовка revision {rev_header_id}")
         except Exception as e:
             logger.error(f"[back_to_learning] Ошибка убирания кнопок у заголовка revision: {e}")
         await state.update_data(revision_header_msg_id=None)
 
-    logger.info("[back_to_learning] Возврат в учебный режим")
     try:
         await callback.message.delete()
     except Exception as e:
@@ -1450,7 +1341,6 @@ async def back_to_learning(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_reset")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_reset")
 async def grammar_reset_confirm(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] grammar_reset_confirm от {callback.from_user.id}")
     await callback.answer()
     confirm_text = (
         "Вы уверены, что хотите сбросить весь прогресс для текущего типа?\n"
@@ -1458,17 +1348,14 @@ async def grammar_reset_confirm(callback: CallbackQuery, state: FSMContext):
         "Это действие нельзя отменить."
     )
     await callback.message.edit_text(confirm_text, reply_markup=get_reset_confirmation_keyboard(), parse_mode="HTML")
-    logger.info("[grammar_reset_confirm] Показано подтверждение сброса")
 
 @router.callback_query(F.data == "grammar_confirm_reset")
 async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] grammar_confirm_reset от {callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
     if not short_type:
-        logger.error("[grammar_confirm_reset] Тип не выбран")
         await callback.message.answer("Ошибка: не выбран тип.")
         return
 
@@ -1488,7 +1375,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
 
     tasks = get_tasks(short_type)
     if not tasks:
-        logger.warning("[grammar_confirm_reset] Нет заданий для типа")
         await callback.message.answer("Заданий для этого типа нет.")
         return
 
@@ -1500,12 +1386,10 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
                 message_id=old_task_msg_id,
                 reply_markup=None
             )
-            logger.info(f"[grammar_confirm_reset] Кнопки убраны у старого задания {old_task_msg_id}")
         except Exception as e:
             logger.error(f"[grammar_confirm_reset] Ошибка убирания кнопок: {e}")
 
     await callback.message.edit_text("Прогресс сброшен. Задания перемешаны заново, вы начнёте с первого.", reply_markup=None)
-    logger.info("[grammar_confirm_reset] Сообщение подтверждения изменено")
 
     old_progress_id = data.get("progress_msg_id")
     real_index = new_order[0]
@@ -1530,11 +1414,9 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         msg_id=None
     )
     await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
-    logger.info("[grammar_confirm_reset] Прогресс и задание обновлены после сброса")
 
 @router.callback_query(F.data == "grammar_cancel_reset")
 async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] grammar_cancel_reset от {callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     data = await state.get_data()
@@ -1566,19 +1448,16 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
         msg_id=callback.message.message_id,
         edit=True
     )
-    logger.info("[grammar_cancel_reset] Карточка прогресса восстановлена")
 
 # ---------- Завершение сессии ----------
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_finish_session")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_finish_session")
 async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] grammar_finish_session от {callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
     if not short_type:
-        logger.error("[grammar_finish_session] Тип не выбран")
         await callback.message.answer("Ошибка: не выбран тип.")
         return
 
@@ -1606,7 +1485,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
                     message_id=rev_msg_id,
                     reply_markup=None
                 )
-                logger.info(f"[grammar_finish_session] Кнопки убраны у revision-сообщения {rev_msg_id}")
             except Exception as e:
                 logger.error(f"[grammar_finish_session] Ошибка убирания кнопок у revision-сообщения: {e}")
             await state.update_data(revision_msg_id=None)
@@ -1618,7 +1496,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
                     message_id=rev_header_id,
                     reply_markup=None
                 )
-                logger.info(f"[grammar_finish_session] Кнопки убраны у заголовка revision {rev_header_id}")
             except Exception as e:
                 logger.error(f"[grammar_finish_session] Ошибка убирания кнопок у заголовка revision: {e}")
             await state.update_data(revision_header_msg_id=None)
@@ -1654,8 +1531,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
 
         await callback.message.answer(text)
-        logger.info(f"[grammar_finish_session] Завершение revision, текст: {text}")
-
         await callback.answer()
         return
 
@@ -1674,7 +1549,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
                 message_id=task_msg_id,
                 reply_markup=None
             )
-            logger.info(f"[grammar_finish_session] Кнопки убраны у задания {task_msg_id}")
         except Exception as e:
             logger.error(f"[grammar_finish_session] Ошибка убирания кнопок у задания: {e}")
     progress_msg_id = data.get("progress_msg_id")
@@ -1685,7 +1559,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
                 message_id=progress_msg_id,
                 reply_markup=None
             )
-            logger.info(f"[grammar_finish_session] Кнопки убраны у прогресса {progress_msg_id}")
         except Exception as e:
             logger.error(f"[grammar_finish_session] Ошибка убирания кнопок у прогресса: {e}")
     rev_msg_id = data.get("revision_msg_id")
@@ -1696,7 +1569,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
                 message_id=rev_msg_id,
                 reply_markup=None
             )
-            logger.info(f"[grammar_finish_session] Кнопки убраны у revision-сообщения {rev_msg_id}")
         except Exception as e:
             logger.error(f"[grammar_finish_session] Ошибка убирания кнопок у revision-сообщения: {e}")
     rev_header_id = data.get("revision_header_msg_id")
@@ -1707,12 +1579,10 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
                 message_id=rev_header_id,
                 reply_markup=None
             )
-            logger.info(f"[grammar_finish_session] Кнопки убраны у заголовка revision {rev_header_id}")
         except Exception as e:
             logger.error(f"[grammar_finish_session] Ошибка убирания кнопок у заголовка revision: {e}")
 
     await callback.message.answer(text, parse_mode="HTML")
-    logger.info(f"[grammar_finish_session] Отправлен текст завершения: {text}")
 
     await state.clear()
     user_state = get_user_state(user_id)
@@ -1721,13 +1591,12 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
 
     try:
         await show_main_menu(callback.message, edit=False)
-        logger.info("[grammar_finish_session] Главное меню показано")
     except Exception as e:
         logger.error(f"[grammar_finish_session] Ошибка показа главного меню: {e}", exc_info=True)
         try:
             await callback.bot.send_message(
                 chat_id=callback.message.chat.id,
-                text="Добро пожаловать в умный тренажер Английского языка! 🇺🇸\n\nПроходи уроки, выполняй задания и общайся голосом со своим персональным AI-тьютором! 🧠\nВыбирай режим и начни совершенствоваться в языке!",
+                text="Добро пожаловать в умный тренажер Английского языка! 🇺🇸",
                 reply_markup=InlineKeyboardMarkup(inline_keyboard=[
                     [InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar")]
                 ]),
@@ -1741,7 +1610,6 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_clear_errors")
 @router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_clear_errors")
 async def grammar_clear_errors_confirm(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] grammar_clear_errors_confirm от {callback.from_user.id}")
     await callback.answer()
     confirm_text = (
         "Вы уверены, что хотите сбросить все ошибки?\n"
@@ -1749,22 +1617,55 @@ async def grammar_clear_errors_confirm(callback: CallbackQuery, state: FSMContex
         "Это действие нельзя отменить."
     )
     await callback.message.edit_text(confirm_text, reply_markup=get_clear_errors_confirmation_keyboard(), parse_mode="HTML")
-    logger.info("[grammar_clear_errors_confirm] Показано подтверждение очистки ошибок")
 
 @router.callback_query(F.data == "grammar_confirm_clear_errors")
 async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] grammar_confirm_clear_errors от {callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     data = await state.get_data()
     short_type = data.get("short_type")
     if not short_type:
-        logger.error("[grammar_confirm_clear_errors] Тип не выбран")
         await callback.message.answer("Ошибка: не выбран тип.")
         return
     type_key = make_type_key(short_type)
     level_key = "all"
     await clear_grammar_errors(user_id, type_key, level_key)
+
+    # Убираем кнопки у карточки задания ревизии
+    rev_msg_id = data.get("revision_msg_id")
+    if rev_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=rev_msg_id,
+                reply_markup=None
+            )
+        except Exception as e:
+            logger.error(f"[grammar_confirm_clear_errors] Ошибка убирания кнопок у revision-сообщения: {e}")
+
+    # Убираем кнопки у старой карточки обычного режима
+    old_task_id = data.get("task_msg_id")
+    if old_task_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=old_task_id,
+                reply_markup=None
+            )
+        except Exception as e:
+            logger.error(f"[grammar_confirm_clear_errors] Ошибка убирания кнопок у task-сообщения: {e}")
+
+    # Убираем кнопки у заголовка ревизии
+    rev_header_id = data.get("revision_header_msg_id")
+    if rev_header_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=rev_header_id,
+                reply_markup=None
+            )
+        except Exception as e:
+            logger.error(f"[grammar_confirm_clear_errors] Ошибка убирания кнопок у заголовка revision: {e}")
 
     await callback.message.edit_text("Список ошибок очищен. Продолжайте тренировку.")
     await state.update_data(is_revision=False, viewed=0)
@@ -1798,12 +1699,10 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
         msg_id=None
     )
     await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
-    logger.info("[grammar_confirm_clear_errors] Ошибки очищены, прогресс и задание обновлены")
     await callback.answer()
 
 @router.callback_query(F.data == "grammar_cancel_clear_errors")
 async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"[CALLBACK] grammar_cancel_clear_errors от {callback.from_user.id}")
     await callback.answer()
     data = await state.get_data()
     short_type = data.get("short_type")
@@ -1839,7 +1738,6 @@ async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext
         await state.update_data(progress_msg_id=new_progress_id, task_msg_id=new_task_msg_id)
         try:
             await callback.message.delete()
-            logger.info("[grammar_cancel_clear_errors] Сообщение подтверждения удалено")
         except Exception as e:
             logger.error(f"[grammar_cancel_clear_errors] Ошибка удаления сообщения: {e}")
     else:
