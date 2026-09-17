@@ -574,14 +574,12 @@ async def handle_user_answer(message: Message, state: FSMContext):
     # ===== ПРОВЕРКА ДОСТУПА К ПИСЬМУ =====
     allowed, reason = check_writing_access(user_id)
     if not allowed:
-        # reason: "trial_writing_limit" или "free_no_access" — оба ведут к офферу
         await show_subscription_offer(message, user_id)
         return
     # ====================================
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
 
-    # "Думаю..." + запрос к ИИ
     try:
         thinking_msg, (feedback, score) = await with_thinking(
             message,
@@ -605,10 +603,8 @@ async def handle_user_answer(message: Message, state: FSMContext):
         )
         return
 
-    # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ В ТРИАЛЕ =====
     if get_user_access_level(user_id) == ACCESS_TRIAL:
         increment_trial_writing(user_id)
-    # ===========================================
 
     await update_writing_stats(user_id, task_type, level, score)
 
@@ -624,7 +620,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    # Заменяем "Думаю..." на фидбек в том же сообщении
     feedback_with_score = f"{feedback}\n\n<b>Оценка:</b> {score}/5"
     try:
         await thinking_msg.edit_text(feedback_with_score, parse_mode="HTML")
@@ -632,7 +627,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
         logger.error(f"Не удалось отредактировать сообщение с фидбеком: {e}")
         await message.answer(feedback_with_score, parse_mode="HTML")
 
-    # Обновляем карточку прогресса
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -803,7 +797,10 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     from handlers.start import show_main_menu
-    await show_main_menu(callback.message, edit=False)
+    try:
+        await show_main_menu(callback.message, edit=True)
+    except Exception:
+        await show_main_menu(callback.message, edit=False)
 
 @router.message(WritingStates.waiting_answer, F.content_type.in_({'photo', 'document', 'audio', 'voice', 'video', 'sticker', 'animation', 'video_note', 'contact', 'location'}))
 async def handle_non_text_in_writing(message: Message, state: FSMContext):

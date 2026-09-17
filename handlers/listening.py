@@ -193,7 +193,7 @@ def normalize_text_answer(answer: str) -> str:
     return ' '.join(answer.strip().lower().split())
 
 # ========== ОСНОВНЫЕ ФУНКЦИИ ==========
-async def send_task(message, state, is_revision=False, task_type=None, level=None, error_ids=None, user_id=None):
+async def send_task(message, state, is_revision=False, task_type=None, level=None, user_id=None):
     data = await state.get_data()
     if task_type is None:
         task_type = data["task_type"]
@@ -212,13 +212,16 @@ async def send_task(message, state, is_revision=False, task_type=None, level=Non
         await state.update_data({"question_message_id": None})
 
     if is_revision:
-        if error_ids is None:
-            error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
-        if not error_ids:
-            await message.answer("🎉 Ошибок нет. Отличная работа!")
+        revision_errors = data.get("revision_errors", [])
+        if not revision_errors:
+            await message.answer("🎉 Вы исправили все ошибки!")
             await exit_revision(message, state, show_progress=True, user_id=user_id)
             return
-        task_id = error_ids[0]
+        revision_index = data.get("revision_index", 0)
+        if revision_index >= len(revision_errors):
+            revision_index = 0
+            await state.update_data({"revision_index": 0})
+        task_id = revision_errors[revision_index]
         task = next((t for t in ALL_TASKS if t["id"] == task_id), None)
         if not task:
             await message.answer("Ошибка: задание не найдено.")
@@ -239,7 +242,6 @@ async def send_task(message, state, is_revision=False, task_type=None, level=Non
         current_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
         saved_hash = await get_order_hash(user_id, order_key)
 
-        # Пересоздаём порядок, если он пустой, не той длины или хеш изменился
         need_recreate = (
             not shuffled_order
             or len(shuffled_order) != len(tasks)
@@ -350,7 +352,6 @@ async def update_progress_message(message, state, reset=False, user_id=None):
             if "message is not modified" in err_str:
                 return
             logger.warning(f"Ошибка обновления прогресса: {e}")
-            # Пытаемся удалить старое сообщение, чтобы не дублировалось
             try:
                 await message.bot.delete_message(chat_id=chat_id, message_id=progress_msg_id)
             except Exception:
@@ -384,6 +385,9 @@ async def exit_revision(message, state, show_progress=True, user_id=None):
         "is_revision": False,
         "revision_info_msg_id": None,
         "revision_card_msg_id": None,
+        "revision_errors": [],
+        "revision_index": 0,
+        "viewed": 0,
         "answered": False,
         "task": None,
         "question_message_id": None
@@ -398,16 +402,16 @@ async def finish_revision_with_summary(message, state, user_id=None):
     data = await state.get_data()
     if user_id is None:
         user_id = data.get("user_id") or message.from_user.id
-    fixed = data.get("revision_fixed", 0)
+    revision_errors = data.get("revision_errors", [])
     total = data.get("revision_total", 0)
+    fixed = total - len(revision_errors)
 
     if fixed == 0:
         summary = "Вы не исправили ни одной ошибки."
-    elif fixed == total:
-        summary = f"Вы исправили все ошибки! 🎉"
+    elif not revision_errors:
+        summary = "Вы исправили все ошибки! 🎉"
     else:
-        remaining = total - fixed
-        summary = f"Вы исправили: {fixed} из {total}\nОсталось ошибок: {remaining}"
+        summary = f"Вы исправили: {fixed} из {total}\nОсталось ошибок: {len(revision_errors)}"
 
     info_msg_id = data.get("revision_info_msg_id")
     if info_msg_id:
@@ -463,35 +467,6 @@ async def go_to_next_task(message, state, user_id=None):
     await set_progress_index(user_id, make_listening_type_key(task_type), level, new_index)
     await state.update_data({"task_index": new_index, "answered": False})
     await send_task(message, state, user_id=user_id)
-
-async def go_to_next_revision(message, state, user_id=None):
-    data = await state.get_data()
-    if user_id is None:
-        user_id = data.get("user_id") or message.from_user.id
-    error_ids = data.get("revision_error_ids", [])
-    index = data.get("revision_index", 0)
-    fixed = data.get("revision_fixed", 0)
-    total = data.get("revision_total", len(error_ids))
-
-    question_msg_id = data.get("question_message_id")
-    if question_msg_id:
-        try:
-            await message.bot.edit_message_reply_markup(
-                chat_id=message.chat.id,
-                message_id=question_msg_id,
-                reply_markup=None
-            )
-        except:
-            pass
-        await state.update_data({"question_message_id": None})
-
-    index += 1
-    if index >= total:
-        await finish_revision_with_summary(message, state, user_id=user_id)
-        return
-
-    await state.update_data({"revision_index": index, "answered": False, "task": None})
-    await send_task(message, state, is_revision=True, error_ids=error_ids, user_id=user_id)
 
 # ========== ПЕРЕХВАТ КОМАНД ==========
 @router.message(
@@ -555,7 +530,6 @@ async def listening_start(event, state: FSMContext):
 
 @router.callback_query(ListeningState.choosing_type, F.data.startswith("listening_type_"))
 async def type_selected(callback: CallbackQuery, state: FSMContext):
-    # ФИКС: защита от двойного клика
     await callback.answer()
     current_state = await state.get_state()
     if current_state != ListeningState.choosing_type.state:
@@ -577,7 +551,6 @@ async def type_selected(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(ListeningState.choosing_level, F.data.startswith("listening_level_"))
 async def level_selected(callback: CallbackQuery, state: FSMContext):
-    # ФИКС: защита от двойного клика — сразу отвечаем и проверяем state
     await callback.answer()
     current_state = await state.get_state()
     if current_state != ListeningState.choosing_level.state:
@@ -595,7 +568,6 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         task_type = "fill_multiple"
     user_id = callback.from_user.id
 
-    # Сразу переключаем state, чтобы повторный клик не сработал
     await state.set_state(ListeningState.answering_task)
 
     try:
@@ -678,6 +650,13 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
             pass
         await state.update_data({"question_message_id": None})
 
+    progress_msg_id = data.get("progress_message_id")
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=progress_msg_id, reply_markup=None)
+        except:
+            pass
+
     level_label = LEVELS.get(level, level)
     info_text = (
         f"Работа над ошибками\n"
@@ -690,15 +669,16 @@ async def start_revision(callback: CallbackQuery, state: FSMContext):
 
     await state.set_state(ListeningState.revision_mode)
     await state.update_data({
-        "revision_error_ids": error_ids,
+        "revision_errors": error_ids.copy(),
         "revision_index": 0,
-        "revision_fixed": 0,
         "revision_total": len(error_ids),
+        "viewed": 0,
         "revision_info_msg_id": info_msg.message_id,
-        "progress_message_id": data.get("progress_message_id")
+        "progress_message_id": data.get("progress_message_id"),
+        "is_revision": True,
     })
 
-    await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids, user_id=user_id)
+    await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, user_id=user_id)
 
 # ========== ОБРАБОТЧИК ОТВЕТОВ (КНОПКИ) ==========
 @router.callback_query(F.data.startswith("listening_answer_"))
@@ -760,19 +740,91 @@ async def handle_answer(callback: CallbackQuery, state: FSMContext):
     prefixed_key = make_listening_type_key(type_key)
 
     if is_revision:
+        revision_errors = data.get("revision_errors", [])
+        revision_index = data.get("revision_index", 0)
+        viewed = data.get("viewed", 0)
+        total = data.get("revision_total", 0)
+
         if is_correct:
             await remove_reading_error_db(user_id, prefixed_key, level_key, task["id"])
-            await state.update_data({"revision_fixed": data.get("revision_fixed", 0) + 1})
-    else:
-        if is_correct:
-            await update_user_stats_db(user_id, prefixed_key, level_key, True)
-            session_correct = data.get("session_correct", 0) + 1
-            await state.update_data({"session_correct": session_correct})
+            if task["id"] in revision_errors:
+                revision_errors.remove(task["id"])
         else:
-            await update_user_stats_db(user_id, prefixed_key, level_key, False)
-            await add_reading_error_db(user_id, prefixed_key, level_key, task["id"])
-            session_wrong = data.get("session_wrong", 0) + 1
-            await state.update_data({"session_wrong": session_wrong})
+            revision_index += 1
+
+        viewed += 1
+
+        question_msg_id = data.get("question_message_id")
+        if question_msg_id:
+            try:
+                await callback.bot.edit_message_reply_markup(
+                    chat_id=callback.message.chat.id,
+                    message_id=question_msg_id,
+                    reply_markup=None
+                )
+            except:
+                pass
+            await state.update_data({"question_message_id": None})
+
+        try:
+            await callback.message.edit_reply_markup(reply_markup=None)
+        except Exception as e:
+            if "message is not modified" not in str(e).lower():
+                logger.warning(f"Ошибка при убирании кнопок: {e}")
+
+        await update_progress_message(callback.message, state, user_id=user_id)
+
+        msg = await callback.message.answer(result_text)
+        add_user_message(user_id, msg.message_id)
+
+        await state.update_data({"answered": True})
+        await callback.answer()
+
+        if not revision_errors:
+            await callback.message.answer("🎉 Вы исправили все ошибки!")
+            await state.update_data({
+                "revision_errors": revision_errors,
+                "revision_index": 0,
+                "viewed": viewed,
+            })
+            await finish_revision_with_summary(callback.message, state, user_id=user_id)
+            return
+
+        if viewed >= total:
+            исправлено = total - len(revision_errors)
+            if исправлено == 0:
+                await callback.message.answer("Вы не исправили ни одной ошибки.")
+            else:
+                await callback.message.answer(f"Вы исправили {исправлено} из {total}. Осталось: {len(revision_errors)}")
+            await state.update_data({
+                "revision_errors": revision_errors,
+                "viewed": viewed,
+            })
+            await finish_revision_with_summary(callback.message, state, user_id=user_id)
+            return
+
+        if revision_index >= len(revision_errors):
+            revision_index = 0
+
+        await state.update_data({
+            "revision_errors": revision_errors,
+            "revision_index": revision_index,
+            "viewed": viewed,
+        })
+
+        await send_task(callback.message, state, is_revision=True, task_type=type_key, level=level_key, user_id=user_id)
+        return
+
+    # Обычный режим
+    if is_correct:
+        await update_user_stats_db(user_id, prefixed_key, level_key, True)
+        session_correct = data.get("session_correct", 0) + 1
+        await state.update_data({"session_correct": session_correct})
+    else:
+        await update_user_stats_db(user_id, prefixed_key, level_key, False)
+        await add_reading_error_db(user_id, prefixed_key, level_key, task["id"])
+        session_wrong = data.get("session_wrong", 0) + 1
+        await state.update_data({"session_wrong": session_wrong})
 
     question_msg_id = data.get("question_message_id")
     if question_msg_id:
@@ -800,10 +852,7 @@ async def handle_answer(callback: CallbackQuery, state: FSMContext):
     await state.update_data({"answered": True})
     await callback.answer()
 
-    if is_revision:
-        await go_to_next_revision(callback.message, state, user_id=user_id)
-    else:
-        await go_to_next_task(callback.message, state, user_id=user_id)
+    await go_to_next_task(callback.message, state, user_id=user_id)
 
 # ========== "ПОКАЗАТЬ ОТВЕТ" (ОБЫЧНЫЙ РЕЖИМ) ==========
 @router.callback_query(ListeningState.answering_task, F.data.startswith("listening_show_answer_"))
@@ -906,9 +955,39 @@ async def show_answer_revision(callback: CallbackQuery, state: FSMContext):
         msg = await callback.message.answer(f"Правильный ответ: {answer_text}")
         add_user_message(callback.from_user.id, msg.message_id)
 
+        revision_errors = data.get("revision_errors", [])
+        revision_index = data.get("revision_index", 0)
+        viewed = data.get("viewed", 0) + 1
+        total = data.get("revision_total", 0)
+
+        # Задание НЕ удаляется из списка — пользователь не исправил, только посмотрел
+        revision_index += 1
+
         await state.update_data({"answered": True})
+
+        if not revision_errors:
+            await finish_revision_with_summary(callback.message, state, user_id=callback.from_user.id)
+            await callback.answer()
+            return
+
+        if viewed >= total:
+            исправлено = total - len(revision_errors)
+            if исправлено == 0:
+                await callback.message.answer("Вы не исправили ни одной ошибки.")
+            else:
+                await callback.message.answer(f"Вы исправили {исправлено} из {total}. Осталось: {len(revision_errors)}")
+            await state.update_data({"viewed": viewed, "revision_index": 0})
+            await finish_revision_with_summary(callback.message, state, user_id=callback.from_user.id)
+            await callback.answer()
+            return
+
+        if revision_index >= len(revision_errors):
+            revision_index = 0
+
+        await state.update_data({"revision_index": revision_index, "viewed": viewed})
+
+        await send_task(callback.message, state, is_revision=True, user_id=callback.from_user.id)
         await callback.answer()
-        await go_to_next_revision(callback.message, state, user_id=callback.from_user.id)
 
     except Exception as e:
         if "message is not modified" in str(e).lower():
@@ -950,7 +1029,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
     if data.get("answered", False):
         await message.answer("Уже отвечено.")
         if data.get("is_revision", False):
-            await go_to_next_revision(message, state, user_id=user_id)
+            await send_task(message, state, is_revision=True, user_id=user_id)
         else:
             await go_to_next_task(message, state, user_id=user_id)
         return
@@ -1000,21 +1079,87 @@ async def handle_text_answer(message: Message, state: FSMContext):
     type_key = data["task_type"]
     level_key = data["level"]
     prefixed_key = make_listening_type_key(type_key)
+    is_revision = data.get("is_revision", False)
 
-    if data.get("is_revision", False):
+    if is_revision:
+        revision_errors = data.get("revision_errors", [])
+        revision_index = data.get("revision_index", 0)
+        viewed = data.get("viewed", 0)
+        total = data.get("revision_total", 0)
+
         if is_correct:
             await remove_reading_error_db(user_id, prefixed_key, level_key, task["id"])
-            await state.update_data({"revision_fixed": data.get("revision_fixed", 0) + 1})
-    else:
-        if is_correct:
-            await update_user_stats_db(user_id, prefixed_key, level_key, True)
-            session_correct = data.get("session_correct", 0) + 1
-            await state.update_data({"session_correct": session_correct})
+            if task["id"] in revision_errors:
+                revision_errors.remove(task["id"])
         else:
-            await update_user_stats_db(user_id, prefixed_key, level_key, False)
-            await add_reading_error_db(user_id, prefixed_key, level_key, task["id"])
-            session_wrong = data.get("session_wrong", 0) + 1
-            await state.update_data({"session_wrong": session_wrong})
+            revision_index += 1
+
+        viewed += 1
+
+        question_msg_id = data.get("question_message_id")
+        if question_msg_id:
+            try:
+                await message.bot.edit_message_reply_markup(
+                    chat_id=message.chat.id,
+                    message_id=question_msg_id,
+                    reply_markup=None
+                )
+            except:
+                pass
+            await state.update_data({"question_message_id": None})
+
+        await update_progress_message(message, state, user_id=user_id)
+
+        msg = await message.answer(result_text)
+        add_user_message(user_id, msg.message_id)
+
+        await state.update_data({"answered": True})
+
+        if not revision_errors:
+            await message.answer("🎉 Вы исправили все ошибки!")
+            await state.update_data({
+                "revision_errors": revision_errors,
+                "revision_index": 0,
+                "viewed": viewed,
+            })
+            await finish_revision_with_summary(message, state, user_id=user_id)
+            return
+
+        if viewed >= total:
+            исправлено = total - len(revision_errors)
+            if исправлено == 0:
+                await message.answer("Вы не исправили ни одной ошибки.")
+            else:
+                await message.answer(f"Вы исправили {исправлено} из {total}. Осталось: {len(revision_errors)}")
+            await state.update_data({
+                "revision_errors": revision_errors,
+                "viewed": viewed,
+            })
+            await finish_revision_with_summary(message, state, user_id=user_id)
+            return
+
+        if revision_index >= len(revision_errors):
+            revision_index = 0
+
+        await state.update_data({
+            "revision_errors": revision_errors,
+            "revision_index": revision_index,
+            "viewed": viewed,
+        })
+
+        await send_task(message, state, is_revision=True, user_id=user_id)
+        return
+
+    # Обычный режим
+    if is_correct:
+        await update_user_stats_db(user_id, prefixed_key, level_key, True)
+        session_correct = data.get("session_correct", 0) + 1
+        await state.update_data({"session_correct": session_correct})
+    else:
+        await update_user_stats_db(user_id, prefixed_key, level_key, False)
+        await add_reading_error_db(user_id, prefixed_key, level_key, task["id"])
+        session_wrong = data.get("session_wrong", 0) + 1
+        await state.update_data({"session_wrong": session_wrong})
 
     question_msg_id = data.get("question_message_id")
     if question_msg_id:
@@ -1035,10 +1180,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     await state.update_data({"answered": True})
 
-    if data.get("is_revision", False):
-        await go_to_next_revision(message, state, user_id=user_id)
-    else:
-        await go_to_next_task(message, state, user_id=user_id)
+    await go_to_next_task(message, state, user_id=user_id)
 
 @router.message(~F.text, StateFilter(ListeningState.answering_task, ListeningState.revision_mode))
 async def handle_non_text_input(message: Message, state: FSMContext):
