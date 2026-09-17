@@ -64,11 +64,9 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
     if sub_end and sub_end > now:
         expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
         text = (
-            f"💳 <b>Ваша подписка активна</b>\n\n"
+            f"✨ <b>Ваша подписка активна</b> ✨\n\n"
             f"<b>Действует до:</b> {expires}\n"
-            f"<b>Тариф:</b> 999 ₽ / 30 дней\n\n"
-            f"У вас есть доступ ко всем функциям Premium до указанной даты.\n"
-            f"Продление не требуется — по окончании срока вы сможете оформить подписку снова, если захотите."
+            f"<b>Тариф:</b> 999 ₽ / 30 дней"
         )
         keyboard = get_active_keyboard(from_profile)
     else:

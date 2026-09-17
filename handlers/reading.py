@@ -527,6 +527,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
 
     await state.update_data(shuffled_order=shuffled_order, index=index)
 
+    # progress_msg_id = id текущего сообщения, чтобы update_progress_message отредактировал его,
+    # а не отправлял новое
     await state.update_data(
         short_type=short_type,
         short_level=short_level,
@@ -539,7 +541,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         last_task_msg_id=None,
         session_correct=0,
         session_wrong=0,
-        progress_msg_id=None,
+        progress_msg_id=callback.message.message_id,
         current_task_id=None
     )
 
@@ -1046,6 +1048,31 @@ async def reading_revision(event, state: FSMContext):
         session_wrong=0
     )
 
+    # Убираем кнопки у карточки с текущим заданием
+    last_task_msg_id = data.get("last_task_msg_id")
+    if last_task_msg_id:
+        try:
+            await message.bot.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=last_task_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+        await state.update_data(last_task_msg_id=None)
+
+    # Убираем кнопки у карточки с прогрессом
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await message.bot.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+
     display_name = TYPE_DISPLAY.get(short_type, short_type)
     level_display = get_level_display(short_level)
     text = f"<b>Работа над ошибками</b>\nТип: {display_name}\nУровень: {level_display}\n\nЗаданий на исправление: {len(error_ids)}"
@@ -1121,6 +1148,27 @@ async def cancel_clear_errors(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(ReadingStates.in_progress, F.data == "reading_back_to_mode")
 @router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_back_to_mode")
 async def back_to_learning_mode(callback: CallbackQuery, state: FSMContext):
+    # Убираем кнопки у инфо-сообщения «Работа над ошибками»
+    try:
+        await callback.message.edit_reply_markup(reply_markup=None)
+    except Exception:
+        pass
+
+    data = await state.get_data()
+
+    # Убираем кнопки у карточки с заданием работы над ошибками
+    last_task_msg_id = data.get("last_task_msg_id")
+    if last_task_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=last_task_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+        await state.update_data(last_task_msg_id=None)
+
     await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0, session_correct=0, session_wrong=0)
     data = await state.get_data()
     short_type = data.get("short_type")
