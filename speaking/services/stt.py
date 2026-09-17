@@ -67,21 +67,19 @@ async def voice_to_text(file_bytes: bytes) -> str:
                     max_queue=256,
                 ) as ws:
                     chunk_size = int(SAMPLE_RATE * 2 * (CHUNK_DURATION_MS / 1000))
+                    total_chunks = (len(pcm_data) + chunk_size - 1) // chunk_size
 
-                    # Шлём аудио чанками с commit: false
-                    for i in range(0, len(pcm_data), chunk_size):
+                    for idx, i in enumerate(range(0, len(pcm_data), chunk_size)):
                         chunk = pcm_data[i:i + chunk_size]
+                        is_last = (idx == total_chunks - 1)
                         msg = {
                             "message_type": "input_audio_chunk",
                             "audio_base_64": base64.b64encode(chunk).decode(),
                             "sample_rate": SAMPLE_RATE,
-                            "commit": False,
+                            "commit": is_last,   # commit только на последнем чанке
                         }
                         await ws.send(json.dumps(msg))
                         await asyncio.sleep(CHUNK_SEND_INTERVAL)
-
-                    # Отдельное сообщение commit — финализируем сегмент
-                    await ws.send(json.dumps({"message_type": "commit"}))
 
                     # Читаем ответы
                     while True:
@@ -109,7 +107,6 @@ async def voice_to_text(file_bytes: bytes) -> str:
                     return " ".join(collected_texts).strip()
 
             except websockets.exceptions.ConnectionClosedOK:
-                # Нормальное закрытие — если текст собран, возвращаем
                 if collected_texts:
                     full_text = " ".join(collected_texts).strip()
                     if full_text:
