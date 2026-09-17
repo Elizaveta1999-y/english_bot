@@ -194,12 +194,14 @@ async def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tupl
 async def update_user_stats_db(user_id: int, type_key: str, level_key: str, correct: bool):
     conn = await get_connection()
     field = "correct" if correct else "wrong"
+    init_correct = 1 if correct else 0
+    init_wrong = 0 if correct else 1
     await conn.execute(f"""
         INSERT INTO progress (user_id, type_key, level_key, correct, wrong)
-        VALUES ($1, $2, $3, 0, 0)
+        VALUES ($1, $2, $3, $4, $5)
         ON CONFLICT (user_id, type_key, level_key)
         DO UPDATE SET {field} = progress.{field} + 1
-    """, user_id, type_key, level_key)
+    """, user_id, type_key, level_key, init_correct, init_wrong)
     await conn.close()
 
 async def reset_user_stats_db(user_id: int, type_key: str, level_key: str):
