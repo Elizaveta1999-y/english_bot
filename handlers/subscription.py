@@ -29,14 +29,14 @@ PREMIUM_OFFER_TEXT = (
     "• Premium даёт вам неограниченную практику 24/7.\n"
     "• Вы занимаетесь в любое время без записи и привязки к расписанию.\n"
     "• ИИ-тьютор всегда на связи — отвечает мгновенно и объясняет ошибки.\n"
-    "• За месяц вы получаете десятки часов практики по цене одного занятия с репетитором.\n"
+    "• За 30 дней вы получаете десятки часов практики по цене одного занятия с репетитором.\n"
     "</blockquote>\n"
-    "<b>🤍 Никаких скрытых подписок. Вы платите только за тот месяц, который вам нужен.</b>"
+    "<b>🤍 Никаких скрытых подписок. Вы платите только за те 30 дней, которые вам нужны.</b>"
 )
 
 def get_offer_keyboard(from_profile: bool = False):
     buttons = [
-        [InlineKeyboardButton(text="1 месяц — 999 ₽", callback_data="subscribe_30_days")]
+        [InlineKeyboardButton(text="30 дней — 999 ₽", callback_data="subscribe_30_days")]
     ]
     if from_profile:
         buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")])
@@ -66,7 +66,7 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
         text = (
             f"💳 <b>Ваша подписка активна</b>\n\n"
             f"<b>Действует до:</b> {expires}\n"
-            f"<b>Тариф:</b> 999 ₽ / месяц\n\n"
+            f"<b>Тариф:</b> 999 ₽ / 30 дней\n\n"
             f"У вас есть доступ ко всем функциям Premium до указанной даты.\n"
             f"Продление не требуется — по окончании срока вы сможете оформить подписку снова, если захотите."
         )
@@ -89,7 +89,6 @@ async def clear_active_mode(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
 
-    # --- ЧТЕНИЕ ---
     if mode == "reading_active":
         data = await state.get_data()
         for key in ("last_task_msg_id", "progress_msg_id"):

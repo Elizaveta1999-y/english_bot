@@ -27,8 +27,8 @@ from handlers.voice import convert_to_opus, truncate_for_tts
 logger = logging.getLogger(__name__)
 router = Router()
 
-MAX_VOICE_DURATION = 120      # 2 минуты
-MAX_TEXT_LENGTH = 500         # 500 символов
+MAX_VOICE_DURATION = 120
+MAX_TEXT_LENGTH = 500
 
 class RoleplayStates(StatesGroup):
     active = State()
@@ -1590,6 +1590,37 @@ async def show_subscription_offer(message: Message, user_id: int):
     from handlers.subscription import show_subscription
     await show_subscription(message, user_id, from_profile=False, edit=False)
 
+async def show_trial_voice_offer(message: Message, user_id: int):
+    """Специальный оффер для ролевых, когда в триале кончились голосовые."""
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="💎 Оформить подписку на 30 дней", callback_data="roleplay_offer_subscription")],
+        [InlineKeyboardButton(text="✍️ Продолжить текстом", callback_data="roleplay_continue_text")],
+    ])
+    await message.answer(
+        "🎙️ Твой голосовой лимит в пробном периоде исчерпан — 4 из 4.\n\n"
+        "Это не конец! Ты можешь продолжать игру текстом — пиши реплики в чат, практика идёт дальше.\n\n"
+        "Либо оформи подписку и занимайся без ограничений.",
+        reply_markup=keyboard
+    )
+
+@router.callback_query(F.data == "roleplay_offer_subscription")
+async def roleplay_offer_subscription(callback: CallbackQuery):
+    await callback.answer()
+    try:
+        await callback.message.delete()
+    except Exception:
+        pass
+    await show_subscription_offer(callback.message, callback.from_user.id)
+
+@router.callback_query(F.data == "roleplay_continue_text")
+async def roleplay_continue_text(callback: CallbackQuery):
+    await callback.answer()
+    try:
+        await callback.message.delete()
+    except Exception:
+        pass
+    await callback.message.answer("✍️ Продолжаем! Пиши свои реплики в чат.")
+
 async def remove_roleplay_keyboard(user_id: int, bot):
     user_state = get_user_state(user_id)
     msg_id = user_state.get("reply_keyboard_msg_id")
@@ -2062,7 +2093,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "- Не используй приветствия и обращения типа 'ученик', 'пользователь'. Обращайся на 'ты'.\n"
             "- Не включай пункт о длине диалога.\n"
             "- В блоках Цели, Грамматика, Удачное — не нумеруй пункты.\n"
-            "- В блоке Советы — обязательно нумеруй (1., 2.) и оформляй каждый совет как цитату в кавычках.\n\n"
+            "- В блоке Советы — обязательно нумеруй (1., 2.) и оформляй каждый совет как цитату.\n\n"
             "Тема: " + topic + "\n"
             "Цели пользователя: " + goals_text + "\n"
             "Диалог:\n" + dialog_text + "\n\n"
@@ -2458,6 +2489,8 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
                 "Лимит на текущий месяц исчерпан, но он обнулится при следующей оплате подписки.\n"
                 "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
             )
+        elif reason == "trial_voice_limit":
+            await show_trial_voice_offer(message, user_id)
         else:
             await show_subscription_offer(message, user_id)
         return
