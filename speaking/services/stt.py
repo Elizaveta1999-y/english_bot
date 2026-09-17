@@ -11,12 +11,10 @@ logger = logging.getLogger(__name__)
 
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 
-# Формат аудио для реалтайм-распознавания
 SAMPLE_RATE = 16000
-CHUNK_DURATION_MS = 250          # 250 мс аудио в одном чанке
-CHUNK_SEND_INTERVAL = 0.20       # пауза между чанками (~1.25x реального времени)
+CHUNK_DURATION_MS = 250
+CHUNK_SEND_INTERVAL = 0.20
 
-# Сетевые настройки WebSocket
 PING_INTERVAL = 30
 PING_TIMEOUT = 30
 MAX_RETRIES = 4
@@ -24,12 +22,6 @@ RETRY_DELAYS = [2, 4, 8]
 
 
 async def voice_to_text(file_bytes: bytes) -> str:
-    """
-    Распознаёт речь через ElevenLabs Scribe v2 Realtime (WebSocket).
-    Возвращает:
-      - строку с текстом при успехе (может быть пустой, если речи не было),
-      - None при сбое API/сети.
-    """
     if not ELEVENLABS_API_KEY:
         logger.error("STT: ELEVENLABS_API_KEY не задан")
         return None
@@ -50,15 +42,15 @@ async def voice_to_text(file_bytes: bytes) -> str:
         with open(temp_pcm, "rb") as f:
             pcm_data = f.read()
 
+        logger.info(f"STT: PCM {len(pcm_data)} байт (~{len(pcm_data) / (SAMPLE_RATE * 2):.1f} сек)")
+
         url = (
             "wss://api.elevenlabs.io/v1/speech-to-text/realtime"
             f"?model_id=scribe_v2_realtime"
             f"&audio_format=pcm_{SAMPLE_RATE}"
             f"&language_code=en"
-            f"&commit_strategy=vad"
-            f"&vad_silence_threshold_secs=0.5"
+            f"&commit_strategy=manual"
             f"&include_timestamps=false"
-            f"&inactivity_timeout=300"
         )
 
         last_error = None
@@ -76,21 +68,22 @@ async def voice_to_text(file_bytes: bytes) -> str:
                 ) as ws:
                     chunk_size = int(SAMPLE_RATE * 2 * (CHUNK_DURATION_MS / 1000))
 
+                    # Шлём аудио чанками с commit: false
                     for i in range(0, len(pcm_data), chunk_size):
                         chunk = pcm_data[i:i + chunk_size]
                         msg = {
                             "message_type": "input_audio_chunk",
                             "audio_base_64": base64.b64encode(chunk).decode(),
                             "sample_rate": SAMPLE_RATE,
+                            "commit": False,
                         }
                         await ws.send(json.dumps(msg))
                         await asyncio.sleep(CHUNK_SEND_INTERVAL)
 
-                    # Не шлём принудительный commit — при commit_strategy=vad
-                    # сервер сам решает, когда коммитить по паузам.
-                    # Даём серверу время обработать остаток потока.
-                    await asyncio.sleep(3.0)
+                    # Отдельное сообщение commit — финализируем сегмент
+                    await ws.send(json.dumps({"message_type": "commit"}))
 
+                    # Читаем ответы
                     while True:
                         try:
                             message = await asyncio.wait_for(ws.recv(), timeout=30.0)
@@ -108,12 +101,20 @@ async def voice_to_text(file_bytes: bytes) -> str:
                             if text:
                                 collected_texts.append(text)
 
-                        elif msg_type in ("error", "auth_error", "quota_exceeded"):
+                        elif msg_type in ("error", "auth_error", "quota_exceeded",
+                                          "input_error", "transcriber_error"):
                             raise Exception(f"STT error: {data.get('error', msg_type)}")
 
                 if collected_texts:
                     return " ".join(collected_texts).strip()
 
+            except websockets.exceptions.ConnectionClosedOK:
+                # Нормальное закрытие — если текст собран, возвращаем
+                if collected_texts:
+                    full_text = " ".join(collected_texts).strip()
+                    if full_text:
+                        return full_text
+                last_error = "ConnectionClosedOK (no text)"
             except websockets.exceptions.ConnectionClosed as e:
                 last_error = f"ConnectionClosed: {e}"
                 if collected_texts:
