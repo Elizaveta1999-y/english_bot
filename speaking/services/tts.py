@@ -10,24 +10,22 @@ logger = logging.getLogger(__name__)
 
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 
-# Лимит одновременных генераций на одно WebSocket-соединение
 MAX_CONCURRENT_CONTEXTS = 5
 _context_semaphore = asyncio.Semaphore(MAX_CONCURRENT_CONTEXTS)
 
-# Дешёвая быстрая модель (в 6 раз дешевле Multilingual v2)
 MODEL_ID = "eleven_flash_v2_5"
 
-# Сетевые настройки WebSocket
 PING_INTERVAL = 30
 PING_TIMEOUT = 30
 MAX_RETRIES = 4
 RETRY_DELAYS = [2, 4, 8]
 
 
-async def text_to_voice(text: str, voice_id: str = None):
+async def text_to_voice(text: str, voice_id: str = None, speed: float = 0.85):
     """
     Генерирует голос через ElevenLabs WebSocket API (stream-input).
     Модель: Flash v2.5 — дешёвая, быстрая (~75 мс).
+    speed: 0.85 для speaking, 0.75 для ролевых (замедленный темп).
     Возвращает путь к mp3-файлу при успехе, None — при сбое.
     """
     if not ELEVENLABS_API_KEY:
@@ -38,10 +36,10 @@ async def text_to_voice(text: str, voice_id: str = None):
         voice_id = os.getenv("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")
 
     async with _context_semaphore:
-        return await _generate_voice(text, voice_id)
+        return await _generate_voice(text, voice_id, speed)
 
 
-async def _generate_voice(text: str, voice_id: str):
+async def _generate_voice(text: str, voice_id: str, speed: float):
     """Внутренняя функция: открывает WebSocket, отправляет текст, собирает аудио."""
 
     url = f"wss://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream-input"
@@ -59,13 +57,12 @@ async def _generate_voice(text: str, voice_id: str):
                 ping_interval=PING_INTERVAL,
                 ping_timeout=PING_TIMEOUT,
             ) as ws:
-                # Шаг 1: отправляем начальное сообщение с настройками голоса
                 init_message = {
                     "text": " ",
                     "voice_settings": {
                         "stability": 0.5,
                         "similarity_boost": 0.75,
-                        "speed": 0.85,
+                        "speed": speed,
                     },
                     "generation_config": {
                         "chunk_length_schedule": [120, 160, 250, 290],
@@ -74,13 +71,9 @@ async def _generate_voice(text: str, voice_id: str):
                 }
                 await ws.send(json.dumps(init_message))
 
-                # Шаг 2: отправляем текст
                 await ws.send(json.dumps({"text": text}))
-
-                # Шаг 3: сигнал конца текста
                 await ws.send(json.dumps({"text": ""}))
 
-                # Шаг 4: читаем ответы
                 while True:
                     try:
                         message = await asyncio.wait_for(ws.recv(), timeout=30.0)
@@ -110,7 +103,7 @@ async def _generate_voice(text: str, voice_id: str):
                 tmp.write(audio_content)
                 tmp_path = tmp.name
 
-            logger.info(f"TTS (Flash v2.5) generated: {tmp_path} ({len(audio_content)} bytes)")
+            logger.info(f"TTS (Flash v2.5, speed={speed}) generated: {tmp_path} ({len(audio_content)} bytes)")
             return tmp_path
 
         except websockets.exceptions.ConnectionClosed as e:

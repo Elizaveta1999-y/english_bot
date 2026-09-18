@@ -30,6 +30,8 @@ router = Router()
 MAX_VOICE_DURATION = 120
 MAX_TEXT_LENGTH = 500
 
+ROLEPLAY_TTS_SPEED = 0.75  # замедленный темп для ролевых
+
 class RoleplayStates(StatesGroup):
     active = State()
     confirming_exit = State()
@@ -1620,7 +1622,6 @@ async def show_trial_voice_offer(message: Message, user_id: int):
     """Специальный оффер для ролевых, когда в триале кончились голосовые."""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="💎 Оформить подписку на 30 дней", callback_data="roleplay_offer_subscription")],
-        [InlineKeyboardButton(text="✍️ Продолжить текстом", callback_data="roleplay_continue_text")],
     ])
     await message.answer(
         "🎙️ Твой голосовой лимит в пробном периоде исчерпан — 4 из 4.\n\n"
@@ -1637,15 +1638,6 @@ async def roleplay_offer_subscription(callback: CallbackQuery):
     except Exception:
         pass
     await show_subscription_offer(callback.message, callback.from_user.id)
-
-@router.callback_query(F.data == "roleplay_continue_text")
-async def roleplay_continue_text(callback: CallbackQuery):
-    await callback.answer()
-    try:
-        await callback.message.delete()
-    except Exception:
-        pass
-    await callback.message.answer("✍️ Продолжаем! Пиши свои реплики в чат.")
 
 async def remove_roleplay_keyboard(user_id: int, bot):
     user_state = get_user_state(user_id)
@@ -2099,7 +2091,6 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "Вот примеры фраз, которые вы могли бы сказать:\n" + examples
         )
     else:
-        # Фильтруем историю — убираем сообщения пользователя с запрещёнными темами
         filtered_history = []
         for m in history:
             if m["role"] == "user" and is_forbidden(m["text"]):
@@ -2605,7 +2596,8 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     tts_text = truncate_for_tts(ai_response_clean)
 
     try:
-        voice_path = await text_to_voice(tts_text, voice_id=voice_id)
+        # Замедленный темп для ролевых
+        voice_path = await text_to_voice(tts_text, voice_id=voice_id, speed=ROLEPLAY_TTS_SPEED)
     except Exception as e:
         logger.error(f"TTS error: {e}")
         voice_path = None
