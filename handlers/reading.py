@@ -3,6 +3,7 @@ import random
 import json
 import hashlib
 import asyncio
+import re
 from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
@@ -109,6 +110,9 @@ def normalize_answer(text: str) -> str:
     while text and text[-1] in ".,!?;:":
         text = text[:-1]
     return text.strip()
+
+def normalize_order(s: str) -> str:
+    return re.sub(r'[\s\W]+', '', s).lower()
 
 # ---------- Клавиатуры ----------
 def get_type_choice_keyboard():
@@ -258,9 +262,11 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
             text += f"{paragraphs[0]}\n\n"
             text += f"{task.get('question', '')}\n"
 
-    is_text_input = task.get("input_type") == "text"
+    # ВАЖНО: order — текстовый ввод (пользователь пишет последовательность)
+    is_text_input = (task.get("input_type") == "text") or (short_type == "order")
 
     if short_type == "order":
+        text += "\nВведите порядок буквами, например: B A C D"
         keyboard = get_action_keyboard(short_type, short_level, index, is_revision)
     elif is_text_input:
         text += "\nВведите ответ в чат."
@@ -539,7 +545,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         session_correct=0,
         session_wrong=0,
         progress_msg_id=callback.message.message_id,
-        current_task_id=None
+        current_task_id=None,
+        revision_header_msg_id=None
     )
 
     await state.set_state(ReadingStates.in_progress)
@@ -588,11 +595,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         if correct:
             await remove_reading_error(user_id, type_json, level_json, task_identifier)
             await update_user_stats(user_id, type_json, level_json, True)
-            session_correct = data.get("session_correct", 0) + 1
-            await state.update_data(session_correct=session_correct)
-        else:
-            session_wrong = data.get("session_wrong", 0) + 1
-            await state.update_data(session_wrong=session_wrong)
+        # session_correct/session_wrong НЕ трогаем в ревизии
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
@@ -639,7 +642,16 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
         if not revision_errors:
             await state.update_data(revision_errors=[], revision_index=0, viewed=viewed, is_revision=False)
+            # СНАЧАЛА сводка
             await callback.message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
+            # Удаляем заголовок «Работа над ошибками»
+            rev_header_id = data.get("revision_header_msg_id")
+            if rev_header_id:
+                try:
+                    await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=rev_header_id)
+                except Exception:
+                    pass
+                await state.update_data(revision_header_msg_id=None)
             cur_index = data.get("index", 0)
             await update_progress_message(callback.message, user_id, short_type, short_level, state)
             await render_task_message(callback.message, state, user_id, short_type, short_level, cur_index, paragraph_idx=0, is_revision=False)
@@ -653,7 +665,15 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             else:
                 text = f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await state.update_data(revision_errors=revision_errors, revision_index=0, viewed=viewed, is_revision=False)
+            # СНАЧАЛА сводка
             await callback.message.answer(text)
+            rev_header_id = data.get("revision_header_msg_id")
+            if rev_header_id:
+                try:
+                    await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=rev_header_id)
+                except Exception:
+                    pass
+                await state.update_data(revision_header_msg_id=None)
             cur_index = data.get("index", 0)
             await update_progress_message(callback.message, user_id, short_type, short_level, state)
             await render_task_message(callback.message, state, user_id, short_type, short_level, cur_index, paragraph_idx=0, is_revision=False)
@@ -722,7 +742,14 @@ async def handle_text_answer(message: Message, state: FSMContext):
     correct_answer = task.get("correct")
     user_input = message.text.strip()
 
-    if isinstance(correct_answer, list):
+    if short_type == "order":
+        # Сравниваем нормализованно: убираем пробелы и знаки, приводим к нижнему регистру
+        if isinstance(correct_answer, list):
+            correct_str = ''.join(str(c) for c in correct_answer)
+        else:
+            correct_str = str(correct_answer)
+        correct = (normalize_order(user_input) == normalize_order(correct_str))
+    elif isinstance(correct_answer, list):
         user_parts = [normalize_answer(p) for p in user_input.split(";") if p.strip()]
         correct_parts = [normalize_answer(p) for p in correct_answer]
         if len(user_parts) != len(correct_parts):
@@ -740,11 +767,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
         if correct:
             await remove_reading_error(user_id, type_json, level_json, task_identifier)
             await update_user_stats(user_id, type_json, level_json, True)
-            session_correct = data.get("session_correct", 0) + 1
-            await state.update_data(session_correct=session_correct)
-        else:
-            session_wrong = data.get("session_wrong", 0) + 1
-            await state.update_data(session_wrong=session_wrong)
+        # session_correct/session_wrong НЕ трогаем в ревизии
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
@@ -762,7 +785,13 @@ async def handle_text_answer(message: Message, state: FSMContext):
     if correct:
         result_text = "Правильно!"
     else:
-        if isinstance(correct_answer, list):
+        if short_type == "order":
+            correct_ans = task.get("correct")
+            if isinstance(correct_ans, list):
+                correct_text = ' '.join(str(c) for c in correct_ans)
+            else:
+                correct_text = str(correct_ans)
+        elif isinstance(correct_answer, list):
             correct_text = '; '.join(correct_answer)
         else:
             correct_text = str(correct_answer)
@@ -797,6 +826,13 @@ async def handle_text_answer(message: Message, state: FSMContext):
         if not revision_errors:
             await state.update_data(revision_errors=[], revision_index=0, viewed=viewed, is_revision=False)
             await message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
+            rev_header_id = data.get("revision_header_msg_id")
+            if rev_header_id:
+                try:
+                    await message.bot.delete_message(chat_id=message.chat.id, message_id=rev_header_id)
+                except Exception:
+                    pass
+                await state.update_data(revision_header_msg_id=None)
             cur_index = data.get("index", 0)
             await update_progress_message(message, user_id, short_type, short_level, state)
             await render_task_message(message, state, user_id, short_type, short_level, cur_index, paragraph_idx=0, is_revision=False)
@@ -810,6 +846,13 @@ async def handle_text_answer(message: Message, state: FSMContext):
                 text = f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await state.update_data(revision_errors=revision_errors, revision_index=0, viewed=viewed, is_revision=False)
             await message.answer(text)
+            rev_header_id = data.get("revision_header_msg_id")
+            if rev_header_id:
+                try:
+                    await message.bot.delete_message(chat_id=message.chat.id, message_id=rev_header_id)
+                except Exception:
+                    pass
+                await state.update_data(revision_header_msg_id=None)
             cur_index = data.get("index", 0)
             await update_progress_message(message, user_id, short_type, short_level, state)
             await render_task_message(message, state, user_id, short_type, short_level, cur_index, paragraph_idx=0, is_revision=False)
@@ -943,6 +986,15 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
         if not revision_errors:
             await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0)
+            # СНАЧАЛА сводка
+            await callback.message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
+            rev_header_id = data.get("revision_header_msg_id")
+            if rev_header_id:
+                try:
+                    await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=rev_header_id)
+                except Exception:
+                    pass
+                await state.update_data(revision_header_msg_id=None)
             cur_index = data.get("index", 0)
             await update_progress_message(callback.message, user_id, short_type, short_level, state)
             await render_task_message(callback.message, state, user_id, short_type, short_level, cur_index, paragraph_idx=0, is_revision=False)
@@ -956,7 +1008,15 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             else:
                 text = f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0)
+            # СНАЧАЛА сводка
             await callback.message.answer(text)
+            rev_header_id = data.get("revision_header_msg_id")
+            if rev_header_id:
+                try:
+                    await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=rev_header_id)
+                except Exception:
+                    pass
+                await state.update_data(revision_header_msg_id=None)
             cur_index = data.get("index", 0)
             await update_progress_message(callback.message, user_id, short_type, short_level, state)
             await render_task_message(callback.message, state, user_id, short_type, short_level, cur_index, paragraph_idx=0, is_revision=False)
@@ -1040,12 +1100,9 @@ async def reading_revision(event, state: FSMContext):
         revision_errors=error_ids.copy(),
         revision_index=0,
         viewed=0,
-        total_errors=len(error_ids),
-        session_correct=0,
-        session_wrong=0
+        total_errors=len(error_ids)
     )
 
-    # Убираем кнопки у карточки с текущим заданием
     last_task_msg_id = data.get("last_task_msg_id")
     if last_task_msg_id:
         try:
@@ -1058,7 +1115,6 @@ async def reading_revision(event, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    # Убираем кнопки у карточки с прогрессом
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -1077,7 +1133,7 @@ async def reading_revision(event, state: FSMContext):
         [InlineKeyboardButton(text="Учебный режим", callback_data="reading_back_to_mode")],
         [InlineKeyboardButton(text="Сбросить ошибки", callback_data="reading_clear_errors")]
     ])
-    # Отправляем НОВЫМ сообщением, не редактируем прогресс
+    # Отправляем НОВЫМ сообщением, сохраняем id для последующего удаления
     header_msg = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await state.update_data(revision_header_msg_id=header_msg.message_id)
 
@@ -1118,8 +1174,15 @@ async def confirm_clear_errors(callback: CallbackQuery, state: FSMContext):
 
     await clear_reading_errors(user_id, type_json, level_json)
 
+    # Сообщение-заголовок оставляем видимым, только редактируем
     await callback.message.edit_text("Ошибки сброшены. Вы продолжите с того же места.")
-    await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0, session_correct=0, session_wrong=0)
+    await state.update_data(
+        is_revision=False,
+        revision_errors=[],
+        revision_index=0,
+        viewed=0,
+        revision_header_msg_id=None  # чтобы при выходе не удалялось
+    )
     await update_progress_message(callback.message, user_id, short_type, short_level, state)
     await render_task_message(callback.message, state, user_id, short_type, short_level, data.get("index", 0), paragraph_idx=0, is_revision=False)
     await callback.answer()
@@ -1150,7 +1213,6 @@ async def cancel_clear_errors(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(ReadingStates.in_progress, F.data == "reading_back_to_mode")
 @router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_back_to_mode")
 async def back_to_learning_mode(callback: CallbackQuery, state: FSMContext):
-    # Убираем кнопки у карточки с заданием работы над ошибками
     data = await state.get_data()
 
     last_task_msg_id = data.get("last_task_msg_id")
@@ -1165,7 +1227,7 @@ async def back_to_learning_mode(callback: CallbackQuery, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0, session_correct=0, session_wrong=0)
+    await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0)
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
@@ -1228,7 +1290,18 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Не удалось определить режим.", show_alert=True)
         return
 
-    await clear_all_keyboards(callback.message, state)
+    # Снимаем кнопки с карточки задания (не вызываем clear_all_keyboards,
+    # чтобы не затереть progress_msg_id)
+    last_task_msg_id = data.get("last_task_msg_id")
+    if last_task_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=last_task_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
 
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
@@ -1250,8 +1323,20 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     else:
         await state.update_data(shuffled_order=[])
 
-    await state.update_data(index=0, paragraph_idx=0, is_revision=False, revision_errors=[], revision_index=0,
-                            viewed=0, session_correct=0, session_wrong=0)
+    # progress_msg_id = то же сообщение, где было подтверждение
+    await state.update_data(
+        index=0,
+        paragraph_idx=0,
+        is_revision=False,
+        revision_errors=[],
+        revision_index=0,
+        viewed=0,
+        session_correct=0,
+        session_wrong=0,
+        last_task_msg_id=None,
+        progress_msg_id=callback.message.message_id,
+        revision_header_msg_id=None
+    )
 
     await callback.message.edit_text("Прогресс сброшен. Задания перемешаны заново — вы начнёте с нового случайного задания.")
     await asyncio.sleep(1)
@@ -1288,11 +1373,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
 
-    type_json = TYPE_MAP.get(short_type, short_type)
-    level_json = LEVEL_MAP.get(short_level, short_level)
-    errors = await get_reading_errors(user_id, type_json, level_json)
-    remaining_errors = len(errors)
-
     if is_revision:
         revision_errors = data.get("revision_errors", [])
         total = data.get("total_errors", 0)
@@ -1305,8 +1385,18 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
         else:
             summary = f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
 
+        # СНАЧАЛА сводка
         await callback.message.answer(summary)
-        await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0, session_correct=0, session_wrong=0)
+        await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0)
+
+        rev_header_id = data.get("revision_header_msg_id")
+        if rev_header_id:
+            try:
+                await callback.bot.delete_message(chat_id=callback.message.chat.id, message_id=rev_header_id)
+            except Exception:
+                pass
+            await state.update_data(revision_header_msg_id=None)
+
         await update_progress_message(callback.message, user_id, short_type, short_level, state)
         await render_task_message(callback.message, state, user_id, short_type, short_level, data.get("index", 0), paragraph_idx=0, is_revision=False)
         await callback.answer()

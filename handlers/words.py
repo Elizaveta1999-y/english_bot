@@ -170,7 +170,6 @@ async def reset_word_progress(user_id: int, category_key: str):
     await clear_word_errors(user_id, category_key)
 
 def words_by_id(words: list) -> dict:
-    """Строит словарь id -> word. Используется для поиска слова по id ошибки."""
     return {w["id"]: w for w in words if "id" in w}
 
 # ---------- Убираем кнопки ----------
@@ -614,6 +613,7 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
 
     correct = is_correct(user_answer, correct_answer)
 
+    # В ревизии НЕ трогаем session["correct"]/session["wrong"] — они относятся к учебной сессии
     if correct:
         await remove_word_error(user_id, category_key, word_id)
         await update_word_stats(user_id, category_key, True)
@@ -1035,6 +1035,9 @@ async def confirm_reset_errors(callback: CallbackQuery, state: FSMContext):
     except Exception:
         pass
 
+    # Оставляем info-сообщение видимым: обнуляем id, чтобы exit_revision его не удалил
+    session["revision_info_msg_id"] = None
+
     await exit_revision(callback.message, session)
 
 @router.callback_query(F.data == "word_cancel_reset_errors")
@@ -1110,6 +1113,9 @@ async def word_confirm_reset(callback: CallbackQuery, state: FSMContext):
     session["correct"] = 0
     session["wrong"] = 0
     await set_progress_index(user_id, make_type_key(category_key), "beginner", 0)
+
+    # progress_msg_id = то же сообщение, где было подтверждение
+    session["progress_msg_id"] = callback.message.message_id
 
     try:
         await callback.message.edit_text(

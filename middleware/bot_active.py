@@ -10,7 +10,7 @@ TECH_MESSAGE = (
     "🛠️ <b>Небольшая пауза</b>\n\n"
     "Мы проводим технические работы, чтобы бот работал ещё лучше.\n"
     "Твои данные и прогресс в полной безопасности — ничего не потеряется.\n\n"
-    "Скоро вернёмся! 💙"
+    "Пожалуйста, проверяй бота с небольшими паузами — скоро вернёмся 💙"
 )
 
 ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
@@ -34,7 +34,6 @@ class BotActiveMiddleware(BaseMiddleware):
                 await conn.close()
         except Exception as e:
             logger.error(f"BotActiveMiddleware: ошибка чтения флага: {e}")
-            # если не смогли прочитать — пропускаем, чтобы не блокировать всё
             return await handler(event, data)
 
         if val == 'true':

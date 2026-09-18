@@ -305,10 +305,6 @@ async def show_question(message, state, is_revision=False, user_id=None):
     else:
         return
 
-    # ВАЖНО: в revision-режиме оставляем те же кнопки ответа,
-    # что и в обычном режиме — иначе пользователь не сможет отвечать.
-    # (Раньше здесь была перезапись на get_revision_card_keyboard — убрано.)
-
     msg = await message.answer(text, reply_markup=keyboard)
     add_user_message(user_id, msg.message_id)
     await state.update_data({"question_message_id": msg.message_id})
@@ -429,6 +425,7 @@ async def finish_revision_with_summary(message, state, user_id=None):
         except:
             pass
 
+    # СНАЧАЛА сводка
     await message.answer(summary)
     await exit_revision(message, state, show_progress=True, user_id=user_id)
 
@@ -784,7 +781,6 @@ async def handle_answer(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
 
         if not revision_errors:
-            await callback.message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
             await state.update_data({
                 "revision_errors": revision_errors,
                 "revision_index": 0,
@@ -794,11 +790,6 @@ async def handle_answer(callback: CallbackQuery, state: FSMContext):
             return
 
         if viewed >= total:
-            исправлено = total - len(revision_errors)
-            if исправлено == 0:
-                await callback.message.answer("Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим.")
-            else:
-                await callback.message.answer(f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим.")
             await state.update_data({
                 "revision_errors": revision_errors,
                 "viewed": viewed,
@@ -963,22 +954,17 @@ async def show_answer_revision(callback: CallbackQuery, state: FSMContext):
         viewed = data.get("viewed", 0) + 1
         total = data.get("revision_total", 0)
 
-        # Задание НЕ удаляется из списка — пользователь не исправил, только посмотрел
         revision_index += 1
 
         await state.update_data({"answered": True})
 
         if not revision_errors:
+            await state.update_data({"viewed": viewed, "revision_index": 0})
             await finish_revision_with_summary(callback.message, state, user_id=callback.from_user.id)
             await callback.answer()
             return
 
         if viewed >= total:
-            исправлено = total - len(revision_errors)
-            if исправлено == 0:
-                await callback.message.answer("Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим.")
-            else:
-                await callback.message.answer(f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим.")
             await state.update_data({"viewed": viewed, "revision_index": 0})
             await finish_revision_with_summary(callback.message, state, user_id=callback.from_user.id)
             await callback.answer()
@@ -1119,7 +1105,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
         await state.update_data({"answered": True})
 
         if not revision_errors:
-            await message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
             await state.update_data({
                 "revision_errors": revision_errors,
                 "revision_index": 0,
@@ -1129,11 +1114,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             return
 
         if viewed >= total:
-            исправлено = total - len(revision_errors)
-            if исправлено == 0:
-                await message.answer("Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим.")
-            else:
-                await message.answer(f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим.")
             await state.update_data({
                 "revision_errors": revision_errors,
                 "viewed": viewed,
@@ -1307,6 +1287,9 @@ async def confirm_reset_progress(callback: CallbackQuery, state: FSMContext):
     new_hash = hashlib.md5(content_str.encode('utf-8')).hexdigest()
     await set_order_hash(user_id, order_key, new_hash)
 
+    # progress_message_id — то же сообщение, где было подтверждение
+    await state.update_data({"progress_message_id": callback.message.message_id})
+
     if progress_msg_id:
         try:
             await callback.bot.edit_message_text(
@@ -1373,19 +1356,10 @@ async def confirm_reset_errors(callback: CallbackQuery, state: FSMContext):
 
     await clear_reading_errors_db(user_id, make_listening_type_key(task_type), level)
 
-    await update_progress_message(callback.message, state, user_id=user_id)
+    # Отправляем "Ошибки сброшены" НОВЫМ сообщением, чтобы оно не удалялось вместе с заголовком
+    await callback.message.answer("Ошибки сброшены. Вы продолжите с того же места.")
 
-    info_msg_id = data.get("revision_info_msg_id")
-    if info_msg_id:
-        try:
-            await callback.bot.edit_message_text(
-                chat_id=chat_id,
-                message_id=info_msg_id,
-                text="Ошибки сброшены. Вы продолжите с того же места.",
-                reply_markup=None
-            )
-        except Exception as e:
-            logger.error(f"Ошибка: {e}")
+    await update_progress_message(callback.message, state, user_id=user_id)
 
     await exit_revision(callback.message, state, show_progress=True, user_id=user_id)
 
