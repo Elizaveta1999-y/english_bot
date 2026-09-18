@@ -153,7 +153,7 @@ def get_reset_confirmation_keyboard():
 
 def get_clear_errors_confirmation_keyboard():
     buttons = [
-        [InlineKeyboardButton(text="Да, сбросить", callback_data="reading_confirm_clear_errors")],
+        [InlineKeyboardButton(text="Да, сбросить ошибки", callback_data="reading_confirm_clear_errors")],
         [InlineKeyboardButton(text="Назад", callback_data="reading_cancel_clear_errors")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -493,9 +493,6 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     elif any(idx >= len(tasks) for idx in shuffled_order):
         reasons.append("Есть невалидные индексы")
         need_recreate = True
-    elif shuffled_order == list(range(len(tasks))):
-        reasons.append("Порядок не перемешан")
-        need_recreate = True
 
     if reasons:
         logger.info(f"Причины пересоздания для {level_key}: {', '.join(reasons)}")
@@ -642,7 +639,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
         if not revision_errors:
             await state.update_data(revision_errors=[], revision_index=0, viewed=viewed, is_revision=False)
-            await callback.message.answer("🎉 Вы исправили все ошибки!")
+            await callback.message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
             cur_index = data.get("index", 0)
             await update_progress_message(callback.message, user_id, short_type, short_level, state)
             await render_task_message(callback.message, state, user_id, short_type, short_level, cur_index, paragraph_idx=0, is_revision=False)
@@ -652,9 +649,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         if viewed >= total:
             исправлено = total - len(revision_errors)
             if исправлено == 0:
-                text = "Вы не исправили ни одной ошибки."
+                text = "Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим."
             else:
-                text = f"Вы исправили {исправлено} из {total}. Осталось: {len(revision_errors)}"
+                text = f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await state.update_data(revision_errors=revision_errors, revision_index=0, viewed=viewed, is_revision=False)
             await callback.message.answer(text)
             cur_index = data.get("index", 0)
@@ -799,7 +796,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
         if not revision_errors:
             await state.update_data(revision_errors=[], revision_index=0, viewed=viewed, is_revision=False)
-            await message.answer("🎉 Вы исправили все ошибки!")
+            await message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
             cur_index = data.get("index", 0)
             await update_progress_message(message, user_id, short_type, short_level, state)
             await render_task_message(message, state, user_id, short_type, short_level, cur_index, paragraph_idx=0, is_revision=False)
@@ -808,9 +805,9 @@ async def handle_text_answer(message: Message, state: FSMContext):
         if viewed >= total:
             исправлено = total - len(revision_errors)
             if исправлено == 0:
-                text = "Вы не исправили ни одной ошибки."
+                text = "Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим."
             else:
-                text = f"Вы исправили {исправлено} из {total}. Осталось: {len(revision_errors)}"
+                text = f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await state.update_data(revision_errors=revision_errors, revision_index=0, viewed=viewed, is_revision=False)
             await message.answer(text)
             cur_index = data.get("index", 0)
@@ -955,9 +952,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         if viewed >= total:
             исправлено = total - len(revision_errors)
             if исправлено == 0:
-                text = "Вы не исправили ни одной ошибки."
+                text = "Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим."
             else:
-                text = f"Вы исправили {исправлено} из {total}. Осталось: {len(revision_errors)}"
+                text = f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0)
             await callback.message.answer(text)
             cur_index = data.get("index", 0)
@@ -1081,7 +1078,8 @@ async def reading_revision(event, state: FSMContext):
         [InlineKeyboardButton(text="Сбросить ошибки", callback_data="reading_clear_errors")]
     ])
     # Отправляем НОВЫМ сообщением, не редактируем прогресс
-    await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+    header_msg = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+    await state.update_data(revision_header_msg_id=header_msg.message_id)
 
     await show_revision_task(message, state)
     if answer_func:
@@ -1091,7 +1089,11 @@ async def reading_revision(event, state: FSMContext):
 @router.callback_query(ReadingStates.in_progress, F.data == "reading_clear_errors")
 @router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_clear_errors")
 async def clear_errors_confirm(callback: CallbackQuery, state: FSMContext):
-    confirm_text = "Вы уверены, что хотите сбросить все ошибки для этого типа заданий?\nОшибки будут удалены, вы продолжите с места на котором остановились.\n\nЭто действие нельзя отменить."
+    confirm_text = (
+        "Вы уверены, что хотите сбросить все ошибки?\n\n"
+        "Ошибки будут удалены, вы продолжите с того же места.\n"
+        "Это действие нельзя отменить."
+    )
     await callback.message.edit_text(
         confirm_text,
         reply_markup=get_clear_errors_confirmation_keyboard(),
@@ -1116,7 +1118,7 @@ async def confirm_clear_errors(callback: CallbackQuery, state: FSMContext):
 
     await clear_reading_errors(user_id, type_json, level_json)
 
-    await callback.message.edit_text("Ошибки сброшены.")
+    await callback.message.edit_text("Ошибки сброшены. Вы продолжите с того же места.")
     await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0, session_correct=0, session_wrong=0)
     await update_progress_message(callback.message, user_id, short_type, short_level, state)
     await render_task_message(callback.message, state, user_id, short_type, short_level, data.get("index", 0), paragraph_idx=0, is_revision=False)
@@ -1148,15 +1150,9 @@ async def cancel_clear_errors(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(ReadingStates.in_progress, F.data == "reading_back_to_mode")
 @router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_back_to_mode")
 async def back_to_learning_mode(callback: CallbackQuery, state: FSMContext):
-    # Убираем кнопки у инфо-сообщения «Работа над ошибками»
-    try:
-        await callback.message.edit_reply_markup(reply_markup=None)
-    except Exception:
-        pass
-
+    # Убираем кнопки у карточки с заданием работы над ошибками
     data = await state.get_data()
 
-    # Убираем кнопки у карточки с заданием работы над ошибками
     last_task_msg_id = data.get("last_task_msg_id")
     if last_task_msg_id:
         try:
@@ -1176,6 +1172,13 @@ async def back_to_learning_mode(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     await update_progress_message(callback.message, user_id, short_type, short_level, state)
     await render_task_message(callback.message, state, user_id, short_type, short_level, data.get("index", 0), paragraph_idx=0, is_revision=False)
+
+    # Удаляем сообщение-заголовок «Работа над ошибками» (то самое, где кнопка)
+    try:
+        await callback.message.delete()
+    except Exception:
+        pass
+
     await callback.answer()
 
 @router.callback_query(ReadingStates.in_progress, F.data == "reading_reset")
@@ -1189,7 +1192,12 @@ async def reading_reset(event, state: FSMContext):
         if current_state not in (ReadingStates.in_progress.state, ReadingStates.waiting_for_text.state):
             await answer_func("Сначала выберите тип и уровень в режиме чтения.", show_alert=True)
             return
-        confirm_text = "Вы уверенны?\nВсе ошибки и правильные ответы будут обнулены. Задания будут даны с самого начала."
+        confirm_text = (
+            "Вы уверены, что хотите сбросить весь прогресс?\n\n"
+            "Все ошибки и правильные ответы обнулятся.\n"
+            "Задания перемешаются заново — начнёте с нового случайного задания.\n\n"
+            "Это действие нельзя отменить."
+        )
         await message.edit_text(confirm_text, reply_markup=get_reset_confirmation_keyboard(), parse_mode="HTML")
         if answer_func:
             await answer_func()
@@ -1200,7 +1208,12 @@ async def reading_reset(event, state: FSMContext):
         if current_state not in (ReadingStates.in_progress.state, ReadingStates.waiting_for_text.state):
             await message.answer("Сначала выберите тип и уровень в режиме чтения.")
             return
-        confirm_text = "Вы уверенны?\nВсе ошибки и правильные ответы будут обнулены. Задания будут даны с самого начала."
+        confirm_text = (
+            "Вы уверены, что хотите сбросить весь прогресс?\n\n"
+            "Все ошибки и правильные ответы обнулятся.\n"
+            "Задания перемешаются заново — начнёте с нового случайного задания.\n\n"
+            "Это действие нельзя отменить."
+        )
         await message.answer(confirm_text, reply_markup=get_reset_confirmation_keyboard())
 
 @router.callback_query(ReadingStates.in_progress, F.data == "reading_confirm_reset")
@@ -1240,15 +1253,24 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, revision_errors=[], revision_index=0,
                             viewed=0, session_correct=0, session_wrong=0)
 
-    await callback.message.edit_text("Прогресс сброшен. Порядок заданий перемешан.")
+    await callback.message.edit_text("Прогресс сброшен. Задания перемешаны заново — вы начнёте с нового случайного задания.")
+    await asyncio.sleep(1)
     await update_progress_message(callback.message, user_id, short_type, short_level, state)
     await render_task_message(callback.message, state, user_id, short_type, short_level, 0, paragraph_idx=0, is_revision=False)
     await callback.answer()
 
 @router.callback_query(ReadingStates.in_progress, F.data == "reading_cancel_reset")
 @router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_cancel_reset")
-async def cancel_reset(callback: CallbackQuery):
-    await callback.message.edit_text("Сброс отменён. Продолжайте тренировку.")
+async def cancel_reset(callback: CallbackQuery, state: FSMContext):
+    # Возвращаем сообщение в обычный прогресс
+    data = await state.get_data()
+    short_type = data.get("short_type")
+    short_level = data.get("short_level")
+    user_id = callback.from_user.id
+
+    # id текущего сообщения делаем progress_msg_id, чтобы update_progress_message отредактировал его
+    await state.update_data(progress_msg_id=callback.message.message_id)
+    await update_progress_message(callback.message, user_id, short_type, short_level, state)
     await callback.answer()
 
 # ---------- ЗАВЕРШЕНИЕ СЕССИИ ----------
@@ -1277,11 +1299,11 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
         исправлено = total - len(revision_errors)
 
         if not revision_errors:
-            summary = "🎉 Вы исправили все ошибки!"
+            summary = "🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим."
         elif исправлено == 0:
-            summary = "Вы не исправили ни одной ошибки."
+            summary = "Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим."
         else:
-            summary = f"Вы исправили: {исправлено} из {total}. Осталось ошибок: {len(revision_errors)}."
+            summary = f"Вы исправили {исправлено} из {total} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
 
         await callback.message.answer(summary)
         await state.update_data(is_revision=False, revision_errors=[], revision_index=0, viewed=0, session_correct=0, session_wrong=0)
@@ -1294,7 +1316,7 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     if total == 0:
         text = "Сессия завершена 🙌🏻\nВы не ответили ни на одно задание."
     else:
-        text = f"Сессия завершена 🙌🏽\n✔️ Правильно: {session_correct}\n✖️ Ошибок: {session_wrong}"
+        text = f"Сессия завершена 🙌🏻\n✔️ Правильно: {session_correct}\n✖️ Ошибок: {session_wrong}"
 
     await callback.message.answer(text)
 

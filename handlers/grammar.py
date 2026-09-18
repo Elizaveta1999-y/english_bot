@@ -3,6 +3,7 @@ import json
 import re
 import random
 import hashlib
+import asyncio
 from typing import List, Dict, Any
 
 from aiogram import Router, F, Bot
@@ -240,9 +241,6 @@ async def get_or_create_order(user_id: int, short_type: str) -> List[int]:
         need_recreate = True
     elif any(idx >= len(tasks) for idx in order):
         reasons.append("Есть невалидные индексы")
-        need_recreate = True
-    elif order == list(range(len(tasks))):
-        reasons.append("Порядок не перемешан")
         need_recreate = True
 
     if need_recreate:
@@ -613,7 +611,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
         if not revision_errors:
             await callback.message.answer(
-                f"🎉 Вы исправили все ошибки!\nИсправлено: {total_errors}\nОсталось: 0"
+                "🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим."
             )
             await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
@@ -655,9 +653,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         if viewed >= total_errors:
             исправлено = total_errors - len(revision_errors)
             if исправлено == 0:
-                text = "Вы не исправили ни одной ошибки."
+                text = "Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим."
             else:
-                text = f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_errors)}"
+                text = f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await callback.message.answer(text)
             await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
@@ -856,7 +854,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
         if not revision_errors:
             await message.answer(
-                f"🎉 Вы исправили все ошибки!\nИсправлено: {total_errors}\nОсталось: 0"
+                "🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим."
             )
             await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
@@ -897,9 +895,9 @@ async def handle_text_answer(message: Message, state: FSMContext):
         if viewed >= total_errors:
             исправлено = total_errors - len(revision_errors)
             if исправлено == 0:
-                text = "Вы не исправили ни одной ошибки."
+                text = "Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим."
             else:
-                text = f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_errors)}"
+                text = f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await message.answer(text)
             await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
@@ -1109,9 +1107,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         if viewed >= total_errors:
             исправлено = total_errors - len(revision_errors)
             if исправлено == 0:
-                text = "Вы не исправили ни одной ошибки."
+                text = "Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим."
             else:
-                text = f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_errors)}"
+                text = f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось: {len(revision_errors)}.\n\nВозвращаемся в учебный режим."
             await callback.message.answer(text)
             await state.update_data(is_revision=False, viewed=0)
             rev_msg_id = data.get("revision_msg_id")
@@ -1343,8 +1341,9 @@ async def back_to_learning(callback: CallbackQuery, state: FSMContext):
 async def grammar_reset_confirm(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     confirm_text = (
-        "Вы уверены, что хотите сбросить весь прогресс для текущего типа?\n"
-        "Статистика, ошибки и текущее задание будут обнулены.\n\n"
+        "Вы уверены, что хотите сбросить весь прогресс?\n\n"
+        "Все ошибки и правильные ответы обнулятся.\n"
+        "Задания перемешаются заново — начнёте с нового случайного задания.\n\n"
         "Это действие нельзя отменить."
     )
     await callback.message.edit_text(confirm_text, reply_markup=get_reset_confirmation_keyboard(), parse_mode="HTML")
@@ -1389,7 +1388,11 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
         except Exception as e:
             logger.error(f"[grammar_confirm_reset] Ошибка убирания кнопок: {e}")
 
-    await callback.message.edit_text("Прогресс сброшен. Задания перемешаны заново, вы начнёте с первого.", reply_markup=None)
+    await callback.message.edit_text(
+        "Прогресс сброшен. Задания перемешаны заново — вы начнёте с нового случайного задания.",
+        reply_markup=None
+    )
+    await asyncio.sleep(1)
 
     old_progress_id = data.get("progress_msg_id")
     real_index = new_order[0]
@@ -1471,11 +1474,11 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         исправлено = total_errors - remaining_errors
 
         if исправлено == 0:
-            text = "Вы не исправили ни одной ошибки."
+            text = "Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим."
         elif remaining_errors == 0:
-            text = "🎉 Вы исправили все ошибки!"
+            text = "🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим."
         else:
-            text = f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось ошибок: {remaining_errors}"
+            text = f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось: {remaining_errors}.\n\nВозвращаемся в учебный режим."
 
         rev_msg_id = data.get("revision_msg_id")
         if rev_msg_id:
@@ -1535,11 +1538,11 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
         return
 
     if session_correct == 0 and session_wrong == 0:
-        text = "Сессия завершена! Вы не ответили ни на одно задание. 🙌🏻"
+        text = "Сессия завершена 🙌🏻\nВы не ответили ни на одно задание."
     else:
-        text = "Сессия завершена! 🙌🏽\n"
-        text += f"Правильно: {session_correct}\n"
-        text += f"Ошибок: {session_wrong}"
+        text = "Сессия завершена 🙌🏻\n"
+        text += f"✔️ Правильно: {session_correct}\n"
+        text += f"✖️ Ошибок: {session_wrong}"
 
     task_msg_id = data.get("task_msg_id")
     if task_msg_id:
@@ -1612,8 +1615,8 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
 async def grammar_clear_errors_confirm(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     confirm_text = (
-        "Вы уверены, что хотите сбросить все ошибки?\n"
-        "Вы продолжите с места на котором остановились.\n\n"
+        "Вы уверены, что хотите сбросить все ошибки?\n\n"
+        "Ошибки будут удалены, вы продолжите с того же места.\n"
         "Это действие нельзя отменить."
     )
     await callback.message.edit_text(confirm_text, reply_markup=get_clear_errors_confirmation_keyboard(), parse_mode="HTML")
@@ -1631,7 +1634,6 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
     level_key = "all"
     await clear_grammar_errors(user_id, type_key, level_key)
 
-    # Убираем кнопки у карточки задания ревизии
     rev_msg_id = data.get("revision_msg_id")
     if rev_msg_id:
         try:
@@ -1643,7 +1645,6 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
         except Exception as e:
             logger.error(f"[grammar_confirm_clear_errors] Ошибка убирания кнопок у revision-сообщения: {e}")
 
-    # Убираем кнопки у старой карточки обычного режима
     old_task_id = data.get("task_msg_id")
     if old_task_id:
         try:
@@ -1655,7 +1656,6 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
         except Exception as e:
             logger.error(f"[grammar_confirm_clear_errors] Ошибка убирания кнопок у task-сообщения: {e}")
 
-    # Убираем кнопки у заголовка ревизии
     rev_header_id = data.get("revision_header_msg_id")
     if rev_header_id:
         try:
@@ -1667,7 +1667,7 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
         except Exception as e:
             logger.error(f"[grammar_confirm_clear_errors] Ошибка убирания кнопок у заголовка revision: {e}")
 
-    await callback.message.edit_text("Список ошибок очищен. Продолжайте тренировку.")
+    await callback.message.edit_text("Ошибки сброшены. Вы продолжите с того же места.")
     await state.update_data(is_revision=False, viewed=0)
 
     tasks = get_tasks(short_type)

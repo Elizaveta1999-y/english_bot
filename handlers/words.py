@@ -4,6 +4,7 @@ import re
 import logging
 import random
 import hashlib
+import asyncio
 from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command, StateFilter
@@ -415,9 +416,6 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     elif any(idx >= len(words) for idx in shuffled_order):
         reasons.append("Есть невалидные индексы")
         need_recreate = True
-    elif shuffled_order == list(range(len(words))):
-        reasons.append("Порядок не перемешан")
-        need_recreate = True
 
     if need_recreate:
         conn = await get_connection()
@@ -601,7 +599,7 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
     viewed = session.get("viewed", 0)
 
     if not revision_words:
-        await message.answer("🎉 Вы исправили все ошибки!")
+        await message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
         await exit_revision(message, session)
         return
 
@@ -631,7 +629,7 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
         session["revision_words"] = revision_words
         session["revision_index"] = 0
         session["viewed"] = viewed
-        await message.answer("🎉 Вы исправили все ошибки!")
+        await message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
         await exit_revision(message, session)
         return
 
@@ -640,9 +638,9 @@ async def handle_revision_answer(message: Message, session: dict, state: FSMCont
         session["viewed"] = viewed
         исправлено = total_errors - len(revision_words)
         if исправлено == 0:
-            await message.answer("Вы не исправили ни одной ошибки.")
+            await message.answer("Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим.")
         else:
-            await message.answer(f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_words)}")
+            await message.answer(f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось: {len(revision_words)}.\n\nВозвращаемся в учебный режим.")
         await exit_revision(message, session)
         return
 
@@ -678,11 +676,11 @@ async def finish_revision(message: Message, session: dict):
     исправлено = total_errors - len(revision_words)
 
     if исправлено == 0 and revision_words:
-        await message.answer("Вы не исправили ни одной ошибки.")
+        await message.answer("Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим.")
     elif not revision_words:
-        await message.answer("🎉 Вы исправили все ошибки!")
+        await message.answer("🎉 Вы исправили все ошибки!\n\nВозвращаемся в учебный режим.")
     else:
-        await message.answer(f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось ошибок: {len(revision_words)}")
+        await message.answer(f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось: {len(revision_words)}.\n\nВозвращаемся в учебный режим.")
     await exit_revision(message, session)
 
 async def exit_revision(message: Message, session: dict):
@@ -692,9 +690,11 @@ async def exit_revision(message: Message, session: dict):
             await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=session["revision_card_msg_id"], reply_markup=None)
         except Exception:
             pass
+
+    # Удаляем сообщение-заголовок «Работа над ошибками»
     if session.get("revision_info_msg_id"):
         try:
-            await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=session["revision_info_msg_id"], reply_markup=None)
+            await message.bot.delete_message(chat_id=message.chat.id, message_id=session["revision_info_msg_id"])
         except Exception:
             pass
 
@@ -821,9 +821,9 @@ async def revision_show_answer(callback: CallbackQuery, session: dict):
         session["revision_index"] = 0
         исправлено = total_errors - len(revision_words)
         if исправлено == 0:
-            await callback.message.answer("Вы не исправили ни одной ошибки.")
+            await callback.message.answer("Вы не исправили ни одной ошибки.\n\nВозвращаемся в учебный режим.")
         else:
-            await callback.message.answer(f"Вы исправили {исправлено} из {total_errors}. Осталось: {len(revision_words)}")
+            await callback.message.answer(f"Вы исправили {исправлено} из {total_errors} ошибок. Осталось: {len(revision_words)}.\n\nВозвращаемся в учебный режим.")
         await exit_revision(callback.message, session)
         await callback.answer()
         return
@@ -869,11 +869,9 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     total = correct + wrong
 
     if total == 0:
-        header = "Сессия завершена 🙌🏻"
-        stats_text = "Вы не ответили ни на одно задание."
+        text = "Сессия завершена 🙌🏻\nВы не ответили ни на одно задание."
     else:
-        header = "Сессия завершена 🙌🏽"
-        stats_text = f"✔️ Правильно: {correct}\n✖️ Ошибок: {wrong}"
+        text = f"Сессия завершена 🙌🏻\n✔️ Правильно: {correct}\n✖️ Ошибок: {wrong}"
 
     if user_id in user_message_ids:
         msg_ids = []
@@ -888,10 +886,7 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
 
-    await callback.message.answer(
-        f"{header}\n{stats_text}",
-        parse_mode="HTML"
-    )
+    await callback.message.answer(text, parse_mode="HTML")
 
     await state.clear()
     from .start import show_main_menu
@@ -1013,8 +1008,8 @@ async def reset_errors(callback: CallbackQuery, state: FSMContext):
         return
 
     confirm_text = (
-        "Вы уверены, что хотите сбросить все ошибки для этой категории?\n"
-        "Ошибки будут удалены, вы продолжите с места на котором остановились.\n\n"
+        "Вы уверены, что хотите сбросить все ошибки?\n\n"
+        "Ошибки будут удалены, вы продолжите с того же места.\n"
         "Это действие нельзя отменить."
     )
     await callback.message.edit_text(
@@ -1036,7 +1031,7 @@ async def confirm_reset_errors(callback: CallbackQuery, state: FSMContext):
     await clear_word_errors(user_id, category_key)
 
     try:
-        await callback.message.edit_text("Ошибки сброшены.", reply_markup=None)
+        await callback.message.edit_text("Ошибки сброшены. Вы продолжите с того же места.", reply_markup=None)
     except Exception:
         pass
 
@@ -1078,8 +1073,9 @@ async def cancel_reset_errors(callback: CallbackQuery, state: FSMContext):
 async def word_reset_confirm(callback: CallbackQuery):
     await callback.answer()
     confirm_text = (
-        "Вы уверены, что хотите сбросить весь прогресс для этой категории?\n"
-        "Статистика, ошибки и текущее задание будут обнулены.\n\n"
+        "Вы уверены, что хотите сбросить весь прогресс?\n\n"
+        "Все ошибки и правильные ответы обнулятся.\n"
+        "Задания перемешаются заново — начнёте с нового случайного задания.\n\n"
         "Это действие нельзя отменить."
     )
     await callback.message.edit_text(confirm_text, reply_markup=get_reset_confirmation_keyboard(), parse_mode="HTML")
@@ -1117,11 +1113,12 @@ async def word_confirm_reset(callback: CallbackQuery, state: FSMContext):
 
     try:
         await callback.message.edit_text(
-            "Прогресс сброшен. Задания перемешаны заново, вы начнёте с первого.",
+            "Прогресс сброшен. Задания перемешаны заново — вы начнёте с нового случайного задания.",
             reply_markup=None
         )
     except Exception:
         pass
+    await asyncio.sleep(1)
 
     try:
         progress_msg_id = session.get("progress_msg_id")
@@ -1157,24 +1154,21 @@ async def word_cancel_reset(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     session = user_sessions.get(user_id)
     if session:
+        # Восстанавливаем прогресс-сообщение (то самое, где было подтверждение)
         try:
-            await callback.message.edit_reply_markup(reply_markup=None)
-        except Exception:
-            pass
-        try:
-            progress_msg_id = session.get("progress_msg_id")
-            new_progress_id = await send_or_update_progress(
-                callback.bot,
-                callback.message.chat.id,
-                user_id,
-                session["category"],
-                AVAILABLE_CATEGORIES.get(session["category"], {}).get("instruction", "Напишите перевод на английский."),
-                msg_id=progress_msg_id,
-                edit=True,
-                force_buttons=True
+            await callback.bot.edit_message_text(
+                chat_id=callback.message.chat.id,
+                message_id=callback.message.message_id,
+                text=(
+                    f"<b>Режим:</b> {AVAILABLE_CATEGORIES.get(session['category'], {}).get('label', session['category'])}\n\n"
+                    f"{AVAILABLE_CATEGORIES.get(session['category'], {}).get('instruction', 'Напишите перевод на английский.')}\n\n"
+                    f"<b>Ваш прогресс:</b>\n"
+                    f"✔️ Правильно: {(await get_word_stats(user_id, session['category']))[0]}\n"
+                    f"✖️ Ошибок: {len(await get_word_errors(user_id, session['category']))}"
+                ),
+                reply_markup=get_progress_keyboard(),
+                parse_mode="HTML"
             )
-            if new_progress_id != progress_msg_id:
-                session["progress_msg_id"] = new_progress_id
         except Exception as e:
             logger.error(f"Ошибка при отмене сброса: {e}")
     else:
