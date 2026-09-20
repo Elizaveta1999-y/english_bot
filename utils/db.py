@@ -161,6 +161,23 @@ async def init_db():
             user_id BIGINT PRIMARY KEY
         )
     """)
+    # ---- ПЛАТЕЖИ ЮKASSA ----
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS payments (
+            payment_id TEXT PRIMARY KEY,
+            user_id BIGINT NOT NULL,
+            amount DECIMAL(10,2) NOT NULL,
+            status TEXT NOT NULL DEFAULT 'pending',
+            created_at BIGINT NOT NULL,
+            activated_at BIGINT DEFAULT 0
+        )
+    """)
+    await conn.execute("""
+        CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id)
+    """)
+    await conn.execute("""
+        CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status)
+    """)
     await conn.close()
 
 # ---------- Пользователи ----------
@@ -782,6 +799,103 @@ async def update_user_subscription(user_id: int, new_end: int):
     await conn.close()
 
 # =====================================================================
+# ПЛАТЕЖИ ЮKASSA
+# =====================================================================
+
+async def ensure_payments_table():
+    conn = await get_connection()
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS payments (
+            payment_id TEXT PRIMARY KEY,
+            user_id BIGINT NOT NULL,
+            amount DECIMAL(10,2) NOT NULL,
+            status TEXT NOT NULL DEFAULT 'pending',
+            created_at BIGINT NOT NULL,
+            activated_at BIGINT DEFAULT 0
+        )
+    """)
+    await conn.execute("CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id)")
+    await conn.execute("CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status)")
+    await conn.close()
+
+
+async def create_payment_record(payment_id: str, user_id: int, amount: float) -> None:
+    conn = await get_connection()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO payments (payment_id, user_id, amount, status, created_at)
+        VALUES ($1, $2, $3, 'pending', $4)
+        ON CONFLICT (payment_id) DO NOTHING
+    """, payment_id, user_id, amount, now)
+    await conn.close()
+
+
+async def get_payment_record(payment_id: str):
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT * FROM payments WHERE payment_id = $1", payment_id)
+    await conn.close()
+    return dict(row) if row else None
+
+
+async def get_user_pending_payments(user_id: int):
+    conn = await get_connection()
+    rows = await conn.fetch(
+        "SELECT * FROM payments WHERE user_id = $1 AND status = 'pending' ORDER BY created_at DESC",
+        user_id
+    )
+    await conn.close()
+    return [dict(r) for r in rows]
+
+
+async def activate_subscription_from_payment(payment_id: str, user_id: int, amount: float) -> bool:
+    conn = await get_connection()
+    try:
+        row = await conn.fetchrow("SELECT status FROM payments WHERE payment_id = $1", payment_id)
+        if not row:
+            return False
+        if row["status"] == "succeeded":
+            return True
+
+        now = int(datetime.now().timestamp())
+        user_row = await conn.fetchrow("SELECT subscription_until FROM users WHERE user_id = $1", user_id)
+        if not user_row:
+            return False
+
+        current = user_row["subscription_until"] or 0
+        new_until = max(current, now) + 30 * 86400
+
+        if current <= now:
+            await conn.execute("""
+                UPDATE users
+                SET subscription_until = $1,
+                    subscription_started = $2,
+                    speaking_seconds_month = 0,
+                    roleplay_seconds_month = 0,
+                    total_voice_seconds_month = 0
+                WHERE user_id = $3
+            """, new_until, now, user_id)
+        else:
+            await conn.execute(
+                "UPDATE users SET subscription_until = $1 WHERE user_id = $2",
+                new_until, user_id
+            )
+
+        await conn.execute(
+            "UPDATE payments SET status = 'succeeded', activated_at = $1 WHERE payment_id = $2",
+            now, payment_id
+        )
+
+        await conn.execute("""
+            INSERT INTO income (user_id, amount, date, description, payment_system, payment_id)
+            VALUES ($1, $2, $3, $4, $5, $6)
+        """, user_id, amount, now, "Premium подписка 30 дней", "yookassa", payment_id)
+
+        return True
+    finally:
+        await conn.close()
+
+
+# =====================================================================
 # ИСПРАВЛЕННАЯ ФУНКЦИЯ СБРОСА (очищает также random_order и progress_index)
 # =====================================================================
 async def reset_full_progress(user_id: int):
@@ -791,7 +905,6 @@ async def reset_full_progress(user_id: int):
     await conn.execute("DELETE FROM grammar_progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM writing_progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
-    # --- ОЧИЩАЕМ ПОРЯДОК ЗАДАНИЙ, ЧТОБЫ ОНИ ПЕРЕМЕШАЛИСЬ ЗАНОВО ---
     await conn.execute("DELETE FROM random_order WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM progress_index WHERE user_id = $1", user_id)
     await conn.close()

@@ -4,12 +4,31 @@ from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from datetime import datetime
-from utils.db import get_user_profile
+from utils.db import (
+    get_user_profile,
+    create_payment_record,
+    get_user_pending_payments,
+    activate_subscription_from_payment,
+)
+from services.yookassa import create_payment, get_payment_status
 from data.users import get_user_state, set_user_state
 import asyncio
 
 logger = logging.getLogger(__name__)
 router = Router()
+
+PRICE_RUB = 999
+DURATION_DAYS = 30
+
+_bot_username_cache = None
+
+async def _get_bot_username(bot):
+    global _bot_username_cache
+    if _bot_username_cache is None:
+        me = await bot.get_me()
+        _bot_username_cache = me.username
+    return _bot_username_cache
+
 
 PREMIUM_OFFER_TEXT = (
     "💎 <b>Premium подписка</b>\n\n"
@@ -34,13 +53,24 @@ PREMIUM_OFFER_TEXT = (
     "<b>🤍 Никаких скрытых подписок. Вы платите только за те 30 дней, которые вам нужны.</b>"
 )
 
+PAYMENT_PANEL_TEXT = (
+    "💳 <b>Оплата Premium-подписки</b>\n\n"
+    f"Сумма: <b>{PRICE_RUB} ₽</b>\n"
+    f"Срок: <b>{DURATION_DAYS} дней</b>\n\n"
+    "Нажми <b>«Перейти к оплате»</b> — откроется страница ЮKassa, где ты сможешь выбрать удобный способ оплаты (карта, СБП, T-Pay и т.д.).\n\n"
+    "После оплаты вернись в бот и нажми <b>«Я оплатил(а) — проверить»</b>.\n\n"
+    "<i>Подписка активируется автоматически в течение 1–2 минут после оплаты.</i>"
+)
+
+
 def get_offer_keyboard(from_profile: bool = False):
     buttons = [
-        [InlineKeyboardButton(text="30 дней — 999 ₽", callback_data="subscribe_30_days")]
+        [InlineKeyboardButton(text=f"{DURATION_DAYS} дней — {PRICE_RUB} ₽", callback_data="subscribe_30_days")]
     ]
     if from_profile:
         buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
+
 
 def get_active_keyboard(from_profile: bool = False):
     if from_profile:
@@ -48,6 +78,17 @@ def get_active_keyboard(from_profile: bool = False):
             [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")]
         ])
     return None
+
+
+def get_payment_keyboard(confirmation_url: str, from_profile: bool = False):
+    buttons = [
+        [InlineKeyboardButton(text="💳 Перейти к оплате", url=confirmation_url)],
+        [InlineKeyboardButton(text="🔄 Я оплатил(а) — проверить", callback_data="check_payment")],
+    ]
+    if from_profile:
+        buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")])
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
 
 async def show_subscription(target, user_id: int, from_profile: bool = False, edit: bool = False):
     profile = await get_user_profile(user_id)
@@ -66,7 +107,7 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
         text = (
             f"✨ <b>Ваша подписка активна</b> ✨\n\n"
             f"<b>Действует до:</b> {expires}\n"
-            f"<b>Тариф:</b> 999 ₽ / 30 дней"
+            f"<b>Тариф:</b> {PRICE_RUB} ₽ / {DURATION_DAYS} дней"
         )
         keyboard = get_active_keyboard(from_profile)
     else:
@@ -80,6 +121,7 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
             await target.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
         else:
             await target.answer(text, reply_markup=keyboard, parse_mode="HTML")
+
 
 async def clear_active_mode(message: Message, state: FSMContext):
     """Чистит ЛЮБОЙ активный режим."""
@@ -213,11 +255,13 @@ async def clear_active_mode(message: Message, state: FSMContext):
         await message.answer("Практика завершена.", reply_markup=ReplyKeyboardRemove())
         return
 
+
 @router.message(Command("subscription"))
 async def subscription_command(message: Message, state: FSMContext):
     logger.info(f"✅ subscription_command вызван для {message.from_user.id}")
     await clear_active_mode(message, state)
     await show_subscription(message, message.from_user.id, from_profile=False, edit=False)
+
 
 @router.callback_query(F.data == "subscribe_30_days")
 async def handle_subscribe_30_days(callback: CallbackQuery):
@@ -239,13 +283,86 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
         await show_subscription(callback, user_id, from_profile=True, edit=True)
         return
 
-    await callback.message.edit_text(
-        "💳 Оплата временно недоступна.\n\n"
-        "Функция оплаты в разработке. Подписка будет активирована после завершения оплаты.\n"
-        "Скоро мы добавим возможность оплаты через карту.",
-        reply_markup=None,
-        parse_mode="HTML"
+    bot_username = await _get_bot_username(callback.bot)
+    return_url = f"https://t.me/{bot_username}"
+
+    payment = await create_payment(
+        user_id=user_id,
+        amount=PRICE_RUB,
+        description=f"Premium подписка на {DURATION_DAYS} дней",
+        return_url=return_url,
     )
+
+    if not payment or not payment.get("confirmation_url"):
+        await callback.message.edit_text(
+            "Не удалось создать платёж. Попробуй ещё раз через минуту или обратись в поддержку.",
+            reply_markup=None,
+        )
+        return
+
+    await create_payment_record(
+        payment_id=payment["payment_id"],
+        user_id=user_id,
+        amount=PRICE_RUB,
+    )
+
+    keyboard = get_payment_keyboard(payment["confirmation_url"], from_profile=True)
+    try:
+        await callback.message.edit_text(PAYMENT_PANEL_TEXT, reply_markup=keyboard, parse_mode="HTML")
+    except Exception:
+        await callback.message.answer(PAYMENT_PANEL_TEXT, reply_markup=keyboard, parse_mode="HTML")
+
+
+@router.callback_query(F.data == "check_payment")
+async def check_payment_handler(callback: CallbackQuery):
+    try:
+        await callback.answer("Проверяю...")
+    except Exception:
+        pass
+
+    user_id = callback.from_user.id
+    pending = await get_user_pending_payments(user_id)
+
+    if not pending:
+        await callback.message.answer(
+            "Активных платежей не найдено. Если ты только что оплатил(а) — подожди 1–2 минуты и попробуй снова."
+        )
+        return
+
+    payment_record = pending[0]
+    payment_id = payment_record["payment_id"]
+
+    yookassa_data = await get_payment_status(payment_id)
+    if not yookassa_data:
+        await callback.message.answer("Не удалось проверить статус. Попробуй позже.")
+        return
+
+    status = yookassa_data.get("status")
+
+    if status == "succeeded":
+        amount = float(yookassa_data.get("amount", {}).get("value", PRICE_RUB))
+        ok = await activate_subscription_from_payment(payment_id, user_id, amount)
+        if ok:
+            await callback.message.answer(
+                "<b>Оплата подтверждена!</b>\n\n"
+                f"Подписка Premium активирована на {DURATION_DAYS} дней.\n"
+                "Спасибо и приятного обучения! 💙",
+                parse_mode="HTML",
+            )
+            await show_subscription(callback, user_id, from_profile=True, edit=False)
+        else:
+            await callback.message.answer(
+                "Платёж прошёл, но не удалось активировать подписку. Напиши в поддержку — разберёмся."
+            )
+    elif status == "canceled":
+        await callback.message.answer("Платёж отменён. Если это ошибка — попробуй создать новый.")
+    elif status == "pending":
+        await callback.message.answer(
+            "⏳ Платёж ещё в обработке. Подожди 1–2 минуты и нажми «Я оплатил(а) — проверить» снова."
+        )
+    else:
+        await callback.message.answer(f"Статус платежа: {status}. Попробуй позже.")
+
 
 @router.callback_query(F.data == "back_to_profile")
 async def back_to_profile_from_subscription(callback: CallbackQuery):

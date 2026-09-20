@@ -3,8 +3,9 @@ import asyncio
 import logging
 import csv
 import io
+import base64
 from datetime import datetime, timedelta
-from fastapi import FastAPI, Request, Form, HTTPException, Response
+from fastapi import FastAPI, Request, Form, HTTPException, Response, Body
 from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse, StreamingResponse
 from fastapi.templating import Jinja2Templates
 import asyncpg
@@ -27,6 +28,8 @@ ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 ADMIN_ID = os.getenv("ADMIN_ID")
+YOOKASSA_SHOP_ID = os.getenv("YOOKASSA_SHOP_ID")
+YOOKASSA_SECRET_KEY = os.getenv("YOOKASSA_SECRET_KEY")
 
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL is not set")
@@ -105,7 +108,11 @@ async def ensure_db_structure():
             ADD COLUMN IF NOT EXISTS subscription_started BIGINT DEFAULT 0,
             ADD COLUMN IF NOT EXISTS subscription_count INTEGER DEFAULT 0,
             ADD COLUMN IF NOT EXISTS speaking_seconds_month BIGINT DEFAULT 0,
-            ADD COLUMN IF NOT EXISTS roleplay_seconds_month BIGINT DEFAULT 0
+            ADD COLUMN IF NOT EXISTS roleplay_seconds_month BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS is_unlimited BOOLEAN DEFAULT FALSE,
+            ADD COLUMN IF NOT EXISTS trial_voice_count INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0
         """)
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS bot_settings (
@@ -190,6 +197,22 @@ async def ensure_db_structure():
                 created_at BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
             )
         """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS payments (
+                payment_id TEXT PRIMARY KEY,
+                user_id BIGINT NOT NULL,
+                amount DECIMAL(10,2) NOT NULL,
+                status TEXT NOT NULL DEFAULT 'pending',
+                created_at BIGINT NOT NULL,
+                activated_at BIGINT DEFAULT 0
+            )
+        """)
+        await conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id)
+        """)
+        await conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status)
+        """)
         logger.info("✅ Структура БД обновлена")
     except Exception as e:
         logger.error(f"⚠️ Ошибка при обновлении БД: {e}")
@@ -208,6 +231,184 @@ async def log_admin_action(admin_id: int, action: str, details: str = "", target
         logger.error(f"Ошибка записи лога: {e}")
     finally:
         await conn.close()
+
+# ---------- ЮKASSA ----------
+def _yookassa_auth_header() -> str:
+    creds = f"{YOOKASSA_SHOP_ID}:{YOOKASSA_SECRET_KEY}"
+    encoded = base64.b64encode(creds.encode()).decode()
+    return f"Basic {encoded}"
+
+async def yookassa_get_payment(payment_id: str) -> dict:
+    if not YOOKASSA_SHOP_ID or not YOOKASSA_SECRET_KEY:
+        return None
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.get(
+                f"https://api.yookassa.ru/v3/payments/{payment_id}",
+                headers={"Authorization": _yookassa_auth_header()}
+            )
+            if resp.status_code != 200:
+                logger.warning(f"YooKassa get_payment: {resp.status_code} — {resp.text[:200]}")
+                return None
+            return resp.json()
+    except Exception as e:
+        logger.error(f"YooKassa get_payment: {e}")
+        return None
+
+async def yookassa_webhook_handler(payload: dict):
+    """Обрабатывает уведомление от ЮKassa. Возвращает True, если всё ок."""
+    event = payload.get("event")
+    obj = payload.get("object") or {}
+
+    if event != "payment.succeeded":
+        logger.info(f"YooKassa webhook: ignore event={event}")
+        return True
+
+    payment_id = obj.get("id")
+    amount_str = obj.get("amount", {}).get("value", "0")
+    metadata = obj.get("metadata") or {}
+    user_id_raw = metadata.get("user_id")
+
+    if not payment_id or not user_id_raw:
+        logger.error(f"YooKassa webhook: нет payment_id или user_id. payload={payload}")
+        await send_telegram_alert(f"⚠️ ЮKassa webhook без user_id. payment_id={payment_id}")
+        return False
+
+    try:
+        user_id = int(user_id_raw)
+        amount = float(amount_str)
+    except (ValueError, TypeError):
+        logger.error(f"YooKassa webhook: неверный формат user_id/amount. user_id={user_id_raw}, amount={amount_str}")
+        return False
+
+    # Двойная проверка через API ЮKassa
+    verify = await yookassa_get_payment(payment_id)
+    if not verify:
+        logger.error(f"YooKassa webhook: не удалось проверить платёж {payment_id} через API")
+        await send_telegram_alert(f"⚠️ ЮKassa: не удалось проверить платёж {payment_id} через API")
+        return False
+
+    if verify.get("status") != "succeeded":
+        logger.warning(f"YooKassa webhook: платёж {payment_id} в статусе {verify.get('status')}, пропускаем")
+        return True
+
+    verify_amount = float(verify.get("amount", {}).get("value", "0"))
+    verify_user_id = int((verify.get("metadata") or {}).get("user_id", 0))
+
+    if verify_user_id != user_id:
+        logger.error(f"YooKassa webhook: user_id не совпадает. webhook={user_id}, api={verify_user_id}")
+        await send_telegram_alert(f"⚠️ ЮKassa: user_id не совпадает для {payment_id}")
+        return False
+
+    if abs(verify_amount - amount) > 0.01:
+        logger.error(f"YooKassa webhook: сумма не совпадает. webhook={amount}, api={verify_amount}")
+        await send_telegram_alert(f"⚠️ ЮKassa: сумма не совпадает для {payment_id}")
+        return False
+
+    # Проверяем запись в БД
+    conn = await get_db()
+    try:
+        row = await conn.fetchrow(
+            "SELECT status FROM payments WHERE payment_id = $1", payment_id
+        )
+        if not row:
+            logger.error(f"YooKassa webhook: платёж {payment_id} не найден в БД")
+            await send_telegram_alert(f"⚠️ ЮKassa: платёж {payment_id} не найден в БД (user_id={user_id})")
+            return False
+
+        if row["status"] == "succeeded":
+            logger.info(f"YooKassa webhook: платёж {payment_id} уже активирован")
+            return True
+
+        now = int(datetime.now().timestamp())
+        user_row = await conn.fetchrow(
+            "SELECT subscription_until FROM users WHERE user_id = $1", user_id
+        )
+        if not user_row:
+            logger.error(f"YooKassa webhook: user {user_id} не найден в БД")
+            await send_telegram_alert(f"⚠️ ЮKassa: user {user_id} не найден в БД")
+            return False
+
+        current = user_row["subscription_until"] or 0
+        new_until = max(current, now) + 30 * 86400
+        counter_reset = current <= now
+
+        if counter_reset:
+            await conn.execute("""
+                UPDATE users
+                SET subscription_until = $1,
+                    subscription_started = $2,
+                    speaking_seconds_month = 0,
+                    roleplay_seconds_month = 0,
+                    total_voice_seconds_month = 0
+                WHERE user_id = $3
+            """, new_until, now, user_id)
+        else:
+            await conn.execute(
+                "UPDATE users SET subscription_until = $1 WHERE user_id = $2",
+                new_until, user_id
+            )
+
+        await conn.execute(
+            "UPDATE payments SET status = 'succeeded', activated_at = $1 WHERE payment_id = $2",
+            now, payment_id
+        )
+
+        await conn.execute("""
+            INSERT INTO income (user_id, amount, date, description, payment_system, payment_id)
+            VALUES ($1, $2, $3, $4, $5, $6)
+        """, user_id, amount, now, "Premium подписка 30 дней", "yookassa", payment_id)
+
+        await conn.execute("""
+            INSERT INTO admin_actions (admin_id, action, details, target_user_id, created_at)
+            VALUES ($1, $2, $3, $4, $5)
+        """, 0, "Автооплата ЮKassa", f"payment_id={payment_id}, amount={amount}", user_id, now)
+
+    finally:
+        await conn.close()
+
+    # Уведомление пользователю в Telegram
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            await client.post(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                json={
+                    "chat_id": user_id,
+                    "text": (
+                        "✅ <b>Оплата подтверждена!</b>\n\n"
+                        "Подписка Premium активирована на 30 дней.\n"
+                        "Спасибо и приятного обучения! 💙"
+                    ),
+                    "parse_mode": "HTML",
+                }
+            )
+    except Exception as e:
+        logger.warning(f"Не удалось уведомить пользователя {user_id}: {e}")
+
+    # Уведомление админу
+    await send_telegram_alert(
+        f"💰 Новая оплата!\n"
+        f"User: {user_id}\n"
+        f"Сумма: {amount} ₽\n"
+        f"Payment ID: {payment_id}"
+    )
+
+    logger.info(f"✅ ЮKassa webhook: платёж {payment_id} активирован для user {user_id}")
+    return True
+
+
+@app.post("/yookassa/webhook")
+async def yookassa_webhook(request: Request, payload: dict = Body(...)):
+    try:
+        logger.info(f"YooKassa webhook получен: event={payload.get('event')}")
+        ok = await yookassa_webhook_handler(payload)
+        if ok:
+            return JSONResponse({"status": "ok"})
+        return JSONResponse({"status": "error"}, status_code=200)
+    except Exception as e:
+        logger.error(f"YooKassa webhook error: {e}", exc_info=True)
+        return JSONResponse({"status": "error"}, status_code=200)
+
 
 # ---------- ФИНАНСЫ ----------
 async def add_income(user_id: int, amount: float, description: str = "", payment_system: str = "", payment_id: str = ""):
@@ -269,10 +470,7 @@ async def get_new_users_data(days: int = 30):
     data_map = {row["day"].date(): row["count"] for row in rows}
     while current <= end:
         day_date = current.date()
-        result.append({
-            "date": day_date.isoformat(),
-            "count": data_map.get(day_date, 0)
-        })
+        result.append({"date": day_date.isoformat(), "count": data_map.get(day_date, 0)})
         current += timedelta(days=1)
     return result
 
@@ -298,10 +496,7 @@ async def get_activity_data(days: int = 30):
     data_map = {row["day"].date(): row["count"] for row in rows}
     while current <= end:
         day_date = current.date()
-        result.append({
-            "date": day_date.isoformat(),
-            "count": data_map.get(day_date, 0)
-        })
+        result.append({"date": day_date.isoformat(), "count": data_map.get(day_date, 0)})
         current += timedelta(days=1)
     return result
 
@@ -348,10 +543,7 @@ async def get_subscriptions_chart_data(days: int = 30):
     while current <= end:
         day_ts = int(current.timestamp())
         active = sum(1 for u in users if u["subscription_until"] > day_ts)
-        result.append({
-            "date": current.date().isoformat(),
-            "active_subscriptions": active
-        })
+        result.append({"date": current.date().isoformat(), "active_subscriptions": active})
         current += timedelta(days=1)
     return result
 
@@ -375,10 +567,7 @@ async def get_voice_chart_data(days: int = 30):
             day_date = current.date()
             activity = data_map.get(day_date, 0)
             seconds = int(total_seconds * activity / total_activity) if total_activity else 0
-            result.append({
-                "date": day_date.isoformat(),
-                "voice_minutes": round(seconds / 60, 1)
-            })
+            result.append({"date": day_date.isoformat(), "voice_minutes": round(seconds / 60, 1)})
             current += timedelta(days=1)
         return result
     else:
@@ -386,10 +575,7 @@ async def get_voice_chart_data(days: int = 30):
         current = datetime.fromtimestamp(start_ts)
         end = datetime.fromtimestamp(now)
         while current <= end:
-            result.append({
-                "date": current.date().isoformat(),
-                "voice_minutes": 0
-            })
+            result.append({"date": current.date().isoformat(), "voice_minutes": 0})
             current += timedelta(days=1)
         return result
 
@@ -403,10 +589,7 @@ async def export_users_csv():
     writer.writerow(["user_id", "username", "first_name", "last_name", "registered_at", "last_active", "subscription_until", "voice_minutes"])
     for row in rows:
         writer.writerow([
-            row["user_id"],
-            row["username"] or "",
-            row["first_name"] or "",
-            row["last_name"] or "",
+            row["user_id"], row["username"] or "", row["first_name"] or "", row["last_name"] or "",
             datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
             datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M"),
             datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "",
@@ -418,14 +601,11 @@ async def export_users_csv():
 @app.get("/api/charts-data")
 async def charts_data(days: int = 30, type: str = "all"):
     if type == "finance":
-        data = await get_finance_chart_data(days)
-        return JSONResponse(data)
+        return JSONResponse(await get_finance_chart_data(days))
     elif type == "subscriptions":
-        data = await get_subscriptions_chart_data(days)
-        return JSONResponse(data)
+        return JSONResponse(await get_subscriptions_chart_data(days))
     elif type == "voice":
-        data = await get_voice_chart_data(days)
-        return JSONResponse(data)
+        return JSONResponse(await get_voice_chart_data(days))
     else:
         new_users = await get_new_users_data(days)
         activity = await get_activity_data(days)
@@ -498,7 +678,7 @@ def is_authenticated(request: Request) -> bool:
 
 @app.middleware("http")
 async def auth_middleware(request: Request, call_next):
-    if request.url.path in ["/login", "/favicon.ico"]:
+    if request.url.path in ["/login", "/favicon.ico"] or request.url.path.startswith("/yookassa/"):
         return await call_next(request)
     if not is_authenticated(request):
         return RedirectResponse(url="/login", status_code=303)
@@ -566,10 +746,7 @@ async def index(request: Request):
         target = f"пользователя {row['target_user_id']}" if row["target_user_id"] else ""
         details = row["details"] or ""
         action_text = f"{row['action']} {target} {details}".strip()
-        logs_display.append({
-            "time": time_str,
-            "text": action_text
-        })
+        logs_display.append({"time": time_str, "text": action_text})
 
     return templates.TemplateResponse("index.html", {
         "request": request,
@@ -758,58 +935,32 @@ async def user_detail(request: Request, user_id: int):
             progress_data[key][display_level]["correct"] += correct
             progress_data[key][display_level]["wrong"] += wrong
 
-        # ===== ГРАММАТИКА =====
         grammar_items = []
         for raw_key, display_name in GRAMMAR_TYPES.items():
             db_key = f"grammar_{raw_key}"
             levels_data = progress_data.get(db_key, {})
-            total_correct = 0
-            total_wrong = 0
-            for level_data in levels_data.values():
-                total_correct += level_data["correct"]
-                total_wrong += level_data["wrong"]
+            total_correct = sum(d["correct"] for d in levels_data.values())
+            total_wrong = sum(d["wrong"] for d in levels_data.values())
             total = total_correct + total_wrong
             percent = round((total_correct / total * 100), 1) if total else 0
             errors = error_counts.get(db_key, 0)
-            grammar_items.append({
-                "subtype": display_name,
-                "correct": total_correct,
-                "total": total,
-                "percent": percent,
-                "errors": errors
-            })
+            grammar_items.append({"subtype": display_name, "correct": total_correct, "total": total, "percent": percent, "errors": errors})
 
-        # ===== ЛЕКСИКА =====
         lexis_items = []
         for raw_key, display_name in LEXIS_TYPES.items():
             db_key = f"words_{raw_key}"
             levels_data = progress_data.get(db_key, {})
-            total_correct = 0
-            total_wrong = 0
-            for level_data in levels_data.values():
-                total_correct += level_data["correct"]
-                total_wrong += level_data["wrong"]
+            total_correct = sum(d["correct"] for d in levels_data.values())
+            total_wrong = sum(d["wrong"] for d in levels_data.values())
             total = total_correct + total_wrong
             percent = round((total_correct / total * 100), 1) if total else 0
             errors = error_counts.get(db_key, 0)
-            lexis_items.append({
-                "subtype": display_name,
-                "correct": total_correct,
-                "total": total,
-                "percent": percent,
-                "errors": errors
-            })
+            lexis_items.append({"subtype": display_name, "correct": total_correct, "total": total, "percent": percent, "errors": errors})
 
-        # ===== ЧТЕНИЕ =====
         reading_items = []
-        color_map = {
-            "Новичок": "#e6f0fa",
-            "Любитель": "#fce4ec",
-            "Эксперт": "#fff9c4"
-        }
+        color_map = {"Новичок": "#e6f0fa", "Любитель": "#fce4ec", "Эксперт": "#fff9c4"}
         for raw_key, display_name in READING_TYPES.items():
-            db_key = raw_key
-            levels_data = progress_data.get(db_key, {})
+            levels_data = progress_data.get(raw_key, {})
             for level in ["Новичок", "Любитель", "Эксперт"]:
                 data = levels_data.get(level, {"correct": 0, "wrong": 0})
                 correct = data["correct"]
@@ -817,17 +968,8 @@ async def user_detail(request: Request, user_id: int):
                 total = correct + wrong
                 percent = round((correct / total * 100), 1) if total else 0
                 style = f"background-color: {color_map.get(level, 'transparent')};"
-                reading_items.append({
-                    "subtype": display_name,
-                    "level": level,
-                    "correct": correct,
-                    "wrong": wrong,
-                    "total": total,
-                    "percent": percent,
-                    "style": style
-                })
+                reading_items.append({"subtype": display_name, "level": level, "correct": correct, "wrong": wrong, "total": total, "percent": percent, "style": style})
 
-        # ===== АУДИРОВАНИЕ =====
         listening_items = []
         for raw_key, display_name in LISTENING_TYPES.items():
             db_key = f"listening_{raw_key}"
@@ -839,34 +981,17 @@ async def user_detail(request: Request, user_id: int):
                 total = correct + wrong
                 percent = round((correct / total * 100), 1) if total else 0
                 style = f"background-color: {color_map.get(level, 'transparent')};"
-                listening_items.append({
-                    "subtype": display_name,
-                    "level": level,
-                    "correct": correct,
-                    "wrong": wrong,
-                    "total": total,
-                    "percent": percent,
-                    "style": style
-                })
+                listening_items.append({"subtype": display_name, "level": level, "correct": correct, "wrong": wrong, "total": total, "percent": percent, "style": style})
 
-        # ===== ПИСЬМО =====
         writing_items = []
-        writing_type_names = {
-            "email": "📧 Email",
-            "essay": "📝 Эссе",
-            "post": "📱 Пост",
-            "story": "📖 История"
-        }
+        writing_type_names = {"email": "📧 Email", "essay": "📝 Эссе", "post": "📱 Пост", "story": "📖 История"}
         writing_data = {}
         for r in writing_rows:
             key = r["type_key"]
             level = r["level_key"]
             if key not in writing_data:
                 writing_data[key] = {}
-            writing_data[key][level] = {
-                "answered": r["total_answered"],
-                "score": r["total_score"]
-            }
+            writing_data[key][level] = {"answered": r["total_answered"], "score": r["total_score"]}
         for type_key, display_name in writing_type_names.items():
             levels = writing_data.get(type_key, {})
             for level in ["beginner", "intermediate", "expert"]:
@@ -875,32 +1000,18 @@ async def user_detail(request: Request, user_id: int):
                 answered = data["answered"]
                 score = data["score"]
                 avg = round(score / answered, 1) if answered else 0
-                writing_items.append({
-                    "subtype": display_name,
-                    "level": level_display,
-                    "answered": answered,
-                    "score": score,
-                    "avg": avg
-                })
+                writing_items.append({"subtype": display_name, "level": level_display, "answered": answered, "score": score, "avg": avg})
         writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-        # ===== ГОВОРЕНИЕ =====
         govorenie_items = []
-        govorenie_type_names = {
-            "reading": "📖 Чтение вслух",
-            "fluency": "⏱ Беглость",
-            "interview": "🎤 Интервью"
-        }
+        govorenie_type_names = {"reading": "📖 Чтение вслух", "fluency": "⏱ Беглость", "interview": "🎤 Интервью"}
         govorenie_data = {}
         for r in govorenie_rows:
             key = r["task_type"]
             level = r["level"]
             if key not in govorenie_data:
                 govorenie_data[key] = {}
-            govorenie_data[key][level] = {
-                "answered": r["total_answered"],
-                "score": r["total_score"]
-            }
+            govorenie_data[key][level] = {"answered": r["total_answered"], "score": r["total_score"]}
         for type_key, display_name in govorenie_type_names.items():
             levels = govorenie_data.get(type_key, {})
             for level in ["beginner", "intermediate", "advanced"]:
@@ -909,13 +1020,7 @@ async def user_detail(request: Request, user_id: int):
                 answered = data["answered"]
                 score = data["score"]
                 avg = round(score / answered, 1) if answered else 0
-                govorenie_items.append({
-                    "subtype": display_name,
-                    "level": level_display,
-                    "answered": answered,
-                    "score": score,
-                    "avg": avg
-                })
+                govorenie_items.append({"subtype": display_name, "level": level_display, "answered": answered, "score": score, "avg": avg})
         govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
         def _fmt(secs):
@@ -1117,12 +1222,7 @@ async def get_api_balance(service: str) -> dict:
             "threshold": threshold,
             "link": row["link"] or "#"
         }
-    return {
-        "balance": "неизвестно",
-        "last_updated": 0,
-        "threshold": "10000",
-        "link": "#"
-    }
+    return {"balance": "неизвестно", "last_updated": 0, "threshold": "10000", "link": "#"}
 
 async def update_api_balance(service: str, balance: str, threshold: str = None):
     conn = await get_db()
@@ -1140,17 +1240,12 @@ async def get_render_payment() -> dict:
     row = await conn.fetchrow("SELECT next_payment_date, amount, notified FROM render_payment WHERE id = 1")
     await conn.close()
     if row:
-        return {
-            "next_payment_date": row["next_payment_date"] or 0,
-            "amount": row["amount"] or "7",
-            "notified": row["notified"] or False
-        }
+        return {"next_payment_date": row["next_payment_date"] or 0, "amount": row["amount"] or "7", "notified": row["notified"] or False}
     return {"next_payment_date": 0, "amount": "7", "notified": False}
 
 async def set_render_payment(date_ts: int, amount: str):
     conn = await get_db()
-    await conn.execute("UPDATE render_payment SET next_payment_date = $1, amount = $2, notified = FALSE WHERE id = 1",
-                       date_ts, amount)
+    await conn.execute("UPDATE render_payment SET next_payment_date = $1, amount = $2, notified = FALSE WHERE id = 1", date_ts, amount)
     await conn.close()
 
 async def set_render_notified(notified: bool):
