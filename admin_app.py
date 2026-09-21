@@ -13,6 +13,7 @@ import httpx
 from dotenv import load_dotenv
 import apscheduler.schedulers.background
 from pydantic import BaseModel
+from services.nalog import create_receipt_and_get_url
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -208,6 +209,10 @@ async def ensure_db_structure():
             )
         """)
         await conn.execute("""
+            ALTER TABLE payments
+            ADD COLUMN IF NOT EXISTS receipt_url TEXT
+        """)
+        await conn.execute("""
             CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id)
         """)
         await conn.execute("""
@@ -309,7 +314,7 @@ async def yookassa_webhook_handler(payload: dict):
     conn = await get_db()
     try:
         row = await conn.fetchrow(
-            "SELECT status FROM payments WHERE payment_id = $1", payment_id
+            "SELECT status, receipt_url FROM payments WHERE payment_id = $1", payment_id
         )
         if not row:
             logger.error(f"YooKassa webhook: платёж {payment_id} не найден в БД")
@@ -367,6 +372,61 @@ async def yookassa_webhook_handler(payload: dict):
     finally:
         await conn.close()
 
+    # --- СОЗДАНИЕ ЧЕКА В «МОЙ НАЛОГ» ---
+    # Сначала проверяем, не создавали ли чек ранее для этого платежа
+    receipt_url = None
+    conn = await get_db()
+    try:
+        existing = await conn.fetchrow(
+            "SELECT receipt_url FROM payments WHERE payment_id = $1", payment_id
+        )
+        if existing and existing["receipt_url"]:
+            receipt_url = existing["receipt_url"]
+            logger.info(f"Чек для {payment_id} уже существует в БД: {receipt_url}")
+    finally:
+        await conn.close()
+
+    if not receipt_url:
+        receipt_url = await create_receipt_and_get_url(
+            user_id=user_id,
+            amount=amount,
+            payment_id=payment_id,
+        )
+        if receipt_url:
+            # Сохраняем ссылку в БД, чтобы при повторном вебхуке не создавать дубль
+            conn = await get_db()
+            try:
+                await conn.execute(
+                    "UPDATE payments SET receipt_url = $1 WHERE payment_id = $2",
+                    receipt_url, payment_id
+                )
+            finally:
+                await conn.close()
+
+    if receipt_url:
+        # Отправляем чек покупателю
+        try:
+            async with httpx.AsyncClient(timeout=15) as client:
+                await client.post(
+                    f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                    json={
+                        "chat_id": user_id,
+                        "text": f"🧾 <b>Ваш чек об оплате</b>\n\nСсылка для просмотра и печати: {receipt_url}",
+                        "parse_mode": "HTML"
+                    }
+                )
+        except Exception as e:
+            logger.warning(f"Не удалось отправить чек пользователю {user_id}: {e}")
+    else:
+        # Если чек не создан — шлём алерт тебе
+        await send_telegram_alert(
+            f"⚠️ <b>Не удалось создать чек в «Мой налог»</b>\n"
+            f"User ID: {user_id}\n"
+            f"Сумма: {amount} ₽\n"
+            f"Payment ID: {payment_id}\n\n"
+            f"Проверь вручную в приложении «Мой налог»."
+        )
+
     # Уведомление пользователю в Telegram
     try:
         async with httpx.AsyncClient(timeout=15) as client:
@@ -375,7 +435,7 @@ async def yookassa_webhook_handler(payload: dict):
                 json={
                     "chat_id": user_id,
                     "text": (
-                        "✅ <b>Оплата подтверждена!</b>\n\n"
+                        "<b>Оплата подтверждена!</b>\n\n"
                         "Подписка Premium активирована на 30 дней.\n"
                         "Спасибо и приятного обучения! 💙"
                     ),
@@ -1151,7 +1211,7 @@ async def clear_all_user_data(request: Request, user_id: int):
 @app.post("/extend_all")
 async def extend_all_subscriptions(request: Request, days: int = Form(...)):
     admin_id = int(os.getenv("ADMIN_ID", 0))
-    reason = "🎉 Тебе начислены бонусные дни!\nТвоя подписка продлена до 15.08.2026.\nПриносим извинения за временные неудобства и дарим эти дни в качестве компенсации.\nСпасибо за терпение! 🙏"
+    reason = "🎉 Тебе начислены бонусные дни!\nТвоя подписка продлена до 15.08.2026.\nПриносим извинения за временные неудобства и дарим эти дни в качестве компенсации.\nСпасибо за то, что вы с нами!"
     conn = await get_db()
     now = int(datetime.now().timestamp())
     await conn.execute("""
@@ -1284,7 +1344,7 @@ async def send_telegram_alert(message: str):
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     try:
         async with httpx.AsyncClient() as client:
-            await client.post(url, json={"chat_id": admin_id, "text": message})
+            await client.post(url, json={"chat_id": admin_id, "text": message, "parse_mode": "HTML"})
         logger.info(f"Уведомление отправлено админу: {message[:50]}...")
     except Exception as e:
         logger.error(f"Не удалось отправить уведомление: {e}")
