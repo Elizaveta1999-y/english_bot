@@ -28,8 +28,8 @@ def _extract_bearer_token(token_json: str) -> str | None:
 async def _get_authenticated_client():
     """
     Возвращает (client, token_json) с валидным токеном.
-    Если токен протух — пробует refresh и сохраняет новый JSON в БД.
-    Если не получилось — возвращает (None, None).
+    Если токен протух/протухает — делает refresh через auth_provider,
+    сохраняет новый JSON в БД.
     """
     from admin_app import get_nalogo_token, save_nalogo_token
 
@@ -40,39 +40,67 @@ async def _get_authenticated_client():
 
     client = Client(device_id=DEVICE_ID)
 
-    # Пробуем использовать текущий токен
+    # 1. Устанавливаем токен в auth_provider, чтобы он знал, с чем работать
+    try:
+        await client.auth_provider.set_token(stored_json)
+    except Exception as e:
+        logger.error(f"NaloGO: set_token упал: {e}. Нужна переавторизация.")
+        return None, None
+
+    # 2. Проверяем, протух ли / протухает ли — если да, делаем refresh
+    try:
+        need_refresh = False
+        try:
+            need_refresh = client.auth_provider.is_token_expiring()
+        except Exception:
+            pass
+
+        if need_refresh:
+            logger.info("NaloGO: токен протухает — делаю refresh")
+            parsed = json.loads(stored_json)
+            refresh_token = parsed.get("refreshToken") if isinstance(parsed, dict) else None
+            if not refresh_token:
+                logger.error("NaloGO: нет refreshToken в JSON. Нужна переавторизация.")
+                return None, None
+
+            new_data = await client.auth_provider.refresh(refresh_token)
+            if not new_data:
+                logger.error("NaloGO: refresh вернул пусто. Нужна переавторизация.")
+                return None, None
+            new_json = json.dumps(new_data) if isinstance(new_data, dict) else new_data
+            await save_nalogo_token(new_json, "")
+            await client.auth_provider.set_token(new_json)
+            stored_json = new_json
+            logger.info("NaloGO: токен обновлён через refresh")
+
+    except Exception as e:
+        logger.warning(f"NaloGO: проверка/refresh не удалась ({e}), пробую authenticate как есть")
+
+    # 3. Аутентифицируемся
     try:
         await client.authenticate(stored_json)
-        return client, stored_json
     except Exception as e:
-        logger.warning(f"NaloGO: authenticate не прошёл ({e}), пробую refresh...")
-
-    # Пробуем refresh
-    try:
-        parsed = json.loads(stored_json)
-    except (json.JSONDecodeError, ValueError):
-        logger.error("NaloGO: сохранённый токен — не JSON. Нужна переавторизация.")
-        return None, None
-
-    refresh_token = parsed.get("refreshToken") if isinstance(parsed, dict) else None
-    if not refresh_token:
-        logger.error("NaloGO: в сохранённом JSON нет refreshToken. Нужна переавторизация через /nalog-login.")
-        return None, None
-
-    try:
-        new_json = await client.refresh(refresh_token)
-        if not new_json:
-            logger.error("NaloGO: refresh вернул пусто. Нужна переавторизация.")
+        logger.error(f"NaloGO: authenticate не прошёл: {e}. Пробую refresh...")
+        # Последняя попытка — прямой refresh
+        try:
+            parsed = json.loads(stored_json)
+            refresh_token = parsed.get("refreshToken") if isinstance(parsed, dict) else None
+            if not refresh_token:
+                return None, None
+            new_data = await client.auth_provider.refresh(refresh_token)
+            if not new_data:
+                return None, None
+            new_json = json.dumps(new_data) if isinstance(new_data, dict) else new_data
+            await save_nalogo_token(new_json, "")
+            await client.auth_provider.set_token(new_json)
+            await client.authenticate(new_json)
+            stored_json = new_json
+            logger.info("NaloGO: токен обновлён через refresh (после ошибки auth)")
+        except Exception as e2:
+            logger.error(f"NaloGO: refresh тоже упал: {e2}. Нужна переавторизация через /nalog-login.")
             return None, None
-        if isinstance(new_json, dict):
-            new_json = json.dumps(new_json)
-        await save_nalogo_token(new_json, "")
-        logger.info("NaloGO: токен успешно обновлён через refresh")
-        # После refresh клиент уже авторизован — используем как есть
-        return client, new_json
-    except Exception as e:
-        logger.error(f"NaloGO: refresh упал ({e}). Нужна переавторизация через /nalog-login.")
-        return None, None
+
+    return client, stored_json
 
 
 async def request_sms_code(phone: str) -> dict:
