@@ -218,11 +218,68 @@ async def ensure_db_structure():
         await conn.execute("""
             CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status)
         """)
+        # ---------- NALOGO TOKENS ----------
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS nalogo_tokens (
+                id INTEGER PRIMARY KEY DEFAULT 1 CHECK (id = 1),
+                access_token TEXT,
+                refresh_token TEXT,
+                phone TEXT,
+                challenge_token TEXT,
+                updated_at BIGINT DEFAULT 0
+            )
+        """)
+        await conn.execute("""
+            INSERT INTO nalogo_tokens (id, access_token, refresh_token, updated_at)
+            VALUES (1, NULL, NULL, 0)
+            ON CONFLICT (id) DO NOTHING
+        """)
         logger.info("✅ Структура БД обновлена")
     except Exception as e:
         logger.error(f"⚠️ Ошибка при обновлении БД: {e}")
     finally:
         await conn.close()
+
+# ---------- NALOGO TOKEN HELPERS ----------
+async def save_nalogo_token(access_token: str, refresh_token: str = ""):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        UPDATE nalogo_tokens
+        SET access_token = $1, refresh_token = $2, updated_at = $3, challenge_token = NULL
+        WHERE id = 1
+    """, access_token, refresh_token, now)
+    await conn.close()
+    logger.info("NaloGO токен сохранён в БД")
+
+async def get_nalogo_token():
+    conn = await get_db()
+    row = await conn.fetchrow(
+        "SELECT access_token, refresh_token FROM nalogo_tokens WHERE id = 1"
+    )
+    await conn.close()
+    if row and row["access_token"]:
+        return row["access_token"], row["refresh_token"]
+    return None, None
+
+async def save_nalogo_challenge(phone: str, challenge_token: str):
+    conn = await get_db()
+    await conn.execute("""
+        UPDATE nalogo_tokens
+        SET phone = $1, challenge_token = $2, updated_at = $3
+        WHERE id = 1
+    """, phone, challenge_token, int(datetime.now().timestamp()))
+    await conn.close()
+
+async def get_nalogo_challenge():
+    conn = await get_db()
+    row = await conn.fetchrow(
+        "SELECT phone, challenge_token FROM nalogo_tokens WHERE id = 1"
+    )
+    await conn.close()
+    if row:
+        return row["phone"], row["challenge_token"]
+    return None, None
 
 # ---------- ЛОГИРОВАНИЕ ДЕЙСТВИЙ АДМИНА ----------
 async def log_admin_action(admin_id: int, action: str, details: str = "", target_user_id: int = None):
@@ -373,7 +430,6 @@ async def yookassa_webhook_handler(payload: dict):
         await conn.close()
 
     # --- СОЗДАНИЕ ЧЕКА В «МОЙ НАЛОГ» ---
-    # Сначала проверяем, не создавали ли чек ранее для этого платежа
     receipt_url = None
     conn = await get_db()
     try:
@@ -393,7 +449,6 @@ async def yookassa_webhook_handler(payload: dict):
             payment_id=payment_id,
         )
         if receipt_url:
-            # Сохраняем ссылку в БД, чтобы при повторном вебхуке не создавать дубль
             conn = await get_db()
             try:
                 await conn.execute(
@@ -404,7 +459,6 @@ async def yookassa_webhook_handler(payload: dict):
                 await conn.close()
 
     if receipt_url:
-        # Отправляем чек покупателю
         try:
             async with httpx.AsyncClient(timeout=15) as client:
                 await client.post(
@@ -418,7 +472,6 @@ async def yookassa_webhook_handler(payload: dict):
         except Exception as e:
             logger.warning(f"Не удалось отправить чек пользователю {user_id}: {e}")
     else:
-        # Если чек не создан — шлём алерт тебе
         await send_telegram_alert(
             f"⚠️ <b>Не удалось создать чек в «Мой налог»</b>\n"
             f"User ID: {user_id}\n"
@@ -427,7 +480,6 @@ async def yookassa_webhook_handler(payload: dict):
             f"Проверь вручную в приложении «Мой налог»."
         )
 
-    # Уведомление пользователю в Telegram
     try:
         async with httpx.AsyncClient(timeout=15) as client:
             await client.post(
@@ -445,7 +497,6 @@ async def yookassa_webhook_handler(payload: dict):
     except Exception as e:
         logger.warning(f"Не удалось уведомить пользователя {user_id}: {e}")
 
-    # Уведомление админу
     await send_telegram_alert(
         f"💰 Новая оплата!\n"
         f"User: {user_id}\n"
@@ -738,7 +789,7 @@ def is_authenticated(request: Request) -> bool:
 
 @app.middleware("http")
 async def auth_middleware(request: Request, call_next):
-    if request.url.path in ["/login", "/favicon.ico"] or request.url.path.startswith("/yookassa/"):
+    if request.url.path in ["/login", "/favicon.ico"] or request.url.path.startswith("/yookassa/") or request.url.path.startswith("/nalog-login"):
         return await call_next(request)
     if not is_authenticated(request):
         return RedirectResponse(url="/login", status_code=303)
@@ -755,6 +806,51 @@ async def login(request: Request, password: str = Form(...)):
         response.set_cookie(key="admin_auth", value="true", httponly=True, max_age=86400)
         return response
     return templates.TemplateResponse("login.html", {"request": request, "error": "Неверный пароль"})
+
+# ---------- NALOGO LOGIN (SMS) ----------
+@app.get("/nalog-login", response_class=HTMLResponse)
+async def nalog_login_page(request: Request):
+    return HTMLResponse("""
+    <html><body style="font-family:sans-serif;max-width:500px;margin:50px auto;padding:20px">
+    <h2>Вход в «Мой налог» по SMS</h2>
+    <form method="post" action="/nalog-login/request">
+        <label>Номер телефона (в формате 79001234567):</label><br>
+        <input type="text" name="phone" required style="width:100%;padding:8px;margin:10px 0"><br>
+        <button type="submit" style="padding:10px 20px">Запросить код</button>
+    </form>
+    </body></html>
+    """)
+
+@app.post("/nalog-login/request", response_class=HTMLResponse)
+async def nalog_login_request(phone: str = Form(...)):
+    from services.nalog import request_sms_code
+    result = await request_sms_code(phone)
+    if not result.get("ok"):
+        return HTMLResponse(f"<h2>Ошибка</h2><pre>{result.get('error')}</pre><p><a href='/nalog-login'>Назад</a></p>")
+    return HTMLResponse(f"""
+    <html><body style="font-family:sans-serif;max-width:500px;margin:50px auto;padding:20px">
+    <h2>Введите код из СМС</h2>
+    <form method="post" action="/nalog-login/confirm">
+        <label>Код из СМС:</label><br>
+        <input type="text" name="code" required style="width:100%;padding:8px;margin:10px 0"><br>
+        <button type="submit" style="padding:10px 20px">Подтвердить</button>
+    </form>
+    </body></html>
+    """)
+
+@app.post("/nalog-login/confirm", response_class=HTMLResponse)
+async def nalog_login_confirm(code: str = Form(...)):
+    from services.nalog import confirm_sms_code
+    result = await confirm_sms_code(code)
+    if not result.get("ok"):
+        return HTMLResponse(f"<h2>Ошибка</h2><pre>{result.get('error')}</pre><p><a href='/nalog-login'>Назад</a></p>")
+    return HTMLResponse("""
+    <html><body style="font-family:sans-serif;max-width:500px;margin:50px auto;padding:20px">
+    <h2>✅ Успешно!</h2>
+    <p>Токен сохранён в БД. Теперь чеки будут создаваться автоматически.</p>
+    <p><a href="/">На главную админки</a></p>
+    </body></html>
+    """)
 
 @app.get("/logout")
 async def logout():
