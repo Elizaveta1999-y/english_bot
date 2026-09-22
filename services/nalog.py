@@ -123,11 +123,12 @@ async def create_receipt_and_get_url(
             return None
 
         # Собираем URL вручную (client.receipt() требует profile, которого нет в минимальном JSON)
+        # ВАЖНО: путь с /v1/, иначе API вернёт 404
         inn = os.getenv("NALOGO_INN") or os.getenv("NALOG_INN")
         if not inn:
             logger.error("NALOGO_INN не задан в переменных окружения")
             return {"print_url": None, "image_bytes": None}
-        print_url = f"https://lknpd.nalog.ru/api/receipt/{inn}/{receipt_uuid}/print"
+        print_url = f"https://lknpd.nalog.ru/api/v1/receipt/{inn}/{receipt_uuid}/print"
         logger.info(f"Собран print_url: {print_url}")
 
         # Скачиваем картинку, используя bearer_token
