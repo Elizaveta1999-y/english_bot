@@ -25,6 +25,56 @@ def _extract_bearer_token(token_json: str) -> str | None:
     return None
 
 
+async def _get_authenticated_client():
+    """
+    Возвращает (client, token_json) с валидным токеном.
+    Если токен протух — пробует refresh и сохраняет новый JSON в БД.
+    Если не получилось — возвращает (None, None).
+    """
+    from admin_app import get_nalogo_token, save_nalogo_token
+
+    stored_json, _ = await get_nalogo_token()
+    if not stored_json:
+        logger.error("NaloGO: нет токена в БД. Зайди на /nalog-login.")
+        return None, None
+
+    client = Client(device_id=DEVICE_ID)
+
+    # Пробуем использовать текущий токен
+    try:
+        await client.authenticate(stored_json)
+        return client, stored_json
+    except Exception as e:
+        logger.warning(f"NaloGO: authenticate не прошёл ({e}), пробую refresh...")
+
+    # Пробуем refresh
+    try:
+        parsed = json.loads(stored_json)
+    except (json.JSONDecodeError, ValueError):
+        logger.error("NaloGO: сохранённый токен — не JSON. Нужна переавторизация.")
+        return None, None
+
+    refresh_token = parsed.get("refreshToken") if isinstance(parsed, dict) else None
+    if not refresh_token:
+        logger.error("NaloGO: в сохранённом JSON нет refreshToken. Нужна переавторизация через /nalog-login.")
+        return None, None
+
+    try:
+        new_json = await client.refresh(refresh_token)
+        if not new_json:
+            logger.error("NaloGO: refresh вернул пусто. Нужна переавторизация.")
+            return None, None
+        if isinstance(new_json, dict):
+            new_json = json.dumps(new_json)
+        await save_nalogo_token(new_json, "")
+        logger.info("NaloGO: токен успешно обновлён через refresh")
+        # После refresh клиент уже авторизован — используем как есть
+        return client, new_json
+    except Exception as e:
+        logger.error(f"NaloGO: refresh упал ({e}). Нужна переавторизация через /nalog-login.")
+        return None, None
+
+
 async def request_sms_code(phone: str) -> dict:
     """Запрашивает SMS-код у «Мой налог». Сохраняет challengeToken в БД."""
     from admin_app import save_nalogo_challenge
@@ -89,25 +139,14 @@ async def create_receipt_and_get_url(
     Создаёт чек в «Мой налог» и скачивает изображение чека.
     Возвращает {"print_url": str, "image_bytes": bytes} или None.
     """
-    from admin_app import get_nalogo_token
-
     try:
-        client = Client(device_id=DEVICE_ID)
-
-        stored_json, refresh_token = await get_nalogo_token()
-        if not stored_json:
-            logger.error("NaloGO: нет токена в БД. Зайди на /nalog-login и авторизуйся по SMS.")
+        client, token_json = await _get_authenticated_client()
+        if not client:
             return None
 
-        bearer_token = _extract_bearer_token(stored_json)
+        bearer_token = _extract_bearer_token(token_json)
         if not bearer_token:
-            logger.error(f"NaloGO: не удалось извлечь 'token' из JSON. Авторизуйся заново. Начало: {stored_json[:120]}")
-            return None
-
-        try:
-            await client.authenticate(stored_json)
-        except Exception as e:
-            logger.error(f"NaloGO: authenticate не прошёл: {e}. Авторизуйся заново через /nalog-login")
+            logger.error(f"NaloGO: не удалось извлечь 'token' из JSON. Начало: {token_json[:120]}")
             return None
 
         income_api = client.income()
@@ -122,7 +161,7 @@ async def create_receipt_and_get_url(
             logger.error(f"Чек создан, но UUID не найден. result={result}")
             return None
 
-        # Собираем URL вручную (client.receipt() требует profile, которого нет в минимальном JSON)
+        # Собираем URL вручную (client.receipt() требует profile, которого нет)
         # ВАЖНО: путь с /v1/, иначе API вернёт 404
         inn = os.getenv("NALOGO_INN") or os.getenv("NALOG_INN")
         if not inn:
