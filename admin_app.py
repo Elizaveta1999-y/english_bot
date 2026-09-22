@@ -13,7 +13,7 @@ import httpx
 from dotenv import load_dotenv
 import apscheduler.schedulers.background
 from pydantic import BaseModel
-from services.nalog import create_receipt_and_get_url
+from services.nalog import create_receipt_and_get_url, cancel_receipt
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -233,6 +233,25 @@ async def ensure_db_structure():
             VALUES (1, NULL, NULL, 0)
             ON CONFLICT (id) DO NOTHING
         """)
+        # ---------- REFUNDS ----------
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS refunds (
+                id SERIAL PRIMARY KEY,
+                payment_id TEXT NOT NULL,
+                user_id BIGINT NOT NULL,
+                amount DECIMAL(10,2) NOT NULL,
+                admin_id BIGINT,
+                yookassa_refund_id TEXT,
+                status TEXT NOT NULL DEFAULT 'pending',
+                created_at BIGINT NOT NULL
+            )
+        """)
+        await conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_refunds_payment_id ON refunds(payment_id)
+        """)
+        await conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_refunds_user_id ON refunds(user_id)
+        """)
         logger.info("✅ Структура БД обновлена")
     except Exception as e:
         logger.error(f"⚠️ Ошибка при обновлении БД: {e}")
@@ -315,6 +334,66 @@ async def yookassa_get_payment(payment_id: str) -> dict:
     except Exception as e:
         logger.error(f"YooKassa get_payment: {e}")
         return None
+
+
+async def yookassa_create_refund(payment_id: str, amount: float, description: str = "Возврат по запросу") -> dict:
+    """Создаёт возврат в ЮKassa. Возвращает dict с refund_id или None."""
+    if not YOOKASSA_SHOP_ID or not YOOKASSA_SECRET_KEY:
+        return None
+    try:
+        idempotence_key = f"refund-{payment_id}-{int(datetime.now().timestamp())}"
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.post(
+                "https://api.yookassa.ru/v3/refunds",
+                headers={
+                    "Authorization": _yookassa_auth_header(),
+                    "Idempotence-Key": idempotence_key,
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "payment_id": payment_id,
+                    "amount": {"value": f"{amount:.2f}", "currency": "RUB"},
+                    "description": description,
+                },
+            )
+            if resp.status_code not in (200, 201):
+                logger.error(f"YooKassa refund: {resp.status_code} — {resp.text[:300]}")
+                return None
+            return resp.json()
+    except Exception as e:
+        logger.error(f"YooKassa refund error: {e}")
+        return None
+
+
+async def get_last_successful_payment(user_id: int) -> dict | None:
+    """Возвращает последний успешный платёж пользователя."""
+    conn = await get_db()
+    row = await conn.fetchrow(
+        """
+        SELECT payment_id, amount, activated_at, created_at
+        FROM payments
+        WHERE user_id = $1 AND status = 'succeeded'
+        ORDER BY activated_at DESC NULLS LAST, created_at DESC
+        LIMIT 1
+        """,
+        user_id
+    )
+    await conn.close()
+    if not row:
+        return None
+    return dict(row)
+
+
+async def get_refunded_amount(payment_id: str) -> float:
+    """Сумма, уже возвращённая по этому платежу (только успешные refunds)."""
+    conn = await get_db()
+    total = await conn.fetchval(
+        "SELECT COALESCE(SUM(amount), 0) FROM refunds WHERE payment_id = $1 AND status = 'succeeded'",
+        payment_id
+    )
+    await conn.close()
+    return float(total or 0)
+
 
 async def yookassa_webhook_handler(payload: dict):
     """Обрабатывает уведомление от ЮKassa. Возвращает True, если всё ок."""
@@ -461,7 +540,6 @@ async def yookassa_webhook_handler(payload: dict):
                     await conn.close()
 
     if receipt_data and receipt_data.get("image_bytes"):
-        # Отправляем изображение чека покупателю
         try:
             image_bytes = receipt_data["image_bytes"]
             async with httpx.AsyncClient(timeout=30) as client:
@@ -477,7 +555,6 @@ async def yookassa_webhook_handler(payload: dict):
         except Exception as e:
             logger.warning(f"Не удалось отправить чек пользователю {user_id}: {e}")
     elif receipt_url:
-        # Фолбэк — если изображение не скачалось, отправляем ссылку
         try:
             async with httpx.AsyncClient(timeout=15) as client:
                 await client.post(
@@ -499,7 +576,6 @@ async def yookassa_webhook_handler(payload: dict):
             f"Проверь вручную в приложении «Мой налог»."
         )
 
-    # Уведомление пользователю
     try:
         async with httpx.AsyncClient(timeout=15) as client:
             await client.post(
@@ -1071,6 +1147,34 @@ async def user_detail(request: Request, user_id: int):
             ORDER BY cnt DESC
         """, user_id)
 
+        # Данные для возврата
+        refund_info = None
+        payment_row = await conn.fetchrow("""
+            SELECT payment_id, amount, activated_at, created_at
+            FROM payments
+            WHERE user_id = $1 AND status = 'succeeded'
+            ORDER BY activated_at DESC NULLS LAST, created_at DESC
+            LIMIT 1
+        """, user_id)
+        if payment_row:
+            payment_id_r = payment_row["payment_id"]
+            payment_amount_r = float(payment_row["amount"])
+            refunded_row = await conn.fetchval(
+                "SELECT COALESCE(SUM(amount), 0) FROM refunds WHERE payment_id = $1 AND status = 'succeeded'",
+                payment_id_r
+            )
+            refunded_r = float(refunded_row or 0)
+            available_r = max(0, payment_amount_r - refunded_r)
+            payment_date = payment_row["activated_at"] or payment_row["created_at"]
+            refund_info = {
+                "payment_id": payment_id_r,
+                "amount": f"{payment_amount_r:.2f}",
+                "refunded": f"{refunded_r:.2f}",
+                "available": round(available_r, 2),
+                "date_str": datetime.fromtimestamp(payment_date).strftime("%Y-%m-%d %H:%M") if payment_date else "—",
+                "subscription_active": (user_row["subscription_until"] or 0) > int(datetime.now().timestamp()),
+            }
+
         await conn.close()
 
         user = dict(user_row)
@@ -1235,7 +1339,8 @@ async def user_detail(request: Request, user_id: int):
             "voice_percent": voice_percent,
             "admin_logs": logs_display,
             "action_stats": action_stats,
-            "total_admin_actions": total_admin_actions
+            "total_admin_actions": total_admin_actions,
+            "refund_info": refund_info,
         })
     except Exception as e:
         logger.error(f"Ошибка в user_detail для {user_id}: {e}", exc_info=True)
@@ -1289,6 +1394,125 @@ async def cancel_subscription(request: Request, user_id: int):
     await conn.close()
     await log_admin_action(admin_id, "Отмена подписки", "", user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+
+@app.post("/user/{user_id}/refund")
+async def refund_user(request: Request, user_id: int, amount: float = Form(...)):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+
+    conn = await get_db()
+    try:
+        user_row = await conn.fetchrow(
+            "SELECT subscription_until FROM users WHERE user_id = $1", user_id
+        )
+        if not user_row:
+            raise HTTPException(404, "Пользователь не найден")
+
+        now = int(datetime.now().timestamp())
+        if (user_row["subscription_until"] or 0) <= now:
+            await send_telegram_alert(
+                f"⚠️ Попытка возврата для user {user_id}: подписка неактивна"
+            )
+            return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+    finally:
+        await conn.close()
+
+    payment = await get_last_successful_payment(user_id)
+    if not payment:
+        await send_telegram_alert(f"⚠️ Возврат для user {user_id}: нет успешных платежей")
+        return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+    payment_id = payment["payment_id"]
+    payment_amount = float(payment["amount"])
+    already_refunded = await get_refunded_amount(payment_id)
+    available = payment_amount - already_refunded
+
+    if amount <= 0 or amount > available + 0.01:
+        await send_telegram_alert(
+            f"⚠️ Возврат для user {user_id}: неверная сумма {amount} ₽ "
+            f"(доступно {available:.2f} ₽)"
+        )
+        return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+    amount = round(amount, 2)
+
+    refund_response = await yookassa_create_refund(
+        payment_id=payment_id,
+        amount=amount,
+        description=f"Возврат для user {user_id}",
+    )
+
+    now = int(datetime.now().timestamp())
+
+    if refund_response and refund_response.get("status") in ("succeeded", "pending"):
+        refund_id = refund_response.get("id", "")
+        refund_status = refund_response.get("status", "pending")
+
+        conn = await get_db()
+        try:
+            await conn.execute("""
+                INSERT INTO refunds (payment_id, user_id, amount, admin_id, yookassa_refund_id, status, created_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
+            """, payment_id, user_id, amount, admin_id, refund_id, refund_status, now)
+
+            await conn.execute(
+                "UPDATE users SET subscription_until = 0 WHERE user_id = $1", user_id
+            )
+        finally:
+            await conn.close()
+
+        # Аннулируем чек в «Мой налог»
+        try:
+            conn = await get_db()
+            try:
+                receipt_row = await conn.fetchrow(
+                    "SELECT receipt_url FROM payments WHERE payment_id = $1", payment_id
+                )
+                receipt_url = receipt_row["receipt_url"] if receipt_row else None
+            finally:
+                await conn.close()
+
+            if receipt_url:
+                cancel_ok = await cancel_receipt(receipt_url)
+                if not cancel_ok:
+                    await send_telegram_alert(
+                        f"⚠️ Возврат оформлен, но чек не аннулирован автоматически.\n"
+                        f"User: {user_id}\nСумма: {amount} ₽\n"
+                        f"Аннулируй вручную в приложении «Мой налог»."
+                    )
+        except Exception as e:
+            logger.error(f"Ошибка аннулирования чека: {e}")
+
+        await log_admin_action(
+            admin_id, "Возврат средств",
+            f"Возврат {amount} ₽ по платежу {payment_id}. Подписка отменена.",
+            user_id
+        )
+
+        await send_telegram_alert(
+            f"💸 Возврат оформлен\n"
+            f"User: {user_id}\n"
+            f"Сумма: {amount} ₽\n"
+            f"Платёж: {payment_id}\n"
+            f"Refund ID: {refund_id}"
+        )
+    else:
+        conn = await get_db()
+        try:
+            await conn.execute("""
+                INSERT INTO refunds (payment_id, user_id, amount, admin_id, yookassa_refund_id, status, created_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
+            """, payment_id, user_id, amount, admin_id, "", "failed", now)
+        finally:
+            await conn.close()
+
+        await send_telegram_alert(
+            f"⚠️ Не удалось оформить возврат в ЮKassa\n"
+            f"User: {user_id}\nСумма: {amount} ₽\nПлатёж: {payment_id}"
+        )
+
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
 
 @app.post("/user/{user_id}/reset_progress")
 async def reset_user_progress(request: Request, user_id: int):

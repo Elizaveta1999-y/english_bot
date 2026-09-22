@@ -40,14 +40,12 @@ async def _get_authenticated_client():
 
     client = Client(device_id=DEVICE_ID)
 
-    # 1. Устанавливаем токен в auth_provider, чтобы он знал, с чем работать
     try:
         await client.auth_provider.set_token(stored_json)
     except Exception as e:
         logger.error(f"NaloGO: set_token упал: {e}. Нужна переавторизация.")
         return None, None
 
-    # 2. Проверяем, протух ли / протухает ли — если да, делаем refresh
     try:
         need_refresh = False
         try:
@@ -76,12 +74,10 @@ async def _get_authenticated_client():
     except Exception as e:
         logger.warning(f"NaloGO: проверка/refresh не удалась ({e}), пробую authenticate как есть")
 
-    # 3. Аутентифицируемся
     try:
         await client.authenticate(stored_json)
     except Exception as e:
         logger.error(f"NaloGO: authenticate не прошёл: {e}. Пробую refresh...")
-        # Последняя попытка — прямой refresh
         try:
             parsed = json.loads(stored_json)
             refresh_token = parsed.get("refreshToken") if isinstance(parsed, dict) else None
@@ -189,8 +185,6 @@ async def create_receipt_and_get_url(
             logger.error(f"Чек создан, но UUID не найден. result={result}")
             return None
 
-        # Собираем URL вручную (client.receipt() требует profile, которого нет)
-        # ВАЖНО: путь с /v1/, иначе API вернёт 404
         inn = os.getenv("NALOGO_INN") or os.getenv("NALOG_INN")
         if not inn:
             logger.error("NALOGO_INN не задан в переменных окружения")
@@ -198,7 +192,6 @@ async def create_receipt_and_get_url(
         print_url = f"https://lknpd.nalog.ru/api/v1/receipt/{inn}/{receipt_uuid}/print"
         logger.info(f"Собран print_url: {print_url}")
 
-        # Скачиваем картинку, используя bearer_token
         async with httpx.AsyncClient(timeout=30) as http_client:
             resp = await http_client.get(
                 print_url,
@@ -219,3 +212,45 @@ async def create_receipt_and_get_url(
     except Exception as e:
         logger.error(f"Ошибка создания чека для user {user_id}: {e}", exc_info=True)
         return None
+
+
+async def cancel_receipt(receipt_url: str) -> bool:
+    """
+    Аннулирует чек в «Мой налог».
+    receipt_url вида: https://lknpd.nalog.ru/api/v1/receipt/{inn}/{uuid}/print
+    Возвращает True, если получилось.
+    """
+    try:
+        parts = receipt_url.rstrip("/").split("/")
+        if len(parts) < 2:
+            logger.error(f"cancel_receipt: не могу разобрать URL: {receipt_url}")
+            return False
+        receipt_uuid = parts[-2]
+
+        client, token_json = await _get_authenticated_client()
+        if not client:
+            return False
+
+        bearer_token = _extract_bearer_token(token_json)
+        if not bearer_token:
+            return False
+
+        async with httpx.AsyncClient(timeout=30) as http_client:
+            resp = await http_client.post(
+                "https://lknpd.nalog.ru/api/v1/income/cancel",
+                headers={
+                    "Authorization": f"Bearer {bearer_token}",
+                    "Content-Type": "application/json",
+                },
+                json={"receiptUuid": receipt_uuid},
+            )
+            if resp.status_code in (200, 204):
+                logger.info(f"✅ Чек {receipt_uuid} аннулирован")
+                return True
+            else:
+                logger.error(f"Не удалось аннулировать чек: {resp.status_code} — {resp.text[:200]}")
+                return False
+
+    except Exception as e:
+        logger.error(f"Ошибка аннулирования чека: {e}", exc_info=True)
+        return False

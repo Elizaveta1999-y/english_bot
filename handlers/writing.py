@@ -349,8 +349,16 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
                 if "message is not modified" not in str(e):
                     logger.error(f"Не удалось обновить карточку прогресса: {e}")
         else:
-            sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
-            await state.update_data(progress_msg_id=sent.message_id)
+            # Первый показ карточки — редактируем текущее сообщение (например, сообщение выбора уровня),
+            # а не отправляем новое.
+            try:
+                sent = await message.edit_text(card_text, reply_markup=keyboard, parse_mode="Markdown")
+                await state.update_data(progress_msg_id=sent.message_id)
+            except Exception as e:
+                if "message is not modified" not in str(e):
+                    logger.error(f"Не удалось отредактировать сообщение в карточку прогресса: {e}")
+                sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
+                await state.update_data(progress_msg_id=sent.message_id)
     else:
         sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
         await state.update_data(progress_msg_id=sent.message_id)

@@ -8,6 +8,7 @@
     .btn-outline-danger:hover { background: #f5f5f5; border-color: #aaa; }
     .section-title { margin-top: 25px; margin-bottom: 10px; font-weight: 400; border-bottom: 1px solid #eee; padding-bottom: 5px; }
     .action-badge { font-size: 0.9rem; margin-right: 6px; margin-bottom: 6px; display: inline-block; }
+    .refund-box { background: #fff8e1; border: 1px solid #ffe082; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
 </style>
 
 <h2>👤 Пользователь {{ user.user_id }}</h2>
@@ -46,6 +47,53 @@
         </div>
     </div>
 </div>
+
+<!-- ================== ВОЗВРАТ ================== -->
+<h4 class="section-title">💸 Возврат средств</h4>
+
+{% if refund_info %}
+<div class="refund-box">
+    <p><strong>Последний успешный платёж:</strong> {{ refund_info.payment_id }}</p>
+    <p><strong>Сумма платежа:</strong> {{ refund_info.amount }} ₽</p>
+    <p><strong>Дата оплаты:</strong> {{ refund_info.date_str }}</p>
+    <p><strong>Уже возвращено:</strong> {{ refund_info.refunded }} ₽</p>
+    <p><strong>Можно вернуть:</strong> {{ refund_info.available }} ₽</p>
+    <p><strong>Подписка активна:</strong> {% if refund_info.subscription_active %}✅ Да{% else %}❌ Нет{% endif %}</p>
+
+    {% if refund_info.available > 0 and refund_info.subscription_active %}
+        <form method="post" action="/user/{{ user.user_id }}/refund"
+              onsubmit="return confirm('Оформить возврат {{ refund_info.available }} ₽ пользователю {{ user.user_id }}? Подписка будет отменена.')">
+            <div class="row g-2 align-items-end">
+                <div class="col-auto">
+                    <label class="form-label">Сумма возврата, ₽</label>
+                    <input type="number" name="amount" class="form-control"
+                           value="{{ refund_info.available }}"
+                           min="1" max="{{ refund_info.available }}" step="0.01" required>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-warning" type="submit">💸 Оформить возврат</button>
+                </div>
+            </div>
+            <small class="text-muted d-block mt-2">
+                Максимум: {{ refund_info.available }} ₽. После возврата подписка отменяется сразу.
+            </small>
+        </form>
+    {% elif not refund_info.subscription_active %}
+        <div class="alert alert-secondary py-2 mb-0">
+            Возврат невозможен: подписка неактивна (истекла или отменена).
+        </div>
+    {% elif refund_info.available <= 0 %}
+        <div class="alert alert-secondary py-2 mb-0">
+            По этому платежу уже возвращена вся сумма.
+        </div>
+    {% endif %}
+</div>
+{% else %}
+<div class="alert alert-secondary py-2">
+    Нет успешных платежей для возврата.
+</div>
+{% endif %}
+<!-- ============================================================ -->
 
 <!-- ================== ИСТОРИЯ ДЕЙСТВИЙ АДМИНА ================== -->
 <h4 class="section-title">📋 История действий администратора</h4>
