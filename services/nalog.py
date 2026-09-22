@@ -1,5 +1,6 @@
 import os
 import io
+import json
 import logging
 from decimal import Decimal
 import httpx
@@ -10,26 +11,17 @@ logger = logging.getLogger(__name__)
 DEVICE_ID = "english-bot-admin"
 
 
-def _extract_token_string(token) -> str | None:
-    """Извлекает чистую строку токена из ответа nalogo."""
-    # Если уже строка — вернуть
-    if isinstance(token, str):
-        return token
-
-    # Если dict — ищем нужные ключи
-    if isinstance(token, dict):
-        for key in ("accessToken", "access_token", "token", "jwt"):
-            value = token.get(key)
-            if isinstance(value, str):
-                return value
+def _extract_bearer_token(token_json: str) -> str | None:
+    """Из сохранённого JSON достаёт поле token — для заголовка Authorization."""
+    try:
+        parsed = json.loads(token_json)
+    except (json.JSONDecodeError, ValueError):
         return None
-
-    # Если объект — ищем атрибуты
-    for attr in ("access_token", "accessToken", "token", "jwt"):
-        value = getattr(token, attr, None)
-        if isinstance(value, str):
-            return value
-
+    if isinstance(parsed, dict):
+        for key in ("token", "accessToken", "access_token", "jwt"):
+            value = parsed.get(key)
+            if isinstance(value, str) and value:
+                return value
     return None
 
 
@@ -55,7 +47,7 @@ async def request_sms_code(phone: str) -> dict:
 
 
 async def confirm_sms_code(code: str) -> dict:
-    """Подтверждает SMS-код и сохраняет токен в БД."""
+    """Подтверждает SMS-код и сохраняет ПОЛНЫЙ JSON-токен в БД."""
     from admin_app import get_nalogo_challenge, save_nalogo_token
     try:
         phone, challenge_token = await get_nalogo_challenge()
@@ -64,32 +56,22 @@ async def confirm_sms_code(code: str) -> dict:
 
         client = Client(device_id=DEVICE_ID)
 
-        token = await client.create_new_access_token_by_phone(
+        token_json = await client.create_new_access_token_by_phone(
             phone, challenge_token, code
         )
-        logger.info(f"Ответ auth типа {type(token).__name__}, начало: {str(token)[:80]}")
+        logger.info(f"Ответ auth типа {type(token_json).__name__}, начало: {str(token_json)[:120]}")
 
-        access_token = _extract_token_string(token)
-        if not access_token:
-            return {"ok": False, "error": f"Не удалось извлечь токен: {type(token)}: {str(token)[:200]}"}
-
-        # Проверка, что токен ASCII (JWT должен быть ASCII)
         try:
-            access_token.encode("ascii")
-        except UnicodeEncodeError:
-            logger.error(f"Токен содержит не-ASCII символы: {access_token[:80]}")
-            return {"ok": False, "error": "Токен содержит не-ASCII символы — это не JWT"}
+            parsed = json.loads(token_json)
+        except (json.JSONDecodeError, ValueError) as e:
+            return {"ok": False, "error": f"Ответ auth не JSON: {e}. Ответ: {str(token_json)[:200]}"}
 
-        refresh_token = ""
-        if isinstance(token, dict):
-            refresh_token = token.get("refreshToken", "") or token.get("refresh_token", "")
-        else:
-            refresh_token = getattr(token, "refresh_token", "") or getattr(token, "refreshToken", "") or ""
-        if not isinstance(refresh_token, str):
-            refresh_token = ""
+        token_value = parsed.get("token") if isinstance(parsed, dict) else None
+        if not token_value:
+            return {"ok": False, "error": f"Нет поля 'token' в JSON. Ключи: {list(parsed.keys()) if isinstance(parsed, dict) else type(parsed)}"}
 
-        await save_nalogo_token(access_token, refresh_token)
-        logger.info(f"Токен сохранён (первые 20 символов): {access_token[:20]}...")
+        await save_nalogo_token(token_json, "")
+        logger.info(f"Токен сохранён. Начало JWT: {token_value[:30]}...")
         return {"ok": True}
 
     except Exception as e:
@@ -112,25 +94,20 @@ async def create_receipt_and_get_url(
     try:
         client = Client(device_id=DEVICE_ID)
 
-        access_token, refresh_token = await get_nalogo_token()
-        if not access_token:
+        stored_json, refresh_token = await get_nalogo_token()
+        if not stored_json:
             logger.error("NaloGO: нет токена в БД. Зайди на /nalog-login и авторизуйся по SMS.")
             return None
 
-        # Проверяем, что токен чистый ASCII
-        if not isinstance(access_token, str):
-            logger.error(f"NaloGO: токен в БД не строка: {type(access_token)}")
-            return None
-        try:
-            access_token.encode("ascii")
-        except UnicodeEncodeError:
-            logger.error(f"NaloGO: токен в БД содержит не-ASCII символы. Зайди на /nalog-login и авторизуйся заново.")
+        bearer_token = _extract_bearer_token(stored_json)
+        if not bearer_token:
+            logger.error(f"NaloGO: не удалось извлечь 'token' из JSON. Авторизуйся заново. Начало: {stored_json[:120]}")
             return None
 
         try:
-            await client.authenticate(access_token)
+            await client.authenticate(stored_json)
         except Exception as e:
-            logger.error(f"NaloGO: токен из БД недействителен: {e}. Авторизуйся заново через /nalog-login")
+            logger.error(f"NaloGO: authenticate не прошёл: {e}. Авторизуйся заново через /nalog-login")
             return None
 
         income_api = client.income()
@@ -145,17 +122,19 @@ async def create_receipt_and_get_url(
             logger.error(f"Чек создан, но UUID не найден. result={result}")
             return None
 
-        receipt_api = client.receipt()
-        print_url = receipt_api.print_url(receipt_uuid)
-        if not print_url:
-            logger.error(f"UUID получен, но ссылка не сгенерирована. uuid={receipt_uuid}")
-            return None
+        # Собираем URL вручную (client.receipt() требует profile, которого нет в минимальном JSON)
+        inn = os.getenv("NALOGO_INN") or os.getenv("NALOG_INN")
+        if not inn:
+            logger.error("NALOGO_INN не задан в переменных окружения")
+            return {"print_url": None, "image_bytes": None}
+        print_url = f"https://lknpd.nalog.ru/api/receipt/{inn}/{receipt_uuid}/print"
+        logger.info(f"Собран print_url: {print_url}")
 
-        # Скачиваем изображение чека с авторизацией
+        # Скачиваем картинку, используя bearer_token
         async with httpx.AsyncClient(timeout=30) as http_client:
             resp = await http_client.get(
                 print_url,
-                headers={"Authorization": f"Bearer {access_token}"},
+                headers={"Authorization": f"Bearer {bearer_token}"},
             )
             if resp.status_code != 200:
                 logger.error(f"Не удалось скачать изображение чека: {resp.status_code} — {resp.text[:200]}")
