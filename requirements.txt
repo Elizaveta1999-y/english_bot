@@ -17,4 +17,3 @@ redis
 websockets
 nalogo
 python-dotenv
-qrcode[pil]

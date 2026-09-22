@@ -449,34 +449,35 @@ async def yookassa_webhook_handler(payload: dict):
             payment_id=payment_id,
         )
         if receipt_data:
-            receipt_url = receipt_data["print_url"]
-            conn = await get_db()
-            try:
-                await conn.execute(
-                    "UPDATE payments SET receipt_url = $1 WHERE payment_id = $2",
-                    receipt_url, payment_id
-                )
-            finally:
-                await conn.close()
+            receipt_url = receipt_data.get("print_url")
+            if receipt_url:
+                conn = await get_db()
+                try:
+                    await conn.execute(
+                        "UPDATE payments SET receipt_url = $1 WHERE payment_id = $2",
+                        receipt_url, payment_id
+                    )
+                finally:
+                    await conn.close()
 
-    if receipt_data and receipt_data.get("qr_image"):
-        # Отправляем QR-код покупателю картинкой
+    if receipt_data and receipt_data.get("image_bytes"):
+        # Отправляем изображение чека покупателю
         try:
-            qr_bytes = receipt_data["qr_image"]
-            async with httpx.AsyncClient(timeout=15) as client:
+            image_bytes = receipt_data["image_bytes"]
+            async with httpx.AsyncClient(timeout=30) as client:
                 await client.post(
                     f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto",
                     data={
                         "chat_id": user_id,
-                        "caption": "🧾 <b>Ваш чек об оплате</b>\n\nОтсканируйте QR-код, чтобы посмотреть чек.",
+                        "caption": "🧾 <b>Ваш чек об оплате</b>",
                         "parse_mode": "HTML",
                     },
-                    files={"photo": ("receipt_qr.png", qr_bytes, "image/png")},
+                    files={"photo": ("receipt.png", image_bytes, "image/png")},
                 )
         except Exception as e:
-            logger.warning(f"Не удалось отправить QR-код пользователю {user_id}: {e}")
+            logger.warning(f"Не удалось отправить чек пользователю {user_id}: {e}")
     elif receipt_url:
-        # Фолбэк — если QR не сгенерировался, отправляем ссылку
+        # Фолбэк — если изображение не скачалось, отправляем ссылку
         try:
             async with httpx.AsyncClient(timeout=15) as client:
                 await client.post(
@@ -488,7 +489,7 @@ async def yookassa_webhook_handler(payload: dict):
                     }
                 )
         except Exception as e:
-            logger.warning(f"Не удалось отправить чек пользователю {user_id}: {e}")
+            logger.warning(f"Не удалось отправить ссылку на чек пользователю {user_id}: {e}")
     else:
         await send_telegram_alert(
             f"⚠️ <b>Не удалось создать чек в «Мой налог»</b>\n"

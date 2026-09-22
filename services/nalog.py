@@ -2,7 +2,7 @@ import os
 import io
 import logging
 from decimal import Decimal
-import qrcode
+import httpx
 from nalogo import Client
 
 logger = logging.getLogger(__name__)
@@ -67,8 +67,8 @@ async def create_receipt_and_get_url(
     description: str = "Подписка на бота AI English US, 30 дней",
 ) -> dict | None:
     """
-    Создаёт чек в «Мой налог».
-    Возвращает {"print_url": str, "qr_image": bytes} или None.
+    Создаёт чек в «Мой налог» и скачивает изображение чека.
+    Возвращает {"print_url": str, "image_bytes": bytes} или None.
     """
     from admin_app import get_nalogo_token
 
@@ -104,18 +104,20 @@ async def create_receipt_and_get_url(
             logger.error(f"UUID получен, но ссылка не сгенерирована. uuid={receipt_uuid}")
             return None
 
-        # Генерируем QR-код из ссылки на чек
-        qr = qrcode.QRCode(version=None, box_size=10, border=2)
-        qr.add_data(print_url)
-        qr.make(fit=True)
-        img = qr.make_image(fill_color="black", back_color="white")
+        # Скачиваем изображение чека
+        async with httpx.AsyncClient(timeout=30) as http_client:
+            resp = await http_client.get(print_url)
+            if resp.status_code != 200:
+                logger.error(f"Не удалось скачать изображение чека: {resp.status_code} — {resp.text[:200]}")
+                return {"print_url": print_url, "image_bytes": None}
 
-        buf = io.BytesIO()
-        img.save(buf, format="PNG")
-        qr_bytes = buf.getvalue()
+            image_bytes = resp.content
+            if not (image_bytes.startswith(b'\x89PNG') or image_bytes.startswith(b'\xff\xd8')):
+                logger.error(f"Скачанный файл не является изображением. Начинается с: {image_bytes[:20]}")
+                return {"print_url": print_url, "image_bytes": None}
 
-        logger.info(f"✅ Чек создан для user {user_id}, uuid={receipt_uuid}, QR готов")
-        return {"print_url": print_url, "qr_image": qr_bytes}
+        logger.info(f"✅ Чек создан и изображение скачано для user {user_id}, uuid={receipt_uuid}")
+        return {"print_url": print_url, "image_bytes": image_bytes}
 
     except Exception as e:
         logger.error(f"Ошибка создания чека для user {user_id}: {e}", exc_info=True)
