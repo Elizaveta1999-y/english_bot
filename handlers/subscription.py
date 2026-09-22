@@ -17,7 +17,7 @@ import asyncio
 logger = logging.getLogger(__name__)
 router = Router()
 
-PRICE_RUB = 999
+PRICE_RUB = 10
 DURATION_DAYS = 30
 
 _bot_username_cache = None
