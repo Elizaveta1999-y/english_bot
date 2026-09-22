@@ -104,9 +104,12 @@ async def create_receipt_and_get_url(
             logger.error(f"UUID получен, но ссылка не сгенерирована. uuid={receipt_uuid}")
             return None
 
-        # Скачиваем изображение чека
+        # Скачиваем изображение чека с авторизацией
         async with httpx.AsyncClient(timeout=30) as http_client:
-            resp = await http_client.get(print_url)
+            resp = await http_client.get(
+                print_url,
+                headers={"Authorization": f"Bearer {access_token}"},
+            )
             if resp.status_code != 200:
                 logger.error(f"Не удалось скачать изображение чека: {resp.status_code} — {resp.text[:200]}")
                 return {"print_url": print_url, "image_bytes": None}
