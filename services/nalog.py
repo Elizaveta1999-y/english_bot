@@ -10,6 +10,29 @@ logger = logging.getLogger(__name__)
 DEVICE_ID = "english-bot-admin"
 
 
+def _extract_token_string(token) -> str | None:
+    """Извлекает чистую строку токена из ответа nalogo."""
+    # Если уже строка — вернуть
+    if isinstance(token, str):
+        return token
+
+    # Если dict — ищем нужные ключи
+    if isinstance(token, dict):
+        for key in ("accessToken", "access_token", "token", "jwt"):
+            value = token.get(key)
+            if isinstance(value, str):
+                return value
+        return None
+
+    # Если объект — ищем атрибуты
+    for attr in ("access_token", "accessToken", "token", "jwt"):
+        value = getattr(token, attr, None)
+        if isinstance(value, str):
+            return value
+
+    return None
+
+
 async def request_sms_code(phone: str) -> dict:
     """Запрашивает SMS-код у «Мой налог». Сохраняет challengeToken в БД."""
     from admin_app import save_nalogo_challenge
@@ -19,7 +42,7 @@ async def request_sms_code(phone: str) -> dict:
         challenge = await client.create_phone_challenge(phone)
         logger.info(f"SMS-код запрошен для {phone}")
 
-        challenge_token = challenge.get("challengeToken")
+        challenge_token = challenge.get("challengeToken") if isinstance(challenge, dict) else getattr(challenge, "challenge_token", None)
         if not challenge_token:
             return {"ok": False, "error": f"Нет challengeToken в ответе: {challenge}"}
 
@@ -44,15 +67,29 @@ async def confirm_sms_code(code: str) -> dict:
         token = await client.create_new_access_token_by_phone(
             phone, challenge_token, code
         )
-        logger.info("Токен получен по SMS")
+        logger.info(f"Ответ auth типа {type(token).__name__}, начало: {str(token)[:80]}")
 
-        access_token = token.get("accessToken") if isinstance(token, dict) else token
-        refresh_token = token.get("refreshToken", "") if isinstance(token, dict) else ""
-
+        access_token = _extract_token_string(token)
         if not access_token:
-            return {"ok": False, "error": f"Токен пустой: {token}"}
+            return {"ok": False, "error": f"Не удалось извлечь токен: {type(token)}: {str(token)[:200]}"}
+
+        # Проверка, что токен ASCII (JWT должен быть ASCII)
+        try:
+            access_token.encode("ascii")
+        except UnicodeEncodeError:
+            logger.error(f"Токен содержит не-ASCII символы: {access_token[:80]}")
+            return {"ok": False, "error": "Токен содержит не-ASCII символы — это не JWT"}
+
+        refresh_token = ""
+        if isinstance(token, dict):
+            refresh_token = token.get("refreshToken", "") or token.get("refresh_token", "")
+        else:
+            refresh_token = getattr(token, "refresh_token", "") or getattr(token, "refreshToken", "") or ""
+        if not isinstance(refresh_token, str):
+            refresh_token = ""
 
         await save_nalogo_token(access_token, refresh_token)
+        logger.info(f"Токен сохранён (первые 20 символов): {access_token[:20]}...")
         return {"ok": True}
 
     except Exception as e:
@@ -80,6 +117,16 @@ async def create_receipt_and_get_url(
             logger.error("NaloGO: нет токена в БД. Зайди на /nalog-login и авторизуйся по SMS.")
             return None
 
+        # Проверяем, что токен чистый ASCII
+        if not isinstance(access_token, str):
+            logger.error(f"NaloGO: токен в БД не строка: {type(access_token)}")
+            return None
+        try:
+            access_token.encode("ascii")
+        except UnicodeEncodeError:
+            logger.error(f"NaloGO: токен в БД содержит не-ASCII символы. Зайди на /nalog-login и авторизуйся заново.")
+            return None
+
         try:
             await client.authenticate(access_token)
         except Exception as e:
@@ -93,7 +140,7 @@ async def create_receipt_and_get_url(
             quantity=1,
         )
 
-        receipt_uuid = result.get("approvedReceiptUuid")
+        receipt_uuid = result.get("approvedReceiptUuid") if isinstance(result, dict) else getattr(result, "approved_receipt_uuid", None)
         if not receipt_uuid:
             logger.error(f"Чек создан, но UUID не найден. result={result}")
             return None
