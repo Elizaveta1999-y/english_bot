@@ -259,8 +259,17 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
         f"<b>Уровень:</b> {level_text}\n"
     )
 
-    if task_type in ["reading", "fluency"]:
+    if task_type == "reading":
         card_text += f"\n<i>Длина голосового ответа не должна превышать 3 минуты</i>\n"
+
+    if task_type == "fluency":
+        card_text += f"\n<i>Длина голосового ответа не должна превышать 3 минуты</i>\n"
+        card_text += (
+            f"\n<i>Как построить ответ:</i>\n"
+            f"<i>1. Вступление (1–2 предложения): обозначь тему и своё отношение к ней.</i>\n"
+            f"<i>2. Основная часть: приведи 2–3 аргумента или примера, раскрывая каждый 1–2 предложениями.</i>\n"
+            f"<i>3. Заключение (1 предложение): подведи итог или вернись к главной мысли.</i>\n"
+        )
 
     if task_type == "interview":
         if level == "advanced":

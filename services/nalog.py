@@ -9,6 +9,8 @@ from nalogo import Client
 logger = logging.getLogger(__name__)
 
 DEVICE_ID = "english-bot-admin"
+NALOGO_INN = os.getenv("NALOGO_INN") or os.getenv("NALOG_INN")
+NALOGO_PASSWORD = os.getenv("NALOGO_PASSWORD") or os.getenv("NALOG_PASSWORD")
 
 
 def _extract_bearer_token(token_json: str) -> str | None:
@@ -25,129 +27,144 @@ def _extract_bearer_token(token_json: str) -> str | None:
     return None
 
 
+async def _login_by_password() -> str | None:
+    """Логинится по ИНН+паролю, сохраняет новый JSON в БД. Возвращает JSON-строку."""
+    from admin_app import save_nalogo_token
+
+    if not NALOGO_INN or not NALOGO_PASSWORD:
+        logger.error("NaloGO: NALOGO_INN или NALOGO_PASSWORD не заданы")
+        return None
+
+    try:
+        client = Client(device_id=DEVICE_ID)
+        token_json = await client.create_new_access_token(NALOGO_INN, NALOGO_PASSWORD)
+
+        if not token_json:
+            logger.error("NaloGO: create_new_access_token вернул пусто")
+            return None
+
+        # Если вернулась dict — конвертируем в JSON-строку
+        if isinstance(token_json, dict):
+            token_json = json.dumps(token_json)
+
+        # Проверяем, что это валидный JSON с полем token
+        try:
+            parsed = json.loads(token_json)
+        except (json.JSONDecodeError, ValueError):
+            logger.error(f"NaloGO: ответ на логин не JSON: {str(token_json)[:200]}")
+            return None
+
+        if not parsed.get("token"):
+            logger.error(f"NaloGO: в ответе нет поля token. Ключи: {list(parsed.keys())}")
+            return None
+
+        await save_nalogo_token(token_json, "")
+        logger.info("NaloGO: успешный логин по ИНН+паролю, токен сохранён в БД")
+        return token_json
+
+    except Exception as e:
+        logger.error(f"NaloGO: ошибка логина по ИНН+паролю: {e}", exc_info=True)
+        return None
+
+
 async def _get_authenticated_client():
     """
     Возвращает (client, token_json) с валидным токеном.
-    Если токен протух/протухает — делает refresh через auth_provider,
-    сохраняет новый JSON в БД.
+    Логика:
+      1. Пробуем токен из БД через authenticate.
+      2. Если протух — refresh.
+      3. Если refresh не работает — логин по ИНН+паролю.
     """
     from admin_app import get_nalogo_token, save_nalogo_token
 
     stored_json, _ = await get_nalogo_token()
-    if not stored_json:
-        logger.error("NaloGO: нет токена в БД. Зайди на /nalog-login.")
-        return None, None
 
     client = Client(device_id=DEVICE_ID)
 
-    try:
-        await client.auth_provider.set_token(stored_json)
-    except Exception as e:
-        logger.error(f"NaloGO: set_token упал: {e}. Нужна переавторизация.")
+    # ---------- Шаг 1: пробуем то, что есть в БД ----------
+    if stored_json:
+        try:
+            await client.auth_provider.set_token(stored_json)
+            await client.authenticate(stored_json)
+            logger.info("NaloGO: используем токен из БД")
+            return client, stored_json
+        except Exception as e:
+            logger.warning(f"NaloGO: токен из БД не работает ({e}) — пробуем refresh")
+
+        # ---------- Шаг 2: refresh ----------
+        try:
+            parsed = json.loads(stored_json)
+            refresh_token = parsed.get("refreshToken") if isinstance(parsed, dict) else None
+            if refresh_token:
+                new_data = await client.auth_provider.refresh(refresh_token)
+                if new_data:
+                    new_json = json.dumps(new_data) if isinstance(new_data, dict) else new_data
+                    # Проверяем, что в новом токене есть поле token
+                    try:
+                        new_parsed = json.loads(new_json)
+                        if new_parsed.get("token"):
+                            await save_nalogo_token(new_json, "")
+                            await client.auth_provider.set_token(new_json)
+                            await client.authenticate(new_json)
+                            logger.info("NaloGO: токен обновлён через refresh")
+                            return client, new_json
+                    except (json.JSONDecodeError, ValueError):
+                        pass
+        except Exception as e:
+            logger.warning(f"NaloGO: refresh не удался ({e}) — логинимся по ИНН+паролю")
+
+    # ---------- Шаг 3: логин по ИНН+паролю ----------
+    logger.info("NaloGO: логинюсь по ИНН+паролю")
+    new_json = await _login_by_password()
+    if not new_json:
+        logger.error("NaloGO: не удалось залогиниться. Проверь NALOGO_INN и NALOGO_PASSWORD.")
         return None, None
 
+    client2 = Client(device_id=DEVICE_ID)
     try:
-        need_refresh = False
-        try:
-            need_refresh = client.auth_provider.is_token_expiring()
-        except Exception:
-            pass
-
-        if need_refresh:
-            logger.info("NaloGO: токен протухает — делаю refresh")
-            parsed = json.loads(stored_json)
-            refresh_token = parsed.get("refreshToken") if isinstance(parsed, dict) else None
-            if not refresh_token:
-                logger.error("NaloGO: нет refreshToken в JSON. Нужна переавторизация.")
-                return None, None
-
-            new_data = await client.auth_provider.refresh(refresh_token)
-            if not new_data:
-                logger.error("NaloGO: refresh вернул пусто. Нужна переавторизация.")
-                return None, None
-            new_json = json.dumps(new_data) if isinstance(new_data, dict) else new_data
-            await save_nalogo_token(new_json, "")
-            await client.auth_provider.set_token(new_json)
-            stored_json = new_json
-            logger.info("NaloGO: токен обновлён через refresh")
-
+        await client2.auth_provider.set_token(new_json)
+        await client2.authenticate(new_json)
+        return client2, new_json
     except Exception as e:
-        logger.warning(f"NaloGO: проверка/refresh не удалась ({e}), пробую authenticate как есть")
-
-    try:
-        await client.authenticate(stored_json)
-    except Exception as e:
-        logger.error(f"NaloGO: authenticate не прошёл: {e}. Пробую refresh...")
-        try:
-            parsed = json.loads(stored_json)
-            refresh_token = parsed.get("refreshToken") if isinstance(parsed, dict) else None
-            if not refresh_token:
-                return None, None
-            new_data = await client.auth_provider.refresh(refresh_token)
-            if not new_data:
-                return None, None
-            new_json = json.dumps(new_data) if isinstance(new_data, dict) else new_data
-            await save_nalogo_token(new_json, "")
-            await client.auth_provider.set_token(new_json)
-            await client.authenticate(new_json)
-            stored_json = new_json
-            logger.info("NaloGO: токен обновлён через refresh (после ошибки auth)")
-        except Exception as e2:
-            logger.error(f"NaloGO: refresh тоже упал: {e2}. Нужна переавторизация через /nalog-login.")
-            return None, None
-
-    return client, stored_json
+        logger.error(f"NaloGO: не удалось использовать свежий токен: {e}")
+        return None, None
 
 
 async def request_sms_code(phone: str) -> dict:
-    """Запрашивает SMS-код у «Мой налог». Сохраняет challengeToken в БД."""
+    """SMS-вход больше не используется, но оставлен на всякий случай."""
     from admin_app import save_nalogo_challenge
     try:
         client = Client(device_id=DEVICE_ID)
-
         challenge = await client.create_phone_challenge(phone)
-        logger.info(f"SMS-код запрошен для {phone}")
-
         challenge_token = challenge.get("challengeToken") if isinstance(challenge, dict) else getattr(challenge, "challenge_token", None)
         if not challenge_token:
             return {"ok": False, "error": f"Нет challengeToken в ответе: {challenge}"}
-
         await save_nalogo_challenge(phone, challenge_token)
         return {"ok": True}
-
     except Exception as e:
         logger.error(f"Ошибка запроса SMS: {e}", exc_info=True)
         return {"ok": False, "error": str(e)}
 
 
 async def confirm_sms_code(code: str) -> dict:
-    """Подтверждает SMS-код и сохраняет ПОЛНЫЙ JSON-токен в БД."""
+    """SMS-вход больше не используется."""
     from admin_app import get_nalogo_challenge, save_nalogo_token
     try:
         phone, challenge_token = await get_nalogo_challenge()
         if not phone or not challenge_token:
             return {"ok": False, "error": "Сначала запроси код заново"}
-
         client = Client(device_id=DEVICE_ID)
-
-        token_json = await client.create_new_access_token_by_phone(
-            phone, challenge_token, code
-        )
-        logger.info(f"Ответ auth типа {type(token_json).__name__}, начало: {str(token_json)[:120]}")
-
+        token_json = await client.create_new_access_token_by_phone(phone, challenge_token, code)
+        if isinstance(token_json, dict):
+            token_json = json.dumps(token_json)
         try:
             parsed = json.loads(token_json)
         except (json.JSONDecodeError, ValueError) as e:
-            return {"ok": False, "error": f"Ответ auth не JSON: {e}. Ответ: {str(token_json)[:200]}"}
-
-        token_value = parsed.get("token") if isinstance(parsed, dict) else None
-        if not token_value:
-            return {"ok": False, "error": f"Нет поля 'token' в JSON. Ключи: {list(parsed.keys()) if isinstance(parsed, dict) else type(parsed)}"}
-
+            return {"ok": False, "error": f"Ответ не JSON: {e}"}
+        if not parsed.get("token"):
+            return {"ok": False, "error": f"Нет поля token. Ключи: {list(parsed.keys())}"}
         await save_nalogo_token(token_json, "")
-        logger.info(f"Токен сохранён. Начало JWT: {token_value[:30]}...")
         return {"ok": True}
-
     except Exception as e:
         logger.error(f"Ошибка подтверждения SMS: {e}", exc_info=True)
         return {"ok": False, "error": str(e)}
@@ -159,10 +176,7 @@ async def create_receipt_and_get_url(
     payment_id: str = "",
     description: str = "Подписка на бота AI English US, 30 дней",
 ) -> dict | None:
-    """
-    Создаёт чек в «Мой налог» и скачивает изображение чека.
-    Возвращает {"print_url": str, "image_bytes": bytes} или None.
-    """
+    """Создаёт чек и скачивает изображение."""
     try:
         client, token_json = await _get_authenticated_client()
         if not client:
@@ -185,9 +199,9 @@ async def create_receipt_and_get_url(
             logger.error(f"Чек создан, но UUID не найден. result={result}")
             return None
 
-        inn = os.getenv("NALOGO_INN") or os.getenv("NALOG_INN")
+        inn = NALOGO_INN
         if not inn:
-            logger.error("NALOGO_INN не задан в переменных окружения")
+            logger.error("NALOGO_INN не задан")
             return {"print_url": None, "image_bytes": None}
         print_url = f"https://lknpd.nalog.ru/api/v1/receipt/{inn}/{receipt_uuid}/print"
         logger.info(f"Собран print_url: {print_url}")
@@ -203,7 +217,7 @@ async def create_receipt_and_get_url(
 
             image_bytes = resp.content
             if not (image_bytes.startswith(b'\x89PNG') or image_bytes.startswith(b'\xff\xd8')):
-                logger.error(f"Скачанный файл не является изображением. Начинается с: {image_bytes[:20]}")
+                logger.error(f"Скачанный файл не является изображением. Начало: {image_bytes[:20]}")
                 return {"print_url": print_url, "image_bytes": None}
 
         logger.info(f"✅ Чек создан и изображение скачано для user {user_id}, uuid={receipt_uuid}")
@@ -215,11 +229,7 @@ async def create_receipt_and_get_url(
 
 
 async def cancel_receipt(receipt_url: str) -> bool:
-    """
-    Аннулирует чек в «Мой налог».
-    receipt_url вида: https://lknpd.nalog.ru/api/v1/receipt/{inn}/{uuid}/print
-    Возвращает True, если получилось.
-    """
+    """Аннулирует чек в «Мой налог»."""
     try:
         parts = receipt_url.rstrip("/").split("/")
         if len(parts) < 2:
