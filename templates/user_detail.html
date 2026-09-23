@@ -95,6 +95,30 @@
 {% endif %}
 <!-- ============================================================ -->
 
+<!-- ================== ОТПРАВКА ФОТО ================== -->
+<h4 class="section-title">📤 Отправить фото покупателю</h4>
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="post" action="/user/{{ user.user_id }}/send-photo">
+            <div class="mb-2">
+                <label class="form-label">Прямая ссылка на изображение</label>
+                <input type="text" name="photo_url" class="form-control" required
+                       placeholder="https://i.ibb.co/...">
+                <small class="text-muted">
+                    Загрузи картинку на imgbb.com → скопируй прямую ссылку → вставь сюда.
+                </small>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Подпись (необязательно)</label>
+                <input type="text" name="caption" class="form-control"
+                       value="🧾 Ваш чек об оплате">
+            </div>
+            <button class="btn btn-primary" type="submit">📤 Отправить</button>
+        </form>
+    </div>
+</div>
+<!-- ============================================================ -->
+
 <!-- ================== ИСТОРИЯ ДЕЙСТВИЙ АДМИНА ================== -->
 <h4 class="section-title">📋 История действий администратора</h4>
 

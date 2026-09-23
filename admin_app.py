@@ -280,25 +280,6 @@ async def get_nalogo_token():
         return row["access_token"], row["refresh_token"]
     return None, None
 
-async def save_nalogo_challenge(phone: str, challenge_token: str):
-    conn = await get_db()
-    await conn.execute("""
-        UPDATE nalogo_tokens
-        SET phone = $1, challenge_token = $2, updated_at = $3
-        WHERE id = 1
-    """, phone, challenge_token, int(datetime.now().timestamp()))
-    await conn.close()
-
-async def get_nalogo_challenge():
-    conn = await get_db()
-    row = await conn.fetchrow(
-        "SELECT phone, challenge_token FROM nalogo_tokens WHERE id = 1"
-    )
-    await conn.close()
-    if row:
-        return row["phone"], row["challenge_token"]
-    return None, None
-
 # ---------- ЛОГИРОВАНИЕ ДЕЙСТВИЙ АДМИНА ----------
 async def log_admin_action(admin_id: int, action: str, details: str = "", target_user_id: int = None):
     conn = await get_db()
@@ -568,12 +549,18 @@ async def yookassa_webhook_handler(payload: dict):
         except Exception as e:
             logger.warning(f"Не удалось отправить ссылку на чек пользователю {user_id}: {e}")
     else:
+        # ---- ПУНКТ 2.1: РАСШИРЕННЫЙ АЛЕРТ ----
         await send_telegram_alert(
             f"⚠️ <b>Не удалось создать чек в «Мой налог»</b>\n"
             f"User ID: {user_id}\n"
             f"Сумма: {amount} ₽\n"
             f"Payment ID: {payment_id}\n\n"
-            f"Проверь вручную в приложении «Мой налог»."
+            f"<b>Что делать:</b>\n"
+            f"1. Открой приложение «Мой налог» → <b>Новая продажа</b>\n"
+            f"2. Сумма: <b>{amount}</b>, описание: «Подписка на бота AI English US, 30 дней»\n"
+            f"3. Сохрани чек как <b>изображение</b>\n"
+            f"4. Загрузи на imgbb.com, скопируй <b>прямую ссылку</b>\n"
+            f"5. Отправь покупателю через /user/{user_id} в админке"
         )
 
     try:
@@ -885,7 +872,8 @@ def is_authenticated(request: Request) -> bool:
 
 @app.middleware("http")
 async def auth_middleware(request: Request, call_next):
-    if request.url.path in ["/login", "/favicon.ico"] or request.url.path.startswith("/yookassa/") or request.url.path.startswith("/nalog-login"):
+    # ---- ПУНКТ 2.4: убран /nalog-login ----
+    if request.url.path in ["/login", "/favicon.ico"] or request.url.path.startswith("/yookassa/"):
         return await call_next(request)
     if not is_authenticated(request):
         return RedirectResponse(url="/login", status_code=303)
@@ -903,50 +891,7 @@ async def login(request: Request, password: str = Form(...)):
         return response
     return templates.TemplateResponse("login.html", {"request": request, "error": "Неверный пароль"})
 
-# ---------- NALOGO LOGIN (SMS) ----------
-@app.get("/nalog-login", response_class=HTMLResponse)
-async def nalog_login_page(request: Request):
-    return HTMLResponse("""
-    <html><body style="font-family:sans-serif;max-width:500px;margin:50px auto;padding:20px">
-    <h2>Вход в «Мой налог» по SMS</h2>
-    <form method="post" action="/nalog-login/request">
-        <label>Номер телефона (в формате 79001234567):</label><br>
-        <input type="text" name="phone" required style="width:100%;padding:8px;margin:10px 0"><br>
-        <button type="submit" style="padding:10px 20px">Запросить код</button>
-    </form>
-    </body></html>
-    """)
-
-@app.post("/nalog-login/request", response_class=HTMLResponse)
-async def nalog_login_request(phone: str = Form(...)):
-    from services.nalog import request_sms_code
-    result = await request_sms_code(phone)
-    if not result.get("ok"):
-        return HTMLResponse(f"<h2>Ошибка</h2><pre>{result.get('error')}</pre><p><a href='/nalog-login'>Назад</a></p>")
-    return HTMLResponse(f"""
-    <html><body style="font-family:sans-serif;max-width:500px;margin:50px auto;padding:20px">
-    <h2>Введите код из СМС</h2>
-    <form method="post" action="/nalog-login/confirm">
-        <label>Код из СМС:</label><br>
-        <input type="text" name="code" required style="width:100%;padding:8px;margin:10px 0"><br>
-        <button type="submit" style="padding:10px 20px">Подтвердить</button>
-    </form>
-    </body></html>
-    """)
-
-@app.post("/nalog-login/confirm", response_class=HTMLResponse)
-async def nalog_login_confirm(code: str = Form(...)):
-    from services.nalog import confirm_sms_code
-    result = await confirm_sms_code(code)
-    if not result.get("ok"):
-        return HTMLResponse(f"<h2>Ошибка</h2><pre>{result.get('error')}</pre><p><a href='/nalog-login'>Назад</a></p>")
-    return HTMLResponse("""
-    <html><body style="font-family:sans-serif;max-width:500px;margin:50px auto;padding:20px">
-    <h2>✅ Успешно!</h2>
-    <p>Токен сохранён в БД. Теперь чеки будут создаваться автоматически.</p>
-    <p><a href="/">На главную админки</a></p>
-    </body></html>
-    """)
+# ---- ПУНКТ 2.4: SMS-роуты удалены ----
 
 @app.get("/logout")
 async def logout():
@@ -1510,6 +1455,39 @@ async def refund_user(request: Request, user_id: int, amount: float = Form(...))
             f"⚠️ Не удалось оформить возврат в ЮKassa\n"
             f"User: {user_id}\nСумма: {amount} ₽\nПлатёж: {payment_id}"
         )
+
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+
+# ---- ПУНКТ 2.2: ОТПРАВКА ФОТО ПОКУПАТЕЛЮ ----
+@app.post("/user/{user_id}/send-photo")
+async def send_photo_to_user(request: Request, user_id: int, photo_url: str = Form(...), caption: str = Form("🧾 Ваш чек об оплате")):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+
+    photo_url = photo_url.strip()
+    if not photo_url:
+        await send_telegram_alert(f"⚠️ Отправка фото для user {user_id}: пустая ссылка")
+        return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.post(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto",
+                json={
+                    "chat_id": user_id,
+                    "photo": photo_url,
+                    "caption": caption,
+                    "parse_mode": "HTML",
+                },
+            )
+        if resp.status_code == 200:
+            await log_admin_action(admin_id, "Отправка фото покупателю", f"URL: {photo_url[:80]}", user_id)
+            await send_telegram_alert(f"✅ Фото отправлено user {user_id}")
+        else:
+            await send_telegram_alert(f"⚠️ Не удалось отправить фото user {user_id}: {resp.status_code} — {resp.text[:200]}")
+    except Exception as e:
+        logger.error(f"Ошибка отправки фото: {e}")
+        await send_telegram_alert(f"⚠️ Ошибка отправки фото user {user_id}: {e}")
 
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
