@@ -105,14 +105,47 @@ def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> b
     return similarity >= threshold
 
 def is_off_topic_feedback(feedback: str) -> bool:
-    """ИИ написал, что ответ совершенно не по теме (в любом месте фидбека)."""
+    """
+    Определяет, пометил ли ИИ ответ как off-topic.
+    Сначала проверяем бинарный маркер в первой строке, потом — текстовые триггеры.
+    """
+    stripped = feedback.strip()
+    if not stripped:
+        return False
+
+    # 1. Бинарный маркер в первой строке (главный механизм)
+    first_line = stripped.split('\n', 1)[0].strip().upper()
+    # Убираем возможную разметку: **OFF_TOPIC**, [OFF_TOPIC], <b>OFF_TOPIC</b>
+    first_line_clean = re.sub(r'[*\[\]<>/b]', '', first_line).strip()
+
+    if "OFF_TOPIC" in first_line_clean or "OFF-TOPIC" in first_line_clean or "OFFTOPIC" in first_line_clean:
+        return True
+    if "ON_TOPIC" in first_line_clean or "ON-TOPIC" in first_line_clean or "ONTOPIC" in first_line_clean:
+        return False
+
+    # 2. Fallback: если маркер не пришёл — ищем текстовые триггеры по всему фидбеку
     low = feedback.lower()
-    triggers = [
+
+    hard_triggers = [
         "совершенно не соответствует теме",
         "полностью не соответствует теме",
         "абсолютно не соответствует теме",
+        "связи с темой нет",
+        "не имеет отношения к теме",
+        "не касается темы",
+        "ни разу не упомянул",
     ]
-    return any(t in low for t in triggers)
+    if any(t in low for t in hard_triggers):
+        return True
+
+    # "тема не раскрыта" — только если рядом нет "частично" / "не полностью"
+    if "тема не раскрыта" in low:
+        idx = low.find("тема не раскрыта")
+        window = low[max(0, idx - 60):idx + 90]
+        if "частично" not in window and "не полностью" not in window and "раскрыта не полностью" not in window:
+            return True
+
+    return False
 
 async def hide_progress_buttons(message_or_callback, state: FSMContext):
     data = await state.get_data()
@@ -577,7 +610,7 @@ async def handle_voice_message(message: Message, state: FSMContext):
         )
         return
 
-    logger.info(f"Ответ получен: оценка={score}, фидбек={feedback[:50]}...")
+    logger.info(f"Ответ получен: оценка={score}, фидбек={feedback[:80]}...")
 
     # ===== OFF-TOPIC: выбрасываем фидбек ИИ, показываем СВОЮ короткую заглушку =====
     if is_off_topic_feedback(feedback):
@@ -593,6 +626,9 @@ async def handle_voice_message(message: Message, state: FSMContext):
         # НЕ переходим к следующему заданию, НЕ трогаем статистику и триал
         return
     # ==============================================================================
+
+    # Убираем маркер ON_TOPIC из начала фидбека, если он там есть
+    feedback = re.sub(r'^\s*(ON[_-]?TOPIC|OFF[_-]?TOPIC)\s*\n', '', feedback, flags=re.IGNORECASE).strip()
 
     criteria_keywords = [
         'Содержание ответа:', 'Полнота ответов:', 'Грамматика:', 'Словарный запас:',
