@@ -84,6 +84,14 @@ MIN_DURATION_BY_LEVEL = {
     "advanced": 60
 }
 
+OFF_TOPIC_FEEDBACK_TEXT = (
+    "<b>Ваш ответ совершенно не соответствует теме.</b>\n\n"
+    "<b>Советы:</b>\n"
+    "<blockquote>1. Внимательно прочитай задание — о чём именно нужно говорить.\n"
+    "2. Перед записью продумай 2–3 предложения строго по теме.\n"
+    "3. Во время ответа держись темы и не отвлекайся на другие мысли.</blockquote>"
+)
+
 def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> bool:
     clean_orig = re.sub(r'[^\w\s]', '', original).lower().split()
     clean_orig = [w for w in clean_orig if not re.search(r'[а-яА-Я]', w)]
@@ -97,12 +105,14 @@ def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> b
     return similarity >= threshold
 
 def is_off_topic_feedback(feedback: str) -> bool:
-    """Точная проверка: ИИ вернул короткий off-topic ответ (заголовок + советы)."""
-    head = feedback.strip()[:200]
-    return (
-        "<b>Ваш ответ совершенно не соответствует теме.</b>" in head
-        or head.startswith("Ваш ответ совершенно не соответствует теме")
-    )
+    """ИИ написал, что ответ совершенно не по теме (в любом месте фидбека)."""
+    low = feedback.lower()
+    triggers = [
+        "совершенно не соответствует теме",
+        "полностью не соответствует теме",
+        "абсолютно не соответствует теме",
+    ]
+    return any(t in low for t in triggers)
 
 async def hide_progress_buttons(message_or_callback, state: FSMContext):
     data = await state.get_data()
@@ -310,8 +320,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
                 if "message is not modified" not in str(e):
                     logger.error(f"Не удалось обновить карточку прогресса: {e}")
         else:
-            # Первый показ карточки — редактируем текущее сообщение (например, сообщение выбора уровня),
-            # а не отправляем новое.
             try:
                 sent = await message.edit_text(
                     card_text,
@@ -468,7 +476,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
     # ===== ПРОВЕРКА ДОСТУПА К ГОВОРЕНИЮ =====
     allowed, reason = check_govorenie_access(user_id)
     if not allowed:
-        # reason: "trial_govorenie_limit" или "free_no_access" — оба ведут к офферу
         await show_subscription_offer(message, user_id)
         return
     # =========================================
@@ -547,7 +554,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
 
     logger.info("Вызов check_govorenie...")
 
-    # "Думаю..." + запрос к ИИ
     try:
         thinking_msg, (feedback, score) = await with_thinking(
             message,
@@ -573,18 +579,20 @@ async def handle_voice_message(message: Message, state: FSMContext):
 
     logger.info(f"Ответ получен: оценка={score}, фидбек={feedback[:50]}...")
 
-    # ===== OFF-TOPIC: показываем короткий фидбек как есть, без разбора =====
+    # ===== OFF-TOPIC: выбрасываем фидбек ИИ, показываем СВОЮ короткую заглушку =====
     if is_off_topic_feedback(feedback):
+        logger.info("Обнаружен off-topic ответ — показываем короткую заглушку")
         score = 1
-        feedback_with_score = f"{feedback}\n\n<b>Оценка: {score}/5</b>"
+        feedback_with_score = f"{OFF_TOPIC_FEEDBACK_TEXT}\n\n<b>Оценка: {score}/5</b>"
         try:
             await thinking_msg.edit_text(feedback_with_score, parse_mode="HTML")
         except Exception as e:
             logger.error(f"Не удалось отредактировать сообщение с фидбеком: {e}")
             await message.answer(feedback_with_score, parse_mode="HTML")
-        await message.answer("Попробуйте ещё раз, запишите ответ на это же задание.")
+        await message.answer("Попробуйте ещё раз — запишите ответ на это же задание, строго по теме.")
+        # НЕ переходим к следующему заданию, НЕ трогаем статистику и триал
         return
-    # ======================================================================
+    # ==============================================================================
 
     criteria_keywords = [
         'Содержание ответа:', 'Полнота ответов:', 'Грамматика:', 'Словарный запас:',
@@ -612,7 +620,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    # Заменяем "Думаю..." на фидбек в том же сообщении
     feedback_with_score = f"{feedback}\n\n<b>Оценка: {score}/5</b>"
     try:
         await thinking_msg.edit_text(feedback_with_score, parse_mode="HTML")
