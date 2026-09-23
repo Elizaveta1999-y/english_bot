@@ -96,6 +96,14 @@ def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> b
     logger.info(f"Схожесть текстов (без русских слов): {similarity:.2f}")
     return similarity >= threshold
 
+def is_off_topic_feedback(feedback: str) -> bool:
+    """Точная проверка: ИИ вернул короткий off-topic ответ (заголовок + советы)."""
+    head = feedback.strip()[:200]
+    return (
+        "<b>Ваш ответ совершенно не соответствует теме.</b>" in head
+        or head.startswith("Ваш ответ совершенно не соответствует теме")
+    )
+
 async def hide_progress_buttons(message_or_callback, state: FSMContext):
     data = await state.get_data()
 
@@ -565,20 +573,25 @@ async def handle_voice_message(message: Message, state: FSMContext):
 
     logger.info(f"Ответ получен: оценка={score}, фидбек={feedback[:50]}...")
 
+    # ===== OFF-TOPIC: показываем короткий фидбек как есть, без разбора =====
+    if is_off_topic_feedback(feedback):
+        score = 1
+        feedback_with_score = f"{feedback}\n\n<b>Оценка: {score}/5</b>"
+        try:
+            await thinking_msg.edit_text(feedback_with_score, parse_mode="HTML")
+        except Exception as e:
+            logger.error(f"Не удалось отредактировать сообщение с фидбеком: {e}")
+            await message.answer(feedback_with_score, parse_mode="HTML")
+        await message.answer("Попробуйте ещё раз, запишите ответ на это же задание.")
+        return
+    # ======================================================================
+
     criteria_keywords = [
         'Содержание ответа:', 'Полнота ответов:', 'Грамматика:', 'Словарный запас:',
-        'Аргументация:', 'Точность:', 'Темп:', 'Советы:', 'Соответствие теме:'
+        'Аргументация:', 'Точность:', 'Темп:', 'Структура:', 'Советы:', 'Соответствие теме:'
     ]
     for keyword in criteria_keywords:
         feedback = feedback.replace(keyword, f'<b>{keyword}</b>')
-
-    if "не соответствует теме" in feedback or "совершенно не соответствует теме" in feedback:
-        try:
-            await thinking_msg.edit_text(feedback, parse_mode="HTML")
-        except Exception:
-            await message.answer(feedback, parse_mode="HTML")
-        await message.answer("Попробуйте ещё раз, запишите ответ на это же задание.")
-        return
 
     # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ В ТРИАЛЕ =====
     if get_user_access_level(user_id) == ACCESS_TRIAL:
