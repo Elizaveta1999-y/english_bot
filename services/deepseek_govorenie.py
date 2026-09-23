@@ -46,6 +46,7 @@ async def check_govorenie(task, task_type, user_text, level, duration) -> tuple:
         "2. Второй совет.\n"
         "3. Третий совет.</blockquote>\n"
         "Максимум 3 совета.\n"
+        "После закрывающего </blockquote> НЕ ставь точку, запятую или другой знак — сразу переходи к строке 'Оценка: X/5'.\n"
         "Похвала и смайлик — ТОЛЬКО если ответ ПО ТЕМЕ! Если не по теме — НИКАКОЙ похвалы и НИКАКОГО смайлика.\n"
         "Ни в коем случае не упоминай точки, запятые, паузы, интонацию, произношение.\n"
         "НИ СЛОВА ПРО ПУНКТУАЦИЮ.\n"
@@ -116,6 +117,9 @@ async def check_govorenie(task, task_type, user_text, level, duration) -> tuple:
                 elif score > 5:
                     score = 5
                 feedback = re.sub(r'Оценка:\s*\d+\s*[/]?\s*5', '', feedback).strip()
+
+            # Убираем висячие точки/запятые/двоеточия в конце фидбека
+            feedback = re.sub(r'[\s\.\,\;\:]+$', '', feedback).strip()
 
             return feedback, score
 

@@ -75,6 +75,14 @@ FORBIDDEN_WORDS = [
 MAX_WORDS = 500
 MAX_CHARS = 3000
 
+OFF_TOPIC_FEEDBACK_TEXT = (
+    "<b>Ваш ответ совершенно не соответствует теме.</b>\n\n"
+    "<b>Советы:</b>\n"
+    "<blockquote>1. Внимательно прочитай задание — о чём именно нужно писать.\n"
+    "2. Продумай 2–3 предложения строго по теме.\n"
+    "3. Начни ответ с главной мысли задания.</blockquote>"
+)
+
 class WritingStates(StatesGroup):
     choosing_type = State()
     choosing_level = State()
@@ -143,6 +151,48 @@ def count_sentences(text: str) -> int:
     parts = re.split(r'[.!?]+', text)
     sentences = [p.strip() for p in parts if p.strip() and len(p.split()) >= 3]
     return len(sentences)
+
+def is_off_topic_feedback(feedback: str) -> bool:
+    """
+    Определяет, пометил ли ИИ ответ как off-topic.
+    Сначала проверяем бинарный маркер в первой строке, потом — текстовые триггеры.
+    """
+    stripped = feedback.strip()
+    if not stripped:
+        return False
+
+    # 1. Бинарный маркер в первой строке
+    first_line = stripped.split('\n', 1)[0].strip().upper()
+    first_line_clean = re.sub(r'[*\[\]<>/b]', '', first_line).strip()
+
+    if "OFF_TOPIC" in first_line_clean or "OFF-TOPIC" in first_line_clean or "OFFTOPIC" in first_line_clean:
+        return True
+    if "ON_TOPIC" in first_line_clean or "ON-TOPIC" in first_line_clean or "ONTOPIC" in first_line_clean:
+        return False
+
+    # 2. Fallback: текстовые триггеры по всему фидбеку
+    low = feedback.lower()
+
+    hard_triggers = [
+        "совершенно не соответствует теме",
+        "полностью не соответствует теме",
+        "абсолютно не соответствует теме",
+        "связи с темой нет",
+        "не имеет отношения к теме",
+        "не касается темы",
+        "ни разу не упомянул",
+        "текст не связан с заданием",
+    ]
+    if any(t in low for t in hard_triggers):
+        return True
+
+    if "тема не раскрыта" in low:
+        idx = low.find("тема не раскрыта")
+        window = low[max(0, idx - 60):idx + 90]
+        if "частично" not in window and "не полностью" not in window and "раскрыта не полностью" not in window:
+            return True
+
+    return False
 
 SENTENCE_LIMITS = {
     "essay": {"beginner": 3, "intermediate": 4, "expert": 5},
@@ -330,6 +380,14 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
             "_3. Конец (заключение)_\n\n"
         )
 
+    if task_type == "story":
+        card_text += (
+            "_Как построить историю:_\n"
+            "_1. Начало: герой, место, время (\"One day...\")._\n"
+            "_2. Развитие: опиши события по порядку._\n"
+            "_3. Концовка: чем всё закончилось — результат или вывод._\n\n"
+        )
+
     card_text += f"Ваш средний балл: {avg_score}/5"
 
     keyboard = get_progress_keyboard()
@@ -349,8 +407,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
                 if "message is not modified" not in str(e):
                     logger.error(f"Не удалось обновить карточку прогресса: {e}")
         else:
-            # Первый показ карточки — редактируем текущее сообщение (например, сообщение выбора уровня),
-            # а не отправляем новое.
             try:
                 sent = await message.edit_text(card_text, reply_markup=keyboard, parse_mode="Markdown")
                 await state.update_data(progress_msg_id=sent.message_id)
@@ -610,6 +666,24 @@ async def handle_user_answer(message: Message, state: FSMContext):
             "твой текст не потерян, просто отправь его снова."
         )
         return
+
+    # ===== OFF-TOPIC: выбрасываем фидбек ИИ, показываем СВОЮ короткую заглушку =====
+    if is_off_topic_feedback(feedback):
+        logger.info("Обнаружен off-topic ответ (writing) — показываем короткую заглушку")
+        score = 1
+        feedback_with_score = f"{OFF_TOPIC_FEEDBACK_TEXT}\n\n<b>Оценка:</b> {score}/5"
+        try:
+            await thinking_msg.edit_text(feedback_with_score, parse_mode="HTML")
+        except Exception as e:
+            logger.error(f"Не удалось отредактировать сообщение с фидбеком: {e}")
+            await message.answer(feedback_with_score, parse_mode="HTML")
+        await message.answer("Попробуйте ещё раз — напишите ответ на это же задание, строго по теме.")
+        # НЕ переходим к следующему заданию, НЕ трогаем статистику и триал
+        return
+    # ==============================================================================
+
+    # Убираем маркер ON_TOPIC из начала фидбека, если он там есть
+    feedback = re.sub(r'^\s*(ON[_-]?TOPIC|OFF[_-]?TOPIC)\s*\n', '', feedback, flags=re.IGNORECASE).strip()
 
     if get_user_access_level(user_id) == ACCESS_TRIAL:
         increment_trial_writing(user_id)
