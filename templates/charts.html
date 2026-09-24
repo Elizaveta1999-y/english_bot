@@ -2,7 +2,40 @@
 
 {% block content %}
 <h2>📊 Графики</h2>
-<p class="text-muted">Данные за последние 30 дней</p>
+<p class="text-muted">Выберите период или конкретную дату</p>
+
+<!-- Переключатель режима -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <label class="form-label">Режим отображения</label>
+        <select id="modeSelect" class="form-select">
+            <option value="last30">Последние 30 дней</option>
+            <option value="date">Конкретная дата</option>
+        </select>
+    </div>
+    <div class="col-md-4" id="datePickerBlock" style="display: none;">
+        <label class="form-label">Выберите дату</label>
+        <input type="date" id="datePicker" class="form-control">
+    </div>
+    <div class="col-md-4" id="applyBlock" style="display: none; align-self: end;">
+        <button id="applyDate" class="btn btn-primary">Показать</button>
+        <button id="resetDate" class="btn btn-secondary">Сбросить</button>
+    </div>
+</div>
+
+<!-- Сводка за выбранную дату -->
+<div id="dailySummaryBlock" class="row mb-4" style="display: none;">
+    <div class="col-12">
+        <div class="card border-primary">
+            <div class="card-body">
+                <h5 class="card-title">📌 Сводка за <span id="summaryDate"></span></h5>
+                <div class="row mt-3" id="summaryCards">
+                    <!-- карточки генерируются JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row mt-4">
     <div class="col-12">
@@ -61,41 +94,115 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    async function loadCharts() {
+    // Храним ссылки на графики, чтобы уничтожать перед перерисовкой
+    const charts = {
+        newUsers: null,
+        activity: null,
+        finance: null,
+        subscription: null,
+        voice: null,
+    };
+
+    // Центральная вертикальная линия на выбранной дате
+    const centerLinePlugin = {
+        id: 'centerLine',
+        afterDraw: (chart) => {
+            const centerDate = chart.config.options.plugins?.centerLine?.date;
+            if (!centerDate) return;
+            const labels = chart.data.labels;
+            const idx = labels.indexOf(centerDate);
+            if (idx === -1) return;
+            const x = chart.scales.x.getPixelForValue(idx);
+            const ctx = chart.ctx;
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(x, chart.chartArea.top);
+            ctx.lineTo(x, chart.chartArea.bottom);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.setLineDash([6, 4]);
+            ctx.stroke();
+            ctx.restore();
+        }
+    };
+    Chart.register(centerLinePlugin);
+
+    function destroyCharts() {
+        Object.keys(charts).forEach(k => {
+            if (charts[k]) {
+                charts[k].destroy();
+                charts[k] = null;
+            }
+        });
+    }
+
+    function makeOptions(centerDate, showLegend = false) {
+        return {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: { display: showLegend, position: 'top' },
+                centerLine: { date: centerDate || null },
+            },
+            scales: { y: { beginAtZero: true } }
+        };
+    }
+
+    async function loadCharts(centerDate = null) {
+        destroyCharts();
+
         // Общие данные
-        const resAll = await fetch('/api/charts-data?days=30&type=all');
+        const urlAll = centerDate
+            ? `/api/charts-data?days=30&type=all&date=${centerDate}`
+            : `/api/charts-data?days=30&type=all`;
+        const resAll = await fetch(urlAll);
         const allData = await resAll.json();
         const labels = allData.new_users.map(d => d.date);
         const newUsersCounts = allData.new_users.map(d => d.count);
         const activityCounts = allData.activity.map(d => d.count);
 
-        new Chart(document.getElementById('newUsersChart'), {
+        charts.newUsers = new Chart(document.getElementById('newUsersChart'), {
             type: 'line',
             data: {
                 labels: labels,
-                datasets: [{ label: 'Новых пользователей', data: newUsersCounts, borderColor: 'rgba(54, 162, 235, 1)', backgroundColor: 'rgba(54, 162, 235, 0.2)', fill: true, tension: 0.1 }]
+                datasets: [{
+                    label: 'Новых пользователей',
+                    data: newUsersCounts,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: true, tension: 0.1
+                }]
             },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            options: makeOptions(centerDate)
         });
 
-        new Chart(document.getElementById('activityChart'), {
+        charts.activity = new Chart(document.getElementById('activityChart'), {
             type: 'line',
             data: {
                 labels: labels,
-                datasets: [{ label: 'Действий', data: activityCounts, borderColor: 'rgba(255, 99, 132, 1)', backgroundColor: 'rgba(255, 99, 132, 0.2)', fill: true, tension: 0.1 }]
+                datasets: [{
+                    label: 'Действий',
+                    data: activityCounts,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true, tension: 0.1
+                }]
             },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            options: makeOptions(centerDate)
         });
 
         // Финансы
-        const resFinance = await fetch('/api/charts-data?days=30&type=finance');
+        const urlFin = centerDate
+            ? `/api/charts-data?days=30&type=finance&date=${centerDate}`
+            : `/api/charts-data?days=30&type=finance`;
+        const resFinance = await fetch(urlFin);
         const financeData = await resFinance.json();
         const financeLabels = financeData.map(d => d.date);
         const income = financeData.map(d => d.income);
         const expenses = financeData.map(d => d.expenses);
         const profit = financeData.map(d => d.profit);
 
-        new Chart(document.getElementById('financeChart'), {
+        charts.finance = new Chart(document.getElementById('financeChart'), {
             type: 'line',
             data: {
                 labels: financeLabels,
@@ -105,41 +212,147 @@
                     { label: 'Прибыль', data: profit, borderColor: 'rgba(255, 193, 7, 1)', backgroundColor: 'rgba(255, 193, 7, 0.1)', fill: true, tension: 0.1 }
                 ]
             },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true } } }
+            options: makeOptions(centerDate, true)
         });
 
         // Подписки
-        const resSub = await fetch('/api/charts-data?days=30&type=subscriptions');
+        const urlSub = centerDate
+            ? `/api/charts-data?days=30&type=subscriptions&date=${centerDate}`
+            : `/api/charts-data?days=30&type=subscriptions`;
+        const resSub = await fetch(urlSub);
         const subData = await resSub.json();
         const subLabels = subData.map(d => d.date);
         const subCounts = subData.map(d => d.active_subscriptions);
 
-        new Chart(document.getElementById('subscriptionChart'), {
+        charts.subscription = new Chart(document.getElementById('subscriptionChart'), {
             type: 'line',
             data: {
                 labels: subLabels,
-                datasets: [{ label: 'Активных подписок', data: subCounts, borderColor: 'rgba(23, 162, 184, 1)', backgroundColor: 'rgba(23, 162, 184, 0.2)', fill: true, tension: 0.1 }]
+                datasets: [{
+                    label: 'Активных подписок',
+                    data: subCounts,
+                    borderColor: 'rgba(23, 162, 184, 1)',
+                    backgroundColor: 'rgba(23, 162, 184, 0.2)',
+                    fill: true, tension: 0.1
+                }]
             },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            options: makeOptions(centerDate)
         });
 
         // Голосовые минуты
-        const resVoice = await fetch('/api/charts-data?days=30&type=voice');
+        const urlVoice = centerDate
+            ? `/api/charts-data?days=30&type=voice&date=${centerDate}`
+            : `/api/charts-data?days=30&type=voice`;
+        const resVoice = await fetch(urlVoice);
         const voiceData = await resVoice.json();
         const voiceLabels = voiceData.map(d => d.date);
         const voiceMinutes = voiceData.map(d => d.voice_minutes);
 
-        new Chart(document.getElementById('voiceChart'), {
+        charts.voice = new Chart(document.getElementById('voiceChart'), {
             type: 'line',
             data: {
                 labels: voiceLabels,
-                datasets: [{ label: 'Голосовых минут', data: voiceMinutes, borderColor: 'rgba(153, 102, 255, 1)', backgroundColor: 'rgba(153, 102, 255, 0.2)', fill: true, tension: 0.1 }]
+                datasets: [{
+                    label: 'Голосовых минут',
+                    data: voiceMinutes,
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    fill: true, tension: 0.1
+                }]
             },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            options: makeOptions(centerDate)
         });
     }
 
-    document.addEventListener('DOMContentLoaded', loadCharts);
+    async function loadDailySummary(dateStr) {
+        const res = await fetch(`/api/daily-summary?date=${dateStr}`);
+        const data = await res.json();
+        if (data.error) {
+            alert('Ошибка: ' + data.error);
+            return;
+        }
+
+        document.getElementById('summaryDate').textContent = dateStr;
+        const cards = document.getElementById('summaryCards');
+        cards.innerHTML = `
+            <div class="col-md-3 mb-2"><div class="border rounded p-3">
+                <div class="text-muted small">Новых пользователей</div>
+                <div class="fs-4 fw-bold">${data.new_users}</div>
+            </div></div>
+            <div class="col-md-3 mb-2"><div class="border rounded p-3">
+                <div class="text-muted small">Действий</div>
+                <div class="fs-4 fw-bold">${data.activity}</div>
+            </div></div>
+            <div class="col-md-3 mb-2"><div class="border rounded p-3">
+                <div class="text-muted small">Доход</div>
+                <div class="fs-4 fw-bold text-success">${data.income.toFixed(2)} ₽</div>
+            </div></div>
+            <div class="col-md-3 mb-2"><div class="border rounded p-3">
+                <div class="text-muted small">Расход</div>
+                <div class="fs-4 fw-bold text-danger">${data.expenses.toFixed(2)} ₽</div>
+            </div></div>
+            <div class="col-md-3 mb-2"><div class="border rounded p-3">
+                <div class="text-muted small">Прибыль</div>
+                <div class="fs-4 fw-bold ${data.profit >= 0 ? 'text-success' : 'text-danger'}">${data.profit.toFixed(2)} ₽</div>
+            </div></div>
+            <div class="col-md-3 mb-2"><div class="border rounded p-3">
+                <div class="text-muted small">Активных подписок</div>
+                <div class="fs-4 fw-bold">${data.active_subscriptions}</div>
+            </div></div>
+            <div class="col-md-3 mb-2"><div class="border rounded p-3">
+                <div class="text-muted small">Голосовых минут</div>
+                <div class="fs-4 fw-bold">${data.voice_minutes}</div>
+            </div></div>
+        `;
+        document.getElementById('dailySummaryBlock').style.display = 'block';
+    }
+
+    function hideDailySummary() {
+        document.getElementById('dailySummaryBlock').style.display = 'none';
+    }
+
+    // ---- Обработчики ----
+    const modeSelect = document.getElementById('modeSelect');
+    const datePickerBlock = document.getElementById('datePickerBlock');
+    const applyBlock = document.getElementById('applyBlock');
+    const datePicker = document.getElementById('datePicker');
+
+    // Устанавливаем сегодняшнюю дату по умолчанию
+    const today = new Date().toISOString().split('T')[0];
+    datePicker.value = today;
+    datePicker.max = today;
+
+    modeSelect.addEventListener('change', () => {
+        if (modeSelect.value === 'date') {
+            datePickerBlock.style.display = 'block';
+            applyBlock.style.display = 'block';
+        } else {
+            datePickerBlock.style.display = 'none';
+            applyBlock.style.display = 'none';
+            hideDailySummary();
+            loadCharts(null);
+        }
+    });
+
+    document.getElementById('applyDate').addEventListener('click', async () => {
+        const dateStr = datePicker.value;
+        if (!dateStr) {
+            alert('Выберите дату');
+            return;
+        }
+        await loadCharts(dateStr);
+        await loadDailySummary(dateStr);
+    });
+
+    document.getElementById('resetDate').addEventListener('click', () => {
+        modeSelect.value = 'last30';
+        datePickerBlock.style.display = 'none';
+        applyBlock.style.display = 'none';
+        hideDailySummary();
+        loadCharts(null);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => loadCharts(null));
 </script>
 
 <div class="mt-3">

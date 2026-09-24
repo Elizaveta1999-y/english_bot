@@ -549,7 +549,7 @@ async def yookassa_webhook_handler(payload: dict):
         except Exception as e:
             logger.warning(f"Не удалось отправить ссылку на чек пользователю {user_id}: {e}")
     else:
-        # ---- ПУНКТ 2.1: РАСШИРЕННЫЙ АЛЕРТ ----
+        # ---- РАСШИРЕННЫЙ АЛЕРТ ----
         await send_telegram_alert(
             f"⚠️ <b>Не удалось создать чек в «Мой налог»</b>\n"
             f"User ID: {user_id}\n"
@@ -649,91 +649,111 @@ async def get_expenses_list(start_ts: int, end_ts: int, limit: int = 50):
     return [dict(r) for r in rows]
 
 # ---------- ГРАФИКИ ----------
-async def get_new_users_data(days: int = 30):
+def _resolve_range(days: int, center_date: str = None):
+    """Возвращает (start_ts, end_ts, center_ts) для запроса.
+    Если center_date задан — окно ±days/2 вокруг него, иначе — последние days дней."""
+    if center_date:
+        try:
+            center_dt = datetime.strptime(center_date, "%Y-%m-%d")
+        except ValueError:
+            center_dt = None
+        if center_dt:
+            half = max(1, days // 2)
+            start_dt = center_dt - timedelta(days=half)
+            end_dt = center_dt + timedelta(days=half)
+            start_ts = int(start_dt.timestamp())
+            end_ts = int(end_dt.timestamp()) + 86400 - 1
+            return start_ts, end_ts, int(center_dt.timestamp())
+    now = datetime.now()
+    start_ts = int((now - timedelta(days=days)).timestamp())
+    end_ts = int(now.timestamp())
+    return start_ts, end_ts, None
+
+
+async def get_new_users_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
     conn = await get_db()
-    now = int(datetime.now().timestamp())
-    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
     rows = await conn.fetch(
-        "SELECT date_trunc('day', to_timestamp(registered_at)) as day, COUNT(*) as count FROM users WHERE registered_at >= $1 GROUP BY day ORDER BY day",
-        start_ts
+        "SELECT date_trunc('day', to_timestamp(registered_at)) as day, COUNT(*) as count "
+        "FROM users WHERE registered_at >= $1 AND registered_at <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
     )
     await conn.close()
     result = []
     current = datetime.fromtimestamp(start_ts)
-    end = datetime.fromtimestamp(now)
+    end = datetime.fromtimestamp(end_ts)
     data_map = {row["day"].date(): row["count"] for row in rows}
     while current <= end:
-        day_date = current.date()
-        result.append({"date": day_date.isoformat(), "count": data_map.get(day_date, 0)})
+        d = current.date()
+        result.append({"date": d.isoformat(), "count": data_map.get(d, 0)})
         current += timedelta(days=1)
     return result
 
-async def get_activity_data(days: int = 30):
+
+async def get_activity_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
     conn = await get_db()
-    now = int(datetime.now().timestamp())
-    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
     rows = await conn.fetch(
-        "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count FROM activity_log WHERE date >= $1 GROUP BY day ORDER BY day",
-        start_ts
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count "
+        "FROM activity_log WHERE date >= $1 AND date <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
     )
     await conn.close()
     if not rows:
         conn = await get_db()
         rows = await conn.fetch(
-            "SELECT date_trunc('day', to_timestamp(last_active)) as day, COUNT(*) as count FROM users WHERE last_active >= $1 GROUP BY day ORDER BY day",
-            start_ts
+            "SELECT date_trunc('day', to_timestamp(last_active)) as day, COUNT(*) as count "
+            "FROM users WHERE last_active >= $1 AND last_active <= $2 GROUP BY day ORDER BY day",
+            start_ts, end_ts
         )
         await conn.close()
     result = []
     current = datetime.fromtimestamp(start_ts)
-    end = datetime.fromtimestamp(now)
+    end = datetime.fromtimestamp(end_ts)
     data_map = {row["day"].date(): row["count"] for row in rows}
     while current <= end:
-        day_date = current.date()
-        result.append({"date": day_date.isoformat(), "count": data_map.get(day_date, 0)})
+        d = current.date()
+        result.append({"date": d.isoformat(), "count": data_map.get(d, 0)})
         current += timedelta(days=1)
     return result
 
-async def get_finance_chart_data(days: int = 30):
+
+async def get_finance_chart_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
     conn = await get_db()
-    now = int(datetime.now().timestamp())
-    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
     income_rows = await conn.fetch(
-        "SELECT date_trunc('day', to_timestamp(date)) as day, COALESCE(SUM(amount), 0) as total FROM income WHERE date >= $1 GROUP BY day ORDER BY day",
-        start_ts
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COALESCE(SUM(amount), 0) as total "
+        "FROM income WHERE date >= $1 AND date <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
     )
     expense_rows = await conn.fetch(
-        "SELECT date_trunc('day', to_timestamp(date)) as day, COALESCE(SUM(amount), 0) as total FROM expenses WHERE date >= $1 GROUP BY day ORDER BY day",
-        start_ts
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COALESCE(SUM(amount), 0) as total "
+        "FROM expenses WHERE date >= $1 AND date <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
     )
     await conn.close()
     result = []
     current = datetime.fromtimestamp(start_ts)
-    end = datetime.fromtimestamp(now)
+    end = datetime.fromtimestamp(end_ts)
     income_map = {row["day"].date(): row["total"] for row in income_rows}
     expense_map = {row["day"].date(): row["total"] for row in expense_rows}
     while current <= end:
-        day_date = current.date()
-        inc = float(income_map.get(day_date, 0))
-        exp = float(expense_map.get(day_date, 0))
-        result.append({
-            "date": day_date.isoformat(),
-            "income": inc,
-            "expenses": exp,
-            "profit": inc - exp
-        })
+        d = current.date()
+        inc = float(income_map.get(d, 0))
+        exp = float(expense_map.get(d, 0))
+        result.append({"date": d.isoformat(), "income": inc, "expenses": exp, "profit": inc - exp})
         current += timedelta(days=1)
     return result
 
-async def get_subscriptions_chart_data(days: int = 30):
+
+async def get_subscriptions_chart_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
     conn = await get_db()
-    now = int(datetime.now().timestamp())
-    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
     users = await conn.fetch("SELECT user_id, subscription_until FROM users WHERE subscription_until > 0")
     await conn.close()
     result = []
     current = datetime.fromtimestamp(start_ts)
-    end = datetime.fromtimestamp(now)
+    end = datetime.fromtimestamp(end_ts)
     while current <= end:
         day_ts = int(current.timestamp())
         active = sum(1 for u in users if u["subscription_until"] > day_ts)
@@ -741,37 +761,89 @@ async def get_subscriptions_chart_data(days: int = 30):
         current += timedelta(days=1)
     return result
 
-async def get_voice_chart_data(days: int = 30):
+
+async def get_voice_chart_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
     conn = await get_db()
-    now = int(datetime.now().timestamp())
-    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
     rows = await conn.fetch(
-        "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count FROM activity_log WHERE date >= $1 GROUP BY day ORDER BY day",
-        start_ts
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count "
+        "FROM activity_log WHERE date >= $1 AND date <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
     )
     total_seconds = await conn.fetchval("SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users")
     await conn.close()
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(end_ts)
     if rows and total_seconds > 0:
         total_activity = sum(r["count"] for r in rows)
-        result = []
-        current = datetime.fromtimestamp(start_ts)
-        end = datetime.fromtimestamp(now)
         data_map = {row["day"].date(): row["count"] for row in rows}
         while current <= end:
-            day_date = current.date()
-            activity = data_map.get(day_date, 0)
+            d = current.date()
+            activity = data_map.get(d, 0)
             seconds = int(total_seconds * activity / total_activity) if total_activity else 0
-            result.append({"date": day_date.isoformat(), "voice_minutes": round(seconds / 60, 1)})
+            result.append({"date": d.isoformat(), "voice_minutes": round(seconds / 60, 1)})
             current += timedelta(days=1)
-        return result
     else:
-        result = []
-        current = datetime.fromtimestamp(start_ts)
-        end = datetime.fromtimestamp(now)
         while current <= end:
             result.append({"date": current.date().isoformat(), "voice_minutes": 0})
             current += timedelta(days=1)
-        return result
+    return result
+
+
+async def get_daily_summary(date_str: str) -> dict:
+    """Сводка ключевых метрик за один конкретный день."""
+    conn = await get_db()
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+        start_ts = int(dt.timestamp())
+        end_ts = start_ts + 86400 - 1
+
+        new_users = await conn.fetchval(
+            "SELECT COUNT(*) FROM users WHERE registered_at >= $1 AND registered_at <= $2",
+            start_ts, end_ts
+        )
+        activity = await conn.fetchval(
+            "SELECT COUNT(*) FROM activity_log WHERE date >= $1 AND date <= $2",
+            start_ts, end_ts
+        )
+        income = await conn.fetchval(
+            "SELECT COALESCE(SUM(amount), 0) FROM income WHERE date >= $1 AND date <= $2",
+            start_ts, end_ts
+        )
+        expenses = await conn.fetchval(
+            "SELECT COALESCE(SUM(amount), 0) FROM expenses WHERE date >= $1 AND date <= $2",
+            start_ts, end_ts
+        )
+        active_subs = await conn.fetchval(
+            "SELECT COUNT(*) FROM users WHERE subscription_until > $1",
+            end_ts
+        )
+        # Голосовые минуты за день — оценочно, по доле активности
+        day_activity = activity or 0
+        total_seconds = await conn.fetchval(
+            "SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users"
+        ) or 0
+        total_activity = await conn.fetchval(
+            "SELECT COUNT(*) FROM activity_log"
+        ) or 0
+        if total_activity > 0:
+            voice_minutes = round((total_seconds * day_activity / total_activity) / 60, 1)
+        else:
+            voice_minutes = 0
+
+        return {
+            "date": date_str,
+            "new_users": new_users or 0,
+            "activity": day_activity,
+            "income": float(income or 0),
+            "expenses": float(expenses or 0),
+            "profit": float((income or 0) - (expenses or 0)),
+            "active_subscriptions": active_subs or 0,
+            "voice_minutes": voice_minutes,
+        }
+    finally:
+        await conn.close()
 
 # ---------- ЭКСПОРТ ----------
 async def export_users_csv():
@@ -793,17 +865,35 @@ async def export_users_csv():
 
 # ---------- API ДЛЯ ГРАФИКОВ ----------
 @app.get("/api/charts-data")
-async def charts_data(days: int = 30, type: str = "all"):
+async def charts_data(days: int = 30, type: str = "all", date: str = None):
+    # Валидация даты
+    center = None
+    if date:
+        try:
+            datetime.strptime(date, "%Y-%m-%d")
+            center = date
+        except ValueError:
+            center = None
+
     if type == "finance":
-        return JSONResponse(await get_finance_chart_data(days))
+        return JSONResponse(await get_finance_chart_data(days, center_date=center))
     elif type == "subscriptions":
-        return JSONResponse(await get_subscriptions_chart_data(days))
+        return JSONResponse(await get_subscriptions_chart_data(days, center_date=center))
     elif type == "voice":
-        return JSONResponse(await get_voice_chart_data(days))
+        return JSONResponse(await get_voice_chart_data(days, center_date=center))
     else:
-        new_users = await get_new_users_data(days)
-        activity = await get_activity_data(days)
+        new_users = await get_new_users_data(days, center_date=center)
+        activity = await get_activity_data(days, center_date=center)
         return JSONResponse({"new_users": new_users, "activity": activity})
+
+
+@app.get("/api/daily-summary")
+async def daily_summary(date: str):
+    try:
+        datetime.strptime(date, "%Y-%m-%d")
+    except ValueError:
+        return JSONResponse({"error": "Invalid date format"}, status_code=400)
+    return JSONResponse(await get_daily_summary(date))
 
 # ---------- СТРАНИЦЫ ----------
 @app.get("/charts", response_class=HTMLResponse)
@@ -872,7 +962,6 @@ def is_authenticated(request: Request) -> bool:
 
 @app.middleware("http")
 async def auth_middleware(request: Request, call_next):
-    # ---- ПУНКТ 2.4: убран /nalog-login ----
     if request.url.path in ["/login", "/favicon.ico"] or request.url.path.startswith("/yookassa/"):
         return await call_next(request)
     if not is_authenticated(request):
@@ -890,8 +979,6 @@ async def login(request: Request, password: str = Form(...)):
         response.set_cookie(key="admin_auth", value="true", httponly=True, max_age=86400)
         return response
     return templates.TemplateResponse("login.html", {"request": request, "error": "Неверный пароль"})
-
-# ---- ПУНКТ 2.4: SMS-роуты удалены ----
 
 @app.get("/logout")
 async def logout():
@@ -1459,7 +1546,6 @@ async def refund_user(request: Request, user_id: int, amount: float = Form(...))
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 
-# ---- ПУНКТ 2.2: ОТПРАВКА ФОТО ПОКУПАТЕЛЮ ----
 @app.post("/user/{user_id}/send-photo")
 async def send_photo_to_user(request: Request, user_id: int, photo_url: str = Form(...), caption: str = Form("🧾 Ваш чек об оплате")):
     admin_id = int(os.getenv("ADMIN_ID", 0))
