@@ -190,7 +190,7 @@ async def support_start(message: Message, state: FSMContext):
 
     text = (
         "Вам нужна помощь или имеются вопросы?\n"
-        "Поддержка бота - support.english.bot@gmail.com\n\n"
+        "Поддержка бота - https://t.me/ai_english_us_bot нажмите на сообщения каналу в левом нижнем углу\n\n"
         f"🆔 <b>Ваш ID аккаунта:</b> <code>{user_id}</code>\n"
         f"👤 <b>Ваш username:</b> {username_display}\n\n"
         "<b>Важно!</b> Если у вас возникли проблемы, обязательно укажите ваш ID аккаунта, username, подробно опишите ситуацию, и по возможности, прикрепите скриншоты — это поможет нам быстрее разобраться и помочь вам."
