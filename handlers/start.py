@@ -32,20 +32,18 @@ WELCOME_TEXT = (
 
 def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🎙️ Общение с AI", callback_data="start_speaking"),
-            InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")
-        ],
+        [InlineKeyboardButton(text="🎙️ Общение с AI", callback_data="start_speaking")],
+        [InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")],
         [
             InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar"),
             InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")
         ],
         [
             InlineKeyboardButton(text="🔉 Аудирование", callback_data="start_listening"),
-            InlineKeyboardButton(text="📝 Письмо", callback_data="start_writing")
+            InlineKeyboardButton(text="📖 Чтение", callback_data="start_reading")
         ],
         [
-            InlineKeyboardButton(text="📖 Чтение", callback_data="start_reading"),
+            InlineKeyboardButton(text="📝 Письмо", callback_data="start_writing"),
             InlineKeyboardButton(text="🗣️ Говорение", callback_data="start_govorenie")
         ],
         [InlineKeyboardButton(text="📊 Моя статистика", callback_data="profile_menu")]
