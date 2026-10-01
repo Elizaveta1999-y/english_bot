@@ -37,6 +37,36 @@ if not DATABASE_URL:
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN is not set")
 
+# ---------- ТАРИФЫ ----------
+TARIFF_LABELS = {
+    "light": "Лайт",
+    "base": "Про",
+}
+VOICE_LIMITS_BY_TARIFF = {
+    "light": 1800,   # 30 минут
+    "base": 9000,    # 2.5 часа
+}
+VOICE_LIMIT_DEFAULT = VOICE_LIMITS_BY_TARIFF["base"]
+
+
+def get_tariff_label(tariff_key: str) -> str:
+    if not tariff_key:
+        return "—"
+    return TARIFF_LABELS.get(tariff_key, tariff_key)
+
+
+def get_voice_limit_seconds(tariff_key: str) -> int:
+    if tariff_key in VOICE_LIMITS_BY_TARIFF:
+        return VOICE_LIMITS_BY_TARIFF[tariff_key]
+    return VOICE_LIMIT_DEFAULT
+
+
+def format_voice_limit_label(tariff_key: str) -> str:
+    if tariff_key == "light":
+        return "30 мин"
+    return "2.5 ч"
+
+
 # ---------- СЛОВАРИ ----------
 GRAMMAR_TYPES = {
     "раскрытие_скобок": "раскрытие скобок",
@@ -113,7 +143,8 @@ async def ensure_db_structure():
             ADD COLUMN IF NOT EXISTS is_unlimited BOOLEAN DEFAULT FALSE,
             ADD COLUMN IF NOT EXISTS trial_voice_count INTEGER DEFAULT 0,
             ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0,
-            ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0
+            ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS tariff TEXT DEFAULT NULL
         """)
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS bot_settings (
@@ -210,7 +241,8 @@ async def ensure_db_structure():
         """)
         await conn.execute("""
             ALTER TABLE payments
-            ADD COLUMN IF NOT EXISTS receipt_url TEXT
+            ADD COLUMN IF NOT EXISTS receipt_url TEXT,
+            ADD COLUMN IF NOT EXISTS tariff TEXT DEFAULT NULL
         """)
         await conn.execute("""
             CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id)
@@ -233,7 +265,6 @@ async def ensure_db_structure():
             VALUES (1, NULL, NULL, 0)
             ON CONFLICT (id) DO NOTHING
         """)
-        # ---------- REFUNDS ----------
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS refunds (
                 id SERIAL PRIMARY KEY,
@@ -318,7 +349,6 @@ async def yookassa_get_payment(payment_id: str) -> dict:
 
 
 async def yookassa_create_refund(payment_id: str, amount: float, description: str = "Возврат по запросу") -> dict:
-    """Создаёт возврат в ЮKassa. Возвращает dict с refund_id или None."""
     if not YOOKASSA_SHOP_ID or not YOOKASSA_SECRET_KEY:
         return None
     try:
@@ -347,11 +377,10 @@ async def yookassa_create_refund(payment_id: str, amount: float, description: st
 
 
 async def get_last_successful_payment(user_id: int) -> dict | None:
-    """Возвращает последний успешный платёж пользователя."""
     conn = await get_db()
     row = await conn.fetchrow(
         """
-        SELECT payment_id, amount, activated_at, created_at
+        SELECT payment_id, amount, activated_at, created_at, tariff
         FROM payments
         WHERE user_id = $1 AND status = 'succeeded'
         ORDER BY activated_at DESC NULLS LAST, created_at DESC
@@ -366,7 +395,6 @@ async def get_last_successful_payment(user_id: int) -> dict | None:
 
 
 async def get_refunded_amount(payment_id: str) -> float:
-    """Сумма, уже возвращённая по этому платежу (только успешные refunds)."""
     conn = await get_db()
     total = await conn.fetchval(
         "SELECT COALESCE(SUM(amount), 0) FROM refunds WHERE payment_id = $1 AND status = 'succeeded'",
@@ -377,7 +405,6 @@ async def get_refunded_amount(payment_id: str) -> float:
 
 
 async def yookassa_webhook_handler(payload: dict):
-    """Обрабатывает уведомление от ЮKassa. Возвращает True, если всё ок."""
     event = payload.get("event")
     obj = payload.get("object") or {}
 
@@ -402,7 +429,6 @@ async def yookassa_webhook_handler(payload: dict):
         logger.error(f"YooKassa webhook: неверный формат user_id/amount. user_id={user_id_raw}, amount={amount_str}")
         return False
 
-    # Двойная проверка через API ЮKassa
     verify = await yookassa_get_payment(payment_id)
     if not verify:
         logger.error(f"YooKassa webhook: не удалось проверить платёж {payment_id} через API")
@@ -426,11 +452,10 @@ async def yookassa_webhook_handler(payload: dict):
         await send_telegram_alert(f"⚠️ ЮKassa: сумма не совпадает для {payment_id}")
         return False
 
-    # Проверяем запись в БД
     conn = await get_db()
     try:
         row = await conn.fetchrow(
-            "SELECT status, receipt_url FROM payments WHERE payment_id = $1", payment_id
+            "SELECT status, receipt_url, tariff FROM payments WHERE payment_id = $1", payment_id
         )
         if not row:
             logger.error(f"YooKassa webhook: платёж {payment_id} не найден в БД")
@@ -440,6 +465,9 @@ async def yookassa_webhook_handler(payload: dict):
         if row["status"] == "succeeded":
             logger.info(f"YooKassa webhook: платёж {payment_id} уже активирован")
             return True
+
+        tariff_key = row["tariff"] or "base"
+        tariff_label = TARIFF_LABELS.get(tariff_key, "Про")
 
         now = int(datetime.now().timestamp())
         user_row = await conn.fetchrow(
@@ -461,14 +489,17 @@ async def yookassa_webhook_handler(payload: dict):
                     subscription_started = $2,
                     speaking_seconds_month = 0,
                     roleplay_seconds_month = 0,
-                    total_voice_seconds_month = 0
-                WHERE user_id = $3
-            """, new_until, now, user_id)
+                    total_voice_seconds_month = 0,
+                    tariff = $3
+                WHERE user_id = $4
+            """, new_until, now, tariff_key, user_id)
         else:
-            await conn.execute(
-                "UPDATE users SET subscription_until = $1 WHERE user_id = $2",
-                new_until, user_id
-            )
+            await conn.execute("""
+                UPDATE users
+                SET subscription_until = $1,
+                    tariff = $2
+                WHERE user_id = $3
+            """, new_until, tariff_key, user_id)
 
         await conn.execute(
             "UPDATE payments SET status = 'succeeded', activated_at = $1 WHERE payment_id = $2",
@@ -478,12 +509,12 @@ async def yookassa_webhook_handler(payload: dict):
         await conn.execute("""
             INSERT INTO income (user_id, amount, date, description, payment_system, payment_id)
             VALUES ($1, $2, $3, $4, $5, $6)
-        """, user_id, amount, now, "Premium подписка 30 дней", "yookassa", payment_id)
+        """, user_id, amount, now, f"Подписка «{tariff_label}» на 30 дней", "yookassa", payment_id)
 
         await conn.execute("""
             INSERT INTO admin_actions (admin_id, action, details, target_user_id, created_at)
             VALUES ($1, $2, $3, $4, $5)
-        """, 0, "Автооплата ЮKassa", f"payment_id={payment_id}, amount={amount}", user_id, now)
+        """, 0, "Автооплата ЮKassa", f"payment_id={payment_id}, amount={amount}, tariff={tariff_key}", user_id, now)
 
     finally:
         await conn.close()
@@ -549,7 +580,6 @@ async def yookassa_webhook_handler(payload: dict):
         except Exception as e:
             logger.warning(f"Не удалось отправить ссылку на чек пользователю {user_id}: {e}")
     else:
-        # ---- РАСШИРЕННЫЙ АЛЕРТ ----
         await send_telegram_alert(
             f"⚠️ <b>Не удалось создать чек в «Мой налог»</b>\n"
             f"User ID: {user_id}\n"
@@ -571,6 +601,7 @@ async def yookassa_webhook_handler(payload: dict):
                     "chat_id": user_id,
                     "text": (
                         "<b>Оплата подтверждена!</b>\n\n"
+                        f"Тариф: <b>{tariff_label}</b>\n"
                         "Подписка Premium активирована на 30 дней.\n"
                         "Спасибо и приятного обучения! 💙"
                     ),
@@ -583,11 +614,12 @@ async def yookassa_webhook_handler(payload: dict):
     await send_telegram_alert(
         f"💰 Новая оплата!\n"
         f"User: {user_id}\n"
+        f"Тариф: {tariff_label}\n"
         f"Сумма: {amount} ₽\n"
         f"Payment ID: {payment_id}"
     )
 
-    logger.info(f"✅ ЮKassa webhook: платёж {payment_id} активирован для user {user_id}")
+    logger.info(f"✅ ЮKassa webhook: платёж {payment_id} активирован для user {user_id} (tariff={tariff_key})")
     return True
 
 
@@ -650,8 +682,6 @@ async def get_expenses_list(start_ts: int, end_ts: int, limit: int = 50):
 
 # ---------- ГРАФИКИ ----------
 def _resolve_range(days: int, center_date: str = None):
-    """Возвращает (start_ts, end_ts, center_ts) для запроса.
-    Если center_date задан — окно ±days/2 вокруг него, иначе — последние days дней."""
     if center_date:
         try:
             center_dt = datetime.strptime(center_date, "%Y-%m-%d")
@@ -792,7 +822,6 @@ async def get_voice_chart_data(days: int = 30, center_date: str = None):
 
 
 async def get_daily_summary(date_str: str) -> dict:
-    """Сводка ключевых метрик за один конкретный день."""
     conn = await get_db()
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d")
@@ -819,7 +848,6 @@ async def get_daily_summary(date_str: str) -> dict:
             "SELECT COUNT(*) FROM users WHERE subscription_until > $1",
             end_ts
         )
-        # Голосовые минуты за день — оценочно, по доле активности
         day_activity = activity or 0
         total_seconds = await conn.fetchval(
             "SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users"
@@ -848,25 +876,25 @@ async def get_daily_summary(date_str: str) -> dict:
 # ---------- ЭКСПОРТ ----------
 async def export_users_csv():
     conn = await get_db()
-    rows = await conn.fetch("SELECT user_id, username, first_name, last_name, registered_at, last_active, subscription_until, total_voice_seconds_month FROM users")
+    rows = await conn.fetch("SELECT user_id, username, first_name, last_name, registered_at, last_active, subscription_until, total_voice_seconds_month, tariff FROM users")
     await conn.close()
     output = io.StringIO()
     writer = csv.writer(output)
-    writer.writerow(["user_id", "username", "first_name", "last_name", "registered_at", "last_active", "subscription_until", "voice_minutes"])
+    writer.writerow(["user_id", "username", "first_name", "last_name", "registered_at", "last_active", "subscription_until", "voice_minutes", "tariff"])
     for row in rows:
         writer.writerow([
             row["user_id"], row["username"] or "", row["first_name"] or "", row["last_name"] or "",
             datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
             datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M"),
             datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "",
-            round(row["total_voice_seconds_month"] / 60, 1) if row["total_voice_seconds_month"] else 0
+            round(row["total_voice_seconds_month"] / 60, 1) if row["total_voice_seconds_month"] else 0,
+            row["tariff"] or ""
         ])
     return output.getvalue()
 
 # ---------- API ДЛЯ ГРАФИКОВ ----------
 @app.get("/api/charts-data")
 async def charts_data(days: int = 30, type: str = "all", date: str = None):
-    # Валидация даты
     center = None
     if date:
         try:
@@ -1055,7 +1083,7 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
     query = f"""
         SELECT user_id, username, first_name, last_name,
                registered_at, last_active, subscription_until,
-               total_voice_seconds_month,
+               total_voice_seconds_month, tariff,
                COALESCE(speaking_seconds_month, 0) + COALESCE(roleplay_seconds_month, 0) as voice_minutes
         FROM users
         WHERE {where_clause}
@@ -1078,6 +1106,7 @@ async def users_list(request: Request, search: str = "", page: int = 1, limit: i
             "subscription_until": datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "—",
             "voice_minutes": round(row["voice_minutes"] / 60, 1) if row["voice_minutes"] else 0,
             "is_subscribed": row["subscription_until"] > int(datetime.now().timestamp()) if row["subscription_until"] else False,
+            "tariff_label": get_tariff_label(row["tariff"]) if row["tariff"] else "—",
         })
     total_pages = (total_count + limit - 1) // limit if total_count else 1
     return templates.TemplateResponse("users.html", {
@@ -1107,7 +1136,7 @@ async def paid_users_list(request: Request, search: str = "", page: int = 1, lim
     query = f"""
         SELECT user_id, username, first_name, last_name,
                registered_at, last_active, subscription_until, subscription_started,
-               subscription_count,
+               subscription_count, tariff,
                COALESCE(speaking_seconds_month, 0) + COALESCE(roleplay_seconds_month, 0) as voice_seconds
         FROM users
         WHERE {where_clause}
@@ -1135,6 +1164,7 @@ async def paid_users_list(request: Request, search: str = "", page: int = 1, lim
             "days_left": max(0, days_left),
             "subscription_count": row["subscription_count"] or 0,
             "voice_minutes": round(row["voice_seconds"] / 60, 1) if row["voice_seconds"] else 0,
+            "tariff_label": get_tariff_label(row["tariff"]) if row["tariff"] else "—",
         })
     total_pages = (total_count + limit - 1) // limit if total_count else 1
     return templates.TemplateResponse("paid_users.html", {
@@ -1179,10 +1209,9 @@ async def user_detail(request: Request, user_id: int):
             ORDER BY cnt DESC
         """, user_id)
 
-        # Данные для возврата
         refund_info = None
         payment_row = await conn.fetchrow("""
-            SELECT payment_id, amount, activated_at, created_at
+            SELECT payment_id, amount, activated_at, created_at, tariff
             FROM payments
             WHERE user_id = $1 AND status = 'succeeded'
             ORDER BY activated_at DESC NULLS LAST, created_at DESC
@@ -1205,6 +1234,7 @@ async def user_detail(request: Request, user_id: int):
                 "available": round(available_r, 2),
                 "date_str": datetime.fromtimestamp(payment_date).strftime("%Y-%m-%d %H:%M") if payment_date else "—",
                 "subscription_active": (user_row["subscription_until"] or 0) > int(datetime.now().timestamp()),
+                "tariff_label": get_tariff_label(payment_row["tariff"]) if payment_row["tariff"] else "—",
             }
 
         await conn.close()
@@ -1325,7 +1355,7 @@ async def user_detail(request: Request, user_id: int):
                 govorenie_data[key] = {}
             govorenie_data[key][level] = {"answered": r["total_answered"], "score": r["total_score"]}
         for type_key, display_name in govorenie_type_names.items():
-            levels = govorenie_data.get(type_key, {})
+            levels = govorenie_data.get(key, {}) if False else govorenie_data.get(type_key, {})
             for level in ["beginner", "intermediate", "advanced"]:
                 level_display = LEVEL_DISPLAY.get(level, level)
                 data = levels.get(level, {"answered": 0, "score": 0})
@@ -1352,9 +1382,13 @@ async def user_detail(request: Request, user_id: int):
         roleplay_display = _fmt(user.get("roleplay_seconds_month"))
         total_display = _fmt(user.get("total_voice_seconds_month"))
 
-        VOICE_LIMIT_SECONDS = 9000
+        # Тариф и лимит
+        tariff_key = user_row["tariff"] or None
+        tariff_label = get_tariff_label(tariff_key)
+        voice_limit_seconds = get_voice_limit_seconds(tariff_key)
+        voice_limit_label = format_voice_limit_label(tariff_key)
         voice_used_secs = int(user.get("total_voice_seconds_month") or 0)
-        voice_percent = round(min(100, voice_used_secs / VOICE_LIMIT_SECONDS * 100), 1)
+        voice_percent = round(min(100, voice_used_secs / voice_limit_seconds * 100), 1) if voice_limit_seconds else 0
 
         return templates.TemplateResponse("user_detail.html", {
             "request": request,
@@ -1369,6 +1403,8 @@ async def user_detail(request: Request, user_id: int):
             "roleplay_display": roleplay_display,
             "total_display": total_display,
             "voice_percent": voice_percent,
+            "voice_limit_label": voice_limit_label,
+            "tariff_label": tariff_label,
             "admin_logs": logs_display,
             "action_stats": action_stats,
             "total_admin_actions": total_admin_actions,
@@ -1415,7 +1451,7 @@ async def extend_subscription(request: Request, user_id: int, days: int = Form(.
         action_text = f"Продление на {days} дней"
     await log_admin_action(admin_id, "Продление подписки", action_text, user_id)
     if counter_was_reset:
-        await log_admin_action(admin_id, "Обнуление счётчика минут при оплате", f"лимит 2.5 ч сброшен", user_id)
+        await log_admin_action(admin_id, "Обнуление счётчика минут при оплате", f"лимит по тарифу сброшен", user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/user/{user_id}/cancel")
@@ -1493,7 +1529,6 @@ async def refund_user(request: Request, user_id: int, amount: float = Form(...))
         finally:
             await conn.close()
 
-        # Аннулируем чек в «Мой налог»
         try:
             conn = await get_db()
             try:
@@ -1606,7 +1641,7 @@ async def clear_all_user_data(request: Request, user_id: int):
     await conn.execute("DELETE FROM progress_index WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM random_order WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM user_states WHERE user_id = $1", user_id)
-    await conn.execute("UPDATE users SET subscription_until = 0, subscription_started = 0, subscription_count = 0, trial_until = 0, trial_started = 0 WHERE user_id = $1", user_id)
+    await conn.execute("UPDATE users SET subscription_until = 0, subscription_started = 0, subscription_count = 0, trial_until = 0, trial_started = 0, tariff = NULL WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM income WHERE user_id = $1", user_id)
     await conn.close()
     await log_admin_action(admin_id, "Очистка всех данных", "", user_id)
@@ -1615,7 +1650,7 @@ async def clear_all_user_data(request: Request, user_id: int):
 @app.post("/extend_all")
 async def extend_all_subscriptions(request: Request, days: int = Form(...)):
     admin_id = int(os.getenv("ADMIN_ID", 0))
-    reason = "🎉 Тебе начислены бонусные дни!\nТвоя подписка продлена до 15.08.2026.\nПриносим извинения за временные неудобства и дарим эти дни в качестве компенсации.\nСпасибо за то, что вы с нами!"
+    reason = "🎉 Тебе начислены бонусные дни!\nТвоя подписка продлена.\nПриносим извинения за временные неудобства и дарим эти дни в качестве компенсации.\nСпасибо за то, что вы с нами!"
     conn = await get_db()
     now = int(datetime.now().timestamp())
     await conn.execute("""

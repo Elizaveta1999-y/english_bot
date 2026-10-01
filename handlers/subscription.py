@@ -9,6 +9,7 @@ from utils.db import (
     create_payment_record,
     get_user_pending_payments,
     activate_subscription_from_payment,
+    get_user_tariff_async,
 )
 from services.yookassa import create_payment, get_payment_status
 from data.users import get_user_state, set_user_state
@@ -17,8 +18,20 @@ import asyncio
 logger = logging.getLogger(__name__)
 router = Router()
 
-PRICE_RUB = 999
 DURATION_DAYS = 30
+
+TARIFFS = {
+    "light": {
+        "price": 490,
+        "label": "Лайт",
+        "description": "лёгкая голосовая практика",
+    },
+    "base": {
+        "price": 999,
+        "label": "Про",
+        "description": "заниматься каждый день, реально продвинуться",
+    },
+}
 
 _bot_username_cache = None
 
@@ -34,35 +47,49 @@ PREMIUM_OFFER_TEXT = (
     "💎 <b>Premium подписка</b>\n\n"
     "Откройте все возможности AI English US для изучения английского.\n\n"
     "<b>Полный комплект для изучения:</b>\n"
-    "<b>🎙️ Общение с AI</b> — искусственный интеллект почти неотличимый от живого носителя языка\n"
-    "<b>🎬 Ролевые игры</b> — погружение в реальные жизненные сценарии без страха ошибиться\n"
-    "<b>🔀 Грамматика</b> — отточите времена, конструкции и порядок слов на практике\n"
-    "<b>🥇 Лексика</b> — вспоминайте и тренируйте слова по темам и уровням\n"
-    "<b>📖 Чтение</b> — понимайте тексты любой сложности, от новостей до статей\n"
-    "<b>🔉 Аудирование</b> — ловите интонации, акценты и смысл на слух\n"
-    "<b>🗣️ Говорение</b> — свободно выражайте мысли без запинок и страха\n"
-    "<b>📝 Письмо</b> — создавайте связные тексты с правильной структурой\n\n"
+    "🎙️ <b>Общение с AI</b> — искусственный интеллект почти неотличимый от живого носителя языка\n"
+    "🎬 <b>Ролевые игры</b> — погружение в реальные жизненные сценарии без страха ошибиться\n\n"
+    "<b>Все главные навыки в изучении языка:</b>\n"
+    "🔀 Грамматика · 🥇 Лексика · 📖 Чтение · 🔉 Аудирование · 🗣️ Говорение · 📝 Письмо\n\n"
+    "<b>Оба тарифа дают полный доступ ко всем режимам.</b>\n"
+    "Разница — в объёме голосовой практики с ИИ:\n\n"
+    "• <b>Лайт</b> — лёгкая голосовая практика\n"
+    "• <b>Про</b> — заниматься каждый день, реально продвинуться\n\n"
     "<b>Почему Premium — это выгодно:</b>\n"
     "<blockquote>"
     "• Занятия с репетитором стоят от 1500 ₽ за час.\n"
-    "• Premium даёт вам неограниченную практику 24/7.\n"
     "• Вы занимаетесь в любое время без записи и привязки к расписанию.\n"
     "• ИИ-тьютор всегда на связи — отвечает мгновенно и объясняет ошибки.\n"
-    "• За 30 дней вы получаете десятки часов практики по цене одного занятия с репетитором.\n"
-    "</blockquote>\n"
-    "<b>🤍 Никаких скрытых подписок. Вы платите только за те 30 дней, которые вам нужны.</b>"
+    "• Никаких скрытых подписок — вы платите только за те 30 дней, которые вам нужны.\n"
+    "</blockquote>"
 )
 
-PAYMENT_PANEL_TEXT = (
-    "💳 <b>Оплата Premium-подписки</b>\n\n"
-    f"Сумма: <b>{PRICE_RUB} ₽</b>\n"
-    f"Срок: <b>{DURATION_DAYS} дней</b>\n\n"
-    "После оплаты вернись в бот и нажми <b>«Я оплатил(а) — проверить»</b>."
-)
+
+def _tariff_label(tariff_key: str) -> str:
+    return TARIFFS.get(tariff_key, {}).get("label", "Premium")
+
+
+def get_payment_panel_text(tariff_key: str) -> str:
+    t = TARIFFS[tariff_key]
+    return (
+        "💳 <b>Оплата Premium-подписки</b>\n\n"
+        f"Тариф: <b>{t['label']}</b>\n"
+        f"Сумма: <b>{t['price']} ₽</b>\n"
+        f"Срок: <b>{DURATION_DAYS} дней</b>\n\n"
+        "После оплаты вернись в бот и нажми <b>«Я оплатил(а) — проверить»</b>."
+    )
+
 
 def get_offer_keyboard(from_profile: bool = False):
     buttons = [
-        [InlineKeyboardButton(text=f"{DURATION_DAYS} дней — {PRICE_RUB} ₽", callback_data="subscribe_30_days")]
+        [InlineKeyboardButton(
+            text=f"Лайт — {TARIFFS['light']['price']} ₽",
+            callback_data="subscribe_light"
+        )],
+        [InlineKeyboardButton(
+            text=f"Про — {TARIFFS['base']['price']} ₽",
+            callback_data="subscribe_base"
+        )],
     ]
     if from_profile:
         buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_profile")])
@@ -101,10 +128,12 @@ async def show_subscription(target, user_id: int, from_profile: bool = False, ed
 
     if sub_end and sub_end > now:
         expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
+        tariff_key = profile.get("tariff") or "base"
+        tariff_label = _tariff_label(tariff_key)
         text = (
             f"✨ <b>Ваша подписка активна</b> ✨\n\n"
-            f"<b>Действует до:</b> {expires}\n"
-            f"<b>Тариф:</b> {PRICE_RUB} ₽ / {DURATION_DAYS} дней"
+            f"<b>Тариф:</b> {tariff_label}\n"
+            f"<b>Действует до:</b> {expires}"
         )
         keyboard = get_active_keyboard(from_profile)
     else:
@@ -260,8 +289,7 @@ async def subscription_command(message: Message, state: FSMContext):
     await show_subscription(message, message.from_user.id, from_profile=False, edit=False)
 
 
-@router.callback_query(F.data == "subscribe_30_days")
-async def handle_subscribe_30_days(callback: CallbackQuery):
+async def _start_payment(callback: CallbackQuery, tariff_key: str):
     try:
         await callback.answer()
     except Exception:
@@ -280,13 +308,14 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
         await show_subscription(callback, user_id, from_profile=True, edit=True)
         return
 
+    tariff = TARIFFS[tariff_key]
     bot_username = await _get_bot_username(callback.bot)
     return_url = f"https://t.me/{bot_username}"
 
     payment = await create_payment(
         user_id=user_id,
-        amount=PRICE_RUB,
-        description=f"Premium подписка на {DURATION_DAYS} дней",
+        amount=tariff["price"],
+        description=f"Premium подписка ({tariff['label']}) на {DURATION_DAYS} дней",
         return_url=return_url,
     )
 
@@ -300,14 +329,26 @@ async def handle_subscribe_30_days(callback: CallbackQuery):
     await create_payment_record(
         payment_id=payment["payment_id"],
         user_id=user_id,
-        amount=PRICE_RUB,
+        amount=tariff["price"],
+        tariff=tariff_key,
     )
 
+    panel_text = get_payment_panel_text(tariff_key)
     keyboard = get_payment_keyboard(payment["confirmation_url"], from_profile=True)
     try:
-        await callback.message.edit_text(PAYMENT_PANEL_TEXT, reply_markup=keyboard, parse_mode="HTML")
+        await callback.message.edit_text(panel_text, reply_markup=keyboard, parse_mode="HTML")
     except Exception:
-        await callback.message.answer(PAYMENT_PANEL_TEXT, reply_markup=keyboard, parse_mode="HTML")
+        await callback.message.answer(panel_text, reply_markup=keyboard, parse_mode="HTML")
+
+
+@router.callback_query(F.data == "subscribe_light")
+async def handle_subscribe_light(callback: CallbackQuery):
+    await _start_payment(callback, "light")
+
+
+@router.callback_query(F.data == "subscribe_base")
+async def handle_subscribe_base(callback: CallbackQuery):
+    await _start_payment(callback, "base")
 
 
 @router.callback_query(F.data == "check_payment")
@@ -337,12 +378,15 @@ async def check_payment_handler(callback: CallbackQuery):
     status = yookassa_data.get("status")
 
     if status == "succeeded":
-        amount = float(yookassa_data.get("amount", {}).get("value", PRICE_RUB))
+        amount = float(yookassa_data.get("amount", {}).get("value", 0))
         ok = await activate_subscription_from_payment(payment_id, user_id, amount)
         if ok:
+            tariff_key = await get_user_tariff_async(user_id)
+            tariff_label = _tariff_label(tariff_key) if tariff_key else "Premium"
             await callback.message.answer(
                 "<b>Оплата подтверждена!</b>\n\n"
-                f"Подписка Premium активирована на {DURATION_DAYS} дней.\n"
+                f"Тариф: <b>{tariff_label}</b>\n"
+                f"Подписка активна на {DURATION_DAYS} дней.\n"
                 "Спасибо и приятного обучения! 💙",
                 parse_mode="HTML",
             )

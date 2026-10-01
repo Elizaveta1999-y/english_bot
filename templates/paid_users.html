@@ -40,6 +40,7 @@
                 <th>ID</th>
                 <th>Имя</th>
                 <th>Username</th>
+                <th>Тариф</th>
                 <th>Подписка с</th>
                 <th>Подписка до</th>
                 <th>Осталось дней</th>
@@ -54,6 +55,7 @@
                 <td>{{ user.user_id }}</td>
                 <td>{{ user.first_name or '' }} {{ user.last_name or '' }}</td>
                 <td>{{ user.username or '—' }}</td>
+                <td>{{ user.tariff_label }}</td>
                 <td>{{ user.subscription_started }}</td>
                 <td>{{ user.subscription_until }}</td>
                 <td>
@@ -70,7 +72,7 @@
                 <td><a href="/user/{{ user.user_id }}" class="btn btn-sm btn-primary">Просмотр</a></td>
             </tr>
         {% else %}
-            <tr><td colspan="9" class="text-center text-muted">Нет активных платных пользователей</td></tr>
+            <tr><td colspan="10" class="text-center text-muted">Нет активных платных пользователей</td></tr>
         {% endfor %}
         </tbody>
     </table>

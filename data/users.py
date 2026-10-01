@@ -15,7 +15,10 @@ if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 # ---------- ЛИМИТЫ ----------
-VOICE_LIMIT_SECONDS = 9000          # 2.5 часа = 9000 секунд
+VOICE_LIMIT_SECONDS_LIGHT = 1800    # 30 минут (тариф "light")
+VOICE_LIMIT_SECONDS_BASE = 9000     # 2.5 часа (тариф "base" и по умолчанию)
+VOICE_LIMIT_SECONDS_DEFAULT = VOICE_LIMIT_SECONDS_BASE  # fallback, если tariff = NULL
+
 TRIAL_DURATION_SECONDS = 48 * 3600  # 48 часов
 TRIAL_VOICE_LIMIT = 4               # голосовых в триале (speaking + roleplay)
 TRIAL_WRITING_LIMIT = 2             # фидбеков в письме
@@ -68,6 +71,7 @@ def _ensure_table():
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS is_unlimited BOOLEAN DEFAULT FALSE")
+            cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tariff TEXT DEFAULT NULL")
         conn.commit()
         _table_ready = True
     except Exception as e:
@@ -145,6 +149,38 @@ async def get_or_create_user(user_id: int, username: str = None,
         return {}
     finally:
         _get_pool().putconn(conn)
+
+
+# ========== ТАРИФ ==========
+def get_user_tariff(user_id: int):
+    """Возвращает 'light' / 'base' / None."""
+    _ensure_table()
+    conn = _get_pool().getconn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("SELECT tariff FROM users WHERE user_id = %s", (user_id,))
+            row = cur.fetchone()
+            if row and row[0]:
+                return row[0]
+            return None
+    finally:
+        _get_pool().putconn(conn)
+
+
+def get_voice_limit_seconds(user_id: int) -> int:
+    """Возвращает лимит секунд в месяц для текущего тарифа."""
+    tariff = get_user_tariff(user_id)
+    if tariff == "light":
+        return VOICE_LIMIT_SECONDS_LIGHT
+    return VOICE_LIMIT_SECONDS_BASE  # base или None (старые подписки)
+
+
+def get_voice_limit_label(user_id: int) -> str:
+    """Человеческое название лимита для сообщений: '30 минут' / '2.5 часа'."""
+    tariff = get_user_tariff(user_id)
+    if tariff == "light":
+        return "30 минут"
+    return "2.5 часа"
 
 
 # ========== ТРИАЛ И ПОДПИСКА ==========
@@ -389,8 +425,9 @@ def check_govorenie_access(user_id: int) -> tuple:
 
 # ========== ГОЛОСОВЫЕ СЕКУНДЫ (подписка) ==========
 def is_voice_limit_reached(user_id: int) -> bool:
-    """True, если 2.5 ч/мес исчерпаны. НЕ проверяет подписку."""
+    """True, если лимит для текущего тарифа исчерпан. НЕ проверяет подписку."""
     _ensure_table()
+    limit_seconds = get_voice_limit_seconds(user_id)
     conn = _get_pool().getconn()
     try:
         with conn.cursor() as cur:
@@ -401,7 +438,7 @@ def is_voice_limit_reached(user_id: int) -> bool:
             row = cur.fetchone()
             if row is None:
                 return False
-            return (row[0] or 0) >= VOICE_LIMIT_SECONDS
+            return (row[0] or 0) >= limit_seconds
     finally:
         _get_pool().putconn(conn)
 

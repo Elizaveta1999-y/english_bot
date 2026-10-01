@@ -144,7 +144,8 @@ async def init_db():
         ADD COLUMN IF NOT EXISTS trial_voice_count INTEGER DEFAULT 0,
         ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0,
         ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0,
-        ADD COLUMN IF NOT EXISTS is_unlimited BOOLEAN DEFAULT FALSE
+        ADD COLUMN IF NOT EXISTS is_unlimited BOOLEAN DEFAULT FALSE,
+        ADD COLUMN IF NOT EXISTS tariff TEXT DEFAULT NULL
     """)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS bot_settings (
@@ -172,6 +173,7 @@ async def init_db():
             activated_at BIGINT DEFAULT 0
         )
     """)
+    await conn.execute("ALTER TABLE payments ADD COLUMN IF NOT EXISTS tariff TEXT DEFAULT NULL")
     await conn.execute("""
         CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id)
     """)
@@ -814,19 +816,20 @@ async def ensure_payments_table():
             activated_at BIGINT DEFAULT 0
         )
     """)
+    await conn.execute("ALTER TABLE payments ADD COLUMN IF NOT EXISTS tariff TEXT DEFAULT NULL")
     await conn.execute("CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id)")
     await conn.execute("CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status)")
     await conn.close()
 
 
-async def create_payment_record(payment_id: str, user_id: int, amount: float) -> None:
+async def create_payment_record(payment_id: str, user_id: int, amount: float, tariff: str = None) -> None:
     conn = await get_connection()
     now = int(datetime.now().timestamp())
     await conn.execute("""
-        INSERT INTO payments (payment_id, user_id, amount, status, created_at)
-        VALUES ($1, $2, $3, 'pending', $4)
+        INSERT INTO payments (payment_id, user_id, amount, status, created_at, tariff)
+        VALUES ($1, $2, $3, 'pending', $4, $5)
         ON CONFLICT (payment_id) DO NOTHING
-    """, payment_id, user_id, amount, now)
+    """, payment_id, user_id, amount, now, tariff)
     await conn.close()
 
 
@@ -850,12 +853,13 @@ async def get_user_pending_payments(user_id: int):
 async def activate_subscription_from_payment(payment_id: str, user_id: int, amount: float) -> bool:
     conn = await get_connection()
     try:
-        row = await conn.fetchrow("SELECT status FROM payments WHERE payment_id = $1", payment_id)
+        row = await conn.fetchrow("SELECT status, tariff FROM payments WHERE payment_id = $1", payment_id)
         if not row:
             return False
         if row["status"] == "succeeded":
             return True
 
+        tariff = row["tariff"] or "base"  # для старых платежей без тарифа — base
         now = int(datetime.now().timestamp())
         user_row = await conn.fetchrow("SELECT subscription_until FROM users WHERE user_id = $1", user_id)
         if not user_row:
@@ -871,28 +875,42 @@ async def activate_subscription_from_payment(payment_id: str, user_id: int, amou
                     subscription_started = $2,
                     speaking_seconds_month = 0,
                     roleplay_seconds_month = 0,
-                    total_voice_seconds_month = 0
-                WHERE user_id = $3
-            """, new_until, now, user_id)
+                    total_voice_seconds_month = 0,
+                    tariff = $3
+                WHERE user_id = $4
+            """, new_until, now, tariff, user_id)
         else:
-            await conn.execute(
-                "UPDATE users SET subscription_until = $1 WHERE user_id = $2",
-                new_until, user_id
-            )
+            await conn.execute("""
+                UPDATE users
+                SET subscription_until = $1,
+                    tariff = $2
+                WHERE user_id = $3
+            """, new_until, tariff, user_id)
 
         await conn.execute(
             "UPDATE payments SET status = 'succeeded', activated_at = $1 WHERE payment_id = $2",
             now, payment_id
         )
 
+        tariff_label = "Лайт" if tariff == "light" else "Про"
         await conn.execute("""
             INSERT INTO income (user_id, amount, date, description, payment_system, payment_id)
             VALUES ($1, $2, $3, $4, $5, $6)
-        """, user_id, amount, now, "Premium подписка 30 дней", "yookassa", payment_id)
+        """, user_id, amount, now, f"Подписка «{tariff_label}» на 30 дней", "yookassa", payment_id)
 
         return True
     finally:
         await conn.close()
+
+
+async def get_user_tariff_async(user_id: int):
+    """Async версия — для handlers. Возвращает 'light' / 'base' / None."""
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT tariff FROM users WHERE user_id = $1", user_id)
+    await conn.close()
+    if row and row["tariff"]:
+        return row["tariff"]
+    return None
 
 
 # =====================================================================

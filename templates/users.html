@@ -30,6 +30,7 @@
                 <th>Регистрация</th>
                 <th>Последняя активность</th>
                 <th>Подписка</th>
+                <th>Тариф</th>
                 <th>Голос (мин)</th>
                 <th>Детали</th>
             </tr>
@@ -43,17 +44,17 @@
                 <td>{{ user.registered_at }}</td>
                 <td>{{ user.last_active }}</td>
                 <td>{% if user.is_subscribed %}Активна{% else %}Нет{% endif %}</td>
+                <td>{{ user.tariff_label }}</td>
                 <td>{{ user.voice_minutes }}</td>
                 <td><a href="/user/{{ user.user_id }}" class="btn btn-sm btn-primary">Просмотр</a></td>
             </tr>
         {% else %}
-            <tr><td colspan="8">Нет пользователей</td></tr>
+            <tr><td colspan="9">Нет пользователей</td></tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
 
-<!-- Пагинация -->
 {% if total_pages > 1 %}
 <nav>
     <ul class="pagination">

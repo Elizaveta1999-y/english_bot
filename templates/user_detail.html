@@ -18,6 +18,7 @@
         <p><span class="detail-label">Username:</span> <span class="detail-value">{{ user.username or '—' }}</span></p>
         <p><span class="detail-label">Дата регистрации:</span> <span class="detail-value">{{ user.registered_at }}</span></p>
         <p><span class="detail-label">Последняя активность:</span> <span class="detail-value">{{ user.last_active }}</span></p>
+        <p><span class="detail-label">Тариф:</span> <span class="detail-value"><b>{{ tariff_label }}</b></span></p>
         <p><span class="detail-label">Подписка (начало):</span> <span class="detail-value">{{ user.subscription_started }}</span></p>
         <p><span class="detail-label">Подписка (окончание):</span> <span class="detail-value">{{ user.subscription_until }}</span></p>
         <p><span class="detail-label">Количество подписок:</span> <span class="detail-value">{{ user.subscription_count }}</span></p>
@@ -29,7 +30,7 @@
 
         <div class="mt-3">
             <div class="d-flex justify-content-between mb-1">
-                <span class="detail-label">Лимит голоса: {{ total_display }} / 2.5 ч</span>
+                <span class="detail-label">Лимит голоса: {{ total_display }} / {{ voice_limit_label }}</span>
                 <span class="detail-label">{{ voice_percent }}%</span>
             </div>
             <div class="progress" style="height: 22px;">
@@ -54,6 +55,7 @@
 {% if refund_info %}
 <div class="refund-box">
     <p><strong>Последний успешный платёж:</strong> {{ refund_info.payment_id }}</p>
+    <p><strong>Тариф платежа:</strong> {{ refund_info.tariff_label }}</p>
     <p><strong>Сумма платежа:</strong> {{ refund_info.amount }} ₽</p>
     <p><strong>Дата оплаты:</strong> {{ refund_info.date_str }}</p>
     <p><strong>Уже возвращено:</strong> {{ refund_info.refunded }} ₽</p>
