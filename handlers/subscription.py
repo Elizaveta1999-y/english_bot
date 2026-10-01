@@ -45,12 +45,12 @@ async def _get_bot_username(bot):
 
 PREMIUM_OFFER_TEXT = (
     "💎 <b>Premium подписка</b>\n\n"
-    "Это не просто практика — это разбор каждой попытки заговорить на английском.\n\n"
+    "Каждая попытка заговорить — с разбором.\n\n"
     "🗣️ <b>Говорение</b> — AI слушает и разбирает речь: где ошибка, как правильно и почему\n"
     "📝 <b>Письмо</b> — email, эссе, посты, истории. Проверка структуры, грамматики, стиля\n"
     "🎬 <b>Ролевые игры</b> — путешествия, small talk, неожиданные ситуации\n"
     "🎙️ <b>Общение с AI</b> — говорите голосом. AI моментально объясняет каждую ошибку\n\n"
-    "Оба тарифа включают <b>всё это</b>. Разница в объеме голоса. Минуты общие на общение с AI и на ролевые игры — тратите, куда хотите:\n"
+    "Оба тарифа включают <b>всё это</b>. Разница в объеме голоса. Минуты общие на общение с AI и на ролевые игры (то есть тратите, куда хотите):\n"
     "• ☕️ <b>Лайт</b> — 30 минут в месяц\n"
     "• 🏋🏻‍♂️ <b>Про</b> — 2.5 часа в месяц\n\n"
     "Первые 48 часов — бесплатно.\n\n"
@@ -428,3 +428,13 @@ async def back_to_profile_from_subscription(callback: CallbackQuery):
         pass
     from handlers.profile import profile_menu
     await profile_menu(callback)
+
+
+@router.callback_query(F.data == "show_tariffs")
+async def show_tariffs_callback(callback: CallbackQuery, state: FSMContext):
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+    await clear_active_mode(callback.message, state)
+    await show_subscription(callback, callback.from_user.id, from_profile=False, edit=False)
