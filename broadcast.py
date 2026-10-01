@@ -11,10 +11,8 @@ if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN не задан в .env")
 
 # ================= СПИСОК ПОЛУЧАТЕЛЕЙ =================
-# Сначала только ты — проверь на себе.
-# Потом сюда добавишь ID тех, кому хочешь отправить.
 RECIPIENTS = [
-    6115540828,  # твой тестовый ID
+    6115540828,
 ]
 
 # ================= ТЕКСТ СООБЩЕНИЯ =================
@@ -28,7 +26,6 @@ MESSAGE = (
 KEYBOARD = {
     "inline_keyboard": [
         [{"text": "💎 Посмотреть тарифы", "callback_data": "show_tariffs"}],
-        [{"text": "🏠 Главное меню", "callback_data": "back_to_main_menu"}],
     ]
 }
 # ===================================================
@@ -46,11 +43,13 @@ async def send_to_user(client: httpx.AsyncClient, user_id: int) -> bool:
             },
         )
         data = r.json()
+        # Печатаем полный ответ Telegram — для отладки
+        print(f"→ Ответ Telegram для {user_id}: {data}")
         if data.get("ok"):
             print(f"✅ {user_id} — отправлено")
             return True
         else:
-            print(f"❌ {user_id} — ошибка: {data.get('description')}")
+            print(f"❌ {user_id} — ошибка: {data.get('description')} (код {data.get('error_code')})")
             return False
     except Exception as e:
         print(f"❌ {user_id} — исключение: {e}")
@@ -62,7 +61,7 @@ async def main():
     async with httpx.AsyncClient(timeout=15) as client:
         for uid in RECIPIENTS:
             await send_to_user(client, uid)
-            await asyncio.sleep(0.1)  # безопасная пауза между сообщениями
+            await asyncio.sleep(0.1)
     print("Готово.")
 
 
