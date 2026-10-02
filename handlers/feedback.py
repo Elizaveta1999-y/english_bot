@@ -10,15 +10,16 @@ logger = logging.getLogger(__name__)
 router = Router()
 
 ADMIN_ID = int(os.getenv("ADMIN_ID", 0) or 0)
+MY_TELEGRAM = os.getenv("MY_TELEGRAM", "")
 
 
 class SurveyStates(StatesGroup):
-    q1 = State()
-    q2 = State()
-    q3 = State()
-    q4 = State()
-    q5 = State()
-    q6 = State()
+    q1 = State()  # goal
+    q2 = State()  # price
+    q3 = State()  # modes
+    q4 = State()  # tasks
+    q5 = State()  # improve
+    q6 = State()  # contact
 
 
 INTRO_TEXT = (
@@ -34,60 +35,59 @@ def kb_begin():
     ])
 
 
-def kb_q1():
+def kb_goal():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Хочу говорить свободнее", callback_data="survey_q1_speak")],
-        [InlineKeyboardButton(text="Готовлюсь к экзамену / работе", callback_data="survey_q1_exam")],
-        [InlineKeyboardButton(text="Ради интереса", callback_data="survey_q1_fun")],
-        [InlineKeyboardButton(text="Собираюсь переезжать / путешествовать", callback_data="survey_q1_travel")],
+        [InlineKeyboardButton(text="Хочу говорить свободнее", callback_data="survey_goal_speak")],
+        [InlineKeyboardButton(text="Готовлюсь к экзамену / работе", callback_data="survey_goal_exam")],
+        [InlineKeyboardButton(text="Ради интереса", callback_data="survey_goal_fun")],
+        [InlineKeyboardButton(text="Собираюсь переезжать / путешествовать", callback_data="survey_goal_travel")],
         [InlineKeyboardButton(text="⏭ Пропустить", callback_data="survey_skip")],
     ])
 
 
-def kb_q2():
+def kb_price():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Мало времени", callback_data="survey_q2_time")],
-        [InlineKeyboardButton(text="Не знаю, с чего начать", callback_data="survey_q2_start")],
-        [InlineKeyboardButton(text="Не вижу прогресса", callback_data="survey_q2_progress")],
-        [InlineKeyboardButton(text="Ничего не мешает", callback_data="survey_q2_nothing")],
+        [InlineKeyboardButton(text="Всё устраивает", callback_data="survey_price_ok")],
+        [InlineKeyboardButton(text="Дорого", callback_data="survey_price_expensive")],
+        [InlineKeyboardButton(text="Не понимаю, что входит", callback_data="survey_price_unclear")],
+        [InlineKeyboardButton(text="Хочу больше минут за эти деньги", callback_data="survey_price_more")],
         [InlineKeyboardButton(text="⏭ Пропустить", callback_data="survey_skip")],
     ])
 
 
-def kb_q3():
+def kb_modes():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Всё устраивает", callback_data="survey_q3_ok")],
-        [InlineKeyboardButton(text="Дорого", callback_data="survey_q3_expensive")],
-        [InlineKeyboardButton(text="Не понимаю, что входит", callback_data="survey_q3_unclear")],
-        [InlineKeyboardButton(text="Хочу больше минут за эти деньги", callback_data="survey_q3_more")],
+        [InlineKeyboardButton(text="Общение с AI", callback_data="survey_modes_chat")],
+        [InlineKeyboardButton(text="Ролевые игры", callback_data="survey_modes_roleplay")],
+        [InlineKeyboardButton(text="Тренажёры", callback_data="survey_modes_trainers")],
+        [InlineKeyboardButton(text="Всё нравится", callback_data="survey_modes_all")],
         [InlineKeyboardButton(text="⏭ Пропустить", callback_data="survey_skip")],
     ])
 
 
-def kb_q4():
+def kb_tasks():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Общение с AI", callback_data="survey_q4_chat")],
-        [InlineKeyboardButton(text="Ролевые игры", callback_data="survey_q4_roleplay")],
-        [InlineKeyboardButton(text="Тренажёры", callback_data="survey_q4_trainers")],
-        [InlineKeyboardButton(text="Всё нравится", callback_data="survey_q4_all")],
+        [InlineKeyboardButton(text="Очень нравятся", callback_data="survey_tasks_love")],
+        [InlineKeyboardButton(text="Нормальные, но есть что улучшить", callback_data="survey_tasks_ok")],
+        [InlineKeyboardButton(text="Так себе", callback_data="survey_tasks_meh")],
         [InlineKeyboardButton(text="⏭ Пропустить", callback_data="survey_skip")],
     ])
 
 
-def kb_q5():
+def kb_improve():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Больше голоса", callback_data="survey_q5_voice")],
-        [InlineKeyboardButton(text="Больше заданий", callback_data="survey_q5_tasks")],
-        [InlineKeyboardButton(text="Снизить цену", callback_data="survey_q5_price")],
-        [InlineKeyboardButton(text="Ничего, всё ок", callback_data="survey_q5_ok")],
+        [InlineKeyboardButton(text="Больше голоса", callback_data="survey_improve_voice")],
+        [InlineKeyboardButton(text="Больше заданий", callback_data="survey_improve_tasks")],
+        [InlineKeyboardButton(text="Снизить цену", callback_data="survey_improve_price")],
+        [InlineKeyboardButton(text="Ничего, всё ок", callback_data="survey_improve_ok")],
         [InlineKeyboardButton(text="⏭ Пропустить", callback_data="survey_skip")],
     ])
 
 
-def kb_q6():
+def kb_contact():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Да, хочу", callback_data="survey_q6_yes")],
-        [InlineKeyboardButton(text="Нет, спасибо", callback_data="survey_q6_no")],
+        [InlineKeyboardButton(text="Да, хочу", callback_data="survey_contact_yes")],
+        [InlineKeyboardButton(text="Нет, спасибо", callback_data="survey_contact_no")],
     ])
 
 
@@ -98,7 +98,14 @@ async def safe_answer(callback: CallbackQuery):
         pass
 
 
-# ---------- ВХОД В ОПРОС ----------
+async def hide_buttons(callback: CallbackQuery):
+    try:
+        await callback.message.edit_reply_markup(reply_markup=None)
+    except Exception as e:
+        logger.debug(f"hide_buttons: {e}")
+
+
+# ---------- ВХОД ----------
 
 @router.callback_query(F.data == "start_survey")
 async def survey_intro(callback: CallbackQuery, state: FSMContext):
@@ -108,113 +115,88 @@ async def survey_intro(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"[survey_intro] state.clear: {e}")
     logger.info(f"[survey_intro] user={callback.from_user.id}")
-    try:
-        await callback.message.answer(INTRO_TEXT, reply_markup=kb_begin())
-    except Exception as e:
-        logger.error(f"[survey_intro] answer: {e}")
+    await callback.message.answer(INTRO_TEXT, reply_markup=kb_begin())
 
 
 @router.callback_query(F.data == "survey_begin")
 async def survey_begin(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
+    await hide_buttons(callback)
     logger.info(f"[survey_begin] user={callback.from_user.id}")
-    try:
-        await state.set_state(SurveyStates.q1)
-    except Exception as e:
-        logger.error(f"[survey_begin] set_state: {e}")
-    try:
-        await callback.message.answer(
-            "1 / 6. Что тебя привело в бот?",
-            reply_markup=kb_q1(),
-        )
-    except Exception as e:
-        logger.error(f"[survey_begin] answer: {e}")
+    await state.set_state(SurveyStates.q1)
+    await callback.message.answer("1 / 6. Что тебя привело в бот?", reply_markup=kb_goal())
 
 
-# ---------- Q1 ----------
+# ---------- Q1: goal ----------
 
-@router.callback_query(SurveyStates.q1, F.data.startswith("survey_q1_"))
+@router.callback_query(SurveyStates.q1, F.data.startswith("survey_goal_"))
 async def q1_answer(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
-    answer = callback.data.replace("survey_q1_", "")
-    await state.update_data(q1=answer)
+    await hide_buttons(callback)
+    await state.update_data(goal=callback.data.replace("survey_goal_", ""))
     await state.set_state(SurveyStates.q2)
-    await callback.message.answer(
-        "2 / 6. Что мешает заниматься регулярно?",
-        reply_markup=kb_q2(),
-    )
+    await callback.message.answer("2 / 6. Устраивает ли тебя стоимость подписок?", reply_markup=kb_price())
 
 
-# ---------- Q2 ----------
+# ---------- Q2: price ----------
 
-@router.callback_query(SurveyStates.q2, F.data.startswith("survey_q2_"))
+@router.callback_query(SurveyStates.q2, F.data.startswith("survey_price_"))
 async def q2_answer(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
-    answer = callback.data.replace("survey_q2_", "")
-    await state.update_data(q2=answer)
+    await hide_buttons(callback)
+    await state.update_data(price=callback.data.replace("survey_price_", ""))
     await state.set_state(SurveyStates.q3)
-    await callback.message.answer(
-        "3 / 6. Устраивает ли тебя стоимость подписок?",
-        reply_markup=kb_q3(),
-    )
+    await callback.message.answer("3 / 6. Какие режимы для тебя главные в боте?", reply_markup=kb_modes())
 
 
-# ---------- Q3 ----------
+# ---------- Q3: modes ----------
 
-@router.callback_query(SurveyStates.q3, F.data.startswith("survey_q3_"))
+@router.callback_query(SurveyStates.q3, F.data.startswith("survey_modes_"))
 async def q3_answer(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
-    answer = callback.data.replace("survey_q3_", "")
-    await state.update_data(q3=answer)
+    await hide_buttons(callback)
+    await state.update_data(modes=callback.data.replace("survey_modes_", ""))
     await state.set_state(SurveyStates.q4)
-    await callback.message.answer(
-        "4 / 6. Какие режимы для тебя главные в боте?",
-        reply_markup=kb_q4(),
-    )
+    await callback.message.answer("4 / 6. Нравятся ли тебе задания в этих режимах?", reply_markup=kb_tasks())
 
 
-# ---------- Q4 ----------
+# ---------- Q4: tasks ----------
 
-@router.callback_query(SurveyStates.q4, F.data.startswith("survey_q4_"))
+@router.callback_query(SurveyStates.q4, F.data.startswith("survey_tasks_"))
 async def q4_answer(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
-    answer = callback.data.replace("survey_q4_", "")
-    await state.update_data(q4=answer)
+    await hide_buttons(callback)
+    await state.update_data(tasks=callback.data.replace("survey_tasks_", ""))
     await state.set_state(SurveyStates.q5)
-    await callback.message.answer(
-        "5 / 6. Что бы улучшил(а)?",
-        reply_markup=kb_q5(),
-    )
+    await callback.message.answer("5 / 6. Что бы улучшил(а)?", reply_markup=kb_improve())
 
 
-# ---------- Q5 ----------
+# ---------- Q5: improve ----------
 
-@router.callback_query(SurveyStates.q5, F.data.startswith("survey_q5_"))
+@router.callback_query(SurveyStates.q5, F.data.startswith("survey_improve_"))
 async def q5_answer(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
-    answer = callback.data.replace("survey_q5_", "")
-    await state.update_data(q5=answer)
+    await hide_buttons(callback)
+    await state.update_data(improve=callback.data.replace("survey_improve_", ""))
     await state.set_state(SurveyStates.q6)
-    await callback.message.answer(
-        "6 / 6. Хочешь, чтобы мы связались с тобой лично?",
-        reply_markup=kb_q6(),
-    )
+    await callback.message.answer("6 / 6. Хочешь, чтобы мы связались с тобой лично?", reply_markup=kb_contact())
 
 
-# ---------- SKIP (работает в любом из состояний q1..q5) ----------
+# ---------- SKIP ----------
 
 SKIP_MAP = {
-    SurveyStates.q1.state: ("2 / 6. Что мешает заниматься регулярно?", kb_q2, SurveyStates.q2),
-    SurveyStates.q2.state: ("3 / 6. Устраивает ли тебя стоимость подписок?", kb_q3, SurveyStates.q3),
-    SurveyStates.q3.state: ("4 / 6. Какие режимы для тебя главные в боте?", kb_q4, SurveyStates.q4),
-    SurveyStates.q4.state: ("5 / 6. Что бы улучшил(а)?", kb_q5, SurveyStates.q5),
-    SurveyStates.q5.state: ("6 / 6. Хочешь, чтобы мы связались с тобой лично?", kb_q6, SurveyStates.q6),
+    SurveyStates.q1.state: ("2 / 6. Устраивает ли тебя стоимость подписок?", kb_price, SurveyStates.q2),
+    SurveyStates.q2.state: ("3 / 6. Какие режимы для тебя главные в боте?", kb_modes, SurveyStates.q3),
+    SurveyStates.q3.state: ("4 / 6. Нравятся ли тебе задания в этих режимах?", kb_tasks, SurveyStates.q4),
+    SurveyStates.q4.state: ("5 / 6. Что бы улучшил(а)?", kb_improve, SurveyStates.q5),
+    SurveyStates.q5.state: ("6 / 6. Хочешь, чтобы мы связались с тобой лично?", kb_contact, SurveyStates.q6),
 }
 
 
 @router.callback_query(F.data == "survey_skip")
 async def survey_skip(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
+    await hide_buttons(callback)
     current = await state.get_state()
     logger.info(f"[survey_skip] user={callback.from_user.id} state={current}")
 
@@ -223,43 +205,42 @@ async def survey_skip(callback: CallbackQuery, state: FSMContext):
         await state.set_state(next_state)
         await callback.message.answer(text, reply_markup=kb_func())
     else:
-        # Если state не сработал — всё равно отправим Q1
         await state.set_state(SurveyStates.q1)
-        await callback.message.answer(
-            "1 / 6. Что тебя привело в бот?",
-            reply_markup=kb_q1(),
-        )
+        await callback.message.answer("1 / 6. Что тебя привело в бот?", reply_markup=kb_goal())
 
 
-# ---------- Q6 ----------
+# ---------- Q6: contact ----------
 
-@router.callback_query(SurveyStates.q6, F.data == "survey_q6_yes")
+@router.callback_query(SurveyStates.q6, F.data == "survey_contact_yes")
 async def q6_yes(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
-    await state.update_data(q6="yes")
-    await finish_survey(callback, state, wants_contact=True)
+    await hide_buttons(callback)
+    await state.update_data(contact="yes")
+    await finish_survey(callback, state, wants_contact=True, direct=False)
 
 
-@router.callback_query(SurveyStates.q6, F.data == "survey_q6_no")
+@router.callback_query(SurveyStates.q6, F.data == "survey_contact_no")
 async def q6_no(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
-    await state.update_data(q6="no")
-    await finish_survey(callback, state, wants_contact=False)
+    await hide_buttons(callback)
+    await state.update_data(contact="no")
+    await finish_survey(callback, state, wants_contact=False, direct=False)
 
 
-# ---------- Отдельная кнопка «Связаться» ----------
+# ---------- Прямая кнопка «Связаться» ----------
 
 @router.callback_query(F.data == "start_contact")
 async def start_contact(callback: CallbackQuery, state: FSMContext):
     await safe_answer(callback)
+    await hide_buttons(callback)
     logger.info(f"[start_contact] user={callback.from_user.id}")
-    await state.update_data(q6="yes_direct")
-    await finish_survey(callback, state, wants_contact=True)
+    await state.update_data(contact="yes_direct")
+    await finish_survey(callback, state, wants_contact=True, direct=True)
 
 
 # ---------- Финал ----------
 
-async def finish_survey(callback: CallbackQuery, state: FSMContext, wants_contact: bool):
+async def finish_survey(callback: CallbackQuery, state: FSMContext, wants_contact: bool, direct: bool):
     data = await state.get_data()
     user_id = callback.from_user.id
 
@@ -271,10 +252,20 @@ async def finish_survey(callback: CallbackQuery, state: FSMContext, wants_contac
     await state.clear()
 
     if wants_contact:
-        await callback.message.answer("Спасибо! Мы свяжемся с тобой в ближайшее время.")
-        await notify_admin(callback, user_id, data)
+        word = "по связи" if direct else "по опросу"
+        if MY_TELEGRAM:
+            msg = (
+                "Спасибо! Мы свяжемся с тобой в ближайшее время.\n\n"
+                f"Напиши нам первым, пожалуйста: @{MY_TELEGRAM}\n"
+                f"И укажи «{word}» — чтобы мы сразу поняли, что это ты."
+            )
+        else:
+            msg = "Спасибо! Мы свяжемся с тобой в ближайшее время."
+        await callback.message.answer(msg)
     else:
         await callback.message.answer("Спасибо за ответы! Это правда помогает.")
+
+    await notify_admin(callback, user_id, data, wants_contact, direct)
 
 
 async def save_feedback(user_id: int, data: dict, wants_contact: bool):
@@ -282,42 +273,53 @@ async def save_feedback(user_id: int, data: dict, wants_contact: bool):
     try:
         await conn.execute("""
             INSERT INTO feedback
-                (user_id, q1_goal, q2_barrier, q3_price, q4_modes, q5_improve, q6_contact, wants_contact, created_at)
+                (user_id, q1_goal, q3_price, q4_modes, q4_tasks, q5_improve, q6_contact, wants_contact, created_at)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, EXTRACT(EPOCH FROM NOW())::BIGINT)
         """,
             user_id,
-            data.get("q1"),
-            data.get("q2"),
-            data.get("q3"),
-            data.get("q4"),
-            data.get("q5"),
-            data.get("q6"),
+            data.get("goal"),
+            data.get("price"),
+            data.get("modes"),
+            data.get("tasks"),
+            data.get("improve"),
+            data.get("contact"),
             wants_contact,
         )
     finally:
         await conn.close()
 
 
-async def notify_admin(callback: CallbackQuery, user_id: int, data: dict):
+async def notify_admin(callback: CallbackQuery, user_id: int, data: dict, wants_contact: bool, direct: bool):
     if not ADMIN_ID:
         logger.warning("ADMIN_ID не задан — алерт не отправлен")
         return
 
     username = callback.from_user.username or "—"
     first_name = callback.from_user.first_name or ""
+
+    if wants_contact and direct:
+        header = "🔔 <b>Хочет связаться (без опроса)</b>"
+    elif wants_contact and not direct:
+        header = "🔔 <b>Хочет связаться (после опроса)</b>"
+    else:
+        header = "📋 <b>Прошёл опрос (без связи)</b>"
+
     text = (
-        "🔔 <b>Пользователь хочет связаться</b>\n\n"
+        f"{header}\n\n"
         f"ID: <code>{user_id}</code>\n"
         f"Имя: {first_name}\n"
         f"Username: @{username}\n\n"
         "<b>Ответы:</b>\n"
-        f"• Цель: {data.get('q1', '—')}\n"
-        f"• Мешает: {data.get('q2', '—')}\n"
-        f"• Цена: {data.get('q3', '—')}\n"
-        f"• Режимы: {data.get('q4', '—')}\n"
-        f"• Улучшить: {data.get('q5', '—')}\n\n"
+        f"• Цель: {data.get('goal', '—')}\n"
+        f"• Цена: {data.get('price', '—')}\n"
+        f"• Режимы: {data.get('modes', '—')}\n"
+        f"• Задания: {data.get('tasks', '—')}\n"
+        f"• Улучшить: {data.get('improve', '—')}\n\n"
         f"Профиль: /user/{user_id}"
     )
+    if username == "—":
+        text += f"\n\n⚠️ Username не указан. Открыть: <code>tg://user?id={user_id}</code>"
+
     try:
         await callback.bot.send_message(ADMIN_ID, text, parse_mode="HTML")
     except Exception as e:
