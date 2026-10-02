@@ -345,6 +345,24 @@ async def profile_menu(callback: CallbackQuery):
         logger.error(f"❌ Ошибка в profile_menu: {e}", exc_info=True)
         await callback.message.answer("Ошибка загрузки статистики.")
 
+# ---------- ВОЗВРАТ К СТАТИСТИКЕ ИЗ ПОДМЕНЮ ----------
+@router.callback_query(lambda c: c.data == "profile_back_to_stats")
+async def profile_back_to_stats(callback: CallbackQuery):
+    logger.info(f"🔹 profile_back_to_stats ВЫЗВАН для user {callback.from_user.id}")
+    try:
+        text, keyboard = await get_profile_text_and_keyboard(callback.from_user.id)
+        if keyboard is None:
+            await callback.message.answer(text)
+        else:
+            await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
+        try:
+            await callback.answer()
+        except Exception:
+            pass
+    except Exception as e:
+        logger.error(f"❌ Ошибка в profile_back_to_stats: {e}", exc_info=True)
+        await callback.message.answer("Ошибка загрузки статистики.")
+
 # ---------- ФУНКЦИЯ ДЛЯ ВНЕШНЕГО ВЫЗОВА (ИЗ START.PY) ----------
 async def show_profile(message: Message, user_id: int, edit: bool = False):
     logger.info(f"🔹 show_profile ВЫЗВАНА для user {user_id}, edit={edit}")
@@ -384,7 +402,7 @@ async def profile_reset_confirm(callback: CallbackQuery):
     )
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Сброс", callback_data="profile_reset_step2")],
-        [InlineKeyboardButton(text="Назад", callback_data="profile_back")]
+        [InlineKeyboardButton(text="Назад", callback_data="profile_back_to_stats")]
     ])
     await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
     try:
@@ -397,7 +415,7 @@ async def profile_reset_step2(callback: CallbackQuery):
     text = "Вы 100% уверенны в своих действиях?"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Да, я уверен(а)", callback_data="profile_reset_do")],
-        [InlineKeyboardButton(text="Нет, назад", callback_data="profile_back")]
+        [InlineKeyboardButton(text="Нет, назад", callback_data="profile_back_to_stats")]
     ])
     await safe_edit_message(callback.message, text, reply_markup=keyboard, parse_mode="HTML")
     try:

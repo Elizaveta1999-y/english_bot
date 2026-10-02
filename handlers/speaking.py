@@ -362,7 +362,7 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.clear()
     from handlers.start import show_main_menu
-    await show_main_menu(callback.message, edit=False)
+    await show_main_menu(callback.message, edit=True)
 
 # ---------- КНОПКИ ТЕКСТА ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))

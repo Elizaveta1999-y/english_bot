@@ -457,7 +457,7 @@ async def start_profile_mode(callback: CallbackQuery, state: FSMContext):
     await clear_govorenie_if_active(callback, state)
     await remove_all_reply_keyboards(callback)
     await state.clear()
-    await show_profile(callback.message, user_id=callback.from_user.id, edit=False)
+    await show_profile(callback.message, user_id=callback.from_user.id, edit=True)
 
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_text_handler(message: Message, state: FSMContext):

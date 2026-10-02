@@ -1208,7 +1208,7 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.warning(f"back_to_main: не удалось отредактировать, отправляю новое: {e}")
         from .start import show_main_menu
-        await show_main_menu(callback.message, edit=False)
+        await show_main_menu(callback.message, edit=True)
     await callback.answer()
 
 @router.message(WordsState.category_chosen, ~F.text)

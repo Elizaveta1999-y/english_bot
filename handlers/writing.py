@@ -878,10 +878,15 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
-    from handlers.start import show_main_menu
+    from handlers.start import WELCOME_TEXT, get_main_menu_keyboard, show_main_menu
     try:
-        await show_main_menu(callback.message, edit=True)
-    except Exception:
+        await callback.message.edit_text(
+            WELCOME_TEXT,
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode="HTML"
+        )
+    except Exception as e:
+        logger.warning(f"back_to_main_from_writing: не удалось отредактировать, отправляю новое: {e}")
         await show_main_menu(callback.message, edit=False)
 
 @router.message(WritingStates.waiting_answer, F.content_type.in_({'photo', 'document', 'audio', 'voice', 'video', 'sticker', 'animation', 'video_note', 'contact', 'location'}))

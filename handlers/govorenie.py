@@ -759,7 +759,7 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
-    await show_main_menu(callback.message, edit=False)
+    await show_main_menu(callback.message, edit=True)
 
 @router.message(GovorenieStates.waiting_voice, ~F.voice)
 async def handle_non_voice_in_govorenie(message: Message, state: FSMContext):
