@@ -12,7 +12,27 @@ if not BOT_TOKEN:
 
 # ================= СПИСОК ПОЛУЧАТЕЛЕЙ =================
 RECIPIENTS = [
-    6115540828,
+    6115540828,   # ты
+    8989851203,
+    8935751913,
+    8805178403,
+    8783263150,
+    8635614210,
+    8587249438,
+    8455147637,
+    8377498968,
+    8358579113,
+    8277695572,
+    8128342132,
+    7994596651,
+    7948348493,
+    7932877841,
+    7920589849,
+    7854123041,
+    7485692671,
+    7297448159,
+    7242935930,
+    7231231109,
 ]
 
 # ================= ТЕКСТ СООБЩЕНИЯ =================
@@ -43,13 +63,11 @@ async def send_to_user(client: httpx.AsyncClient, user_id: int) -> bool:
             },
         )
         data = r.json()
-        # Печатаем полный ответ Telegram — для отладки
-        print(f"→ Ответ Telegram для {user_id}: {data}")
         if data.get("ok"):
             print(f"✅ {user_id} — отправлено")
             return True
         else:
-            print(f"❌ {user_id} — ошибка: {data.get('description')} (код {data.get('error_code')})")
+            print(f"❌ {user_id} — {data.get('description')} (код {data.get('error_code')})")
             return False
     except Exception as e:
         print(f"❌ {user_id} — исключение: {e}")
@@ -58,11 +76,16 @@ async def send_to_user(client: httpx.AsyncClient, user_id: int) -> bool:
 
 async def main():
     print(f"Рассылка на {len(RECIPIENTS)} получателей...")
+    ok_count = 0
+    fail_count = 0
     async with httpx.AsyncClient(timeout=15) as client:
         for uid in RECIPIENTS:
-            await send_to_user(client, uid)
+            if await send_to_user(client, uid):
+                ok_count += 1
+            else:
+                fail_count += 1
             await asyncio.sleep(0.1)
-    print("Готово.")
+    print(f"\nГотово. Успешно: {ok_count}, не доставлено: {fail_count}")
 
 
 if __name__ == "__main__":
