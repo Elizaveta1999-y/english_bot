@@ -8,7 +8,7 @@ from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_applicati
 from aiogram.fsm.storage.redis import RedisStorage
 from redis.asyncio import Redis
 from typing import Callable, Dict, Any, Awaitable
-from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing, roleplay_voice
+from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing, roleplay_voice, feedback
 from handlers.subscription import router as subscription_router
 from handlers.reading import router as reading_router
 from handlers.grammar import router as grammar_router
@@ -190,6 +190,7 @@ dp.include_router(voice.router)
 dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(profile.router)
+dp.include_router(feedback.router)
 
 
 async def set_commands(bot: Bot):
