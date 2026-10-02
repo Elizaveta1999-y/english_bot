@@ -283,8 +283,7 @@ async def finish_survey(callback: CallbackQuery, state: FSMContext, wants_contac
         word = "по связи" if direct else "по опросу"
         if MY_TELEGRAM:
             msg = (
-                "Спасибо! Мы свяжемся с тобой в ближайшее время.\n\n"
-                f"Напиши нам первым, пожалуйста: @{MY_TELEGRAM}\n"
+                f"Спасибо! Напиши нам, пожалуйста, первым: @{MY_TELEGRAM}\n"
                 f"И укажи «{word}» — чтобы мы сразу поняли, что это ты."
             )
         else:
