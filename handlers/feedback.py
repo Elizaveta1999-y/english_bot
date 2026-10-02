@@ -91,6 +91,34 @@ def kb_contact():
     ])
 
 
+# ---------- Словарь переводов для алерта ----------
+ANSWER_MAP = {
+    "speak": "Хочу говорить свободнее",
+    "exam": "Готовлюсь к экзамену / работе",
+    "fun": "Ради интереса",
+    "travel": "Собираюсь переезжать / путешествовать",
+    "ok": "Всё устраивает",
+    "expensive": "Дорого",
+    "unclear": "Не понимаю, что входит",
+    "more": "Хочу больше минут за эти деньги",
+    "chat": "Общение с AI",
+    "roleplay": "Ролевые игры",
+    "trainers": "Тренажёры",
+    "all": "Всё нравится",
+    "love": "Очень нравятся",
+    "meh": "Так себе",
+    "voice": "Больше голоса",
+    "tasks": "Больше заданий",
+    "price": "Снизить цену",
+}
+
+
+def translate(key: str) -> str:
+    if not key or key == "—":
+        return "—"
+    return ANSWER_MAP.get(key, key)
+
+
 async def safe_answer(callback: CallbackQuery):
     try:
         await callback.answer()
@@ -263,7 +291,10 @@ async def finish_survey(callback: CallbackQuery, state: FSMContext, wants_contac
             msg = "Спасибо! Мы свяжемся с тобой в ближайшее время."
         await callback.message.answer(msg)
     else:
-        await callback.message.answer("Спасибо за ответы! Это правда помогает.")
+        await callback.message.answer(
+            "Спасибо, что нашёл(нашла) время 🤍\n"
+            "Это правда помогает нам становиться лучше."
+        )
 
     await notify_admin(callback, user_id, data, wants_contact, direct)
 
@@ -310,11 +341,11 @@ async def notify_admin(callback: CallbackQuery, user_id: int, data: dict, wants_
         f"Имя: {first_name}\n"
         f"Username: @{username}\n\n"
         "<b>Ответы:</b>\n"
-        f"• Цель: {data.get('goal', '—')}\n"
-        f"• Цена: {data.get('price', '—')}\n"
-        f"• Режимы: {data.get('modes', '—')}\n"
-        f"• Задания: {data.get('tasks', '—')}\n"
-        f"• Улучшить: {data.get('improve', '—')}\n\n"
+        f"• Цель: {translate(data.get('goal'))}\n"
+        f"• Цена: {translate(data.get('price'))}\n"
+        f"• Режимы: {translate(data.get('modes'))}\n"
+        f"• Задания: {translate(data.get('tasks'))}\n"
+        f"• Улучшить: {translate(data.get('improve'))}\n\n"
         f"Профиль: /user/{user_id}"
     )
     if username == "—":
