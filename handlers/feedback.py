@@ -22,7 +22,7 @@ class SurveyStates(StatesGroup):
 
 
 INTRO_TEXT = (
-    "Спасибо, что нашёл(нашла) время 🤍\n\n"
+    "Спасибо, что нашёл(нашла) время.\n\n"
     "6 коротких вопросов — это займёт около минуты.\n"
     "На каждом шаге можно нажать «Пропустить», если не хочется отвечать."
 )
@@ -91,33 +91,51 @@ def kb_q6():
     ])
 
 
-# ---------- ХЕНДЛЕРЫ ----------
+async def safe_answer(callback: CallbackQuery):
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+
+
+# ---------- ВХОД В ОПРОС ----------
 
 @router.callback_query(F.data == "start_survey")
 async def survey_intro(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    await state.clear()
+    await safe_answer(callback)
     try:
-        await callback.message.edit_reply_markup(reply_markup=None)
-    except Exception:
-        pass
-    await callback.message.answer(INTRO_TEXT, reply_markup=kb_begin())
+        await state.clear()
+    except Exception as e:
+        logger.error(f"[survey_intro] state.clear: {e}")
+    logger.info(f"[survey_intro] user={callback.from_user.id}")
+    try:
+        await callback.message.answer(INTRO_TEXT, reply_markup=kb_begin())
+    except Exception as e:
+        logger.error(f"[survey_intro] answer: {e}")
 
 
 @router.callback_query(F.data == "survey_begin")
 async def survey_begin(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    await state.set_state(SurveyStates.q1)
-    await callback.message.answer(
-        "1 / 6. Что тебя привело в бот?",
-        reply_markup=kb_q1(),
-    )
+    await safe_answer(callback)
+    logger.info(f"[survey_begin] user={callback.from_user.id}")
+    try:
+        await state.set_state(SurveyStates.q1)
+    except Exception as e:
+        logger.error(f"[survey_begin] set_state: {e}")
+    try:
+        await callback.message.answer(
+            "1 / 6. Что тебя привело в бот?",
+            reply_markup=kb_q1(),
+        )
+    except Exception as e:
+        logger.error(f"[survey_begin] answer: {e}")
 
 
-# ---- Q1 ----
+# ---------- Q1 ----------
+
 @router.callback_query(SurveyStates.q1, F.data.startswith("survey_q1_"))
 async def q1_answer(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
+    await safe_answer(callback)
     answer = callback.data.replace("survey_q1_", "")
     await state.update_data(q1=answer)
     await state.set_state(SurveyStates.q2)
@@ -127,20 +145,11 @@ async def q1_answer(callback: CallbackQuery, state: FSMContext):
     )
 
 
-@router.callback_query(SurveyStates.q1, F.data == "survey_skip")
-async def q1_skip(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    await state.set_state(SurveyStates.q2)
-    await callback.message.answer(
-        "2 / 6. Что мешает заниматься регулярно?",
-        reply_markup=kb_q2(),
-    )
+# ---------- Q2 ----------
 
-
-# ---- Q2 ----
 @router.callback_query(SurveyStates.q2, F.data.startswith("survey_q2_"))
 async def q2_answer(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
+    await safe_answer(callback)
     answer = callback.data.replace("survey_q2_", "")
     await state.update_data(q2=answer)
     await state.set_state(SurveyStates.q3)
@@ -150,20 +159,11 @@ async def q2_answer(callback: CallbackQuery, state: FSMContext):
     )
 
 
-@router.callback_query(SurveyStates.q2, F.data == "survey_skip")
-async def q2_skip(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    await state.set_state(SurveyStates.q3)
-    await callback.message.answer(
-        "3 / 6. Устраивает ли тебя стоимость подписок?",
-        reply_markup=kb_q3(),
-    )
+# ---------- Q3 ----------
 
-
-# ---- Q3 ----
 @router.callback_query(SurveyStates.q3, F.data.startswith("survey_q3_"))
 async def q3_answer(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
+    await safe_answer(callback)
     answer = callback.data.replace("survey_q3_", "")
     await state.update_data(q3=answer)
     await state.set_state(SurveyStates.q4)
@@ -173,20 +173,11 @@ async def q3_answer(callback: CallbackQuery, state: FSMContext):
     )
 
 
-@router.callback_query(SurveyStates.q3, F.data == "survey_skip")
-async def q3_skip(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    await state.set_state(SurveyStates.q4)
-    await callback.message.answer(
-        "4 / 6. Какие режимы для тебя главные в боте?",
-        reply_markup=kb_q4(),
-    )
+# ---------- Q4 ----------
 
-
-# ---- Q4 ----
 @router.callback_query(SurveyStates.q4, F.data.startswith("survey_q4_"))
 async def q4_answer(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
+    await safe_answer(callback)
     answer = callback.data.replace("survey_q4_", "")
     await state.update_data(q4=answer)
     await state.set_state(SurveyStates.q5)
@@ -196,20 +187,11 @@ async def q4_answer(callback: CallbackQuery, state: FSMContext):
     )
 
 
-@router.callback_query(SurveyStates.q4, F.data == "survey_skip")
-async def q4_skip(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    await state.set_state(SurveyStates.q5)
-    await callback.message.answer(
-        "5 / 6. Что бы улучшил(а)?",
-        reply_markup=kb_q5(),
-    )
+# ---------- Q5 ----------
 
-
-# ---- Q5 ----
 @router.callback_query(SurveyStates.q5, F.data.startswith("survey_q5_"))
 async def q5_answer(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
+    await safe_answer(callback)
     answer = callback.data.replace("survey_q5_", "")
     await state.update_data(q5=answer)
     await state.set_state(SurveyStates.q6)
@@ -219,55 +201,83 @@ async def q5_answer(callback: CallbackQuery, state: FSMContext):
     )
 
 
-@router.callback_query(SurveyStates.q5, F.data == "survey_skip")
-async def q5_skip(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    await state.set_state(SurveyStates.q6)
-    await callback.message.answer(
-        "6 / 6. Хочешь, чтобы мы связались с тобой лично?",
-        reply_markup=kb_q6(),
-    )
+# ---------- SKIP (работает в любом из состояний q1..q5) ----------
+
+SKIP_MAP = {
+    SurveyStates.q1.state: ("2 / 6. Что мешает заниматься регулярно?", kb_q2, SurveyStates.q2),
+    SurveyStates.q2.state: ("3 / 6. Устраивает ли тебя стоимость подписок?", kb_q3, SurveyStates.q3),
+    SurveyStates.q3.state: ("4 / 6. Какие режимы для тебя главные в боте?", kb_q4, SurveyStates.q4),
+    SurveyStates.q4.state: ("5 / 6. Что бы улучшил(а)?", kb_q5, SurveyStates.q5),
+    SurveyStates.q5.state: ("6 / 6. Хочешь, чтобы мы связались с тобой лично?", kb_q6, SurveyStates.q6),
+}
 
 
-# ---- Q6 ----
+@router.callback_query(F.data == "survey_skip")
+async def survey_skip(callback: CallbackQuery, state: FSMContext):
+    await safe_answer(callback)
+    current = await state.get_state()
+    logger.info(f"[survey_skip] user={callback.from_user.id} state={current}")
+
+    if current in SKIP_MAP:
+        text, kb_func, next_state = SKIP_MAP[current]
+        await state.set_state(next_state)
+        await callback.message.answer(text, reply_markup=kb_func())
+    else:
+        # Если state не сработал — всё равно отправим Q1
+        await state.set_state(SurveyStates.q1)
+        await callback.message.answer(
+            "1 / 6. Что тебя привело в бот?",
+            reply_markup=kb_q1(),
+        )
+
+
+# ---------- Q6 ----------
+
 @router.callback_query(SurveyStates.q6, F.data == "survey_q6_yes")
 async def q6_yes(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
+    await safe_answer(callback)
     await state.update_data(q6="yes")
     await finish_survey(callback, state, wants_contact=True)
 
 
 @router.callback_query(SurveyStates.q6, F.data == "survey_q6_no")
 async def q6_no(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
+    await safe_answer(callback)
     await state.update_data(q6="no")
     await finish_survey(callback, state, wants_contact=False)
 
 
-# ---- Финал ----
+# ---------- Отдельная кнопка «Связаться» ----------
+
+@router.callback_query(F.data == "start_contact")
+async def start_contact(callback: CallbackQuery, state: FSMContext):
+    await safe_answer(callback)
+    logger.info(f"[start_contact] user={callback.from_user.id}")
+    await state.update_data(q6="yes_direct")
+    await finish_survey(callback, state, wants_contact=True)
+
+
+# ---------- Финал ----------
+
 async def finish_survey(callback: CallbackQuery, state: FSMContext, wants_contact: bool):
     data = await state.get_data()
     user_id = callback.from_user.id
 
     try:
-        await save_feedback(user_id, data)
+        await save_feedback(user_id, data, wants_contact)
     except Exception as e:
         logger.error(f"Ошибка сохранения фидбека для {user_id}: {e}")
 
     await state.clear()
 
     if wants_contact:
-        await callback.message.answer(
-            "Спасибо! Мы свяжемся с тобой в ближайшее время 🤍"
-        )
+        await callback.message.answer("Спасибо! Мы свяжемся с тобой в ближайшее время.")
         await notify_admin(callback, user_id, data)
     else:
-        await callback.message.answer(
-            "Спасибо за ответы! Это правда помогает 🤍"
-        )
+        await callback.message.answer("Спасибо за ответы! Это правда помогает.")
 
 
-async def save_feedback(user_id: int, data: dict):
+async def save_feedback(user_id: int, data: dict, wants_contact: bool):
     conn = await get_connection()
     try:
         await conn.execute("""
