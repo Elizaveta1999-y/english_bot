@@ -364,7 +364,7 @@ async def check_payment_handler(callback: CallbackQuery):
         tariff_label = _tariff_label(tariff_key)
         expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
         await callback.message.answer(
-            f"✅ <b>Оплата уже подтверждена!</b>\n\n"
+            f"<b>Оплата уже подтверждена!</b>\n\n"
             f"Тариф: <b>{tariff_label}</b>\n"
             f"Подписка активна до <b>{expires}</b>.\n\n"
             "Спасибо и приятного обучения! 💙",
