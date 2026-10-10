@@ -1,6 +1,7 @@
 import re
 import logging
 import os
+from datetime import datetime
 from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, BufferedInputFile
 from aiogram.fsm.context import FSMContext
@@ -20,6 +21,8 @@ from data.users import (
 from services.deepseek import chat, DeepSeekError
 from utils.helpers import with_thinking
 from handlers.voice import bot_texts
+# === ВАЖНО: здесь был импорт save_mistakes_to_tutor_memory ===
+# === Он убран — вызывается лениво внутри generate_feedback ===
 from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
 from handlers.voice import convert_to_opus, truncate_for_tts
@@ -30,7 +33,7 @@ router = Router()
 MAX_VOICE_DURATION = 120
 MAX_TEXT_LENGTH = 500
 
-ROLEPLAY_TTS_SPEED = 0.75  # замедленный темп для ролевых
+ROLEPLAY_TTS_SPEED = 0.75
 
 class RoleplayStates(StatesGroup):
     active = State()
@@ -87,7 +90,7 @@ CATEGORY_VOICE_MAP = {
     "news": MAN_VOICE_ID
 }
 
-# ========== СИТУАЦИИ ==========
+# ============================================================
 TOPICS = {
     "work": [
         {
@@ -1496,7 +1499,8 @@ TOPICS = {
     ]
 }
 
-# ===================================================================
+# ============================================================
+
 
 def get_categories_keyboard():
     buttons = []
@@ -1515,19 +1519,16 @@ def is_cyrillic(text: str) -> bool:
     return bool(re.search('[а-яА-Я]', text))
 
 FORBIDDEN_WORDS = [
-    # English profanity
     "fuck", "bitch", "shit", "cunt", "dick", "pussy", "fucking", "motherfucker", "asshole", "bastard", "damn",
     "penis", "vagina", "cum", "orgasm", "masturbate", "sperm", "erection", "prostitute", "porn", "xxx",
     "suicide", "kill myself", "cut myself", "self-harm", "hang myself", "overdose",
     "murder", "rape", "torture", "assault", "terrorist", "bomb", "shoot", "stab",
     "nazi", "hitler", "stalin", "terrorism", "dictator", "fascist", "communist",
     "allah", "muhammad", "jesus", "bible", "quran", "prophet", "church", "mosque", "synagogue",
-    # Russian profanity / vulgar
     "хуй", "хуя", "хую", "хуе", "пизд", "бляд", "блят", "ебан", "ебал", "ебет", "еби", "ёб",
     "ебат", "ёбат", "ебуч", "выеб", "заеб", "наеб", "отъеб", "подъеб", "приеб", "проеб", "уеб",
     "муд", "манда", "шлюх", "сука", "суки", "гандон", "гондон", "дроч", "минет", "оргазм",
     "член", "сосат", "сосёт", "трах", "шлюха", "проститут", "порн", "секс",
-    # Russian extremist / suicide
     "суицид", "самоубий", "убить себя", "повеситься", "порезать вены", "передоз",
     "теракт", "взрыв", "бомба", "убийство", "изнасил", "пытк", "нацист", "гитлер", "сталин",
     "фашист", "экстремист",
@@ -1619,7 +1620,6 @@ async def show_subscription_offer(message: Message, user_id: int):
     await show_subscription(message, user_id, from_profile=False, edit=False)
 
 async def show_trial_voice_offer(message: Message, user_id: int):
-    """Специальный оффер для ролевых, когда в триале кончились голосовые."""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="💎 Оформить подписку на 30 дней", callback_data="roleplay_offer_subscription")],
     ])
@@ -2041,6 +2041,7 @@ async def finish_anyway(callback: CallbackQuery, state: FSMContext):
     await callback.message.delete()
     await generate_feedback(callback.message, state, user_id, user_state)
 
+
 async def generate_feedback(message: Message, state: FSMContext, user_id: int, user_state: dict):
     history = user_state.get("roleplay_history", [])
     goals = user_state.get("roleplay_goals", [])
@@ -2062,6 +2063,8 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             break
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+
+    roleplay_mistakes = []
 
     if not used_english:
         example_prompt = (
@@ -2100,42 +2103,38 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         dialog_text = "\n".join([f'{m["role"]}: {m["text"]}' for m in filtered_history])
         goals_text = "\n".join(goals) if goals else "Нет целей"
         feedback_prompt = (
-            "Ты – языковой тренер. Проанализируй диалог пользователя с ИИ в ролевой игре и дай краткий фидбек на русском языке.\n"
-            "СТРУКТУРА ОТВЕТА (строго в этом порядке):\n"
-            "1. Сначала блок <b>Цели</b> — оцени, достигнуты ли цели пользователя.\n"
-            "2. Затем блок <b>Грамматика</b> — выдели 2-3 основные грамматические ошибки с исправлениями.\n"
-            "3. Затем блок <b>Удачное</b> — отметь удачные фразы (максимум одна похвала, если есть за что).\n"
-            "4. Затем блок <b>Советы</b> — предложи МАКСИМУМ 2 совета. Каждый совет должен быть оформлен как цитата Telegram и пронумерован. Формат такой:\n"
-            "<blockquote>1. Текст первого совета</blockquote>\n"
-            "<blockquote>2. Текст второго совета</blockquote>\n"
-            "Больше 2 советов не пиши. Не используй кавычки — только тег <blockquote>.\n"
-            "Учти следующие моменты:\n"
-            "- НИКОГДА не анализируй русскую грамматику и русскую пунктуацию. Это бот по английскому языку. "
-            "Если пользователь писал по-русски — дай английский эквивалент его фразы, но не разбирай правила русского языка.\n"
-            "- В блоке Грамматика разбирай ТОЛЬКО фразы, которые относятся к теме ситуации. "
-            "Если пользователь написал что-то не по теме — не анализируй это в блоке Грамматика.\n"
-            "- Если пользователь отходил от темы, мягко укажи на это в блоке Советов и напомни тему. "
-            "Если уместно, дай английский эквивалент его off-topic фразы прямо там.\n"
-            "- КРИТИЧЕСКИ ВАЖНО: если в диалоге встречаются темы насилия, суицида, экстремизма, пошлости, мата, "
-            "угроз или оскорблений — НЕ анализируй их, НЕ упоминай, НЕ цитируй, НЕ давай по ним советов и исправлений. "
-            "Просто полностью игнорируй эти фрагменты и работай только с нейтральной частью диалога. "
-            "Если весь диалог состоит из таких тем — напиши только: 'В этом диалоге нечего разбирать с точки зрения языка.'\n"
-            "- Будь конструктивным, обращайся на 'ты'.\n"
-            "- Форматируй ответ без звёздочек, используй HTML-теги <b> для выделения заголовков пунктов.\n"
-            "- Можно добавить ТОЛЬКО ОДИН смайлик на весь фидбек. Максимум один смайлик во всём ответе.\n"
-            "- Не используй приветствия и обращения типа 'ученик', 'пользователь'. Обращайся на 'ты'.\n"
-            "- Не включай пункт о длине диалога.\n"
-            "- В блоках Цели, Грамматика, Удачное — не нумеруй пункты.\n"
-            "- В блоке Советы — обязательно нумеруй (1., 2.) и оформляй каждый совет как цитату.\n\n"
+            "Ты – языковой тренер. Проанализируй диалог пользователя с ИИ в ролевой игре.\n"
+            "СТРУКТУРА ОТВЕТА (внутри поля feedback_html, строго в этом порядке):\n"
+            "1. Блок <b>Цели</b> — оцени, достигнуты ли цели пользователя.\n"
+            "2. Блок <b>Грамматика</b> — выдели 2-3 основные грамматические ошибки с исправлениями.\n"
+            "3. Блок <b>Удачное</b> — отметь удачные фразы (максимум одна похвала).\n"
+            "4. Блок <b>Советы</b> — МАКСИМУМ 2 совета, каждый как <blockquote>1. ...</blockquote> и <blockquote>2. ...</blockquote>\n\n"
+            "ПРАВИЛА:\n"
+            "- НИКОГДА не анализируй русскую грамматику. Только английский.\n"
+            "- В блоке Грамматика — только фразы по теме ситуации.\n"
+            "- Если в диалоге есть насилие/мат/суицид/экстремизм — игнорируй эти фрагменты полностью.\n"
+            "- Обращайся на 'ты'.\n"
+            "- HTML-теги <b> для заголовков, без звёздочек.\n"
+            "- Максимум ОДИН смайлик на весь фидбэк.\n"
+            "- Не используй слова 'ученик', 'пользователь'.\n"
+            "- В Цели/Грамматика/Удачное — не нумеруй.\n"
+            "- В Советы — нумеруй (1., 2.) и каждый в <blockquote>.\n\n"
             "Тема: " + topic + "\n"
             "Цели пользователя: " + goals_text + "\n"
             "Диалог:\n" + dialog_text + "\n\n"
-            "Фидбек:"
+            "ВЕРНИ СТРОГО JSON без markdown:\n"
+            "{\n"
+            '  "feedback_html": "фидбэк для показа пользователю (HTML теги <b> и <blockquote>)",\n'
+            '  "mistakes": [\n'
+            '    "название ошибки — ты сказал: \'точная фраза студента с ошибкой\'"\n'
+            "  ]\n"
+            "}\n\n"
+            "В mistakes[] — ТОЛЬКО реальные английские ошибки студента с цитатой. Если ошибок нет — пустой массив."
         )
         try:
             thinking_msg, feedback = await with_thinking(
                 message,
-                chat(feedback_prompt, max_tokens=500, temperature=0.5)
+                chat(feedback_prompt, max_tokens=600, temperature=0.5)
             )
         except DeepSeekError:
             await message.answer("Сервис проверки временно недоступен. Попробуйте позже.")
@@ -2144,7 +2143,35 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             await thinking_msg.delete()
         except Exception:
             pass
-        feedback_text = feedback
+
+
+        json_data = _parse_roleplay_json(feedback)
+        if json_data:
+            feedback_text = json_data.get("feedback_html") or feedback
+            roleplay_mistakes = json_data.get("mistakes") or []
+        else:
+            feedback_text = feedback
+
+    feedback_text = _sanitize_feedback_html(feedback_text)
+
+    # ========== СОХРАНЕНИЕ ОШИБОК В ПАМЯТЬ НАСТАВНИКА ==========
+    # Ленивый импорт — избегаем циклической зависимости roleplay <-> tutor
+    if used_english and roleplay_mistakes:
+        try:
+            from handlers.tutor import save_mistakes_to_tutor_memory
+
+            user_texts = [
+                m.get("text", "")
+                for m in history
+                if m.get("role") == "user"
+            ]
+            await save_mistakes_to_tutor_memory(
+                user_id, roleplay_mistakes, user_texts,
+                scene_label=topic
+            )
+        except Exception as e:
+            logger.error(f"Ошибка сохранения ошибок ролевой в память Наставника: {e}", exc_info=True)
+    # ==========================================================
 
     user_state["mode"] = ""
     user_state["roleplay_history"] = []
@@ -2158,11 +2185,27 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     set_user_state(user_id, user_state)
     await state.clear()
 
+
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔄 Начать новую игру", callback_data="start_roleplay")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main_menu_after_feedback")]
     ])
-    await message.answer(f"📊 <b>Фидбек по диалогу:</b>\n\n{feedback_text}", reply_markup=keyboard, parse_mode="HTML")
+
+    try:
+        await message.answer(
+            f"📊 <b>Фидбек по диалогу:</b>\n\n{feedback_text}",
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+    except TelegramBadRequest as e:
+        logger.error(f"HTML feedback failed, fallback to plain: {e}")
+        # На всякий случай: убираем ВСЕ теги и отправляем как plain
+        plain_text = re.sub(r'<[^>]+>', '', feedback_text)
+        await message.answer(
+            f"📊 Фидбек по диалогу:\n\n{plain_text}",
+            reply_markup=keyboard
+        )
+
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
 
 @router.callback_query(F.data == "back_to_main_menu_after_feedback")
@@ -2596,7 +2639,6 @@ async def handle_roleplay_voice(message: Message, state: FSMContext):
     tts_text = truncate_for_tts(ai_response_clean)
 
     try:
-        # Замедленный темп для ролевых
         voice_path = await text_to_voice(tts_text, voice_id=voice_id, speed=ROLEPLAY_TTS_SPEED)
     except Exception as e:
         logger.error(f"TTS error: {e}")
@@ -2672,3 +2714,57 @@ def process_ai_response(response: str) -> tuple[str, bool]:
     cleaned = cleaned.strip()
 
     return cleaned, goals_achieved
+
+_ALLOWED_TG_TAGS = {"b", "i", "u", "s", "code", "pre", "blockquote", "a", "tg-spoiler"}
+
+
+def _sanitize_feedback_html(text: str) -> str:
+    """Приводит HTML от LLM к формату, который понимает Telegram."""
+    if not text:
+        return text
+
+    # <br>, <br/>, <br /> → перенос строки
+    text = re.sub(r'<\s*br\s*/?\s*>', '\n', text, flags=re.IGNORECASE)
+    # <p>...</p> → перенос строки
+    text = re.sub(r'<\s*/?\s*p\s*>', '\n', text, flags=re.IGNORECASE)
+    # <div>...</div> → перенос строки
+    text = re.sub(r'<\s*/?\s*div[^>]*>', '\n', text, flags=re.IGNORECASE)
+
+    # Всё остальное: оставляем разрешённые теги, остальные вырезаем (контент сохраняем)
+    def _repl(m):
+        inner = m.group(1).strip().lstrip('/').strip()
+        name = inner.split()[0].lower() if inner else ''
+        return m.group(0) if name in _ALLOWED_TG_TAGS else ''
+
+    text = re.sub(r'<\s*([^>]+?)\s*>', _repl, text)
+    # Схлопываем тройные переносы
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
+def _parse_roleplay_json(raw: str) -> dict:
+    """Парсит JSON из ответа LLM. Возвращает {} при ошибке."""
+    import json as _json
+    if not raw:
+        return {}
+    s = raw.strip()
+    if s.startswith("```"):
+        parts = s.split("```")
+        if len(parts) > 1:
+            s = parts[1]
+        if s.startswith("json"):
+            s = s[4:]
+        s = s.strip()
+    try:
+        data = _json.loads(s)
+        if isinstance(data, dict) and "feedback_html" in data:
+            return data
+    except Exception:
+        start = s.find("{")
+        end = s.rfind("}")
+        if start != -1 and end != -1:
+            try:
+                data = _json.loads(s[start:end + 1])
+                if isinstance(data, dict) and "feedback_html" in data:
+                    return data
+            except Exception:
+                pass
+    return {}

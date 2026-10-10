@@ -2,7 +2,7 @@ import logging
 import os
 import random
 import re
-import asyncio
+from datetime import datetime
 from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
@@ -45,20 +45,22 @@ ENCOURAGE_TEXT = "Говори развернуто, так эффективне
 # ========== ТОЧКА ВХОДА ==========
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
-         InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")],
+        [InlineKeyboardButton(text="👩 Emma", callback_data="speaking_voice_woman"),
+         InlineKeyboardButton(text="👨 Alex", callback_data="speaking_voice_man")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
     ])
-    await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
+    await callback.message.edit_text("Выбери собеседника:", reply_markup=keyboard, parse_mode="HTML")
 
 @router.callback_query(F.data.startswith("speaking_voice_"))
 async def select_voice(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
     voice = callback.data.split("_")[2]
+    speaker_name = "Emma" if voice == "woman" else "Alex"
     user_state = get_user_state(user_id)
     user_state["keyboard_hidden"] = False
     user_state["speaking_voice"] = voice
+    user_state["speaking_speaker_name"] = speaker_name
     user_state["mode"] = "speaking_active"
     user_state["speaking_history"] = []
     user_state["russian_streak"] = 0
@@ -116,6 +118,160 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
+
+# ============================================================
+# ============== СОХРАНЕНИЕ ОШИБОК В ПАМЯТЬ НАСТАВНИКА ==========
+# ============================================================
+
+def _parse_speaking_json(raw: str) -> dict:
+    """Парсит JSON из ответа LLM. Возвращает {} при ошибке."""
+    import json as _json
+    if not raw:
+        return {}
+    s = raw.strip()
+    if s.startswith("```"):
+        parts = s.split("```")
+        if len(parts) > 1:
+            s = parts[1]
+        if s.startswith("json"):
+            s = s[4:]
+        s = s.strip()
+    try:
+        data = _json.loads(s)
+        if isinstance(data, dict) and "feedback_html" in data:
+            return data
+    except Exception:
+        start = s.find("{")
+        end = s.rfind("}")
+        if start != -1 and end != -1:
+            try:
+                data = _json.loads(s[start:end + 1])
+                if isinstance(data, dict) and "feedback_html" in data:
+                    return data
+            except Exception:
+                pass
+    return {}
+
+
+def _extract_quote_from_mistake(mistake: str) -> str:
+    """Вытаскивает цитату студента из строки 'название — ты сказал: \"фраза\"'."""
+    if not mistake:
+        return ""
+    m = re.search(r"ты сказал[:\s]+['«\"](.+?)['»\"]", mistake, re.IGNORECASE)
+    if m:
+        return m.group(1).lower().strip()
+    return ""
+
+NAME_MISTAKE_KEYWORDS = (
+    "my name", "меня зовут", "твоё имя", "твое имя",
+    "what's your name", "what is your name",
+    "как тебя зовут", "как твоё имя", "как твое имя",
+    "call me", "зови меня", "называй меня",
+    "i'm alex", "i'm emma", "i am alex", "i am emma",
+    "я алекс", "я эмма", "ты алекс", "ты эмма",
+    "ты андрей", "теперь ты", "теперь твоё имя",
+)
+
+
+def _is_name_related_mistake(mistake: str) -> bool:
+    """
+    Проверяет, связана ли ошибка с именами/представлением/обращениями.
+    Такие ошибки не должны попадать в память Наставника.
+    """
+    if not mistake:
+        return False
+    low = mistake.lower()
+    return any(k in low for k in NAME_MISTAKE_KEYWORDS)
+
+
+
+async def _save_speaking_mistakes_to_tutor_memory(
+    user_id: int,
+    mistakes: list,
+    user_texts_all: list,
+    speaker_name: str = None,
+):
+    """
+    Сохраняет ошибки из режима «Общение с AI» прямо в память Наставника.
+    - Проверяет реальность цитаты (есть ли фраза в реальных сообщениях юзера).
+    - Не дублирует уже существующие ошибки.
+    - Если ошибка была в done — возвращает в active.
+    - Встраивает имя собеседника (Alex / Emma), чтобы Наставник
+      мог сказать «общаясь с Алексом, ты сказала...».
+    """
+    from utils.db import tutor_get_memory, tutor_update_memory
+
+    if not mistakes:
+        return
+
+    user_texts = [t.lower() for t in user_texts_all if t]
+
+    memory = await tutor_get_memory(user_id)
+    active = list(memory.get("active_mistakes") or [])
+    done = list(memory.get("done_mistakes") or [])
+
+    new_mistakes = []
+
+    for raw in mistakes:
+        print(f"[SPEAK-DBG] speaker_name={speaker_name!r} raw={raw!r}", flush=True)
+        m = str(raw).strip()
+        if not m or len(m) <= 5:
+            continue
+        if m.startswith("[") or m.startswith("{"):
+            continue
+
+        if _is_name_related_mistake(m):
+            logger.info(f"Speaking: пропускаем ошибку про имя: {m[:60]}")
+            continue
+
+        quote = _extract_quote_from_mistake(m)
+        if not quote or len(quote) < 4:
+            logger.warning(f"Speaking: не удалось извлечь цитату из '{m[:60]}'")
+            continue
+        if not any(quote in t for t in user_texts):
+            logger.warning(f"Speaking: цитата не найдена в диалоге — пропускаем: {quote[:60]}")
+            continue
+
+        # === Встраиваем имя собеседника в строку ошибки ===
+        if speaker_name and "ты сказал" in m.lower():
+            m = re.sub(
+                r"ты\s+сказал",
+                f"общаясь с {speaker_name}, ты сказал",
+                m,
+                count=1,
+                flags=re.IGNORECASE,
+            )
+        # ===================================================
+
+        if m in active:
+            active.remove(m)
+            active.append(m)
+            continue
+        if m in done:
+            done.remove(m)
+            active.append(m)
+            continue
+
+        new_mistakes.append(m)
+    if new_mistakes:
+        active.extend(new_mistakes)
+        active = active[-10:]
+
+    fields = {
+        "active_mistakes": active,
+        "done_mistakes": done[-20:],
+        "last_session_at": int(datetime.now().timestamp()),
+    }
+    if not memory.get("current_mistake") and active:
+        fields["current_mistake"] = active[0]
+
+    await tutor_update_memory(user_id, **fields)
+
+
+# ============================================================
+# ======================== ФИДБЕК ============================
+# ============================================================
+
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
     try:
@@ -149,7 +305,7 @@ async def show_feedback(message: Message, state: FSMContext):
             "4. Пунктуация (запятые, точки, вопросительные знаки) не является ошибкой и не должна упоминаться в анализе. НИКОГДА НЕ ПИШИ О ПУНКТУАЦИИ.\n"
             "5. Похвала – максимум одна короткая фраза за весь ответ, ТОЛЬКО если действительно есть за что. Если хвалить не за что – не пиши похвалу и НЕ ставь смайлик. Смайлик ставится ТОЛЬКО вместе с похвалой.\n"
             "6. НЕ предлагай практику, упражнения, дополнительные разборы. Просто дай фидбек по тому, что есть.\n"
-            "7. Формат: четыре пункта с жирными заголовками через HTML-теги <b>...</b>:\n"
+            "7. Формат поля feedback_html: четыре пункта с жирными заголовками через HTML-теги <b>...</b>:\n"
             "   <b>Грамматика</b>\n"
             "   <b>Лексика</b>\n"
             "   <b>Общее впечатление</b> (коротко, 1–2 предложения)\n"
@@ -161,14 +317,47 @@ async def show_feedback(message: Message, state: FSMContext):
             "12. Если грамматических и лексических ошибок нет, то в Грамматике и Лексике напиши кратко 'Ошибок нет' и переходи к Общему впечатлению и Советам.\n"
             "13. В конце, если есть похвала, добавь её и один из смайликов: 👍🏻🤩😊👏🏻. Если похвалы нет – ничего не добавляй.\n\n"
             f"Сообщения пользователя (только английские):\n{user_texts}\n\n"
-            "Твой фидбек (строго по правилам):"
+            "ВЕРНИ СТРОГО JSON без markdown:\n"
+            "{\n"
+            '  "feedback_html": "фидбэк для показа пользователю (HTML теги <b> и <blockquote>)",\n'
+            '  "mistakes": [\n'
+            '    "ТЕМА — ты сказал: \'точная фраза студента с ошибкой\'"\n'
+            "  ]\n"
+            "}\n\n"
+            "ВАЖНО ПРО ПОЛЕ mistakes:\n"
+            "Первая часть (до « — ») — это КОРОТКОЕ НАЗВАНИЕ ТЕМЫ на русском, "
+            "как заголовок мини-урока. 2–5 слов. Не описание ошибки, а тема.\n\n"
+            "ПРАВИЛЬНО (пиши так):\n"
+            "  • «Частица to после want»\n"
+            "  • «Артикль the с конкретным»\n"
+            "  • «Past Simple: неправильные глаголы»\n"
+            "  • «Порядок слов в вопросах»\n"
+            "  • «Предлоги с travel»\n"
+            "  • «Модальный глагол can»\n\n"
+            "НЕПРАВИЛЬНО (НЕ пиши так):\n"
+            "  ✗ «пропущена частица to»\n"
+            "  ✗ «неправильно использован артикль»\n"
+            "  ✗ «ошибка в порядке слов»\n"
+            "  ✗ «студент забыл to»\n"
+            "  ✗ «не хватает предлога»\n\n"
+            "Формат целиком: «ТЕМА — ты сказал: 'фраза'».\n"
+            "Пример: «Частица to после want — ты сказал: 'I want you help me'».\n\n"
+            "В mistakes[] — ТОЛЬКО реальные английские ошибки пользователя с точной цитатой. "
+            "Цитата ОБЯЗАТЕЛЬНО должна быть дословно из сообщений пользователя выше. "
+            "Если ошибок нет — пустой массив.\n\n"
+            "НИКОГДА НЕ СЧИТАЙ ОШИБКОЙ:\n"
+            "• упоминание имени собеседника (Alex, Emma) в речи пользователя;\n"
+            "• представление пользователя (My name is..., I'm...) — даже если грамматически странно;\n"
+            "• вопросы про имена (What's your name, Who are you, Как тебя зовут);\n"
+            "• обращение к собеседнику по имени.\n"
+            "Это не грамматические ошибки. Не записывай их в mistakes[].\n"
+            "Если пользователь ошибся в другом — запиши. Но не в именах."
         )
 
-        # "Думаю..." пока ИИ анализирует диалог
         thinking_msg = await message.answer("🤔 Думаю...")
 
         try:
-            feedback = await chat(prompt, max_tokens=1000, temperature=0.4)
+            raw = await chat(prompt, max_tokens=1000, temperature=0.4)
         except DeepSeekError:
             try:
                 await thinking_msg.edit_text("Сервис проверки временно недоступен. Попробуй ещё раз через минуту.")
@@ -176,13 +365,22 @@ async def show_feedback(message: Message, state: FSMContext):
                 pass
             return
 
-        feedback = feedback.replace('<br>', '\n').replace('<br/>', '\n')
+        json_data = _parse_speaking_json(raw)
 
-        user_state["pending_feedback"] = feedback
+        if json_data:
+            feedback_text = json_data.get("feedback_html") or ""
+            feedback_text = feedback_text.replace('<br>', '\n').replace('<br/>', '\n')
+            mistakes = json_data.get("mistakes") or []
+        else:
+            # Fallback: модель не вернула JSON — показываем как есть, ошибки не сохраняем
+            feedback_text = raw.replace('<br>', '\n').replace('<br/>', '\n')
+            mistakes = []
+
+        user_state["pending_feedback"] = feedback_text
+        user_state["pending_feedback_mistakes"] = mistakes
         set_user_state(user_id, user_state)
 
         if count < 6:
-            # Убираем "Думаю..." и показываем сообщение с кнопками
             try:
                 await thinking_msg.delete()
             except Exception:
@@ -199,24 +397,39 @@ async def show_feedback(message: Message, state: FSMContext):
             user_state["feedback_prompt_msg_id"] = sent_msg.message_id
             set_user_state(user_id, user_state)
         else:
+            # Сразу показываем фидбек
             user_state["speaking_history"] = []
             user_state["pending_feedback"] = None
+            user_state["pending_feedback_mistakes"] = None
             set_user_state(user_id, user_state)
             await message.bot.send_chat_action(chat_id=message.chat.id, action='typing')
 
-            # Редактируем "Думаю..." в готовый фидбек
             try:
                 await thinking_msg.edit_text(
-                    f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
+                    f"📊 Фидбек по вашему диалогу:\n\n{feedback_text}",
                     parse_mode="HTML"
                 )
             except Exception as e:
                 logger.error(f"Не удалось отредактировать сообщение с фидбеком: {e}")
                 await message.answer("Фидбек готов:", reply_markup=ReplyKeyboardRemove())
                 await message.answer(
-                    f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
+                    f"📊 Фидбек по вашему диалогу:\n\n{feedback_text}",
                     parse_mode="HTML"
                 )
+
+            # === СОХРАНЕНИЕ ОШИБОК В ПАМЯТЬ НАСТАВНИКА ===
+            if mistakes:
+                try:
+                    user_texts_all = [msg.get('text', '') for msg in english_messages]
+                    await _save_speaking_mistakes_to_tutor_memory(
+                        user_id,
+                        mistakes,
+                        user_texts_all,
+                        speaker_name=user_state.get("speaking_speaker_name"),
+                    )
+                except Exception as e:
+                    logger.error(f"Ошибка сохранения ошибок speaking: {e}", exc_info=True)
+            # =============================================
 
             keyboard_msg_id = user_state.get("speaking_keyboard_msg_id")
             if keyboard_msg_id:
@@ -241,6 +454,7 @@ async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     feedback = user_state.get("pending_feedback")
+    mistakes = user_state.get("pending_feedback_mistakes") or []
     if not feedback:
         await callback.message.edit_text("Фидбек не найден. Попробуйте запросить заново.")
         return
@@ -252,8 +466,18 @@ async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
         user_state.pop("speaking_keyboard_msg_id", None)
+
+    # Собираем тексты юзера из истории ДО очистки
+    history = user_state.get("speaking_history", [])
+    user_texts_all = [
+        msg.get('text', '')
+        for msg in history
+        if msg.get('role') == 'user' and re.search(r'[a-zA-Z]', msg.get('text', ''))
+    ]
+
     user_state["speaking_history"] = []
     user_state["pending_feedback"] = None
+    user_state["pending_feedback_mistakes"] = None
     user_state["mode"] = ""
     user_state["keyboard_hidden"] = True
     user_state["feedback_prompt_msg_id"] = None
@@ -265,6 +489,20 @@ async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
         text=f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
         parse_mode="HTML"
     )
+
+    # === СОХРАНЕНИЕ ОШИБОК В ПАМЯТЬ НАСТАВНИКА ===
+    if mistakes:
+        try:
+            await _save_speaking_mistakes_to_tutor_memory(
+                user_id,
+                mistakes,
+                user_texts_all,
+                speaker_name=user_state.get("speaking_speaker_name"),
+            )
+        except Exception as e:
+            logger.error(f"Ошибка сохранения ошибок speaking: {e}", exc_info=True)
+    # =============================================
+
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
@@ -285,6 +523,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = "speaking_active"
     user_state["keyboard_hidden"] = False
     user_state["pending_feedback"] = None
+    user_state["pending_feedback_mistakes"] = None
     set_user_state(user_id, user_state)
 
     msg_with_keyboard = await callback.bot.send_message(
@@ -317,6 +556,7 @@ async def exit_speaking(message: Message, state: FSMContext):
     user_state["speaking_history"] = []
     user_state["russian_streak"] = 0
     user_state["pending_feedback"] = None
+    user_state["pending_feedback_mistakes"] = None
     user_state["feedback_prompt_msg_id"] = None
     set_user_state(user_id, user_state)
     await state.clear()
@@ -358,6 +598,7 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     user_state["speaking_history"] = []
     user_state["russian_streak"] = 0
     user_state["pending_feedback"] = None
+    user_state["pending_feedback_mistakes"] = None
     user_state["feedback_prompt_msg_id"] = None
     set_user_state(user_id, user_state)
     await state.clear()
@@ -499,6 +740,7 @@ async def handle_commands_in_speaking(message: Message, state: FSMContext):
     user_state["speaking_history"] = []
     user_state["russian_streak"] = 0
     user_state["pending_feedback"] = None
+    user_state["pending_feedback_mistakes"] = None
     user_state["feedback_prompt_msg_id"] = None
     set_user_state(user_id, user_state)
     await state.clear()

@@ -18,6 +18,8 @@ from utils.db import (
     clear_bonus_notification,
     get_bonus_notification,
     get_user_profile,
+    tutor_reset_memory,
+    clear_voice_mistakes,
 )
 
 from handlers.subscription import show_subscription
@@ -31,6 +33,16 @@ READING_TYPE_KEYS = [
     "Вопросы_с_выбором_ответа",
     "Восстановление_порядка_абзацев"
 ]
+
+# ---------- ТЕКСТ ДЛЯ СБРОСА ПАМЯТИ АЙВЫ ----------
+PROFILE_TUTOR_RESET_TEXT = (
+    "Айва забудет всё, что знала о тебе:\n"
+    "• разобранные ошибки;\n"
+    "• твой прогресс;\n"
+    "• историю занятий и т. д.\n\n"
+    "Прогресс тренажёров и подписка не затрагиваются."
+)
+
 
 # ---------- ВСЕ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
 async def get_progress_summary_for_keys(user_id: int, type_keys: list) -> dict:
@@ -166,6 +178,7 @@ def get_profile_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="💳 Подписка", callback_data="profile_subscription")],
         [InlineKeyboardButton(text="🔄 Сбросить прогресс", callback_data="profile_reset_confirm")],
+        [InlineKeyboardButton(text="🧠 Начать заново с Айвой", callback_data="profile_tutor_reset_confirm")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="profile_back")]
     ])
 
@@ -437,6 +450,55 @@ async def profile_reset_do(callback: CallbackQuery):
         await callback.answer()
     except Exception:
         pass
+    from handlers.start import show_main_menu
+    await show_main_menu(callback.message, edit=False)
+
+# ---------- СБРОС ПАМЯТИ НАСТАВНИКА (АЙВЫ) ----------
+@router.callback_query(lambda c: c.data == "profile_tutor_reset_confirm")
+async def profile_tutor_reset_confirm(callback: CallbackQuery):
+    logger.info(f"🔹 profile_tutor_reset_confirm для user {callback.from_user.id}")
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Да, начать заново", callback_data="profile_tutor_reset_do")],
+        [InlineKeyboardButton(text="Отмена", callback_data="profile_back_to_stats")]
+    ])
+    await safe_edit_message(
+        callback.message,
+        PROFILE_TUTOR_RESET_TEXT,
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+
+@router.callback_query(lambda c: c.data == "profile_tutor_reset_do")
+async def profile_tutor_reset_do(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    logger.info(f"🔹 profile_tutor_reset_do для user {user_id}")
+
+    try:
+        await tutor_reset_memory(user_id)
+    except Exception as e:
+        logger.error(f"Ошибка tutor_reset_memory для {user_id}: {e}", exc_info=True)
+
+    try:
+        await clear_voice_mistakes(user_id)
+    except Exception as e:
+        logger.error(f"Ошибка clear_voice_mistakes для {user_id}: {e}", exc_info=True)
+
+    await safe_edit_message(
+        callback.message,
+        "Готово!\n"
+        "Айва забыла всё, что знала о тебе. Вы начнёте с чистого листа ✨",
+        reply_markup=None,
+        parse_mode="HTML"
+    )
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 

@@ -46,13 +46,15 @@ async def _get_bot_username(bot):
 PREMIUM_OFFER_TEXT = (
     "💎 <b>Premium подписка</b>\n\n"
     "Каждая попытка заговорить — с разбором.\n\n"
+    "🧑🏻‍🏫 <b>Наставник</b> — собирает твои ошибки из «Общения с AI» и «Ролевых игр», "
+    "разбирает их и даёт задания, чтобы закрепить. Следит за прогрессом и объясняет всё по-русски.\n"
     "🗣️ <b>Говорение</b> — AI слушает и дает разбор каждого задания: как правильно и почему\n"
     "📝 <b>Письмо</b> — email, эссе, посты, истории. Проверка структуры, грамматики, стиля\n"
     "🎬 <b>Ролевые игры</b> — путешествия, small talk, неожиданные ситуации\n"
     "🎙️ <b>Общение с AI</b> — говорите голосом обо всем. AI моментально объясняет каждую ошибку\n\n"
-    "Оба тарифа включают <b>всё это</b>. Разница в объеме голоса. Минуты общие на «Общение с AI» и на «Ролевые игры»- тратите, куда хотите:\n"
-    "• ☕️ <b>Лайт</b> — 30 минут в месяц\n"
-    "• 🏋🏻‍♂️ <b>Про</b> — 2.5 часа в месяц\n\n"
+    "Оба тарифа включают <b>всё это</b>. Разница в объеме голоса. Минуты общие на голосовые режимы — тратите, куда хотите:\n"
+    "• ☕️ <b>Лайт</b> — 40 минут в месяц\n"
+    "• 🏋🏻‍♂️ <b>Про</b> — 2.5 часа в месяц (150 минут)\n\n"
     "Первые 48 часов — бесплатно.\n\n"
     "<b>Почему выгодно:</b>\n"
     "<blockquote>• Репетитор — от 1500 ₽ за час\n"
@@ -203,6 +205,22 @@ async def clear_active_mode(message: Message, state: FSMContext):
         user_state.pop("roleplay_goal_notified", None)
         user_state.pop("roleplay_goal_ignored", None)
         user_state.pop("voice_id", None)
+        set_user_state(user_id, user_state)
+        await state.clear()
+        msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())
+        await asyncio.sleep(0.5)
+        await msg.delete()
+        return
+
+    if mode == "tutor_active":
+        tutor_kb_id = user_state.get("tutor_keyboard_msg_id")
+        if tutor_kb_id:
+            try:
+                await message.bot.delete_message(message.chat.id, tutor_kb_id)
+            except Exception:
+                pass
+            user_state.pop("tutor_keyboard_msg_id", None)
+        user_state["mode"] = ""
         set_user_state(user_id, user_state)
         await state.clear()
         msg = await message.answer("Переход...", reply_markup=ReplyKeyboardRemove())

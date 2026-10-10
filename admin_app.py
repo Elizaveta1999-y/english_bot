@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 import apscheduler.schedulers.background
 from pydantic import BaseModel
 from services.nalog import create_receipt_and_get_url, cancel_receipt
+from utils.db import tutor_get_memory
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -48,6 +49,11 @@ VOICE_LIMITS_BY_TARIFF = {
 }
 VOICE_LIMIT_DEFAULT = VOICE_LIMITS_BY_TARIFF["base"]
 
+TUTOR_LIMITS_BY_TARIFF = {
+    "light": 900,    # 15 минут
+    "base": 1800,    # 30 минут
+}
+TUTOR_LIMIT_DEFAULT = TUTOR_LIMITS_BY_TARIFF["base"]
 
 def get_tariff_label(tariff_key: str) -> str:
     if not tariff_key:
@@ -66,6 +72,17 @@ def format_voice_limit_label(tariff_key: str) -> str:
         return "30 мин"
     return "2.5 ч"
 
+
+def get_tutor_limit_seconds(tariff_key: str) -> int:
+    if tariff_key in TUTOR_LIMITS_BY_TARIFF:
+        return TUTOR_LIMITS_BY_TARIFF[tariff_key]
+    return TUTOR_LIMIT_DEFAULT
+
+
+def format_tutor_limit_label(tariff_key: str) -> str:
+    if tariff_key == "light":
+        return "15 мин"
+    return "30 мин"
 
 # ---------- СЛОВАРИ ----------
 GRAMMAR_TYPES = {
@@ -140,6 +157,7 @@ async def ensure_db_structure():
             ADD COLUMN IF NOT EXISTS subscription_count INTEGER DEFAULT 0,
             ADD COLUMN IF NOT EXISTS speaking_seconds_month BIGINT DEFAULT 0,
             ADD COLUMN IF NOT EXISTS roleplay_seconds_month BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS tutor_seconds_month BIGINT DEFAULT 0,
             ADD COLUMN IF NOT EXISTS is_unlimited BOOLEAN DEFAULT FALSE,
             ADD COLUMN IF NOT EXISTS trial_voice_count INTEGER DEFAULT 0,
             ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0,
@@ -489,6 +507,7 @@ async def yookassa_webhook_handler(payload: dict):
                     subscription_started = $2,
                     speaking_seconds_month = 0,
                     roleplay_seconds_month = 0,
+                    tutor_seconds_month = 0,
                     total_voice_seconds_month = 0,
                     tariff = $3
                 WHERE user_id = $4
@@ -1380,6 +1399,7 @@ async def user_detail(request: Request, user_id: int):
 
         speaking_display = _fmt(user.get("speaking_seconds_month"))
         roleplay_display = _fmt(user.get("roleplay_seconds_month"))
+        tutor_display = _fmt(user.get("tutor_seconds_month"))
         total_display = _fmt(user.get("total_voice_seconds_month"))
 
         # Тариф и лимит
@@ -1390,6 +1410,35 @@ async def user_detail(request: Request, user_id: int):
         voice_used_secs = int(user.get("total_voice_seconds_month") or 0)
         voice_percent = round(min(100, voice_used_secs / voice_limit_seconds * 100), 1) if voice_limit_seconds else 0
 
+        # Лимит Тьютора
+        tutor_limit_seconds = get_tutor_limit_seconds(tariff_key)
+        tutor_limit_label = format_tutor_limit_label(tariff_key)
+        tutor_used_secs = int(user.get("tutor_seconds_month") or 0)
+        tutor_percent = round(min(100, tutor_used_secs / tutor_limit_seconds * 100), 1) if tutor_limit_seconds else 0
+
+        # Память Наставника
+        try:
+            tutor_memory_raw = await tutor_get_memory(user_id)
+        except Exception as e:
+            logger.error(f"Ошибка tutor_get_memory для {user_id}: {e}")
+            tutor_memory_raw = {}
+
+        tutor_last_session_at = tutor_memory_raw.get("last_session_at") or 0
+        tutor_memory = {
+            "user_name": tutor_memory_raw.get("user_name"),
+            "user_level": tutor_memory_raw.get("user_level"),
+            "interests": list(tutor_memory_raw.get("interests") or []),
+            "current_mistake": tutor_memory_raw.get("current_mistake"),
+            "last_diagnostic_note": tutor_memory_raw.get("last_diagnostic_note"),
+            "active_mistakes": list(tutor_memory_raw.get("active_mistakes") or []),
+            "done_mistakes": list(tutor_memory_raw.get("done_mistakes") or []),
+            "strengths": list(tutor_memory_raw.get("strengths") or []),
+            "sessions_count": tutor_memory_raw.get("sessions_count") or 0,
+            "last_session_at_str": (
+                datetime.fromtimestamp(tutor_last_session_at).strftime("%d.%m.%Y %H:%M")
+                if tutor_last_session_at else None
+            ),
+        }
         return templates.TemplateResponse("user_detail.html", {
             "request": request,
             "user": user,
@@ -1401,9 +1450,13 @@ async def user_detail(request: Request, user_id: int):
             "govorenie_items": govorenie_items,
             "speaking_display": speaking_display,
             "roleplay_display": roleplay_display,
+            "tutor_display": tutor_display,
             "total_display": total_display,
             "voice_percent": voice_percent,
             "voice_limit_label": voice_limit_label,
+            "tutor_percent": tutor_percent,
+            "tutor_limit_label": tutor_limit_label,
+            "tutor_memory": tutor_memory,
             "tariff_label": tariff_label,
             "admin_logs": logs_display,
             "action_stats": action_stats,
@@ -1437,6 +1490,7 @@ async def extend_subscription(request: Request, user_id: int, days: int = Form(.
             SET subscription_started = $1,
                 speaking_seconds_month = 0,
                 roleplay_seconds_month = 0,
+                tutor_seconds_month = 0,
                 total_voice_seconds_month = 0
             WHERE user_id = $2
         """, now, user_id)
@@ -1627,6 +1681,17 @@ async def reset_user_progress(request: Request, user_id: int):
     await conn.execute("DELETE FROM user_states WHERE user_id = $1", user_id)
     await conn.close()
     await log_admin_action(admin_id, "Сброс прогресса", "", user_id)
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+@app.post("/user/{user_id}/reset_tutor_memory")
+async def reset_tutor_memory_route(request: Request, user_id: int):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+    conn = await get_db()
+    try:
+        await conn.execute("DELETE FROM tutor_memory WHERE user_id = $1", user_id)
+    finally:
+        await conn.close()
+    await log_admin_action(admin_id, "Сброс памяти Наставника", "", user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/user/{user_id}/clear_all_data")

@@ -27,6 +27,7 @@
         <p><span class="detail-label">Использовано голоса (месяц):</span> <span class="detail-value">{{ total_display }}</span></p>
         <p><span class="detail-label">Общение с AI (голос, месяц):</span> <span class="detail-value">{{ speaking_display }}</span></p>
         <p><span class="detail-label">Ролевые игры (голос, месяц):</span> <span class="detail-value">{{ roleplay_display }}</span></p>
+        <p><span class="detail-label">Тьютор (голос, месяц):</span> <span class="detail-value">{{ tutor_display }}</span></p>
 
         <div class="mt-3">
             <div class="d-flex justify-content-between mb-1">
@@ -46,8 +47,79 @@
                 </div>
             </div>
         </div>
+
+        <div class="mt-3">
+            <div class="d-flex justify-content-between mb-1">
+                <span class="detail-label">Лимит тьютора: {{ tutor_display }} / {{ tutor_limit_label }}</span>
+                <span class="detail-label">{{ tutor_percent }}%</span>
+            </div>
+            <div class="progress" style="height: 22px;">
+                <div class="progress-bar
+                            {% if tutor_percent >= 90 %}bg-danger
+                            {% elif tutor_percent >= 70 %}bg-warning
+                            {% else %}bg-info{% endif %}"
+                     role="progressbar"
+                     style="width: {{ tutor_percent }}%;"
+                     aria-valuenow="{{ tutor_percent }}"
+                     aria-valuemin="0"
+                     aria-valuemax="100">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- ================== ПАМЯТЬ НАСТАВНИКА ================== -->
+<h4 class="section-title">🧑🏻‍🏫 Наставник (Айва)</h4>
+<div class="card mb-3">
+    <div class="card-body">
+        {% if tutor_memory and (tutor_memory.user_name or tutor_memory.current_mistake or tutor_memory.sessions_count) %}
+            <p><span class="detail-label">Имя ученика:</span> <span class="detail-value">{{ tutor_memory.user_name or '—' }}</span></p>
+            <p><span class="detail-label">Уровень языка:</span> <span class="detail-value">{{ tutor_memory.user_level or 'не определён' }}</span></p>
+            <p><span class="detail-label">Интересы:</span> <span class="detail-value">{{ tutor_memory.interests|join(', ') if tutor_memory.interests else '—' }}</span></p>
+            <p><span class="detail-label">Занятий всего:</span> <span class="detail-value">{{ tutor_memory.sessions_count or 0 }}</span></p>
+            <p><span class="detail-label">Последнее занятие:</span> <span class="detail-value">{{ tutor_memory.last_session_at_str or '—' }}</span></p>
+            <p><span class="detail-label">Текущая тема:</span> <span class="detail-value">{{ tutor_memory.current_mistake or '—' }}</span></p>
+            <p><span class="detail-label">В прошлый раз говорили про:</span> <span class="detail-value">{{ tutor_memory.last_diagnostic_note or '—' }}</span></p>
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <p><b>📋 Активные ошибки:</b></p>
+                    <ul>
+                        {% for m in tutor_memory.active_mistakes %}
+                            <li><small>{{ m }}</small></li>
+                        {% else %}
+                            <li class="text-muted"><small>—</small></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <p><b>✔️ Разобранные:</b></p>
+                    <ul>
+                        {% for m in tutor_memory.done_mistakes %}
+                            <li><small>{{ m }}</small></li>
+                        {% else %}
+                            <li class="text-muted"><small>—</small></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <p><b>👌🏻 Сильные стороны:</b></p>
+                    <ul>
+                        {% for s in tutor_memory.strengths %}
+                            <li><small>{{ s }}</small></li>
+                        {% else %}
+                            <li class="text-muted"><small>—</small></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-muted">Пользователь ещё не занимался с Наставником.</p>
+        {% endif %}
+    </div>
+</div>
+<!-- ============================================================ -->
 
 <!-- ================== ВОЗВРАТ ================== -->
 <h4 class="section-title">💸 Возврат средств</h4>
@@ -314,6 +386,9 @@
 <h4 class="section-title">⚠️ Опасные действия</h4>
 <form method="post" action="/user/{{ user.user_id }}/reset_progress" onsubmit="return confirm('Удалить ВСЕ данные прогресса этого пользователя? Это необратимо.')" class="d-inline">
     <button class="btn btn-outline-danger" type="submit">🗑️ Сбросить прогресс</button>
+</form>
+<form method="post" action="/user/{{ user.user_id }}/reset_tutor_memory" onsubmit="return confirm('Удалить всю память Наставника у этого пользователя? Прогресс тренажёров и подписка НЕ тронутся.')" class="d-inline">
+    <button class="btn btn-outline-danger" type="submit">🧠 Сбросить память Айвы</button>
 </form>
 <form method="post" action="/user/{{ user.user_id }}/clear_all_data" onsubmit="return confirm('Удалить ВСЕ данные пользователя (включая подписки, историю, прогресс)? Это необратимо.')" class="d-inline">
     <button class="btn btn-outline-danger" type="submit">🧹 Очистить все данные</button>

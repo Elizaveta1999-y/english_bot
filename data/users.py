@@ -15,12 +15,16 @@ if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 # ---------- ЛИМИТЫ ----------
-VOICE_LIMIT_SECONDS_LIGHT = 1800    # 30 минут (тариф "light")
+VOICE_LIMIT_SECONDS_LIGHT = 2400    # 40 минут (тариф "light")
 VOICE_LIMIT_SECONDS_BASE = 9000     # 2.5 часа (тариф "base" и по умолчанию)
-VOICE_LIMIT_SECONDS_DEFAULT = VOICE_LIMIT_SECONDS_BASE  # fallback, если tariff = NULL
+VOICE_LIMIT_SECONDS_DEFAULT = VOICE_LIMIT_SECONDS_BASE
+
+# Лимиты Наставника (внутри общего пула)
+TUTOR_LIMIT_SECONDS_LIGHT = 900     # 15 минут
+TUTOR_LIMIT_SECONDS_BASE = 1800     # 30 минут
 
 TRIAL_DURATION_SECONDS = 48 * 3600  # 48 часов
-TRIAL_VOICE_LIMIT = 4               # голосовых в триале (speaking + roleplay)
+TRIAL_VOICE_LIMIT = 4               # 4 голосовых в триале — общий пул на всё голосовое
 TRIAL_WRITING_LIMIT = 2             # фидбеков в письме
 TRIAL_GOVORENIE_LIMIT = 2           # фидбеков в говорении
 
@@ -67,6 +71,7 @@ def _ensure_table():
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS total_voice_seconds_month BIGINT DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS speaking_seconds_month BIGINT DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS roleplay_seconds_month BIGINT DEFAULT 0")
+            cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tutor_seconds_month BIGINT DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS trial_voice_count INTEGER DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0")
@@ -153,7 +158,6 @@ async def get_or_create_user(user_id: int, username: str = None,
 
 # ========== ТАРИФ ==========
 def get_user_tariff(user_id: int):
-    """Возвращает 'light' / 'base' / None."""
     _ensure_table()
     conn = _get_pool().getconn()
     try:
@@ -168,24 +172,35 @@ def get_user_tariff(user_id: int):
 
 
 def get_voice_limit_seconds(user_id: int) -> int:
-    """Возвращает лимит секунд в месяц для текущего тарифа."""
     tariff = get_user_tariff(user_id)
     if tariff == "light":
         return VOICE_LIMIT_SECONDS_LIGHT
-    return VOICE_LIMIT_SECONDS_BASE  # base или None (старые подписки)
+    return VOICE_LIMIT_SECONDS_BASE
 
 
 def get_voice_limit_label(user_id: int) -> str:
-    """Человеческое название лимита для сообщений: '30 минут' / '2.5 часа'."""
     tariff = get_user_tariff(user_id)
     if tariff == "light":
-        return "30 минут"
+        return "40 минут"
     return "2.5 часа"
+
+
+def get_tutor_limit_seconds(user_id: int) -> int:
+    tariff = get_user_tariff(user_id)
+    if tariff == "light":
+        return TUTOR_LIMIT_SECONDS_LIGHT
+    return TUTOR_LIMIT_SECONDS_BASE
+
+
+def get_tutor_limit_label(user_id: int) -> str:
+    tariff = get_user_tariff(user_id)
+    if tariff == "light":
+        return "15 минут"
+    return "30 минут"
 
 
 # ========== ТРИАЛ И ПОДПИСКА ==========
 def start_trial_if_needed(user_id: int):
-    """Активирует триал при первом /start. Если trial_started > 0 — ничего не делает."""
     _ensure_table()
     conn = _get_pool().getconn()
     try:
@@ -262,7 +277,6 @@ def is_unlimited(user_id: int) -> bool:
 
 
 def get_user_access_level(user_id: int) -> str:
-    """'unlimited' | 'subscribed' | 'trial' | 'free'"""
     if is_unlimited(user_id):
         return ACCESS_UNLIMITED
     if is_subscribed(user_id):
@@ -365,10 +379,6 @@ def increment_trial_govorenie(user_id: int):
 
 # ========== ПРОВЕРКИ ДЛЯ ХЕНДЛЕРОВ ==========
 def check_voice_access(user_id: int) -> tuple:
-    """
-    Returns (allowed, reason).
-    reason: "ok" | "trial_voice_limit" | "free_no_access" | "sub_voice_limit"
-    """
     level = get_user_access_level(user_id)
 
     if level == ACCESS_UNLIMITED:
@@ -387,11 +397,35 @@ def check_voice_access(user_id: int) -> tuple:
     return (False, "free_no_access")
 
 
+def check_tutor_access(user_id: int) -> tuple:
+    """
+    Проверка доступа к режиму Наставник.
+    reason: "ok" | "tutor_limit" | "sub_voice_limit" | "trial_voice_limit" | "free_no_access"
+    """
+    level = get_user_access_level(user_id)
+
+    if level == ACCESS_UNLIMITED:
+        return (True, "ok")
+
+    if level == ACCESS_SUBSCRIBED:
+        # Сначала — общий лимит тарифа
+        if is_voice_limit_reached(user_id):
+            return (False, "sub_voice_limit")
+        # Потом — лимит Наставника
+        if is_tutor_limit_reached(user_id):
+            return (False, "tutor_limit")
+        return (True, "ok")
+
+    if level == ACCESS_TRIAL:
+        # Общий счётчик триала — 4 голосовых на всё
+        if get_trial_voice_count(user_id) >= TRIAL_VOICE_LIMIT:
+            return (False, "trial_voice_limit")
+        return (True, "ok")
+
+    return (False, "free_no_access")
+
+
 def check_writing_access(user_id: int) -> tuple:
-    """
-    Returns (allowed, reason).
-    reason: "ok" | "trial_writing_limit" | "free_no_access"
-    """
     level = get_user_access_level(user_id)
 
     if level in (ACCESS_UNLIMITED, ACCESS_SUBSCRIBED):
@@ -406,10 +440,6 @@ def check_writing_access(user_id: int) -> tuple:
 
 
 def check_govorenie_access(user_id: int) -> tuple:
-    """
-    Returns (allowed, reason).
-    reason: "ok" | "trial_govorenie_limit" | "free_no_access"
-    """
     level = get_user_access_level(user_id)
 
     if level in (ACCESS_UNLIMITED, ACCESS_SUBSCRIBED):
@@ -425,7 +455,6 @@ def check_govorenie_access(user_id: int) -> tuple:
 
 # ========== ГОЛОСОВЫЕ СЕКУНДЫ (подписка) ==========
 def is_voice_limit_reached(user_id: int) -> bool:
-    """True, если лимит для текущего тарифа исчерпан. НЕ проверяет подписку."""
     _ensure_table()
     limit_seconds = get_voice_limit_seconds(user_id)
     conn = _get_pool().getconn()
@@ -443,9 +472,27 @@ def is_voice_limit_reached(user_id: int) -> bool:
         _get_pool().putconn(conn)
 
 
+def is_tutor_limit_reached(user_id: int) -> bool:
+    _ensure_table()
+    limit_seconds = get_tutor_limit_seconds(user_id)
+    conn = _get_pool().getconn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT COALESCE(tutor_seconds_month, 0) FROM users WHERE user_id = %s",
+                (user_id,)
+            )
+            row = cur.fetchone()
+            if row is None:
+                return False
+            return (row[0] or 0) >= limit_seconds
+    finally:
+        _get_pool().putconn(conn)
+
+
 def add_voice_seconds(user_id: int, seconds: int, mode: str):
-    """Прибавляет секунды. Для подписчиков. Для триала — increment_trial_voice."""
-    if mode not in ("speaking", "roleplay") or not seconds or seconds <= 0:
+    """Прибавляет секунды. mode: 'speaking' | 'roleplay' | 'tutor'."""
+    if mode not in ("speaking", "roleplay", "tutor") or not seconds or seconds <= 0:
         return
 
     _ensure_table()
@@ -464,6 +511,7 @@ def add_voice_seconds(user_id: int, seconds: int, mode: str):
                     UPDATE users
                     SET speaking_seconds_month = 0,
                         roleplay_seconds_month = 0,
+                        tutor_seconds_month = 0,
                         total_voice_seconds_month = 0
                     WHERE user_id = %s
                 """, (user_id,))
@@ -475,10 +523,17 @@ def add_voice_seconds(user_id: int, seconds: int, mode: str):
                             total_voice_seconds_month = COALESCE(total_voice_seconds_month, 0) + %s
                         WHERE user_id = %s
                     """, (seconds, seconds, user_id))
-                else:
+                elif mode == "roleplay":
                     cur.execute("""
                         UPDATE users
                         SET roleplay_seconds_month = COALESCE(roleplay_seconds_month, 0) + %s,
+                            total_voice_seconds_month = COALESCE(total_voice_seconds_month, 0) + %s
+                        WHERE user_id = %s
+                    """, (seconds, seconds, user_id))
+                else:
+                    cur.execute("""
+                        UPDATE users
+                        SET tutor_seconds_month = COALESCE(tutor_seconds_month, 0) + %s,
                             total_voice_seconds_month = COALESCE(total_voice_seconds_month, 0) + %s
                         WHERE user_id = %s
                     """, (seconds, seconds, user_id))

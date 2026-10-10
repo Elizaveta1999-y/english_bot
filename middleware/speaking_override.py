@@ -4,6 +4,7 @@ from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
 from data.users import get_user_state, set_user_state
 from handlers.start import show_main_menu
 
+
 class SpeakingOverrideMiddleware(BaseMiddleware):
     async def __call__(
         self,
@@ -33,9 +34,7 @@ class SpeakingOverrideMiddleware(BaseMiddleware):
         if user_state.get("mode") != "speaking_active":
             return await handler(event, data)
 
-        # --- Обработка callback'ов ---
         if isinstance(event, CallbackQuery):
-            # Пропускаем callback'ы, которые должны обрабатываться в хендлерах
             if event.data.startswith((
                 "show_text_",
                 "translate_text_",
@@ -43,19 +42,18 @@ class SpeakingOverrideMiddleware(BaseMiddleware):
                 "hide_text_",
                 "show_feedback_confirm",
                 "continue_speaking",
-                "start_",           # все режимы
-                "support",          # для кнопки поддержки
+                "start_",
+                "support",
                 "subscription",
                 "agreement",
-                "profile_menu",     # <<< ДОБАВЛЕНО – статистика
-                "profile_",         # <<< ДОБАВЛЕНО – подписка, сброс и т.д.
+                "profile_menu",
+                "profile_",
                 "back_to_main_menu",
                 "back_to_profile",
                 "back_to_main",
             )):
                 return await handler(event, data)
 
-            # Обрабатываем только back_to_main (оставлен на случай, если startswith не сработает)
             if event.data == "back_to_main":
                 user_state["mode"] = ""
                 user_state["keyboard_hidden"] = True
@@ -66,23 +64,17 @@ class SpeakingOverrideMiddleware(BaseMiddleware):
                 await bot_obj.send_message(chat_id, " ", reply_markup=ReplyKeyboardRemove())
                 await show_main_menu(event.message, edit=False)
                 return
-            # Все остальные callback'и блокируем
             return
 
-        # --- Голосовые пропускаем ---
         if event.voice:
             return await handler(event, data)
 
-        # --- Текст: пропускаем всё, кроме команд и кнопки "Главное меню" ---
         if event.text:
-            # СПИСОК КОМАНД, КОТОРЫЕ НЕ СБРАСЫВАЕМ
             allowed_commands = ["/support", "/subscription", "/agreement", "/start"]
-            
+
             if event.text.startswith('/'):
-                # Если команда в списке разрешённых – пропускаем
                 if event.text in allowed_commands:
                     return await handler(event, data)
-                # Иначе – сбрасываем speaking
                 user_state["mode"] = ""
                 user_state["keyboard_hidden"] = True
                 user_state["pending_feedback"] = None
@@ -107,9 +99,7 @@ class SpeakingOverrideMiddleware(BaseMiddleware):
             if event.text == "📊 Я всё! Фидбек":
                 return await handler(event, data)
 
-            # Всё остальное пропускаем к хендлеру
             return await handler(event, data)
 
-        # --- Фото, видео и т.д. – блокируем и отвечаем ---
         await bot_obj.send_message(chat_id, "Запишите и отправьте голосовое сообщение.")
         return

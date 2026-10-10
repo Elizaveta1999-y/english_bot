@@ -8,7 +8,7 @@ from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_applicati
 from aiogram.fsm.storage.redis import RedisStorage
 from redis.asyncio import Redis
 from typing import Callable, Dict, Any, Awaitable
-from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing, roleplay_voice, feedback
+from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing, roleplay_voice, feedback, tutor
 from handlers.subscription import router as subscription_router
 from handlers.reading import router as reading_router
 from handlers.grammar import router as grammar_router
@@ -18,6 +18,7 @@ from utils.db import init_db
 from middleware.speaking_override import SpeakingOverrideMiddleware
 from middleware.mode_transition import ModeTransitionMiddleware
 from middleware.bot_active import BotActiveMiddleware
+from middleware.tutor_guard import TutorGuardMiddleware
 
 logging.basicConfig(
     level=logging.WARNING,
@@ -166,6 +167,7 @@ if redis_client is not None:
 # ========== MIDDLEWARE ==========
 dp.message.middleware(BotActiveMiddleware())
 dp.callback_query.middleware(BotActiveMiddleware())
+dp.message.middleware(TutorGuardMiddleware())
 
 dp.callback_query.middleware(ModeTransitionMiddleware())
 
@@ -191,6 +193,7 @@ dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(profile.router)
 dp.include_router(feedback.router)
+dp.include_router(tutor.router)
 
 
 async def set_commands(bot: Bot):

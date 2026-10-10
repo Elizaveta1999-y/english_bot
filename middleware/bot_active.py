@@ -18,12 +18,13 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 
 class BotActiveMiddleware(BaseMiddleware):
     async def __call__(self, handler, event, data):
-        # Пропускаем админа — он может тестировать
+        print(f">>> BotActive: {type(event).__name__} data={getattr(event, 'data', None)}", flush=True)
+
         user = data.get("event_from_user")
         if user and ADMIN_ID and user.id == ADMIN_ID:
+            print(">>> BotActive: админ, пропускаем", flush=True)
             return await handler(event, data)
 
-        # Читаем флаг из БД
         try:
             conn = await get_connection()
             try:
@@ -37,9 +38,10 @@ class BotActiveMiddleware(BaseMiddleware):
             return await handler(event, data)
 
         if val == 'true':
+            print(">>> BotActive: бот активен, пропускаем", flush=True)
             return await handler(event, data)
 
-        # Бот на техработах
+        print(">>> BotActive: бот НЕ активен, показываем техработы", flush=True)
         if isinstance(event, Message):
             try:
                 await event.answer(TECH_MESSAGE, parse_mode="HTML")

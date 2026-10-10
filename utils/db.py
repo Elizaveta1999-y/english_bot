@@ -180,6 +180,49 @@ async def init_db():
     await conn.execute("""
         CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status)
     """)
+
+    # ---- НАСТАВНИК (tutor_memory) ----
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS tutor_memory (
+            user_id BIGINT PRIMARY KEY,
+            user_level TEXT DEFAULT NULL,
+            voice_pref TEXT DEFAULT 'woman',
+            current_mistake TEXT DEFAULT NULL,
+            current_topic TEXT DEFAULT NULL,
+            active_mistakes JSONB DEFAULT '[]'::jsonb,
+            done_mistakes JSONB DEFAULT '[]'::jsonb,
+            strengths JSONB DEFAULT '[]'::jsonb,
+            passed_lessons JSONB DEFAULT '[]'::jsonb,
+            next_step TEXT DEFAULT NULL,
+            last_session_at BIGINT DEFAULT 0,
+            sessions_count INTEGER DEFAULT 0,
+            pending_session JSONB DEFAULT NULL,
+            sessions_log JSONB DEFAULT '[]'::jsonb,
+            self_corrections INTEGER DEFAULT 0
+        )
+    """)
+    await conn.execute("ALTER TABLE tutor_memory ADD COLUMN IF NOT EXISTS sessions_log JSONB DEFAULT '[]'::jsonb")
+    await conn.execute("ALTER TABLE tutor_memory ADD COLUMN IF NOT EXISTS self_corrections INTEGER DEFAULT 0")
+    await conn.execute("ALTER TABLE tutor_memory ADD COLUMN IF NOT EXISTS user_name TEXT DEFAULT NULL")
+    await conn.execute("ALTER TABLE tutor_memory ADD COLUMN IF NOT EXISTS last_diagnostic_note TEXT DEFAULT NULL")
+    await conn.execute("ALTER TABLE tutor_memory ADD COLUMN IF NOT EXISTS interests JSONB DEFAULT '[]'::jsonb")
+
+    # ---- ОШИБКИ ГОЛОСОВЫХ РЕЖИМОВ (voice_mistakes) ----
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS voice_mistakes (
+            id SERIAL PRIMARY KEY,
+            user_id BIGINT NOT NULL,
+            source TEXT NOT NULL,
+            user_text TEXT NOT NULL,
+            correction TEXT NOT NULL,
+            created_at BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
+        )
+    """)
+    await conn.execute("""
+        CREATE INDEX IF NOT EXISTS idx_voice_mistakes_user
+        ON voice_mistakes(user_id, created_at DESC)
+    """)
+
     await conn.close()
 
 # ---------- Пользователи ----------
@@ -859,7 +902,7 @@ async def activate_subscription_from_payment(payment_id: str, user_id: int, amou
         if row["status"] == "succeeded":
             return True
 
-        tariff = row["tariff"] or "base"  # для старых платежей без тарифа — base
+        tariff = row["tariff"] or "base"
         now = int(datetime.now().timestamp())
         user_row = await conn.fetchrow("SELECT subscription_until FROM users WHERE user_id = $1", user_id)
         if not user_row:
@@ -926,3 +969,108 @@ async def reset_full_progress(user_id: int):
     await conn.execute("DELETE FROM random_order WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM progress_index WHERE user_id = $1", user_id)
     await conn.close()
+
+# =====================================================================
+# НАСТАВНИК (tutor_memory)
+# =====================================================================
+
+async def tutor_get_memory(user_id: int) -> dict:
+    conn = await get_connection()
+    try:
+        row = await conn.fetchrow("SELECT * FROM tutor_memory WHERE user_id = $1", user_id)
+        if row:
+            return dict(row)
+        await conn.execute("""
+            INSERT INTO tutor_memory (user_id, last_session_at)
+            VALUES ($1, EXTRACT(EPOCH FROM NOW())::BIGINT)
+            ON CONFLICT (user_id) DO NOTHING
+        """, user_id)
+        row = await conn.fetchrow("SELECT * FROM tutor_memory WHERE user_id = $1", user_id)
+        return dict(row) if row else {}
+    finally:
+        await conn.close()
+
+
+
+# =====================================================================
+# ОШИБКИ ГОЛОСОВЫХ РЕЖИМОВ (voice_mistakes)
+# =====================================================================
+
+async def save_voice_mistake(user_id: int, source: str, user_text: str, correction: str):
+    """source: 'speaking' или 'roleplay'."""
+    conn = await get_connection()
+    try:
+        await conn.execute(
+            "INSERT INTO voice_mistakes (user_id, source, user_text, correction) VALUES ($1, $2, $3, $4)",
+            user_id, source, user_text[:1000], correction[:2000]
+        )
+    finally:
+        await conn.close()
+
+
+async def get_recent_voice_mistakes(user_id: int, limit: int = 10) -> list:
+    """Последние N ошибок из Общения и Ролевых, начиная со свежих."""
+    conn = await get_connection()
+    try:
+        rows = await conn.fetch(
+            "SELECT source, user_text, correction FROM voice_mistakes "
+            "WHERE user_id = $1 ORDER BY created_at DESC LIMIT $2",
+            user_id, limit
+        )
+        return [dict(r) for r in rows]
+    finally:
+        await conn.close()
+
+
+async def clear_voice_mistakes(user_id: int):
+    conn = await get_connection()
+    try:
+        await conn.execute("DELETE FROM voice_mistakes WHERE user_id = $1", user_id)
+    finally:
+        await conn.close()
+
+async def tutor_update_memory(user_id: int, **fields):
+    if not fields:
+        return
+
+    JSONB_FIELDS = {"active_mistakes", "done_mistakes", "strengths", "passed_lessons", "pending_session", "sessions_log", "interests"}
+    conn = await get_connection()
+    try:
+        set_parts = []
+        values = [user_id]
+        for i, (k, v) in enumerate(fields.items(), start=2):
+            if k in JSONB_FIELDS:
+                set_parts.append(f"{k} = ${i}::jsonb")
+                values.append(json.dumps(v, ensure_ascii=False) if v is not None else None)
+            else:
+                set_parts.append(f"{k} = ${i}")
+                values.append(v)
+        query = f"UPDATE tutor_memory SET {', '.join(set_parts)} WHERE user_id = $1"
+        await conn.execute(query, *values)
+    finally:
+        await conn.close()
+
+
+async def tutor_get_memory(user_id: int) -> dict:
+    conn = await get_connection()
+    try:
+        row = await conn.fetchrow("SELECT * FROM tutor_memory WHERE user_id = $1", user_id)
+        if row:
+            return dict(row)
+        await conn.execute("""
+            INSERT INTO tutor_memory (user_id, last_session_at)
+            VALUES ($1, EXTRACT(EPOCH FROM NOW())::BIGINT)
+            ON CONFLICT (user_id) DO NOTHING
+        """, user_id)
+        row = await conn.fetchrow("SELECT * FROM tutor_memory WHERE user_id = $1", user_id)
+        return dict(row) if row else {}
+    finally:
+        await conn.close()
+
+
+async def tutor_reset_memory(user_id: int):
+    conn = await get_connection()
+    try:
+        await conn.execute("DELETE FROM tutor_memory WHERE user_id = $1", user_id)
+    finally:
+        await conn.close()

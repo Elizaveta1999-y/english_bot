@@ -47,7 +47,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
         try:
             state = data.get("state")
 
-            # --- ЧТЕНИЕ ---
             if mode == "reading_active":
                 if state:
                     sdata = await state.get_data()
@@ -62,7 +61,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
                                 pass
                     await state.clear()
 
-            # --- ГРАММАТИКА ---
             elif mode == "grammar_active":
                 if state:
                     sdata = await state.get_data()
@@ -77,7 +75,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
                                 pass
                     await state.clear()
 
-            # --- ЛЕКСИКА ---
             elif mode == "words_active":
                 from handlers.words import user_message_ids, user_sessions, remove_buttons_from_messages
                 if user_id in user_message_ids and chat_id:
@@ -88,7 +85,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
                 if state:
                     await state.clear()
 
-            # --- АУДИРОВАНИЕ ---
             elif mode == "listening_active":
                 from handlers.listening import clear_user_buttons
                 if chat_id:
@@ -96,7 +92,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
                 if state:
                     await state.clear()
 
-            # --- ПИСЬМО ---
             elif mode == "writing_active":
                 if state:
                     sdata = await state.get_data()
@@ -111,7 +106,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
                                 pass
                     await state.clear()
 
-            # --- ГОВОРЕНИЕ ---
             elif mode == "govorenie_active":
                 if state:
                     sdata = await state.get_data()
@@ -126,7 +120,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
                                 pass
                     await state.clear()
 
-            # --- SPEAKING ---
             elif mode == "speaking_active":
                 kb_id = user_state.get("speaking_keyboard_msg_id")
                 if kb_id and chat_id:
@@ -138,7 +131,6 @@ class ModeTransitionMiddleware(BaseMiddleware):
                 if state:
                     await state.clear()
 
-            # --- ROLEPLAY ---
             elif mode == "roleplay_active":
                 kb_id = user_state.get("reply_keyboard_msg_id")
                 if kb_id and chat_id:

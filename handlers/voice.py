@@ -54,25 +54,27 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
 
 
 async def show_subscription_offer(message: Message, user_id: int):
-    """Показать оффер подписки (локальный импорт, чтобы не было циклической зависимости)."""
     from handlers.subscription import show_subscription
     await show_subscription(message, user_id, from_profile=False, edit=False)
 
 
 @router.message(F.voice)
 async def handle_voice(message: Message, state: FSMContext):
+    user_state = get_user_state(message.from_user.id)
+    mode = user_state.get("mode")
+
+    if mode == "tutor_active":
+        from handlers.tutor import handle_tutor_voice
+        await handle_tutor_voice(message, state)
+        return
+
     user_id = message.from_user.id
     chat_id = message.chat.id
     bot = message.bot
-
-    user_state = get_user_state(user_id)
-    mode = user_state.get("mode")
     current_state = await state.get_state()
 
-    # ===== ПРОПУСКАЕМ РОЛЕВУЮ ИГРУ =====
     if mode == "roleplay_active":
         return
-    # ==================================
 
     feedback_id = user_state.get("feedback_prompt_msg_id")
 
@@ -97,7 +99,6 @@ async def handle_voice(message: Message, state: FSMContext):
         if current_state != SpeakingStates.waiting_for_voice:
             await state.set_state(SpeakingStates.waiting_for_voice)
 
-        # Проверка доступа к голосу (триал / подписка / бесплатный / whitelist)
         allowed, reason = check_voice_access(user_id)
         if not allowed:
             if reason == "sub_voice_limit":
@@ -107,7 +108,6 @@ async def handle_voice(message: Message, state: FSMContext):
                     "Дай голосу отдохнуть, а мы будем ждать тебя снова 💙"
                 )
             else:
-                # trial_voice_limit или free_no_access → оффер подписки
                 await show_subscription_offer(message, user_id)
             return
 
@@ -162,19 +162,16 @@ async def handle_voice(message: Message, state: FSMContext):
 
         speaking_history = user_state.get("speaking_history", [])
         try:
-            reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
+            reply_text, correction_text, is_perfect, mistakes = await process_voice_message(user_id, user_text, speaking_history)
         except DeepSeekError:
             await message.answer("Сервис проверки временно недоступен. Попробуй ещё раз через минуту — твой ответ не потерян, просто отправь голосовое снова.")
             return
 
-        # ===== ФИКСИРУЕМ ИСПОЛЬЗОВАНИЕ ГОЛОСА ПОСЛЕ УСПЕШНОЙ ОБРАБОТКИ =====
         access_level = get_user_access_level(user_id)
         if access_level == ACCESS_TRIAL:
             increment_trial_voice(user_id)
         elif access_level == ACCESS_SUBSCRIBED:
             add_voice_seconds(user_id, duration, "speaking")
-        # ACCESS_UNLIMITED — ничего не пишем
-        # ================================================================
 
         user_state = get_user_state(user_id)
 
@@ -202,6 +199,19 @@ async def handle_voice(message: Message, state: FSMContext):
             await message.answer(warning.strip())
 
         if correction_text:
+            # Пишем ошибки в память Наставника СРАЗУ, в момент исправления
+            if not re.search(r'[а-яА-Я]', user_text) and mistakes:
+                try:
+                    from handlers.speaking import _save_speaking_mistakes_to_tutor_memory
+                    await _save_speaking_mistakes_to_tutor_memory(
+                        user_id,
+                        mistakes,
+                        [user_text],
+                        speaker_name=user_state.get("speaking_speaker_name"),
+                    )
+                except Exception as e:
+                    logger.error(f"Ошибка сохранения в память Наставника: {e}", exc_info=True)
+
             await bot.send_chat_action(chat_id=chat_id, action='typing')
             await message.answer(correction_text, parse_mode="HTML")
 
