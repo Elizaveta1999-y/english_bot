@@ -261,13 +261,15 @@ async def get_profile_text_and_keyboard(user_id: int) -> tuple:
 
     speak_secs = int(profile.get("speaking_seconds_month", 0) or 0)
     roleplay_secs = int(profile.get("roleplay_seconds_month", 0) or 0)
+    tutor_secs = int(profile.get("tutor_seconds_month", 0) or 0)
     total_secs = int(profile.get("total_voice_seconds_month", 0) or 0)
-    if total_secs == 0 and (speak_secs or roleplay_secs):
-        total_secs = speak_secs + roleplay_secs
+    if total_secs == 0 and (speak_secs or roleplay_secs or tutor_secs):
+        total_secs = speak_secs + roleplay_secs + tutor_secs
 
     text += "<b>• Голосовая практика (месяц)</b>\n"
     text += f"🎙️ Общение с AI: {_fmt_minutes(speak_secs)}\n"
     text += f"🎬 Ролевые игры: {_fmt_minutes(roleplay_secs)}\n"
+    text += f"🎓 Наставник: {_fmt_minutes(tutor_secs)}\n"
     text += f"─────────────\n"
     text += f"Всего: {_fmt_minutes(total_secs)}\n\n"
     # =========================================
