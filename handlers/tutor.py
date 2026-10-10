@@ -22,6 +22,8 @@ from data.users import (
     get_tutor_limit_label, get_voice_limit_label,
     add_voice_seconds,
     TRIAL_VOICE_LIMIT,
+    get_bonus_tutor_voices,
+    decrement_bonus_tutor_voice,
 )
 from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
@@ -3233,15 +3235,6 @@ async def _finish_session(
     except Exception as e:
         logger.error(f"Не удалось показать меню после финала: {e}")
 
-    # Финальная зачистка клавиатуры — гарантированно последнее сообщение
-    try:
-        await bot.send_message(
-            chat_id, " ",
-            reply_markup=ReplyKeyboardRemove()
-        )
-    except Exception:
-        pass
-
     # === Финальная зачистка ReplyKeyboard ПОСЛЕ главного меню ===
     try:
         await bot.send_message(chat_id, " ", reply_markup=ReplyKeyboardRemove())
@@ -3256,8 +3249,9 @@ async def _finish_session(
 async def open_tutor(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     access = get_user_access_level(user_id)
+    bonus = get_bonus_tutor_voices(user_id)
 
-    if access not in (ACCESS_TRIAL, ACCESS_SUBSCRIBED, ACCESS_UNLIMITED):
+    if bonus <= 0 and access not in (ACCESS_TRIAL, ACCESS_SUBSCRIBED, ACCESS_UNLIMITED):
         from handlers.subscription import show_subscription
         await show_subscription(
             callback.message, user_id,
@@ -3265,7 +3259,7 @@ async def open_tutor(callback: CallbackQuery, state: FSMContext):
         )
         return
 
-    if not await _check_and_report_limit(callback.message, user_id):
+    if bonus <= 0 and not await _check_and_report_limit(callback.message, user_id):
         return
 
     user_state = get_user_state(user_id)
@@ -3327,20 +3321,31 @@ async def open_tutor(callback: CallbackQuery, state: FSMContext):
 async def handle_tutor_voice(message: Message, state: FSMContext):
     user_id = message.from_user.id
     access = get_user_access_level(user_id)
+    bonus = get_bonus_tutor_voices(user_id)
 
-    if access == ACCESS_SUBSCRIBED:
-        allowed, reason = check_tutor_access(user_id)
-        if not allowed:
-            await _check_and_report_limit(message, user_id)
+    if bonus <= 0:
+        if access == ACCESS_SUBSCRIBED:
+            allowed, reason = check_tutor_access(user_id)
+            if not allowed:
+                await _check_and_report_limit(message, user_id)
+                user_state = get_user_state(user_id)
+                user_state["mode"] = ""
+                set_user_state(user_id, user_state)
+                await state.clear()
+                return
+        elif access == ACCESS_TRIAL:
+            used = get_trial_voice_count(user_id)
+            if used >= TRIAL_VOICE_LIMIT:
+                await _show_trial_limit(message, user_id, state)
+                return
+        else:
+            # free user без бонуса — экран подписки
+            from handlers.subscription import show_subscription
+            await show_subscription(message, user_id, from_profile=False, edit=False)
             user_state = get_user_state(user_id)
             user_state["mode"] = ""
             set_user_state(user_id, user_state)
             await state.clear()
-            return
-    elif access == ACCESS_TRIAL:
-        used = get_trial_voice_count(user_id)
-        if used >= TRIAL_VOICE_LIMIT:
-            await _show_trial_limit(message, user_id, state)
             return
 
     duration = message.voice.duration or 0
@@ -3395,11 +3400,12 @@ async def handle_tutor_voice(message: Message, state: FSMContext):
         await message.answer("Давай про английский. Скажи по-другому.")
         return
 
-    if access == ACCESS_TRIAL:
-        if not _is_service_phrase(user_text):
+    if not _is_service_phrase(user_text):
+        if bonus > 0:
+            decrement_bonus_tutor_voice(user_id)
+        elif access == ACCESS_TRIAL:
             increment_trial_voice(user_id)
-    elif access == ACCESS_SUBSCRIBED:
-        if not _is_service_phrase(user_text):
+        elif access == ACCESS_SUBSCRIBED:
             add_voice_seconds(user_id, duration, "tutor")
 
     await _run_tutor_step(

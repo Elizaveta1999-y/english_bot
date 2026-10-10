@@ -72,6 +72,7 @@ def _ensure_table():
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS speaking_seconds_month BIGINT DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS roleplay_seconds_month BIGINT DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tutor_seconds_month BIGINT DEFAULT 0")
+            cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bonus_tutor_voices INTEGER DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS trial_voice_count INTEGER DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0")
@@ -489,6 +490,42 @@ def is_tutor_limit_reached(user_id: int) -> bool:
     finally:
         _get_pool().putconn(conn)
 
+def get_bonus_tutor_voices(user_id: int) -> int:
+    _ensure_table()
+    conn = _get_pool().getconn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT COALESCE(bonus_tutor_voices, 0) FROM users WHERE user_id = %s",
+                (user_id,)
+            )
+            row = cur.fetchone()
+            return row[0] if row else 0
+    finally:
+        _get_pool().putconn(conn)
+
+
+def decrement_bonus_tutor_voice(user_id: int) -> bool:
+    """Списывает 1 бонусное голосовое. Возвращает True, если списалось."""
+    _ensure_table()
+    conn = _get_pool().getconn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("""
+                UPDATE users
+                SET bonus_tutor_voices = COALESCE(bonus_tutor_voices, 0) - 1
+                WHERE user_id = %s AND COALESCE(bonus_tutor_voices, 0) > 0
+                RETURNING bonus_tutor_voices
+            """, (user_id,))
+            result = cur.fetchone()
+        conn.commit()
+        return result is not None
+    except Exception as e:
+        conn.rollback()
+        logger.error(f"[users] Ошибка decrement_bonus_tutor_voice({user_id}): {e}")
+        return False
+    finally:
+        _get_pool().putconn(conn)
 
 def add_voice_seconds(user_id: int, seconds: int, mode: str):
     """Прибавляет секунды. mode: 'speaking' | 'roleplay' | 'tutor'."""
