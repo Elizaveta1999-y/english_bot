@@ -335,18 +335,24 @@ async def clear_govorenie_if_active(callback: CallbackQuery, state: FSMContext):
 
 
 # ================== ОЧИСТКА НАСТАВНИКА ==================
+
 async def clear_tutor_if_active(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "tutor_active":
         return
 
+    # Сохраняем pending-сессию Наставника
     try:
         from handlers.tutor import finalize_tutor_session
-        await finalize_tutor_session(callback.bot, callback.message.chat.id, user_id, silent=True)
+        await finalize_tutor_session(
+            callback.bot, callback.message.chat.id, user_id,
+            is_final=False
+        )
     except Exception as e:
         logger.error(f"Ошибка финализации тьютора при переходе: {e}")
 
+    # Удаляем сообщение с Reply-клавиатурой
     tutor_kb_id = user_state.get("tutor_keyboard_msg_id")
     if tutor_kb_id:
         try:
@@ -355,22 +361,22 @@ async def clear_tutor_if_active(callback: CallbackQuery, state: FSMContext):
             pass
         user_state.pop("tutor_keyboard_msg_id", None)
 
-    # === Принудительно убираем ReplyKeyboard ===
-    try:
-        await callback.bot.send_message(
-            callback.message.chat.id,
-            " ",
-            reply_markup=ReplyKeyboardRemove()
-        )
-    except Exception:
-        pass
-
     user_state["mode"] = ""
     user_state.pop("tutor_voice", None)
     set_user_state(user_id, user_state)
     await state.clear()
 
-
+    # Показываем секундное сообщение «Переход...» + убираем ReplyKeyboard
+    try:
+        msg = await callback.bot.send_message(
+            callback.message.chat.id,
+            "Переход...",
+            reply_markup=ReplyKeyboardRemove()
+        )
+        await asyncio.sleep(1)
+        await msg.delete()
+    except Exception:
+        pass
 # ================== СТАРТОВЫЕ ОБРАБОТЧИКИ ==================
 
 @router.callback_query(F.data == "start_speaking")

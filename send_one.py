@@ -9,15 +9,19 @@ load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-USER_ID = 6115540828
+USER_IDS = [
+    7297448159,
+    109090438,
+    412043474,
+]
 
 TEXT = (
+    "Спасибо, что приняла участие в опросе 🤍\n\n"
     "🎓 <b>У бота появился наставник. Её зовут Айва.</b>\n\n"
     "Она объясняет по-русски — ловит твои ошибки в речи, "
-    "объясняет правила, а потом ведёт "
-    "мини-уроки для закрепления.\n\n"
+    "разбирает правило, а потом ведёт мини-урок для закрепления.\n\n"
     "Не переписка, а настоящее занятие.\n\n"
-    "🎁 Дарим тебе 4 голосовых — чтобы попробовать."
+    "🎁 Дарим тебе 10 голосовых — чтобы ты оценила"
 )
 
 
@@ -34,12 +38,20 @@ async def main():
 
     bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode="HTML"))
 
-    try:
-        await bot.send_message(USER_ID, TEXT, reply_markup=get_keyboard())
-        print(f"✓ Сообщение отправлено {USER_ID}")
-    except Exception as e:
-        print(f"❌ Ошибка отправки: {e}")
+    sent = 0
+    failed = 0
 
+    for uid in USER_IDS:
+        try:
+            await bot.send_message(uid, TEXT, reply_markup=get_keyboard())
+            print(f"✓ {uid}")
+            sent += 1
+            await asyncio.sleep(0.5)
+        except Exception as e:
+            print(f"✗ {uid}: {e}")
+            failed += 1
+
+    print(f"\nИтого: отправлено {sent}, ошибок {failed}")
     await bot.session.close()
 
 
