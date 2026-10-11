@@ -145,6 +145,40 @@ class ModeTransitionMiddleware(BaseMiddleware):
                 if state:
                     await state.clear()
 
+            elif mode == "tutor_active":
+                # Сохраняем pending-сессию Наставника в БД
+                try:
+                    from handlers.tutor import finalize_tutor_session
+                    await finalize_tutor_session(
+                        event.bot, chat_id, user_id, is_final=False
+                    )
+                except Exception as e:
+                    logger.error(f"[ModeTransition] finalize_tutor_session failed: {e}")
+
+                # Удаляем Reply-клавиатуру Наставника
+                tutor_kb_id = user_state.get("tutor_keyboard_msg_id")
+                if tutor_kb_id and chat_id:
+                    try:
+                        await event.bot.delete_message(chat_id, tutor_kb_id)
+                    except Exception:
+                        pass
+                    user_state.pop("tutor_keyboard_msg_id", None)
+
+                # Принудительно убираем ReplyKeyboard
+                if chat_id:
+                    try:
+                        from aiogram.types import ReplyKeyboardRemove
+                        await event.bot.send_message(
+                            chat_id, " ",
+                            reply_markup=ReplyKeyboardRemove()
+                        )
+                    except Exception:
+                        pass
+
+                if state:
+                    await state.clear()
+
+
             user_state["mode"] = ""
             set_user_state(user_id, user_state)
             logger.info(f"[ModeTransition] Режим {mode} очищен")
