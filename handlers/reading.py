@@ -368,6 +368,15 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
 
+    # Если открыт Наставник — закрываем его
+    if user_state.get("mode") == "tutor_active":
+        try:
+            from handlers.start import clear_tutor_if_active
+            await clear_tutor_if_active(callback, state)
+        except Exception as e:
+            logger.error(f"clear_tutor_if_active (reading) failed: {e}")
+        user_state = get_user_state(user_id)
+
     user_state["mode"] = "reading_active"
     set_user_state(user_id, user_state)
 
