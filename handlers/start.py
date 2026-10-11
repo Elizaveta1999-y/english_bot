@@ -38,6 +38,13 @@ def get_main_menu_keyboard():
         [InlineKeyboardButton(text="🎓 Занятие с Айвой", callback_data="start_tutor")],
         [InlineKeyboardButton(text="🎙️ Разговорная практика", callback_data="start_speaking")],
         [InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")],
+        [InlineKeyboardButton(text="🎧 Тренажёры", callback_data="open_trainers")],
+        [InlineKeyboardButton(text="📈 Мой прогресс", callback_data="profile_menu")],
+    ])
+
+
+def get_trainers_keyboard():
+    return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar"),
             InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")
@@ -50,7 +57,7 @@ def get_main_menu_keyboard():
             InlineKeyboardButton(text="📝 Письмо", callback_data="start_writing"),
             InlineKeyboardButton(text="🗣️ Говорение", callback_data="start_govorenie")
         ],
-        [InlineKeyboardButton(text="📊 Моя статистика", callback_data="profile_menu")]
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main_menu")],
     ])
 
 
@@ -163,7 +170,37 @@ async def under_construction(callback: CallbackQuery):
         await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)
     except Exception:
         pass
+@router.callback_query(F.data == "open_trainers")
+async def open_trainers(callback: CallbackQuery, state: FSMContext):
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+    try:
+        await callback.message.edit_text(
+            "<b>🎧 Тренажёры</b>\n\n"
+            "Тренируй все Hard Skills:",
+            reply_markup=get_trainers_keyboard(),
+            parse_mode="HTML"
+        )
+    except Exception as e:
+        logger.error(f"open_trainers: {e}")
 
+
+@router.callback_query(F.data == "back_to_main_menu")
+async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
+    try:
+        await callback.answer()
+    except Exception:
+        pass
+    try:
+        await callback.message.edit_text(
+            WELCOME_TEXT,
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode="HTML"
+        )
+    except Exception as e:
+        logger.error(f"back_to_main_menu: {e}")
 
 async def remove_all_reply_keyboards(callback: CallbackQuery):
     user_id = callback.from_user.id
