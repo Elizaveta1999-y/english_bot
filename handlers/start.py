@@ -45,21 +45,16 @@ def get_main_menu_keyboard():
 
 def get_trainers_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar"),
-            InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")
-        ],
-        [
-            InlineKeyboardButton(text="🔉 Аудирование", callback_data="start_listening"),
-            InlineKeyboardButton(text="📖 Чтение", callback_data="start_reading")
-        ],
+        [InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar")],
+        [InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")],
+        [InlineKeyboardButton(text="🔉 Аудирование", callback_data="start_listening")],
+        [InlineKeyboardButton(text="📖 Чтение", callback_data="start_reading")],
         [
             InlineKeyboardButton(text="📝 Письмо", callback_data="start_writing"),
             InlineKeyboardButton(text="🗣️ Говорение", callback_data="start_govorenie")
         ],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main_menu")],
     ])
-
 
 async def _force_remove_reply_keyboard(message: Message):
     """Принудительно убирает ReplyKeyboard у пользователя."""
@@ -179,13 +174,12 @@ async def open_trainers(callback: CallbackQuery, state: FSMContext):
     try:
         await callback.message.edit_text(
             "<b>🎧 Тренажёры</b>\n\n"
-            "Тренируй все Hard Skills:",
+            "Тренируй все навыки:",
             reply_markup=get_trainers_keyboard(),
             parse_mode="HTML"
         )
     except Exception as e:
         logger.error(f"open_trainers: {e}")
-
 
 @router.callback_query(F.data == "back_to_main_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
