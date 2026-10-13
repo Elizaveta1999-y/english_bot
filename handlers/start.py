@@ -763,3 +763,4 @@ async def main_menu_text_handler(message: Message, state: FSMContext):
     await _force_remove_reply_keyboard(message)
 
     await show_main_menu(message, edit=False)
+

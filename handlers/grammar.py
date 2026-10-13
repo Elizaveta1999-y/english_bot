@@ -31,28 +31,21 @@ class GrammarStates(StatesGroup):
     in_progress = State()
 
 WELCOME_TEXT = (
-    "<b>Добро пожаловать в умный тренажер Английского языка! 🇺🇸</b>\n\n"
-    "Проходи уроки, выполняй задания и общайся голосом со своим персональным AI-тьютором! 🧠\n"
-    "Выбирай режим и начни совершенствоваться в языке!\n\n"
+    "🎓 <b>Айва, наставница по английскому.</b>\n\n"
+    "Три способа заниматься:\n"
+    "— поговорить с Emma или Alex\n"
+    "— сыграть роль в сцене\n"
+    "— поработать со мной над твоими ошибками\n\n"
+    "Выбирай, как хочешь сегодня:"
 )
 
 def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎙️ Общение с AI", callback_data="start_speaking")],
+        [InlineKeyboardButton(text="🎓 Занятие с Айвой", callback_data="start_tutor")],
+        [InlineKeyboardButton(text="🎙️ Разговорная практика", callback_data="start_speaking")],
         [InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")],
-        [
-            InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar"),
-            InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")
-        ],
-        [
-            InlineKeyboardButton(text="🔉 Аудирование", callback_data="start_listening"),
-            InlineKeyboardButton(text="📖 Чтение", callback_data="start_reading")
-        ],
-        [
-            InlineKeyboardButton(text="📝 Письмо", callback_data="start_writing"),
-            InlineKeyboardButton(text="🗣️ Говорение", callback_data="start_govorenie")
-        ],
-        [InlineKeyboardButton(text="📊 Моя статистика", callback_data="profile_menu")]
+        [InlineKeyboardButton(text="🎧 Тренажёры", callback_data="open_trainers")],
+        [InlineKeyboardButton(text="📈 Мой прогресс", callback_data="profile_menu")],
     ])
 
 async def show_main_menu(message: Message, edit: bool = False):
@@ -61,7 +54,6 @@ async def show_main_menu(message: Message, edit: bool = False):
         await message.edit_text(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
     else:
         await message.answer(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
-
 @router.message(
     F.text.startswith('/') & ~F.text.in_(["/support", "/subscription", "/agreement", "/start"]),
     StateFilter(GrammarStates.choosing_type, GrammarStates.waiting_for_text, GrammarStates.in_progress)
