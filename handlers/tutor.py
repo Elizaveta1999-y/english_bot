@@ -3324,7 +3324,9 @@ async def handle_tutor_voice(message: Message, state: FSMContext):
     bonus = get_bonus_tutor_voices(user_id)
 
     if bonus <= 0:
-        if access == ACCESS_SUBSCRIBED:
+        if access == ACCESS_UNLIMITED:
+            pass
+        elif access == ACCESS_SUBSCRIBED:
             allowed, reason = check_tutor_access(user_id)
             if not allowed:
                 await _check_and_report_limit(message, user_id)

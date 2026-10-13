@@ -173,14 +173,12 @@ async def open_trainers(callback: CallbackQuery, state: FSMContext):
         pass
     try:
         await callback.message.edit_text(
-            "<b>🎧 Тренажёры</b>\n\n"
-            "Тренируй все навыки:",
+            "Тренируй все навыки языка:",
             reply_markup=get_trainers_keyboard(),
             parse_mode="HTML"
         )
     except Exception as e:
         logger.error(f"open_trainers: {e}")
-
 @router.callback_query(F.data == "back_to_main_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     try:
