@@ -7,10 +7,12 @@ from utils.db import get_connection
 logger = logging.getLogger(__name__)
 
 TECH_MESSAGE = (
-    "🛠️ <b>Небольшая пауза</b>\n\n"
-    "Мы проводим технические работы, чтобы бот работал ещё лучше.\n"
-    "Твои данные и прогресс в полной безопасности — ничего не потеряется.\n\n"
-    "Пожалуйста, проверяй бота с небольшими паузами — скоро вернёмся 💙"
+    "🤍 <b>Айва уходит на доработку</b>\n\n"
+    "Мы на месяц закрываем бота, чтобы сделать Айву такой, какой задумывали: "
+    "наставником, который помнит твои ошибки, ведёт тебя по плану и доводит до цели — "
+    "а не просто отвечает на сообщения.\n\n"
+    "До 17.11.26 пришлём уведомление, как только вернёмся.\n\n"
+    "Спасибо, что ты с нами. Это только начало 🤍"
 )
 
 ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
@@ -18,11 +20,10 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 
 class BotActiveMiddleware(BaseMiddleware):
     async def __call__(self, handler, event, data):
-        print(f">>> BotActive: {type(event).__name__} data={getattr(event, 'data', None)}", flush=True)
-
         user = data.get("event_from_user")
+
+        # Админа всегда пропускаем
         if user and ADMIN_ID and user.id == ADMIN_ID:
-            print(">>> BotActive: админ, пропускаем", flush=True)
             return await handler(event, data)
 
         try:
@@ -37,11 +38,11 @@ class BotActiveMiddleware(BaseMiddleware):
             logger.error(f"BotActiveMiddleware: ошибка чтения флага: {e}")
             return await handler(event, data)
 
+        # Если бот активен — пропускаем
         if val == 'true':
-            print(">>> BotActive: бот активен, пропускаем", flush=True)
             return await handler(event, data)
 
-        print(">>> BotActive: бот НЕ активен, показываем техработы", flush=True)
+        # Если бот выключен — показываем текст про техработы
         if isinstance(event, Message):
             try:
                 await event.answer(TECH_MESSAGE, parse_mode="HTML")
