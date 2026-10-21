@@ -1,0 +1,1985 @@
+import os
+import asyncio
+import logging
+import csv
+import io
+import base64
+from datetime import datetime, timedelta
+from fastapi import FastAPI, Request, Form, HTTPException, Response, Body
+from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse, StreamingResponse
+from fastapi.templating import Jinja2Templates
+import asyncpg
+import httpx
+from dotenv import load_dotenv
+import apscheduler.schedulers.background
+from pydantic import BaseModel
+from services.nalog import create_receipt_and_get_url, cancel_receipt
+from utils.db import tutor_get_memory
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+load_dotenv()
+
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+ADMIN_ID = os.getenv("ADMIN_ID")
+YOOKASSA_SHOP_ID = os.getenv("YOOKASSA_SHOP_ID")
+YOOKASSA_SECRET_KEY = os.getenv("YOOKASSA_SECRET_KEY")
+
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL is not set")
+if not BOT_TOKEN:
+    raise ValueError("BOT_TOKEN is not set")
+
+# ---------- ТАРИФЫ ----------
+TARIFF_LABELS = {
+    "light": "Лайт",
+    "base": "Про",
+}
+VOICE_LIMITS_BY_TARIFF = {
+    "light": 1800,   # 30 минут
+    "base": 9000,    # 2.5 часа
+}
+VOICE_LIMIT_DEFAULT = VOICE_LIMITS_BY_TARIFF["base"]
+
+TUTOR_LIMITS_BY_TARIFF = {
+    "light": 900,    # 15 минут
+    "base": 1800,    # 30 минут
+}
+TUTOR_LIMIT_DEFAULT = TUTOR_LIMITS_BY_TARIFF["base"]
+
+def get_tariff_label(tariff_key: str) -> str:
+    if not tariff_key:
+        return "—"
+    return TARIFF_LABELS.get(tariff_key, tariff_key)
+
+
+def get_voice_limit_seconds(tariff_key: str) -> int:
+    if tariff_key in VOICE_LIMITS_BY_TARIFF:
+        return VOICE_LIMITS_BY_TARIFF[tariff_key]
+    return VOICE_LIMIT_DEFAULT
+
+
+def format_voice_limit_label(tariff_key: str) -> str:
+    if tariff_key == "light":
+        return "30 мин"
+    return "2.5 ч"
+
+
+def get_tutor_limit_seconds(tariff_key: str) -> int:
+    if tariff_key in TUTOR_LIMITS_BY_TARIFF:
+        return TUTOR_LIMITS_BY_TARIFF[tariff_key]
+    return TUTOR_LIMIT_DEFAULT
+
+
+def format_tutor_limit_label(tariff_key: str) -> str:
+    if tariff_key == "light":
+        return "15 мин"
+    return "30 мин"
+
+# ---------- СЛОВАРИ ----------
+GRAMMAR_TYPES = {
+    "раскрытие_скобок": "раскрытие скобок",
+    "вставка_пропусков": "вставка пропусков",
+    "to_be_выбор": "to be выбор",
+    "to_be_скобки": "to be скобки",
+    "добавьте_s": "добавьте s",
+    "множественное_число": "множественное число",
+    "единственное_число": "единственное число",
+    "отрицание": "отрицание"
+}
+
+LEXIS_TYPES = {
+    "adjectives": "Прилагательные",
+    "adverbs": "Наречия",
+    "verbs": "Глаголы",
+    "nouns": "Существительные",
+    "conjunctions": "Союзы",
+    "prepositions": "Предлоги",
+    "phrasal_verbs": "Фразовые глаголы",
+    "irregular_verbs": "Неправильные глаголы",
+    "false_friends": "Ложные друзья",
+    "gold_3000": "Gold 3000",
+    "expert": "Эксперт",
+    "beginner": "Новичок"
+}
+
+LISTENING_TYPES = {
+    "choice": "Выбор варианта",
+    "truefalse": "True/False/Not stated",
+    "fill_one": "Вставка пропуска",
+    "fill_multiple": "Вставка пропусков",
+    "speaker": "Выбор утверждения",
+    "random": "Случайный тип"
+}
+
+READING_TYPES = {
+    "Подбор_заголовка": "Подбор заголовка",
+    "True_False_Not_stated": "True/False/Not stated",
+    "Вопросы_с_выбором_ответа": "Вопросы с выбором ответа",
+    "Восстановление_порядка_абзацев": "Восстановление порядка абзацев"
+}
+
+LEVEL_DISPLAY = {
+    "beginner": "Новичок",
+    "intermediate": "Любитель",
+    "expert": "Эксперт",
+    "advanced": "Эксперт",
+    "Новичок": "Новичок",
+    "Любитель": "Любитель",
+    "Эксперт": "Эксперт"
+}
+
+# ---------- БАЗА ДАННЫХ ----------
+async def get_db():
+    return await asyncpg.connect(DATABASE_URL)
+
+async def ensure_db_structure():
+    conn = await get_db()
+    try:
+        await conn.execute("""
+            ALTER TABLE users
+            ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS trial_started BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS trial_until BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS total_voice_seconds_month BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS voice_reset_month INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
+            ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT '',
+            ADD COLUMN IF NOT EXISTS subscription_started BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS subscription_count INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS speaking_seconds_month BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS roleplay_seconds_month BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS tutor_seconds_month BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS is_unlimited BOOLEAN DEFAULT FALSE,
+            ADD COLUMN IF NOT EXISTS trial_voice_count INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS trial_writing_count INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS trial_govorenie_count INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS tariff TEXT DEFAULT NULL
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS bot_settings (
+                key TEXT PRIMARY KEY,
+                value TEXT
+            )
+        """)
+        await conn.execute("""
+            INSERT INTO bot_settings (key, value) VALUES ('is_active', 'true')
+            ON CONFLICT (key) DO NOTHING
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS blocked_users (
+                user_id BIGINT PRIMARY KEY
+            )
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS api_balances (
+                service TEXT PRIMARY KEY,
+                balance TEXT,
+                last_updated BIGINT DEFAULT 0,
+                threshold TEXT,
+                link TEXT
+            )
+        """)
+        await conn.execute("""
+            INSERT INTO api_balances (service, balance, threshold, link)
+            VALUES ('elevenlabs', 'неизвестно', '10000', 'https://elevenlabs.io/app/settings/billing')
+            ON CONFLICT (service) DO NOTHING
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS render_payment (
+                id INTEGER PRIMARY KEY CHECK (id = 1),
+                next_payment_date BIGINT DEFAULT 0,
+                amount TEXT DEFAULT '7',
+                notified BOOLEAN DEFAULT FALSE
+            )
+        """)
+        await conn.execute("""
+            INSERT INTO render_payment (id, next_payment_date, amount, notified)
+            VALUES (1, 0, '7', FALSE)
+            ON CONFLICT (id) DO NOTHING
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS income (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT,
+                amount DECIMAL(10,2) NOT NULL,
+                date BIGINT NOT NULL,
+                description TEXT
+            )
+        """)
+        await conn.execute("""
+            ALTER TABLE income
+            ADD COLUMN IF NOT EXISTS payment_system TEXT,
+            ADD COLUMN IF NOT EXISTS payment_id TEXT
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS expenses (
+                id SERIAL PRIMARY KEY,
+                amount DECIMAL(10,2) NOT NULL,
+                date BIGINT NOT NULL,
+                category TEXT NOT NULL,
+                description TEXT
+            )
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS activity_log (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT NOT NULL,
+                action TEXT,
+                date BIGINT NOT NULL
+            )
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS admin_actions (
+                id SERIAL PRIMARY KEY,
+                admin_id BIGINT NOT NULL,
+                action TEXT NOT NULL,
+                details TEXT,
+                target_user_id BIGINT,
+                created_at BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
+            )
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS payments (
+                payment_id TEXT PRIMARY KEY,
+                user_id BIGINT NOT NULL,
+                amount DECIMAL(10,2) NOT NULL,
+                status TEXT NOT NULL DEFAULT 'pending',
+                created_at BIGINT NOT NULL,
+                activated_at BIGINT DEFAULT 0
+            )
+        """)
+        await conn.execute("""
+            ALTER TABLE payments
+            ADD COLUMN IF NOT EXISTS receipt_url TEXT,
+            ADD COLUMN IF NOT EXISTS tariff TEXT DEFAULT NULL
+        """)
+        await conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_payments_user_id ON payments(user_id)
+        """)
+        await conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status)
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS nalogo_tokens (
+                id INTEGER PRIMARY KEY DEFAULT 1 CHECK (id = 1),
+                access_token TEXT,
+                refresh_token TEXT,
+                phone TEXT,
+                challenge_token TEXT,
+                updated_at BIGINT DEFAULT 0
+            )
+        """)
+        await conn.execute("""
+            INSERT INTO nalogo_tokens (id, access_token, refresh_token, updated_at)
+            VALUES (1, NULL, NULL, 0)
+            ON CONFLICT (id) DO NOTHING
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS refunds (
+                id SERIAL PRIMARY KEY,
+                payment_id TEXT NOT NULL,
+                user_id BIGINT NOT NULL,
+                amount DECIMAL(10,2) NOT NULL,
+                admin_id BIGINT,
+                yookassa_refund_id TEXT,
+                status TEXT NOT NULL DEFAULT 'pending',
+                created_at BIGINT NOT NULL
+            )
+        """)
+        await conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_refunds_payment_id ON refunds(payment_id)
+        """)
+        await conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_refunds_user_id ON refunds(user_id)
+        """)
+        logger.info("✅ Структура БД обновлена")
+    except Exception as e:
+        logger.error(f"⚠️ Ошибка при обновлении БД: {e}")
+    finally:
+        await conn.close()
+
+# ---------- NALOGO TOKEN HELPERS ----------
+async def save_nalogo_token(access_token: str, refresh_token: str = ""):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        UPDATE nalogo_tokens
+        SET access_token = $1, refresh_token = $2, updated_at = $3, challenge_token = NULL
+        WHERE id = 1
+    """, access_token, refresh_token, now)
+    await conn.close()
+    logger.info("NaloGO токен сохранён в БД")
+
+async def get_nalogo_token():
+    conn = await get_db()
+    row = await conn.fetchrow(
+        "SELECT access_token, refresh_token FROM nalogo_tokens WHERE id = 1"
+    )
+    await conn.close()
+    if row and row["access_token"]:
+        return row["access_token"], row["refresh_token"]
+    return None, None
+
+# ---------- ЛОГИРОВАНИЕ ДЕЙСТВИЙ АДМИНА ----------
+async def log_admin_action(admin_id: int, action: str, details: str = "", target_user_id: int = None):
+    conn = await get_db()
+    try:
+        await conn.execute("""
+            INSERT INTO admin_actions (admin_id, action, details, target_user_id, created_at)
+            VALUES ($1, $2, $3, $4, EXTRACT(EPOCH FROM NOW())::BIGINT)
+        """, admin_id, action, details, target_user_id)
+    except Exception as e:
+        logger.error(f"Ошибка записи лога: {e}")
+    finally:
+        await conn.close()
+
+# ---------- ЮKASSA ----------
+def _yookassa_auth_header() -> str:
+    creds = f"{YOOKASSA_SHOP_ID}:{YOOKASSA_SECRET_KEY}"
+    encoded = base64.b64encode(creds.encode()).decode()
+    return f"Basic {encoded}"
+
+async def yookassa_get_payment(payment_id: str) -> dict:
+    if not YOOKASSA_SHOP_ID or not YOOKASSA_SECRET_KEY:
+        return None
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.get(
+                f"https://api.yookassa.ru/v3/payments/{payment_id}",
+                headers={"Authorization": _yookassa_auth_header()}
+            )
+            if resp.status_code != 200:
+                logger.warning(f"YooKassa get_payment: {resp.status_code} — {resp.text[:200]}")
+                return None
+            return resp.json()
+    except Exception as e:
+        logger.error(f"YooKassa get_payment: {e}")
+        return None
+
+
+async def yookassa_create_refund(payment_id: str, amount: float, description: str = "Возврат по запросу") -> dict:
+    if not YOOKASSA_SHOP_ID or not YOOKASSA_SECRET_KEY:
+        return None
+    try:
+        idempotence_key = f"refund-{payment_id}-{int(datetime.now().timestamp())}"
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.post(
+                "https://api.yookassa.ru/v3/refunds",
+                headers={
+                    "Authorization": _yookassa_auth_header(),
+                    "Idempotence-Key": idempotence_key,
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "payment_id": payment_id,
+                    "amount": {"value": f"{amount:.2f}", "currency": "RUB"},
+                    "description": description,
+                },
+            )
+            if resp.status_code not in (200, 201):
+                logger.error(f"YooKassa refund: {resp.status_code} — {resp.text[:300]}")
+                return None
+            return resp.json()
+    except Exception as e:
+        logger.error(f"YooKassa refund error: {e}")
+        return None
+
+
+async def get_last_successful_payment(user_id: int) -> dict | None:
+    conn = await get_db()
+    row = await conn.fetchrow(
+        """
+        SELECT payment_id, amount, activated_at, created_at, tariff
+        FROM payments
+        WHERE user_id = $1 AND status = 'succeeded'
+        ORDER BY activated_at DESC NULLS LAST, created_at DESC
+        LIMIT 1
+        """,
+        user_id
+    )
+    await conn.close()
+    if not row:
+        return None
+    return dict(row)
+
+
+async def get_refunded_amount(payment_id: str) -> float:
+    conn = await get_db()
+    total = await conn.fetchval(
+        "SELECT COALESCE(SUM(amount), 0) FROM refunds WHERE payment_id = $1 AND status = 'succeeded'",
+        payment_id
+    )
+    await conn.close()
+    return float(total or 0)
+
+
+async def yookassa_webhook_handler(payload: dict):
+    event = payload.get("event")
+    obj = payload.get("object") or {}
+
+    if event != "payment.succeeded":
+        logger.info(f"YooKassa webhook: ignore event={event}")
+        return True
+
+    payment_id = obj.get("id")
+    amount_str = obj.get("amount", {}).get("value", "0")
+    metadata = obj.get("metadata") or {}
+    user_id_raw = metadata.get("user_id")
+
+    if not payment_id or not user_id_raw:
+        logger.error(f"YooKassa webhook: нет payment_id или user_id. payload={payload}")
+        await send_telegram_alert(f"⚠️ ЮKassa webhook без user_id. payment_id={payment_id}")
+        return False
+
+    try:
+        user_id = int(user_id_raw)
+        amount = float(amount_str)
+    except (ValueError, TypeError):
+        logger.error(f"YooKassa webhook: неверный формат user_id/amount. user_id={user_id_raw}, amount={amount_str}")
+        return False
+
+    verify = await yookassa_get_payment(payment_id)
+    if not verify:
+        logger.error(f"YooKassa webhook: не удалось проверить платёж {payment_id} через API")
+        await send_telegram_alert(f"⚠️ ЮKassa: не удалось проверить платёж {payment_id} через API")
+        return False
+
+    if verify.get("status") != "succeeded":
+        logger.warning(f"YooKassa webhook: платёж {payment_id} в статусе {verify.get('status')}, пропускаем")
+        return True
+
+    verify_amount = float(verify.get("amount", {}).get("value", "0"))
+    verify_user_id = int((verify.get("metadata") or {}).get("user_id", 0))
+
+    if verify_user_id != user_id:
+        logger.error(f"YooKassa webhook: user_id не совпадает. webhook={user_id}, api={verify_user_id}")
+        await send_telegram_alert(f"⚠️ ЮKassa: user_id не совпадает для {payment_id}")
+        return False
+
+    if abs(verify_amount - amount) > 0.01:
+        logger.error(f"YooKassa webhook: сумма не совпадает. webhook={amount}, api={verify_amount}")
+        await send_telegram_alert(f"⚠️ ЮKassa: сумма не совпадает для {payment_id}")
+        return False
+
+    conn = await get_db()
+    try:
+        row = await conn.fetchrow(
+            "SELECT status, receipt_url, tariff FROM payments WHERE payment_id = $1", payment_id
+        )
+        if not row:
+            logger.error(f"YooKassa webhook: платёж {payment_id} не найден в БД")
+            await send_telegram_alert(f"⚠️ ЮKassa: платёж {payment_id} не найден в БД (user_id={user_id})")
+            return False
+
+        if row["status"] == "succeeded":
+            logger.info(f"YooKassa webhook: платёж {payment_id} уже активирован")
+            return True
+
+        tariff_key = row["tariff"] or "base"
+        tariff_label = TARIFF_LABELS.get(tariff_key, "Про")
+
+        now = int(datetime.now().timestamp())
+        user_row = await conn.fetchrow(
+            "SELECT subscription_until FROM users WHERE user_id = $1", user_id
+        )
+        if not user_row:
+            logger.error(f"YooKassa webhook: user {user_id} не найден в БД")
+            await send_telegram_alert(f"⚠️ ЮKassa: user {user_id} не найден в БД")
+            return False
+
+        current = user_row["subscription_until"] or 0
+        new_until = max(current, now) + 30 * 86400
+        counter_reset = current <= now
+
+        if counter_reset:
+            await conn.execute("""
+                UPDATE users
+                SET subscription_until = $1,
+                    subscription_started = $2,
+                    speaking_seconds_month = 0,
+                    roleplay_seconds_month = 0,
+                    tutor_seconds_month = 0,
+                    total_voice_seconds_month = 0,
+                    tariff = $3
+                WHERE user_id = $4
+            """, new_until, now, tariff_key, user_id)
+        else:
+            await conn.execute("""
+                UPDATE users
+                SET subscription_until = $1,
+                    tariff = $2
+                WHERE user_id = $3
+            """, new_until, tariff_key, user_id)
+
+        await conn.execute(
+            "UPDATE payments SET status = 'succeeded', activated_at = $1 WHERE payment_id = $2",
+            now, payment_id
+        )
+
+        await conn.execute("""
+            INSERT INTO income (user_id, amount, date, description, payment_system, payment_id)
+            VALUES ($1, $2, $3, $4, $5, $6)
+        """, user_id, amount, now, f"Подписка «{tariff_label}» на 30 дней", "yookassa", payment_id)
+
+        await conn.execute("""
+            INSERT INTO admin_actions (admin_id, action, details, target_user_id, created_at)
+            VALUES ($1, $2, $3, $4, $5)
+        """, 0, "Автооплата ЮKassa", f"payment_id={payment_id}, amount={amount}, tariff={tariff_key}", user_id, now)
+
+    finally:
+        await conn.close()
+
+    # --- СОЗДАНИЕ ЧЕКА В «МОЙ НАЛОГ» ---
+    receipt_url = None
+    receipt_data = None
+    conn = await get_db()
+    try:
+        existing = await conn.fetchrow(
+            "SELECT receipt_url FROM payments WHERE payment_id = $1", payment_id
+        )
+        if existing and existing["receipt_url"]:
+            receipt_url = existing["receipt_url"]
+            logger.info(f"Чек для {payment_id} уже существует в БД: {receipt_url}")
+    finally:
+        await conn.close()
+
+    if not receipt_url:
+        receipt_data = await create_receipt_and_get_url(
+            user_id=user_id,
+            amount=amount,
+            payment_id=payment_id,
+        )
+        if receipt_data:
+            receipt_url = receipt_data.get("print_url")
+            if receipt_url:
+                conn = await get_db()
+                try:
+                    await conn.execute(
+                        "UPDATE payments SET receipt_url = $1 WHERE payment_id = $2",
+                        receipt_url, payment_id
+                    )
+                finally:
+                    await conn.close()
+
+    if receipt_data and receipt_data.get("image_bytes"):
+        try:
+            image_bytes = receipt_data["image_bytes"]
+            async with httpx.AsyncClient(timeout=30) as client:
+                await client.post(
+                    f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto",
+                    data={
+                        "chat_id": user_id,
+                        "caption": "🧾 <b>Ваш чек об оплате</b>",
+                        "parse_mode": "HTML",
+                    },
+                    files={"photo": ("receipt.png", image_bytes, "image/png")},
+                )
+        except Exception as e:
+            logger.warning(f"Не удалось отправить чек пользователю {user_id}: {e}")
+    elif receipt_url:
+        try:
+            async with httpx.AsyncClient(timeout=15) as client:
+                await client.post(
+                    f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                    json={
+                        "chat_id": user_id,
+                        "text": f"🧾 <b>Ваш чек об оплате</b>\n\nСсылка для просмотра: {receipt_url}",
+                        "parse_mode": "HTML"
+                    }
+                )
+        except Exception as e:
+            logger.warning(f"Не удалось отправить ссылку на чек пользователю {user_id}: {e}")
+    else:
+        await send_telegram_alert(
+            f"⚠️ <b>Не удалось создать чек в «Мой налог»</b>\n"
+            f"User ID: {user_id}\n"
+            f"Сумма: {amount} ₽\n"
+            f"Payment ID: {payment_id}\n\n"
+            f"<b>Что делать:</b>\n"
+            f"1. Открой приложение «Мой налог» → <b>Новая продажа</b>\n"
+            f"2. Сумма: <b>{amount}</b>, описание: «Подписка на бота AI English US, 30 дней»\n"
+            f"3. Сохрани чек как <b>изображение</b>\n"
+            f"4. Загрузи на imgbb.com, скопируй <b>прямую ссылку</b>\n"
+            f"5. Отправь покупателю через /user/{user_id} в админке"
+        )
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            await client.post(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                json={
+                    "chat_id": user_id,
+                    "text": (
+                        "<b>Оплата подтверждена!</b>\n\n"
+                        f"Тариф: <b>{tariff_label}</b>\n"
+                        "Подписка Premium активирована на 30 дней.\n"
+                        "Спасибо и приятного обучения! 💙"
+                    ),
+                    "parse_mode": "HTML",
+                }
+            )
+    except Exception as e:
+        logger.warning(f"Не удалось уведомить пользователя {user_id}: {e}")
+
+    await send_telegram_alert(
+        f"💰 Новая оплата!\n"
+        f"User: {user_id}\n"
+        f"Тариф: {tariff_label}\n"
+        f"Сумма: {amount} ₽\n"
+        f"Payment ID: {payment_id}"
+    )
+
+    logger.info(f"✅ ЮKassa webhook: платёж {payment_id} активирован для user {user_id} (tariff={tariff_key})")
+    return True
+
+
+@app.post("/yookassa/webhook")
+async def yookassa_webhook(request: Request, payload: dict = Body(...)):
+    try:
+        logger.info(f"YooKassa webhook получен: event={payload.get('event')}")
+        ok = await yookassa_webhook_handler(payload)
+        if ok:
+            return JSONResponse({"status": "ok"})
+        return JSONResponse({"status": "error"}, status_code=200)
+    except Exception as e:
+        logger.error(f"YooKassa webhook error: {e}", exc_info=True)
+        return JSONResponse({"status": "error"}, status_code=200)
+
+
+# ---------- ФИНАНСЫ ----------
+async def add_income(user_id: int, amount: float, description: str = "", payment_system: str = "", payment_id: str = ""):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO income (user_id, amount, date, description, payment_system, payment_id)
+        VALUES ($1, $2, $3, $4, $5, $6)
+    """, user_id, amount, now, description, payment_system, payment_id)
+    await conn.close()
+
+async def add_expense(amount: float, category: str, description: str = ""):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO expenses (amount, date, category, description)
+        VALUES ($1, $2, $3, $4)
+    """, amount, now, category, description)
+    await conn.close()
+
+async def get_finance_summary(start_ts: int, end_ts: int) -> dict:
+    conn = await get_db()
+    income = await conn.fetchval("SELECT COALESCE(SUM(amount), 0) FROM income WHERE date >= $1 AND date <= $2", start_ts, end_ts)
+    expenses = await conn.fetchval("SELECT COALESCE(SUM(amount), 0) FROM expenses WHERE date >= $1 AND date <= $2", start_ts, end_ts)
+    await conn.close()
+    return {"income": float(income), "expenses": float(expenses)}
+
+async def get_income_list(start_ts: int, end_ts: int, limit: int = 50):
+    conn = await get_db()
+    rows = await conn.fetch(
+        "SELECT id, user_id, amount, date, description, payment_system FROM income WHERE date >= $1 AND date <= $2 ORDER BY date DESC LIMIT $3",
+        start_ts, end_ts, limit
+    )
+    await conn.close()
+    return [dict(r) for r in rows]
+
+async def get_expenses_list(start_ts: int, end_ts: int, limit: int = 50):
+    conn = await get_db()
+    rows = await conn.fetch(
+        "SELECT id, amount, date, category, description FROM expenses WHERE date >= $1 AND date <= $2 ORDER BY date DESC LIMIT $3",
+        start_ts, end_ts, limit
+    )
+    await conn.close()
+    return [dict(r) for r in rows]
+
+# ---------- ГРАФИКИ ----------
+def _resolve_range(days: int, center_date: str = None):
+    if center_date:
+        try:
+            center_dt = datetime.strptime(center_date, "%Y-%m-%d")
+        except ValueError:
+            center_dt = None
+        if center_dt:
+            half = max(1, days // 2)
+            start_dt = center_dt - timedelta(days=half)
+            end_dt = center_dt + timedelta(days=half)
+            start_ts = int(start_dt.timestamp())
+            end_ts = int(end_dt.timestamp()) + 86400 - 1
+            return start_ts, end_ts, int(center_dt.timestamp())
+    now = datetime.now()
+    start_ts = int((now - timedelta(days=days)).timestamp())
+    end_ts = int(now.timestamp())
+    return start_ts, end_ts, None
+
+
+async def get_new_users_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
+    conn = await get_db()
+    rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(registered_at)) as day, COUNT(*) as count "
+        "FROM users WHERE registered_at >= $1 AND registered_at <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
+    )
+    await conn.close()
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(end_ts)
+    data_map = {row["day"].date(): row["count"] for row in rows}
+    while current <= end:
+        d = current.date()
+        result.append({"date": d.isoformat(), "count": data_map.get(d, 0)})
+        current += timedelta(days=1)
+    return result
+
+
+async def get_activity_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
+    conn = await get_db()
+    rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count "
+        "FROM activity_log WHERE date >= $1 AND date <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
+    )
+    await conn.close()
+    if not rows:
+        conn = await get_db()
+        rows = await conn.fetch(
+            "SELECT date_trunc('day', to_timestamp(last_active)) as day, COUNT(*) as count "
+            "FROM users WHERE last_active >= $1 AND last_active <= $2 GROUP BY day ORDER BY day",
+            start_ts, end_ts
+        )
+        await conn.close()
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(end_ts)
+    data_map = {row["day"].date(): row["count"] for row in rows}
+    while current <= end:
+        d = current.date()
+        result.append({"date": d.isoformat(), "count": data_map.get(d, 0)})
+        current += timedelta(days=1)
+    return result
+
+
+async def get_finance_chart_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
+    conn = await get_db()
+    income_rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COALESCE(SUM(amount), 0) as total "
+        "FROM income WHERE date >= $1 AND date <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
+    )
+    expense_rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COALESCE(SUM(amount), 0) as total "
+        "FROM expenses WHERE date >= $1 AND date <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
+    )
+    await conn.close()
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(end_ts)
+    income_map = {row["day"].date(): row["total"] for row in income_rows}
+    expense_map = {row["day"].date(): row["total"] for row in expense_rows}
+    while current <= end:
+        d = current.date()
+        inc = float(income_map.get(d, 0))
+        exp = float(expense_map.get(d, 0))
+        result.append({"date": d.isoformat(), "income": inc, "expenses": exp, "profit": inc - exp})
+        current += timedelta(days=1)
+    return result
+
+
+async def get_subscriptions_chart_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
+    conn = await get_db()
+    users = await conn.fetch("SELECT user_id, subscription_until FROM users WHERE subscription_until > 0")
+    await conn.close()
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(end_ts)
+    while current <= end:
+        day_ts = int(current.timestamp())
+        active = sum(1 for u in users if u["subscription_until"] > day_ts)
+        result.append({"date": current.date().isoformat(), "active_subscriptions": active})
+        current += timedelta(days=1)
+    return result
+
+
+async def get_voice_chart_data(days: int = 30, center_date: str = None):
+    start_ts, end_ts, _ = _resolve_range(days, center_date)
+    conn = await get_db()
+    rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count "
+        "FROM activity_log WHERE date >= $1 AND date <= $2 GROUP BY day ORDER BY day",
+        start_ts, end_ts
+    )
+    total_seconds = await conn.fetchval("SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users")
+    await conn.close()
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(end_ts)
+    if rows and total_seconds > 0:
+        total_activity = sum(r["count"] for r in rows)
+        data_map = {row["day"].date(): row["count"] for row in rows}
+        while current <= end:
+            d = current.date()
+            activity = data_map.get(d, 0)
+            seconds = int(total_seconds * activity / total_activity) if total_activity else 0
+            result.append({"date": d.isoformat(), "voice_minutes": round(seconds / 60, 1)})
+            current += timedelta(days=1)
+    else:
+        while current <= end:
+            result.append({"date": current.date().isoformat(), "voice_minutes": 0})
+            current += timedelta(days=1)
+    return result
+
+
+async def get_daily_summary(date_str: str) -> dict:
+    conn = await get_db()
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+        start_ts = int(dt.timestamp())
+        end_ts = start_ts + 86400 - 1
+
+        new_users = await conn.fetchval(
+            "SELECT COUNT(*) FROM users WHERE registered_at >= $1 AND registered_at <= $2",
+            start_ts, end_ts
+        )
+        activity = await conn.fetchval(
+            "SELECT COUNT(*) FROM activity_log WHERE date >= $1 AND date <= $2",
+            start_ts, end_ts
+        )
+        income = await conn.fetchval(
+            "SELECT COALESCE(SUM(amount), 0) FROM income WHERE date >= $1 AND date <= $2",
+            start_ts, end_ts
+        )
+        expenses = await conn.fetchval(
+            "SELECT COALESCE(SUM(amount), 0) FROM expenses WHERE date >= $1 AND date <= $2",
+            start_ts, end_ts
+        )
+        active_subs = await conn.fetchval(
+            "SELECT COUNT(*) FROM users WHERE subscription_until > $1",
+            end_ts
+        )
+        day_activity = activity or 0
+        total_seconds = await conn.fetchval(
+            "SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users"
+        ) or 0
+        total_activity = await conn.fetchval(
+            "SELECT COUNT(*) FROM activity_log"
+        ) or 0
+        if total_activity > 0:
+            voice_minutes = round((total_seconds * day_activity / total_activity) / 60, 1)
+        else:
+            voice_minutes = 0
+
+        return {
+            "date": date_str,
+            "new_users": new_users or 0,
+            "activity": day_activity,
+            "income": float(income or 0),
+            "expenses": float(expenses or 0),
+            "profit": float((income or 0) - (expenses or 0)),
+            "active_subscriptions": active_subs or 0,
+            "voice_minutes": voice_minutes,
+        }
+    finally:
+        await conn.close()
+
+# ---------- ЭКСПОРТ ----------
+async def export_users_csv():
+    conn = await get_db()
+    rows = await conn.fetch("SELECT user_id, username, first_name, last_name, registered_at, last_active, subscription_until, total_voice_seconds_month, tariff FROM users")
+    await conn.close()
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["user_id", "username", "first_name", "last_name", "registered_at", "last_active", "subscription_until", "voice_minutes", "tariff"])
+    for row in rows:
+        writer.writerow([
+            row["user_id"], row["username"] or "", row["first_name"] or "", row["last_name"] or "",
+            datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
+            datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M"),
+            datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "",
+            round(row["total_voice_seconds_month"] / 60, 1) if row["total_voice_seconds_month"] else 0,
+            row["tariff"] or ""
+        ])
+    return output.getvalue()
+
+# ---------- API ДЛЯ ГРАФИКОВ ----------
+@app.get("/api/charts-data")
+async def charts_data(days: int = 30, type: str = "all", date: str = None):
+    center = None
+    if date:
+        try:
+            datetime.strptime(date, "%Y-%m-%d")
+            center = date
+        except ValueError:
+            center = None
+
+    if type == "finance":
+        return JSONResponse(await get_finance_chart_data(days, center_date=center))
+    elif type == "subscriptions":
+        return JSONResponse(await get_subscriptions_chart_data(days, center_date=center))
+    elif type == "voice":
+        return JSONResponse(await get_voice_chart_data(days, center_date=center))
+    else:
+        new_users = await get_new_users_data(days, center_date=center)
+        activity = await get_activity_data(days, center_date=center)
+        return JSONResponse({"new_users": new_users, "activity": activity})
+
+
+@app.get("/api/daily-summary")
+async def daily_summary(date: str):
+    try:
+        datetime.strptime(date, "%Y-%m-%d")
+    except ValueError:
+        return JSONResponse({"error": "Invalid date format"}, status_code=400)
+    return JSONResponse(await get_daily_summary(date))
+
+# ---------- СТРАНИЦЫ ----------
+@app.get("/charts", response_class=HTMLResponse)
+async def charts_page(request: Request):
+    return templates.TemplateResponse("charts.html", {"request": request})
+
+@app.get("/finance", response_class=HTMLResponse)
+async def finance_page(request: Request, period: str = "month"):
+    now = datetime.now()
+    if period == "week":
+        start = int((now - timedelta(days=7)).timestamp())
+        end = int(now.timestamp())
+        label = "за неделю"
+    elif period == "month":
+        start = int(now.replace(day=1, hour=0, minute=0, second=0, microsecond=0).timestamp())
+        end = int(now.timestamp())
+        label = "за месяц"
+    else:
+        start = 0
+        end = int(now.timestamp())
+        label = "за всё время"
+
+    summary = await get_finance_summary(start, end)
+    income_list = await get_income_list(start, end)
+    expenses_list = await get_expenses_list(start, end)
+
+    for item in income_list:
+        item["date_str"] = datetime.fromtimestamp(item["date"]).strftime("%Y-%m-%d %H:%M")
+    for item in expenses_list:
+        item["date_str"] = datetime.fromtimestamp(item["date"]).strftime("%Y-%m-%d %H:%M")
+
+    return templates.TemplateResponse("finance.html", {
+        "request": request,
+        "summary": summary,
+        "income": income_list,
+        "expenses": expenses_list,
+        "period": period,
+        "label": label
+    })
+
+@app.post("/finance/expense")
+async def add_expense_route(amount: float = Form(...), category: str = Form(...), description: str = Form("")):
+    await add_expense(amount, category, description)
+    return RedirectResponse(url="/finance", status_code=303)
+
+# ---------- УПРАВЛЕНИЕ БОТОМ ----------
+async def get_bot_active() -> bool:
+    conn = await get_db()
+    val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
+    await conn.close()
+    return val == 'true'
+
+async def set_bot_active(active: bool):
+    conn = await get_db()
+    await conn.execute("UPDATE bot_settings SET value = $1 WHERE key = 'is_active'", 'true' if active else 'false')
+    await conn.close()
+
+async def set_bonus_notification(user_id: int, reason: str):
+    conn = await get_db()
+    await conn.execute("UPDATE users SET bonus_notification = TRUE, bonus_reason = $1 WHERE user_id = $2", reason, user_id)
+    await conn.close()
+
+# ---- АВТОРИЗАЦИЯ ----
+def is_authenticated(request: Request) -> bool:
+    return request.cookies.get("admin_auth") == "true"
+
+@app.middleware("http")
+async def auth_middleware(request: Request, call_next):
+    if request.url.path in ["/login", "/favicon.ico"] or request.url.path.startswith("/yookassa/"):
+        return await call_next(request)
+    if not is_authenticated(request):
+        return RedirectResponse(url="/login", status_code=303)
+    return await call_next(request)
+
+@app.get("/login", response_class=HTMLResponse)
+async def login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.post("/login")
+async def login(request: Request, password: str = Form(...)):
+    if password == ADMIN_PASSWORD:
+        response = RedirectResponse(url="/", status_code=303)
+        response.set_cookie(key="admin_auth", value="true", httponly=True, max_age=86400)
+        return response
+    return templates.TemplateResponse("login.html", {"request": request, "error": "Неверный пароль"})
+
+@app.get("/logout")
+async def logout():
+    response = RedirectResponse(url="/login", status_code=303)
+    response.delete_cookie("admin_auth")
+    return response
+
+# ---- ГЛАВНАЯ ----
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request):
+    conn = await get_db()
+    total_users = await conn.fetchval("SELECT COUNT(*) FROM users")
+    now = int(datetime.now().timestamp())
+    subscriptions = await conn.fetchval("SELECT COUNT(*) FROM users WHERE subscription_until > $1", now)
+    trial_active = await conn.fetchval("SELECT COUNT(*) FROM users WHERE trial_until > $1", now)
+    total_voice = await conn.fetchval("SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users")
+    total_voice_minutes = round(total_voice / 60, 1)
+    admin_logs = await conn.fetch("""
+        SELECT admin_id, action, details, target_user_id, created_at
+        FROM admin_actions
+        ORDER BY created_at DESC
+        LIMIT 10
+    """)
+    await conn.close()
+    stats = {
+        "total_users": total_users,
+        "subscriptions": subscriptions,
+        "trial_active": trial_active,
+        "voice_month": total_voice_minutes,
+    }
+
+    elevenlabs = await get_api_balance("elevenlabs")
+    warnings = []
+    try:
+        elev_val = int(elevenlabs.get("balance", 0)) if elevenlabs.get("balance") and elevenlabs.get("balance").isdigit() else float('inf')
+        if elev_val < int(elevenlabs.get("threshold", 10000)):
+            warnings.append(f"⚠️ Баланс ElevenLabs: {elevenlabs.get('balance')} символов (порог {elevenlabs.get('threshold')})")
+    except: pass
+
+    render = await get_render_payment()
+    if render and render.get("next_payment_date"):
+        days_left = (render["next_payment_date"] - now) // 86400
+        if days_left <= 3 and days_left >= 0:
+            warnings.append(f"⏰ Через {days_left} дней списание ${render.get('amount', '7')} за Render")
+
+    logs_display = []
+    for row in admin_logs:
+        time_str = datetime.fromtimestamp(row["created_at"]).strftime("%Y-%m-%d %H:%M")
+        target = f"пользователя {row['target_user_id']}" if row["target_user_id"] else ""
+        details = row["details"] or ""
+        action_text = f"{row['action']} {target} {details}".strip()
+        logs_display.append({"time": time_str, "text": action_text})
+
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "stats": stats,
+        "warnings": warnings,
+        "admin_logs": logs_display
+    })
+
+# ---- ПОЛЬЗОВАТЕЛИ ----
+@app.get("/users", response_class=HTMLResponse)
+async def users_list(request: Request, search: str = "", page: int = 1, limit: int = 20, subscription: str = ""):
+    conn = await get_db()
+    offset = (page - 1) * limit
+    search_pattern = f"%{search}%" if search else "%%"
+    params = [search_pattern]
+    where_parts = ["(user_id::text ILIKE $1 OR username ILIKE $1 OR first_name ILIKE $1 OR last_name ILIKE $1)"]
+    if subscription == "active":
+        where_parts.append("subscription_until > EXTRACT(EPOCH FROM NOW())::BIGINT")
+    where_clause = " AND ".join(where_parts)
+    total_query = f"SELECT COUNT(*) FROM users WHERE {where_clause}"
+    total_count = await conn.fetchval(total_query, *params)
+    query = f"""
+        SELECT user_id, username, first_name, last_name,
+               registered_at, last_active, subscription_until,
+               total_voice_seconds_month, tariff,
+               COALESCE(speaking_seconds_month, 0) + COALESCE(roleplay_seconds_month, 0) as voice_minutes
+        FROM users
+        WHERE {where_clause}
+        ORDER BY user_id DESC
+        LIMIT $2 OFFSET $3
+    """
+    params.extend([limit, offset])
+    rows = await conn.fetch(query, *params)
+    await conn.close()
+
+    users = []
+    for row in rows:
+        users.append({
+            "user_id": row["user_id"],
+            "username": row["username"] or "—",
+            "first_name": row["first_name"] or "",
+            "last_name": row["last_name"] or "",
+            "registered_at": datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
+            "last_active": datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M") if row["last_active"] else "—",
+            "subscription_until": datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "—",
+            "voice_minutes": round(row["voice_minutes"] / 60, 1) if row["voice_minutes"] else 0,
+            "is_subscribed": row["subscription_until"] > int(datetime.now().timestamp()) if row["subscription_until"] else False,
+            "tariff_label": get_tariff_label(row["tariff"]) if row["tariff"] else "—",
+        })
+    total_pages = (total_count + limit - 1) // limit if total_count else 1
+    return templates.TemplateResponse("users.html", {
+        "request": request,
+        "users": users,
+        "search": search,
+        "page": page,
+        "limit": limit,
+        "total_pages": total_pages,
+        "total_count": total_count,
+        "subscription": subscription
+    })
+
+# ---- ПЛАТНЫЕ ПОЛЬЗОВАТЕЛИ ----
+@app.get("/paid_users", response_class=HTMLResponse)
+async def paid_users_list(request: Request, search: str = "", page: int = 1, limit: int = 20):
+    conn = await get_db()
+    offset = (page - 1) * limit
+    search_pattern = f"%{search}%" if search else "%%"
+    params = [search_pattern]
+    where_parts = [
+        "(user_id::text ILIKE $1 OR username ILIKE $1 OR first_name ILIKE $1 OR last_name ILIKE $1)",
+        "subscription_until > EXTRACT(EPOCH FROM NOW())::BIGINT"
+    ]
+    where_clause = " AND ".join(where_parts)
+    total_count = await conn.fetchval(f"SELECT COUNT(*) FROM users WHERE {where_clause}", *params)
+    query = f"""
+        SELECT user_id, username, first_name, last_name,
+               registered_at, last_active, subscription_until, subscription_started,
+               subscription_count, tariff,
+               COALESCE(speaking_seconds_month, 0) + COALESCE(roleplay_seconds_month, 0) as voice_seconds
+        FROM users
+        WHERE {where_clause}
+        ORDER BY subscription_until ASC
+        LIMIT $2 OFFSET $3
+    """
+    params.extend([limit, offset])
+    rows = await conn.fetch(query, *params)
+    await conn.close()
+
+    now = int(datetime.now().timestamp())
+    users = []
+    for row in rows:
+        sub_until = row["subscription_until"] or 0
+        days_left = (sub_until - now) // 86400 if sub_until else 0
+        users.append({
+            "user_id": row["user_id"],
+            "username": row["username"] or "—",
+            "first_name": row["first_name"] or "",
+            "last_name": row["last_name"] or "",
+            "registered_at": datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
+            "last_active": datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M") if row["last_active"] else "—",
+            "subscription_started": datetime.fromtimestamp(row["subscription_started"]).strftime("%Y-%m-%d") if row["subscription_started"] else "—",
+            "subscription_until": datetime.fromtimestamp(sub_until).strftime("%Y-%m-%d") if sub_until else "—",
+            "days_left": max(0, days_left),
+            "subscription_count": row["subscription_count"] or 0,
+            "voice_minutes": round(row["voice_seconds"] / 60, 1) if row["voice_seconds"] else 0,
+            "tariff_label": get_tariff_label(row["tariff"]) if row["tariff"] else "—",
+        })
+    total_pages = (total_count + limit - 1) // limit if total_count else 1
+    return templates.TemplateResponse("paid_users.html", {
+        "request": request,
+        "users": users,
+        "search": search,
+        "page": page,
+        "limit": limit,
+        "total_pages": total_pages,
+        "total_count": total_count,
+    })
+
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ ----
+@app.get("/user/{user_id}", response_class=HTMLResponse)
+async def user_detail(request: Request, user_id: int):
+    try:
+        conn = await get_db()
+        user_row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
+        if not user_row:
+            raise HTTPException(404, "Пользователь не найден")
+
+        progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
+        writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
+        govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
+
+        error_rows = await conn.fetch("SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key", user_id)
+        error_counts = {row["type_key"]: row["cnt"] for row in error_rows}
+
+        admin_logs = await conn.fetch("""
+            SELECT admin_id, action, details, created_at
+            FROM admin_actions
+            WHERE target_user_id = $1
+            ORDER BY created_at DESC
+            LIMIT 50
+        """, user_id)
+
+        action_stats_rows = await conn.fetch("""
+            SELECT action, COUNT(*) as cnt, MAX(created_at) as last_at
+            FROM admin_actions
+            WHERE target_user_id = $1
+            GROUP BY action
+            ORDER BY cnt DESC
+        """, user_id)
+
+        refund_info = None
+        payment_row = await conn.fetchrow("""
+            SELECT payment_id, amount, activated_at, created_at, tariff
+            FROM payments
+            WHERE user_id = $1 AND status = 'succeeded'
+            ORDER BY activated_at DESC NULLS LAST, created_at DESC
+            LIMIT 1
+        """, user_id)
+        if payment_row:
+            payment_id_r = payment_row["payment_id"]
+            payment_amount_r = float(payment_row["amount"])
+            refunded_row = await conn.fetchval(
+                "SELECT COALESCE(SUM(amount), 0) FROM refunds WHERE payment_id = $1 AND status = 'succeeded'",
+                payment_id_r
+            )
+            refunded_r = float(refunded_row or 0)
+            available_r = max(0, payment_amount_r - refunded_r)
+            payment_date = payment_row["activated_at"] or payment_row["created_at"]
+            refund_info = {
+                "payment_id": payment_id_r,
+                "amount": f"{payment_amount_r:.2f}",
+                "refunded": f"{refunded_r:.2f}",
+                "available": round(available_r, 2),
+                "date_str": datetime.fromtimestamp(payment_date).strftime("%Y-%m-%d %H:%M") if payment_date else "—",
+                "subscription_active": (user_row["subscription_until"] or 0) > int(datetime.now().timestamp()),
+                "tariff_label": get_tariff_label(payment_row["tariff"]) if payment_row["tariff"] else "—",
+            }
+
+        await conn.close()
+
+        user = dict(user_row)
+        for field in ["registered_at", "last_active", "subscription_until", "subscription_started", "trial_until", "trial_started"]:
+            if user.get(field):
+                user[field] = datetime.fromtimestamp(user[field]).strftime("%Y-%m-%d %H:%M") if user[field] else "—"
+            else:
+                user[field] = "—"
+
+        logs_display = []
+        for row in admin_logs:
+            logs_display.append({
+                "time": datetime.fromtimestamp(row["created_at"]).strftime("%Y-%m-%d %H:%M"),
+                "action": row["action"],
+                "details": row["details"] or "—"
+            })
+
+        action_stats = []
+        for row in action_stats_rows:
+            action_stats.append({
+                "action": row["action"],
+                "count": row["cnt"],
+                "last_at": datetime.fromtimestamp(row["last_at"]).strftime("%Y-%m-%d %H:%M") if row["last_at"] else "—"
+            })
+        total_admin_actions = sum(s["count"] for s in action_stats)
+
+        progress_data = {}
+        for r in progress_rows:
+            key = r["type_key"]
+            level = r["level_key"]
+            display_level = LEVEL_DISPLAY.get(level, level)
+            correct = r["correct"]
+            wrong = r["wrong"]
+            if key not in progress_data:
+                progress_data[key] = {}
+            if display_level not in progress_data[key]:
+                progress_data[key][display_level] = {"correct": 0, "wrong": 0}
+            progress_data[key][display_level]["correct"] += correct
+            progress_data[key][display_level]["wrong"] += wrong
+
+        grammar_items = []
+        for raw_key, display_name in GRAMMAR_TYPES.items():
+            db_key = f"grammar_{raw_key}"
+            levels_data = progress_data.get(db_key, {})
+            total_correct = sum(d["correct"] for d in levels_data.values())
+            total_wrong = sum(d["wrong"] for d in levels_data.values())
+            total = total_correct + total_wrong
+            percent = round((total_correct / total * 100), 1) if total else 0
+            errors = error_counts.get(db_key, 0)
+            grammar_items.append({"subtype": display_name, "correct": total_correct, "total": total, "percent": percent, "errors": errors})
+
+        lexis_items = []
+        for raw_key, display_name in LEXIS_TYPES.items():
+            db_key = f"words_{raw_key}"
+            levels_data = progress_data.get(db_key, {})
+            total_correct = sum(d["correct"] for d in levels_data.values())
+            total_wrong = sum(d["wrong"] for d in levels_data.values())
+            total = total_correct + total_wrong
+            percent = round((total_correct / total * 100), 1) if total else 0
+            errors = error_counts.get(db_key, 0)
+            lexis_items.append({"subtype": display_name, "correct": total_correct, "total": total, "percent": percent, "errors": errors})
+
+        reading_items = []
+        color_map = {"Новичок": "#e6f0fa", "Любитель": "#fce4ec", "Эксперт": "#fff9c4"}
+        for raw_key, display_name in READING_TYPES.items():
+            levels_data = progress_data.get(raw_key, {})
+            for level in ["Новичок", "Любитель", "Эксперт"]:
+                data = levels_data.get(level, {"correct": 0, "wrong": 0})
+                correct = data["correct"]
+                wrong = data["wrong"]
+                total = correct + wrong
+                percent = round((correct / total * 100), 1) if total else 0
+                style = f"background-color: {color_map.get(level, 'transparent')};"
+                reading_items.append({"subtype": display_name, "level": level, "correct": correct, "wrong": wrong, "total": total, "percent": percent, "style": style})
+
+        listening_items = []
+        for raw_key, display_name in LISTENING_TYPES.items():
+            db_key = f"listening_{raw_key}"
+            levels_data = progress_data.get(db_key, {})
+            for level in ["Новичок", "Любитель", "Эксперт"]:
+                data = levels_data.get(level, {"correct": 0, "wrong": 0})
+                correct = data["correct"]
+                wrong = data["wrong"]
+                total = correct + wrong
+                percent = round((correct / total * 100), 1) if total else 0
+                style = f"background-color: {color_map.get(level, 'transparent')};"
+                listening_items.append({"subtype": display_name, "level": level, "correct": correct, "wrong": wrong, "total": total, "percent": percent, "style": style})
+
+        writing_items = []
+        writing_type_names = {"email": "📧 Email", "essay": "📝 Эссе", "post": "📱 Пост", "story": "📖 История"}
+        writing_data = {}
+        for r in writing_rows:
+            key = r["type_key"]
+            level = r["level_key"]
+            if key not in writing_data:
+                writing_data[key] = {}
+            writing_data[key][level] = {"answered": r["total_answered"], "score": r["total_score"]}
+        for type_key, display_name in writing_type_names.items():
+            levels = writing_data.get(type_key, {})
+            for level in ["beginner", "intermediate", "expert"]:
+                level_display = LEVEL_DISPLAY.get(level, level)
+                data = levels.get(level, {"answered": 0, "score": 0})
+                answered = data["answered"]
+                score = data["score"]
+                avg = round(score / answered, 1) if answered else 0
+                writing_items.append({"subtype": display_name, "level": level_display, "answered": answered, "score": score, "avg": avg})
+        writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
+
+        govorenie_items = []
+        govorenie_type_names = {"reading": "📖 Чтение вслух", "fluency": "⏱ Беглость", "interview": "🎤 Интервью"}
+        govorenie_data = {}
+        for r in govorenie_rows:
+            key = r["task_type"]
+            level = r["level"]
+            if key not in govorenie_data:
+                govorenie_data[key] = {}
+            govorenie_data[key][level] = {"answered": r["total_answered"], "score": r["total_score"]}
+        for type_key, display_name in govorenie_type_names.items():
+            levels = govorenie_data.get(key, {}) if False else govorenie_data.get(type_key, {})
+            for level in ["beginner", "intermediate", "advanced"]:
+                level_display = LEVEL_DISPLAY.get(level, level)
+                data = levels.get(level, {"answered": 0, "score": 0})
+                answered = data["answered"]
+                score = data["score"]
+                avg = round(score / answered, 1) if answered else 0
+                govorenie_items.append({"subtype": display_name, "level": level_display, "answered": answered, "score": score, "avg": avg})
+        govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
+
+        def _fmt(secs):
+            secs = int(secs or 0)
+            if secs <= 0:
+                return "0 сек"
+            h = secs // 3600
+            m = (secs % 3600) // 60
+            s = secs % 60
+            if h > 0:
+                return f"{h} ч {m} мин {s} сек"
+            if m > 0:
+                return f"{m} мин {s} сек"
+            return f"{s} сек"
+
+        speaking_display = _fmt(user.get("speaking_seconds_month"))
+        roleplay_display = _fmt(user.get("roleplay_seconds_month"))
+        tutor_display = _fmt(user.get("tutor_seconds_month"))
+        total_display = _fmt(user.get("total_voice_seconds_month"))
+
+        # Тариф и лимит
+        tariff_key = user_row["tariff"] or None
+        tariff_label = get_tariff_label(tariff_key)
+        voice_limit_seconds = get_voice_limit_seconds(tariff_key)
+        voice_limit_label = format_voice_limit_label(tariff_key)
+        voice_used_secs = int(user.get("total_voice_seconds_month") or 0)
+        voice_percent = round(min(100, voice_used_secs / voice_limit_seconds * 100), 1) if voice_limit_seconds else 0
+
+        # Лимит Тьютора
+        tutor_limit_seconds = get_tutor_limit_seconds(tariff_key)
+        tutor_limit_label = format_tutor_limit_label(tariff_key)
+        tutor_used_secs = int(user.get("tutor_seconds_month") or 0)
+        tutor_percent = round(min(100, tutor_used_secs / tutor_limit_seconds * 100), 1) if tutor_limit_seconds else 0
+
+        # Память Наставника
+        try:
+            tutor_memory_raw = await tutor_get_memory(user_id)
+        except Exception as e:
+            logger.error(f"Ошибка tutor_get_memory для {user_id}: {e}")
+            tutor_memory_raw = {}
+
+        tutor_last_session_at = tutor_memory_raw.get("last_session_at") or 0
+        tutor_memory = {
+            "user_name": tutor_memory_raw.get("user_name"),
+            "user_level": tutor_memory_raw.get("user_level"),
+            "interests": list(tutor_memory_raw.get("interests") or []),
+            "current_mistake": tutor_memory_raw.get("current_mistake"),
+            "last_diagnostic_note": tutor_memory_raw.get("last_diagnostic_note"),
+            "active_mistakes": list(tutor_memory_raw.get("active_mistakes") or []),
+            "done_mistakes": list(tutor_memory_raw.get("done_mistakes") or []),
+            "strengths": list(tutor_memory_raw.get("strengths") or []),
+            "sessions_count": tutor_memory_raw.get("sessions_count") or 0,
+            "last_session_at_str": (
+                datetime.fromtimestamp(tutor_last_session_at).strftime("%d.%m.%Y %H:%M")
+                if tutor_last_session_at else None
+            ),
+        }
+        return templates.TemplateResponse("user_detail.html", {
+            "request": request,
+            "user": user,
+            "grammar_items": grammar_items,
+            "lexis_items": lexis_items,
+            "reading_items": reading_items,
+            "listening_items": listening_items,
+            "writing_items": writing_items,
+            "govorenie_items": govorenie_items,
+            "speaking_display": speaking_display,
+            "roleplay_display": roleplay_display,
+            "tutor_display": tutor_display,
+            "total_display": total_display,
+            "voice_percent": voice_percent,
+            "voice_limit_label": voice_limit_label,
+            "tutor_percent": tutor_percent,
+            "tutor_limit_label": tutor_limit_label,
+            "tutor_memory": tutor_memory,
+            "tariff_label": tariff_label,
+            "admin_logs": logs_display,
+            "action_stats": action_stats,
+            "total_admin_actions": total_admin_actions,
+            "refund_info": refund_info,
+        })
+    except Exception as e:
+        logger.error(f"Ошибка в user_detail для {user_id}: {e}", exc_info=True)
+        return HTMLResponse(f"<h1>Ошибка</h1><pre>{e}</pre>", status_code=500)
+
+# ---- ДЕЙСТВИЯ ----
+@app.get("/debug-progress/{user_id}")
+async def debug_progress(user_id: int):
+    conn = await get_db()
+    rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1 ORDER BY type_key", user_id)
+    await conn.close()
+    return {"user_id": user_id, "progress": [dict(r) for r in rows]}
+
+@app.post("/user/{user_id}/extend")
+async def extend_subscription(request: Request, user_id: int, days: int = Form(...), reason: str = Form("")):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    row = await conn.fetchrow("SELECT subscription_until, subscription_count FROM users WHERE user_id = $1", user_id)
+    current = row["subscription_until"] if row and row["subscription_until"] else now
+    new_until = max(current, now) + days * 86400
+    counter_was_reset = False
+    if current <= now:
+        await conn.execute("""
+            UPDATE users
+            SET subscription_started = $1,
+                speaking_seconds_month = 0,
+                roleplay_seconds_month = 0,
+                tutor_seconds_month = 0,
+                total_voice_seconds_month = 0
+            WHERE user_id = $2
+        """, now, user_id)
+        counter_was_reset = True
+    await conn.execute("UPDATE users SET subscription_until = $1 WHERE user_id = $2", new_until, user_id)
+    if reason.strip():
+        await set_bonus_notification(user_id, reason)
+    await conn.close()
+    if reason.strip():
+        action_text = f"Бонус: {reason}"
+    else:
+        action_text = f"Продление на {days} дней"
+    await log_admin_action(admin_id, "Продление подписки", action_text, user_id)
+    if counter_was_reset:
+        await log_admin_action(admin_id, "Обнуление счётчика минут при оплате", f"лимит по тарифу сброшен", user_id)
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+@app.post("/user/{user_id}/cancel")
+async def cancel_subscription(request: Request, user_id: int):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+    conn = await get_db()
+    await conn.execute("UPDATE users SET subscription_until = 0 WHERE user_id = $1", user_id)
+    await conn.close()
+    await log_admin_action(admin_id, "Отмена подписки", "", user_id)
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+
+@app.post("/user/{user_id}/refund")
+async def refund_user(request: Request, user_id: int, amount: float = Form(...)):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+
+    conn = await get_db()
+    try:
+        user_row = await conn.fetchrow(
+            "SELECT subscription_until FROM users WHERE user_id = $1", user_id
+        )
+        if not user_row:
+            raise HTTPException(404, "Пользователь не найден")
+
+        now = int(datetime.now().timestamp())
+        if (user_row["subscription_until"] or 0) <= now:
+            await send_telegram_alert(
+                f"⚠️ Попытка возврата для user {user_id}: подписка неактивна"
+            )
+            return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+    finally:
+        await conn.close()
+
+    payment = await get_last_successful_payment(user_id)
+    if not payment:
+        await send_telegram_alert(f"⚠️ Возврат для user {user_id}: нет успешных платежей")
+        return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+    payment_id = payment["payment_id"]
+    payment_amount = float(payment["amount"])
+    already_refunded = await get_refunded_amount(payment_id)
+    available = payment_amount - already_refunded
+
+    if amount <= 0 or amount > available + 0.01:
+        await send_telegram_alert(
+            f"⚠️ Возврат для user {user_id}: неверная сумма {amount} ₽ "
+            f"(доступно {available:.2f} ₽)"
+        )
+        return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+    amount = round(amount, 2)
+
+    refund_response = await yookassa_create_refund(
+        payment_id=payment_id,
+        amount=amount,
+        description=f"Возврат для user {user_id}",
+    )
+
+    now = int(datetime.now().timestamp())
+
+    if refund_response and refund_response.get("status") in ("succeeded", "pending"):
+        refund_id = refund_response.get("id", "")
+        refund_status = refund_response.get("status", "pending")
+
+        conn = await get_db()
+        try:
+            await conn.execute("""
+                INSERT INTO refunds (payment_id, user_id, amount, admin_id, yookassa_refund_id, status, created_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
+            """, payment_id, user_id, amount, admin_id, refund_id, refund_status, now)
+
+            await conn.execute(
+                "UPDATE users SET subscription_until = 0 WHERE user_id = $1", user_id
+            )
+        finally:
+            await conn.close()
+
+        try:
+            conn = await get_db()
+            try:
+                receipt_row = await conn.fetchrow(
+                    "SELECT receipt_url FROM payments WHERE payment_id = $1", payment_id
+                )
+                receipt_url = receipt_row["receipt_url"] if receipt_row else None
+            finally:
+                await conn.close()
+
+            if receipt_url:
+                cancel_ok = await cancel_receipt(receipt_url)
+                if not cancel_ok:
+                    await send_telegram_alert(
+                        f"⚠️ Возврат оформлен, но чек не аннулирован автоматически.\n"
+                        f"User: {user_id}\nСумма: {amount} ₽\n"
+                        f"Аннулируй вручную в приложении «Мой налог»."
+                    )
+        except Exception as e:
+            logger.error(f"Ошибка аннулирования чека: {e}")
+
+        await log_admin_action(
+            admin_id, "Возврат средств",
+            f"Возврат {amount} ₽ по платежу {payment_id}. Подписка отменена.",
+            user_id
+        )
+
+        await send_telegram_alert(
+            f"💸 Возврат оформлен\n"
+            f"User: {user_id}\n"
+            f"Сумма: {amount} ₽\n"
+            f"Платёж: {payment_id}\n"
+            f"Refund ID: {refund_id}"
+        )
+    else:
+        conn = await get_db()
+        try:
+            await conn.execute("""
+                INSERT INTO refunds (payment_id, user_id, amount, admin_id, yookassa_refund_id, status, created_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
+            """, payment_id, user_id, amount, admin_id, "", "failed", now)
+        finally:
+            await conn.close()
+
+        await send_telegram_alert(
+            f"⚠️ Не удалось оформить возврат в ЮKassa\n"
+            f"User: {user_id}\nСумма: {amount} ₽\nПлатёж: {payment_id}"
+        )
+
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+
+@app.post("/user/{user_id}/send-photo")
+async def send_photo_to_user(request: Request, user_id: int, photo_url: str = Form(...), caption: str = Form("🧾 Ваш чек об оплате")):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+
+    photo_url = photo_url.strip()
+    if not photo_url:
+        await send_telegram_alert(f"⚠️ Отправка фото для user {user_id}: пустая ссылка")
+        return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.post(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto",
+                json={
+                    "chat_id": user_id,
+                    "photo": photo_url,
+                    "caption": caption,
+                    "parse_mode": "HTML",
+                },
+            )
+        if resp.status_code == 200:
+            await log_admin_action(admin_id, "Отправка фото покупателю", f"URL: {photo_url[:80]}", user_id)
+            await send_telegram_alert(f"✅ Фото отправлено user {user_id}")
+        else:
+            await send_telegram_alert(f"⚠️ Не удалось отправить фото user {user_id}: {resp.status_code} — {resp.text[:200]}")
+    except Exception as e:
+        logger.error(f"Ошибка отправки фото: {e}")
+        await send_telegram_alert(f"⚠️ Ошибка отправки фото user {user_id}: {e}")
+
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+
+@app.post("/user/{user_id}/reset_progress")
+async def reset_user_progress(request: Request, user_id: int):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+    conn = await get_db()
+    await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM grammar_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM writing_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM progress_index WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM random_order WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM user_states WHERE user_id = $1", user_id)
+    await conn.close()
+    await log_admin_action(admin_id, "Сброс прогресса", "", user_id)
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+@app.post("/user/{user_id}/reset_tutor_memory")
+async def reset_tutor_memory_route(request: Request, user_id: int):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+    conn = await get_db()
+    try:
+        await conn.execute("DELETE FROM tutor_memory WHERE user_id = $1", user_id)
+    finally:
+        await conn.close()
+    await log_admin_action(admin_id, "Сброс памяти Наставника", "", user_id)
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+@app.post("/user/{user_id}/clear_all_data")
+async def clear_all_user_data(request: Request, user_id: int):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+    conn = await get_db()
+    await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM grammar_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM writing_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM progress_index WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM random_order WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM user_states WHERE user_id = $1", user_id)
+    await conn.execute("UPDATE users SET subscription_until = 0, subscription_started = 0, subscription_count = 0, trial_until = 0, trial_started = 0, tariff = NULL WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM income WHERE user_id = $1", user_id)
+    await conn.close()
+    await log_admin_action(admin_id, "Очистка всех данных", "", user_id)
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
+@app.post("/extend_all")
+async def extend_all_subscriptions(request: Request, days: int = Form(...)):
+    admin_id = int(os.getenv("ADMIN_ID", 0))
+    reason = "🎉 Тебе начислены бонусные дни!\nТвоя подписка продлена.\nПриносим извинения за временные неудобства и дарим эти дни в качестве компенсации.\nСпасибо за то, что вы с нами!"
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        UPDATE users
+        SET subscription_until = GREATEST(subscription_until, $1) + $2 * 86400,
+            subscription_started = CASE WHEN subscription_until <= $1 THEN $1 ELSE subscription_started END
+        WHERE subscription_until > 0
+    """, now, days)
+    await conn.execute("""
+        UPDATE users
+        SET bonus_notification = TRUE, bonus_reason = $1
+        WHERE subscription_until > 0
+    """, reason)
+    await conn.close()
+    await log_admin_action(admin_id, "Массовое продление", f"всем платным пользователям на {days} дней", None)
+    return RedirectResponse(url="/paid_users", status_code=303)
+
+# ---- УПРАВЛЕНИЕ БОТОМ ----
+@app.post("/bot/toggle")
+async def toggle_bot(active: bool = Form(...)):
+    await set_bot_active(active)
+    return RedirectResponse(url="/bot", status_code=303)
+
+@app.get("/bot", response_class=HTMLResponse)
+async def bot_control(request: Request):
+    is_active = await get_bot_active()
+    return templates.TemplateResponse("bot_control.html", {"request": request, "is_active": is_active})
+
+async def set_webhook(enable: bool):
+    if enable:
+        if not WEBHOOK_URL:
+            raise ValueError("WEBHOOK_URL не задан")
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/setWebhook?url={WEBHOOK_URL}"
+    else:
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook"
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(url)
+        return resp.json()
+
+@app.post("/webhook/enable")
+async def enable_webhook():
+    try:
+        result = await set_webhook(True)
+        return {"status": "ok", "message": "Вебхук установлен", "result": result}
+    except Exception as e:
+        logger.error(f"Ошибка установки вебхука: {e}")
+        return {"status": "error", "message": str(e)}
+
+@app.post("/webhook/disable")
+async def disable_webhook():
+    try:
+        result = await set_webhook(False)
+        return {"status": "ok", "message": "Вебхук удалён", "result": result}
+    except Exception as e:
+        logger.error(f"Ошибка удаления вебхука: {e}")
+        return {"status": "error", "message": str(e)}
+
+# ---------- МОНИТОРИНГ ----------
+async def get_api_balance(service: str) -> dict:
+    conn = await get_db()
+    row = await conn.fetchrow("SELECT balance, last_updated, threshold, link FROM api_balances WHERE service = $1", service)
+    await conn.close()
+    if row:
+        threshold = row["threshold"] or "10000"
+        return {
+            "balance": row["balance"] or "неизвестно",
+            "last_updated": row["last_updated"] or 0,
+            "threshold": threshold,
+            "link": row["link"] or "#"
+        }
+    return {"balance": "неизвестно", "last_updated": 0, "threshold": "10000", "link": "#"}
+
+async def update_api_balance(service: str, balance: str, threshold: str = None):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    if threshold is not None:
+        await conn.execute("UPDATE api_balances SET balance = $1, last_updated = $2, threshold = $3 WHERE service = $4",
+                           balance, now, threshold, service)
+    else:
+        await conn.execute("UPDATE api_balances SET balance = $1, last_updated = $2 WHERE service = $3",
+                           balance, now, service)
+    await conn.close()
+
+async def get_render_payment() -> dict:
+    conn = await get_db()
+    row = await conn.fetchrow("SELECT next_payment_date, amount, notified FROM render_payment WHERE id = 1")
+    await conn.close()
+    if row:
+        return {"next_payment_date": row["next_payment_date"] or 0, "amount": row["amount"] or "7", "notified": row["notified"] or False}
+    return {"next_payment_date": 0, "amount": "7", "notified": False}
+
+async def set_render_payment(date_ts: int, amount: str):
+    conn = await get_db()
+    await conn.execute("UPDATE render_payment SET next_payment_date = $1, amount = $2, notified = FALSE WHERE id = 1", date_ts, amount)
+    await conn.close()
+
+async def set_render_notified(notified: bool):
+    conn = await get_db()
+    await conn.execute("UPDATE render_payment SET notified = $1 WHERE id = 1", notified)
+    await conn.close()
+
+async def get_elevenlabs_balance():
+    if not ELEVENLABS_API_KEY:
+        return "неизвестно"
+    try:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(
+                "https://api.elevenlabs.io/v1/user/subscription",
+                headers={"xi-api-key": ELEVENLABS_API_KEY}
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                limit = data.get("character_limit", 0)
+                used = data.get("character_count", 0)
+                remaining = max(0, limit - used) if limit else 0
+                return str(remaining)
+            else:
+                logger.warning(f"ElevenLabs API вернул {resp.status_code}")
+                return "ошибка"
+    except Exception as e:
+        logger.error(f"Ошибка получения баланса ElevenLabs: {e}")
+        return "ошибка"
+
+async def send_telegram_alert(message: str):
+    admin_id = os.getenv("ADMIN_ID")
+    bot_token = os.getenv("BOT_TOKEN")
+    if not admin_id or not bot_token:
+        logger.warning("ADMIN_ID или BOT_TOKEN не заданы, уведомление не отправлено")
+        return
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    try:
+        async with httpx.AsyncClient() as client:
+            await client.post(url, json={"chat_id": admin_id, "text": message, "parse_mode": "HTML"})
+        logger.info(f"Уведомление отправлено админу: {message[:50]}...")
+    except Exception as e:
+        logger.error(f"Не удалось отправить уведомление: {e}")
+
+async def check_balances_and_notify():
+    logger.info("Запущена проверка балансов")
+    try:
+        elevenlabs_data = await get_api_balance("elevenlabs")
+        if not elevenlabs_data:
+            logger.warning("Нет данных о балансах в БД")
+            return
+
+        elevenlabs_balance = await get_elevenlabs_balance()
+        await update_api_balance("elevenlabs", elevenlabs_balance or "неизвестно")
+
+        try:
+            threshold_str = elevenlabs_data.get("threshold") or "10000"
+            elev_threshold = int(threshold_str)
+            if elevenlabs_balance and elevenlabs_balance.isdigit():
+                elev_val = int(elevenlabs_balance)
+            else:
+                elev_val = float('inf')
+            if elev_val < elev_threshold:
+                await send_telegram_alert(
+                    f"⚠️ Остаток символов ElevenLabs: {elevenlabs_balance} (порог {elev_threshold})\nПополните: https://elevenlabs.io/app/settings/billing"
+                )
+        except Exception as e:
+            logger.error(f"Ошибка проверки ElevenLabs: {e}")
+
+        render_data = await get_render_payment()
+        if render_data and render_data.get("next_payment_date"):
+            now = int(datetime.now().timestamp())
+            days_left = (render_data["next_payment_date"] - now) // 86400
+            if days_left <= 3 and days_left >= 0 and not render_data.get("notified", False):
+                await send_telegram_alert(
+                    f"⏰ Через {days_left} дней списание ${render_data.get('amount', '7')} за Render.\nПроверьте баланс: https://dashboard.render.com/billing"
+                )
+                await set_render_notified(True)
+        logger.info("Проверка балансов завершена")
+    except Exception as e:
+        logger.error(f"Ошибка в check_balances_and_notify: {e}")
+
+# ---- СТРАНИЦА МОНИТОРИНГА ----
+@app.get("/monitoring", response_class=HTMLResponse)
+async def monitoring_page(request: Request):
+    try:
+        elevenlabs = await get_api_balance("elevenlabs")
+        render = await get_render_payment()
+
+        if not elevenlabs or elevenlabs.get("balance") == "неизвестно":
+            await update_api_balance("elevenlabs", "неизвестно", "10000")
+            elevenlabs = await get_api_balance("elevenlabs")
+        if not render or render.get("next_payment_date") == 0:
+            await set_render_payment(0, "7")
+            render = await get_render_payment()
+
+        def safe_int(val):
+            try:
+                return int(val) if val is not None and str(val).isdigit() else 0
+            except:
+                return 0
+
+        elevenlabs_balance_str = elevenlabs.get("balance", "неизвестно")
+        elevenlabs_numeric = {
+            "balance": elevenlabs_balance_str,
+            "balance_int": safe_int(elevenlabs_balance_str),
+            "threshold": elevenlabs.get("threshold", "10000"),
+            "threshold_int": safe_int(elevenlabs.get("threshold", "10000")),
+            "last_updated": elevenlabs.get("last_updated", 0),
+            "link": elevenlabs.get("link", "#")
+        }
+
+        render_next_date = datetime.fromtimestamp(render["next_payment_date"]).strftime("%Y-%m-%d") if render["next_payment_date"] else "—"
+        render_date_input = datetime.fromtimestamp(render["next_payment_date"]).strftime("%Y-%m-%d") if render["next_payment_date"] else ""
+        days_left = None
+        if render["next_payment_date"]:
+            now = int(datetime.now().timestamp())
+            days_left = (render["next_payment_date"] - now) // 86400
+
+        return templates.TemplateResponse("monitoring.html", {
+            "request": request,
+            "elevenlabs": elevenlabs_numeric,
+            "render": {
+                "next_date": render_next_date,
+                "next_date_input": render_date_input,
+                "amount": render["amount"],
+                "days_left": days_left
+            }
+        })
+    except Exception as e:
+        logger.error(f"Ошибка на странице мониторинга: {e}")
+        return HTMLResponse(f"<h1>Ошибка</h1><pre>{e}</pre>", status_code=500)
+
+@app.post("/monitoring/update/elevenlabs")
+async def update_elevenlabs_now():
+    try:
+        bal = await get_elevenlabs_balance()
+        await update_api_balance("elevenlabs", bal or "неизвестно")
+    except Exception as e:
+        logger.error(f"Ошибка обновления ElevenLabs: {e}")
+    return RedirectResponse(url="/monitoring", status_code=303)
+
+@app.post("/monitoring/render")
+async def set_render_date(request: Request, date: str = Form(...), amount: str = Form(...)):
+    try:
+        dt = datetime.strptime(date, "%Y-%m-%d")
+        ts = int(dt.timestamp())
+    except:
+        ts = 0
+    await set_render_payment(ts, amount)
+    return RedirectResponse(url="/monitoring", status_code=303)
+
+# ---------- ЭКСПОРТ ----------
+@app.get("/export/users")
+async def export_users():
+    csv_data = await export_users_csv()
+    return StreamingResponse(
+        iter([csv_data]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=users.csv"}
+    )
+
+# ---------- ЗАПУСК ----------
+@app.on_event("startup")
+async def startup():
+    await ensure_db_structure()
+    scheduler = apscheduler.schedulers.background.BackgroundScheduler()
+    scheduler.add_job(lambda: asyncio.run(check_balances_and_notify()), 'interval', hours=6, id='monitor_balances')
+    scheduler.start()
+    logger.info("✅ Фоновый мониторинг запущен (каждые 6 часов)")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("admin_app:app", host="0.0.0.0", port=8000, reload=True)
